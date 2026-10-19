@@ -138,3 +138,19 @@ H.265 — nếu sau này thay video mới, nhớ chuyển mã trước.
   màu, giữ nguyên quy tắc này, không thì có chương sẽ không đọc được.
 - **Mọi đường dẫn đều là đường dẫn tương đối**, không có dấu gạch chéo ở đầu — nhờ vậy trang
   chạy được cả khi nằm trong thư mục con của GitHub Pages.
+
+---
+
+## 9. Trang chia làm ba phần
+
+Trang giữ đúng cách chia ba thẻ trong tài liệu của nhóm:
+
+1. **Văn hoá Hà Giang** — năm cộng đồng, mốc UNESCO 2019, chợ phiên
+2. **Nguồn gốc và quy trình** — Lùng Tám, hợp tác xã 2001, chín bước làm vải, phim của nhóm
+3. **Ý nghĩa hoa văn thổ cẩm** — bốn họ họa tiết, sắc màu, vì sao cần gìn giữ
+
+Mỗi lần chỉ hiện một phần. Bấm thẻ nào thì con thoi chạy ngang rồi phần đó lộ ra.
+Gắn thẳng đường dẫn tới từng phần được: thêm `#phan-1`, `#phan-2` hoặc `#phan-3` vào cuối địa chỉ.
+
+Nội dung ba phần lấy từ tài liệu Google Docs của nhóm. Nếu tài liệu đó sửa thì phải sửa lại trang,
+hai bên không tự đồng bộ.

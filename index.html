@@ -54,6 +54,11 @@
 }
 
 *,*::before,*::after{box-sizing:border-box}
+/* BẮT BUỘC: trình duyệt chỉ đặt [hidden]{display:none} ở mức mặc định, nên bất kỳ
+   khai báo display nào của ta (ví dụ .nut-phat{display:flex}) cũng đè lên nó.
+   Thiếu dòng này thì nút "Xem phim" tuy đã ẩn vẫn nằm phủ kín video đang chạy —
+   người xem nghe được tiếng mà không thấy hình. */
+[hidden]{display:none !important}
 html,body{overflow-x:clip} /* clip, KHÔNG hidden — hidden giết position:sticky */
 html{scroll-behavior:smooth}
 body{
@@ -145,6 +150,41 @@ html[data-sang="1"] #bien button[aria-pressed="true"] .ten{color:var(--c2)}
       color-mix(in oklab,var(--vao) 74%,var(--cham)) 3px 6px)}
 #thoi .hang:nth-child(even){transform-origin:right}
 
+/* ===================== THANH BA THẺ ===================== */
+/* Trang chia làm ba phần đúng theo ba thẻ trong tài liệu của nhóm.
+   Mỗi lần chỉ hiện một phần — người xem chọn phần muốn đọc chứ không phải lướt hết. */
+#thanh-phan{position:sticky;top:0;z-index:70;background:var(--cham);
+  border-bottom:1px solid rgba(230,223,206,.18);padding-right:var(--rail)}
+#thanh-phan .boc{display:flex;gap:0;align-items:stretch;overflow-x:auto;
+  scrollbar-width:none;overscroll-behavior-x:contain}
+#thanh-phan .boc::-webkit-scrollbar{display:none}
+#thanh-phan button{position:relative;flex:1 1 0;min-width:max-content;
+  padding:15px 18px 13px;text-align:left;
+  display:flex;flex-direction:column;gap:3px;
+  border-right:1px solid rgba(230,223,206,.14);
+  transition:background .3s}
+#thanh-phan button:last-child{border-right:0}
+#thanh-phan button:hover{background:rgba(230,223,206,.05)}
+#thanh-phan .so{font-family:var(--f-hien);font-variation-settings:'wdth' 100,'wght' 500;
+  font-size:11px;letter-spacing:.2em;color:var(--mo);font-variant-numeric:tabular-nums;
+  transition:color .3s}
+#thanh-phan .ten-phan{font-family:var(--f-hien);font-variation-settings:'wdth' 75,'wght' 700;
+  font-size:clamp(.95rem,1.5vw,1.25rem);line-height:1.1;color:var(--mo);
+  white-space:nowrap;transition:color .3s}
+#thanh-phan button::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:3px;
+  background:var(--khoi);transform:scaleX(0);transform-origin:left;
+  transition:transform .32s cubic-bezier(.62,.03,.21,1)}
+#thanh-phan button[aria-selected="true"]::after{transform:scaleX(1)}
+#thanh-phan button[aria-selected="true"] .ten-phan{color:var(--soi)}
+#thanh-phan button[aria-selected="true"] .so{color:var(--chu)}
+@media (max-width:760px){
+  #thanh-phan button{flex:0 0 auto;padding:12px 15px 11px}
+  #thanh-phan .ten-phan{font-size:.95rem}
+}
+
+.phan{display:block}
+.phan[hidden]{display:none !important}
+
 /* ===================== HERO ===================== */
 #hero{min-height:min(92vh,860px);display:flex;flex-direction:column;justify-content:flex-end;
   position:relative;overflow:hidden;padding-right:var(--rail)}
@@ -222,6 +262,16 @@ html[data-sang="1"] #bien button[aria-pressed="true"] .ten{color:var(--c2)}
 .chang .loi + .loi{margin-top:.5em}
 .chang .stt{font-family:var(--f-hien);font-variation-settings:'wdth' 75,'wght' 800;
   font-size:13px;letter-spacing:.1em;color:var(--mo);font-variant-numeric:tabular-nums}
+.chang .mo-ta{font-size:15px;line-height:1.62;color:var(--soi);margin-bottom:.85em;max-width:68ch}
+
+/* mốc thành lập hợp tác xã */
+.moc-2001{margin-top:clamp(28px,4.5vh,52px);display:grid;gap:clamp(12px,2vw,28px);
+  grid-template-columns:minmax(0,auto) minmax(0,1fr);align-items:start}
+.moc-2001 .so-moc{font-family:var(--f-hien);font-variation-settings:'wdth' 75,'wght' 800;
+  font-size:clamp(3.4rem,10vw,7rem);line-height:.84;color:var(--dong);
+  font-variant-numeric:tabular-nums;margin:0}
+.moc-2001 .loi-moc{color:var(--soi);max-width:56ch;margin:0;padding-top:.5em}
+@media (max-width:620px){ .moc-2001{grid-template-columns:1fr} }
 
 @media (max-width:760px){
   .qt-luoi{grid-template-columns:1fr}
@@ -340,6 +390,44 @@ canvas.det{width:100%;height:52px;display:block;margin-top:22px;image-rendering:
   .cho-o:nth-child(n){grid-column:span 2;aspect-ratio:3/2}
   .cho-o:nth-child(3),.cho-o:nth-child(4),.cho-o:nth-child(5),.cho-o:nth-child(7){grid-column:span 1;aspect-ratio:1/1}
 }
+
+/* ===================== PHẦN 3 · HOA VĂN ===================== */
+.mo-phan{padding-block:clamp(56px,9vh,110px) clamp(24px,4vh,48px);padding-right:var(--rail)}
+.mo-phan .hoi{font-family:var(--f-hien);font-variation-settings:'wdth' 75,'wght' 800;
+  font-size:clamp(2rem,6.4vw,5.2rem);line-height:.94;color:var(--soi);margin:0 0 .4em}
+.mo-phan .dan{max-width:60ch;color:var(--mo)}
+.mo-phan .dan + .dan{margin-top:.7em}
+
+/* bốn thẻ nên xếp 2×2 — để lưới tự co sẽ ra 3+1, thừa một thẻ đứng lẻ */
+.hv-luoi{display:grid;gap:clamp(16px,2.6vw,30px);padding-right:var(--rail);
+  grid-template-columns:minmax(0,1fr);padding-block:clamp(28px,5vh,60px)}
+@media (min-width:860px){ .hv-luoi{grid-template-columns:repeat(2,minmax(0,1fr))} }
+.hv-the{position:relative;border:1px solid rgba(230,223,206,.26);
+  padding:clamp(18px,2.4vw,26px);display:flex;flex-direction:column;gap:14px;
+  transition:border-color .4s}
+.hv-the:hover{border-color:var(--khoi)}
+.hv-the h3{font-family:var(--f-hien);font-variation-settings:'wdth' 75,'wght' 800;
+  font-size:clamp(1.25rem,2.4vw,1.75rem);line-height:1.04;margin:0;color:var(--khoi)}
+.hv-the .phu{font-family:var(--f-hien);font-variation-settings:'wdth' 100,'wght' 500;
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--chu);margin:0}
+.hv-the p{font-size:14.5px;line-height:1.6;color:var(--soi);margin:0}
+.hv-the p + p{margin-top:.6em}
+.hv-the canvas{width:100%;height:92px;display:block;image-rendering:pixelated;
+  border:1px solid rgba(230,223,206,.16)}
+
+.sac-mau{padding-block:clamp(40px,7vh,86px);padding-right:var(--rail)}
+.dai-mau{display:flex;height:64px;margin:22px 0 14px;border:1px solid rgba(230,223,206,.2)}
+.dai-mau i{flex:1;position:relative}
+.dai-mau i span{position:absolute;left:50%;bottom:8px;translate:-50% 0;
+  font-family:var(--f-hien);font-variation-settings:'wdth' 100,'wght' 500;
+  font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  color:#0D141B;background:rgba(230,223,206,.88);padding:2px 6px;white-space:nowrap}
+
+.luu-y{margin-top:clamp(30px,5vh,60px);background:var(--cham-2);
+  border-left:3px solid var(--dong);padding:clamp(18px,2.6vw,28px);max-width:78ch}
+.luu-y h3{font-family:var(--f-hien);font-variation-settings:'wdth' 100,'wght' 700;
+  font-size:1rem;letter-spacing:.04em;margin:0 0 10px;color:var(--dong)}
+.luu-y p{font-size:15px;line-height:1.65;color:var(--soi);margin:0}
 
 /* ===================== GHI NGUỒN ===================== */
 #nguon{padding-block:clamp(72px,12vh,150px);padding-right:var(--rail)}
@@ -486,12 +574,25 @@ html[data-che="nhe"] :root,html[data-che="nhe"] body{transition:none}
   </div>
 </header>
 
+<!-- ============ THANH BA THẺ ============ -->
+<nav id="thanh-phan" role="tablist" aria-label="Ba phần của trang">
+  <div class="boc">
+    <button type="button" role="tab" id="the-1" aria-controls="phan-1" aria-selected="true"  data-phan="1">
+      <span class="so">Phần 01</span><span class="ten-phan">Văn hoá Hà Giang</span></button>
+    <button type="button" role="tab" id="the-2" aria-controls="phan-2" aria-selected="false" data-phan="2">
+      <span class="so">Phần 02</span><span class="ten-phan">Nguồn gốc và quy trình</span></button>
+    <button type="button" role="tab" id="the-3" aria-controls="phan-3" aria-selected="false" data-phan="3">
+      <span class="so">Phần 03</span><span class="ten-phan">Ý nghĩa hoa văn thổ cẩm</span></button>
+  </div>
+</nav>
+
+<div class="phan" id="phan-1" role="tabpanel" aria-labelledby="the-1">
 <!-- ============ 1 · NĂM SỢI ============ -->
 <section id="nam-soi" aria-labelledby="h-nam-soi">
   <div class="boc">
     <p class="nhan">01 — Năm cộng đồng</p>
     <h2 class="hien tieu-de-khoi" id="h-nam-soi">Năm cộng đồng.<br>Một tấm vải.</h2>
-    <p style="max-width:56ch;color:var(--mo)">Chạm vào một sợi ở mép phải màn hình — hoặc chọn một người dưới đây — cả trang sẽ được dệt lại theo đúng bộ trang phục của cộng đồng đó.</p>
+    <p style="max-width:56ch;color:var(--mo)">Chạm vào một sợi màu ở mép màn hình — hoặc chọn một người dưới đây — cả trang sẽ được dệt lại theo đúng bộ trang phục của cộng đồng đó.</p>
     <div class="cot-boc" id="cot-boc" role="group" aria-label="Năm cộng đồng">
       <button type="button" class="cot" data-ma="mong" aria-pressed="true"  style="--c:#D8321C">
         <img src="assets/img/phu-nu-mong.webp" alt="Ba người phụ nữ Mông trong trang phục truyền thống bên ruộng hoa cải" width="1500" height="1000" loading="lazy" decoding="async">
@@ -511,67 +612,6 @@ html[data-che="nhe"] :root,html[data-che="nhe"] body{transition:none}
     </div>
   </div>
 </section>
-
-<!-- ============ 2 · 41 CÔNG ĐOẠN ============ -->
-<section id="quy-trinh" aria-labelledby="h-quy-trinh">
-  <video class="nen-v" id="v-soi" muted loop playsinline preload="none" poster="assets/img/poster-nhuom.jpg" aria-hidden="true"></video>
-  <div class="soc-doc"></div>
-  <div class="boc">
-    <p class="nhan">02 — Từ vỏ cây lanh đến tấm vải</p>
-    <h2 class="hien tieu-de-khoi" id="h-quy-trinh">Bốn mươi mốt<br>công đoạn.</h2>
-    <p style="max-width:62ch;color:var(--mo)">Tài liệu của nhóm ghi nhận quy trình dệt lanh truyền thống gồm <span class="dam" style="color:var(--chu)">41 công đoạn thủ công</span>. Dưới đây là tám chặng chính. Lời dẫn lấy nguyên văn từ phim nhóm tự quay tại Lùng Tám, kèm mốc giây để đối chiếu.</p>
-    <div class="qt-luoi">
-      <div class="qt-trai">
-        <p class="nhan">Tiến độ</p>
-        <div class="thuoc-doc" id="thuoc-doc" aria-hidden="true"></div>
-      </div>
-      <ol id="chang-boc">
-        <li class="chang"><span class="stt">01 / 08</span><h3 class="hien">Lấy sợi từ vỏ cây lanh</h3>
-          <p class="loi">“Sợi dệt được lấy từ phần vỏ của thân cây lanh.” <span class="moc">00:16</span></p>
-          <p class="loi">“Để thành sợi dệt, lanh qua nhiều công đoạn thủ công.” <span class="moc">00:24</span></p></li>
-        <li class="chang"><span class="stt">02 / 08</span><h3 class="hien">Cuốn thành cuộn</h3>
-          <p class="loi">“Những sợi lanh được cuốn thành cuộn, chuẩn bị cho các bước xử lý.” <span class="moc">00:32</span></p></li>
-        <li class="chang"><span class="stt">03 / 08</span><h3 class="hien">Se và nối sợi</h3>
-          <p class="loi">“Việc se và nối sợi đòi hỏi thao tác khéo léo, đều tay.” <span class="moc">00:36</span></p>
-          <p class="loi">“Người thợ nối các đoạn sợi ngắn thành sợi dài liên tục.” <span class="moc">00:44</span></p></li>
-        <li class="chang"><span class="stt">04 / 08</span><h3 class="hien">Quay sợi, ngâm và luộc</h3>
-          <p class="loi">“Sợi được quay, bó lại trước khi ngâm và luộc.” <span class="moc">00:52</span></p>
-          <p class="loi">“Trong quy trình truyền thống, sợi được luộc, giặt rồi phơi khô.” <span class="moc">01:00</span></p></li>
-        <li class="chang"><span class="stt">05 / 08</span><h3 class="hien">Mắc sợi lên khung</h3>
-          <p class="loi">“Sau khi xử lý, sợi được chuẩn bị để mắc lên khung.” <span class="moc">01:04</span></p>
-          <p class="loi">“Các sợi dọc được sắp song song, tạo nền cho quá trình dệt.” <span class="moc">01:08</span></p></li>
-        <li class="chang"><span class="stt">06 / 08</span><h3 class="hien">Dệt trên khung cửi gỗ</h3>
-          <p class="loi">“Người thợ dệt vải trên khung cửi gỗ truyền thống.” <span class="moc">01:16</span></p>
-          <p class="loi">“Sợi ngang luồn qua các sợi dọc, từng lượt tạo thành tấm vải.” <span class="moc">01:24</span></p></li>
-        <li class="chang"><span class="stt">07 / 08</span><h3 class="hien">Nhuộm và lăn vải</h3>
-          <p class="loi">“Vải lanh được nhuộm màu và trang trí theo nhiều cách.” <span class="moc">01:40</span></p>
-          <p class="loi">“Ở công đoạn lăn vải, đá và trụ gỗ giúp ép phẳng bề mặt.” <span class="moc">01:48</span></p></li>
-        <li class="chang"><span class="stt">08 / 08</span><h3 class="hien">Thêu và ghép vải</h3>
-          <p class="loi">“Vải còn được trang trí bằng thêu và ghép những mảnh vải màu.” <span class="moc">02:04</span></p>
-          <p class="loi">“Từ kỹ thuật dệt đến cách trang trí, người Mông gìn giữ bản sắc riêng.” <span class="moc">02:08</span></p></li>
-      </ol>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 3 · PHIM CHÍNH ============ -->
-<section id="phim-chinh" style="padding-block:clamp(40px,7vh,90px);padding-right:var(--rail)">
-  <div class="boc">
-    <p class="nhan">03 — Phim của nhóm</p>
-    <h2 class="hien tieu-de-khoi">Lùng Tám,<br>hai phút hai hai.</h2>
-    <div class="phim khung khung--khoi" style="padding:0">
-      <span class="nhan-nguon tu-quay">Nhóm tự quay · Lùng Tám</span>
-      <img class="anh-cho" src="assets/img/poster-khung-cui.jpg" alt="Khung hình từ phim: người thợ dệt trên khung cửi" width="1280" height="566" loading="lazy" decoding="async">
-      <video id="v-story" controls playsinline preload="none" poster="assets/img/poster-khung-cui.jpg" hidden></video>
-      <button type="button" class="nut-phat" data-phim="v-story" data-src="assets/video/story.mp4">
-        <span class="hop"><span class="tam"></span><span class="chu">Xem phim · 2:22</span></span>
-      </button>
-    </div>
-    <p style="margin-top:14px;font-size:14px;color:var(--mo)">Nhóm tự quay tại Lùng Tám. Phụ đề cháy sẵn trong hình. Phim chỉ tải khi bạn bấm xem.</p>
-    <p class="phim-noi" style="font-size:clamp(1.3rem,3.6vw,2.4rem);line-height:1.22;margin-top:clamp(30px,5vh,60px);max-width:24ch">“Mỗi đường kim, mỗi sợi chỉ, đều mang theo một câu chuyện văn hóa.”</p>
-  </div>
-</section>
-
 <!-- ============ 4 · NĂM CHƯƠNG ============ -->
 <div id="nguoi-lam-nghe">
 
@@ -679,7 +719,6 @@ html[data-che="nhe"] :root,html[data-che="nhe"] body{transition:none}
   </div></div>
 </section>
 </div>
-
 <!-- ============ 6 · CHỢ PHIÊN ============ -->
 <section id="cho" aria-labelledby="h-cho">
   <div class="boc">
@@ -701,6 +740,214 @@ html[data-che="nhe"] :root,html[data-che="nhe"] body{transition:none}
     </div>
   </div>
 </section>
+
+</div><!-- /phan-1 -->
+
+<div class="phan" id="phan-2" role="tabpanel" aria-labelledby="the-2" hidden>
+
+<!-- ============ 2.0 · NGUỒN GỐC LÙNG TÁM ============ -->
+<section id="nguon-goc" aria-labelledby="h-nguon-goc" style="padding-right:var(--rail)">
+  <div class="boc mo-phan">
+    <p class="nhan">Phần 02 — Thổ cẩm Lùng Tám</p>
+    <h2 class="hien hoi" id="h-nguon-goc">Từ cây lanh<br>đến tấm vải.</h2>
+    <p class="dan">Nằm giữa không gian núi đá và thung lũng vùng Quản Bạ, Lùng Tám là nơi cộng đồng người Mông gìn giữ nghề trồng lanh, biến cây lanh thô sơ thành sản phẩm thổ cẩm. Nghề hình thành từ nhu cầu tự làm trang phục, rồi gắn bó mật thiết với phong tục, tín ngưỡng và bản sắc văn hoá của người Mông.</p>
+    <p class="dan">Với người Mông ở Lùng Tám, cây lanh không chỉ là nguyên liệu. Theo tập quán được ghi nhận tại địa phương, vải lanh gắn với trang phục trong những dấu mốc quan trọng của đời người — đặc biệt là hôn nhân và nghi lễ liên quan đến tổ tiên. Biết trồng lanh, xử lý sợi và dệt vải còn thể hiện sự khéo léo, kiên trì và khả năng lao động của người phụ nữ trong cộng đồng.</p>
+    <div class="moc-2001">
+      <p class="so-moc">2001</p>
+      <p class="loi-moc">Hợp tác xã dệt lanh Lùng Tám được thành lập, tập hợp người làm nghề, duy trì kỹ thuật truyền thống, tạo sinh kế và phát triển thị trường cho sản phẩm địa phương. Từ nguyên liệu lanh, các nghệ nhân làm ra vải, áo, váy, khăn quàng, túi xách, ví, khăn trải bàn và đồ trang trí.</p>
+    </div>
+  </div>
+</section>
+<!-- ============ 2 · 41 CÔNG ĐOẠN ============ -->
+<section id="quy-trinh" aria-labelledby="h-quy-trinh">
+  <video class="nen-v" id="v-soi" muted loop playsinline preload="none" poster="assets/img/poster-nhuom.jpg" aria-hidden="true"></video>
+  <div class="soc-doc"></div>
+  <div class="boc">
+    <p class="nhan">02 — Từ vỏ cây lanh đến tấm vải</p>
+    <h2 class="hien tieu-de-khoi" id="h-quy-trinh">Bốn mươi mốt<br>công đoạn.</h2>
+    <p style="max-width:62ch;color:var(--mo)">Tài liệu của nhóm ghi nhận quy trình dệt lanh truyền thống gồm <span class="dam" style="color:var(--chu)">41 công đoạn thủ công</span>. Dưới đây là chín bước chính theo cách tài liệu nhóm khái quát. Câu in nghiêng là lời dẫn nguyên văn từ phim nhóm tự quay tại Lùng Tám, kèm mốc giây để đối chiếu.</p>
+    <div class="qt-luoi">
+      <div class="qt-trai">
+        <p class="nhan">Tiến độ</p>
+        <div class="thuoc-doc" id="thuoc-doc" aria-hidden="true"></div>
+      </div>
+      <ol id="chang-boc">
+        <li class="chang"><span class="stt">01 / 09</span><h3 class="hien">Trồng và thu hoạch cây lanh</h3>
+          <p class="mo-ta">Cây lanh là nguyên liệu chính để tạo ra sợi vải. Thời gian thu hoạch quyết định chất lượng sợi: thu quá sớm thì sợi dai, để quá muộn thì tách vỏ khó hơn.</p>
+          <p class="loi">“Để thành sợi dệt, lanh qua nhiều công đoạn thủ công.” <span class="moc">00:24</span></p>
+        </li>
+        <li class="chang"><span class="stt">02 / 09</span><h3 class="hien">Tách vỏ và lấy sợi lanh</h3>
+          <p class="mo-ta">Vỏ cây được bóc tách cẩn thận để lấy phần sợi. Việc này thường làm ở nơi tránh nắng và gió trực tiếp, để vỏ lanh không dính chặt vào thân cây.</p>
+          <p class="loi">“Sợi dệt được lấy từ phần vỏ của thân cây lanh.” <span class="moc">00:16</span></p>
+        </li>
+        <li class="chang"><span class="stt">03 / 09</span><h3 class="hien">Giã, nối và se sợi</h3>
+          <p class="mo-ta">Sợi được giã cho mềm, rồi nối từng đoạn thành sợi dài đều nhau. Người Mông ở Lùng Tám dùng dụng cụ se sợi phối hợp giữa tay và chân, se được nhiều sợi cùng lúc.</p>
+          <p class="loi">“Những sợi lanh được cuốn thành cuộn, chuẩn bị cho các bước xử lý.” <span class="moc">00:32</span></p>
+          <p class="loi">“Việc se và nối sợi đòi hỏi thao tác khéo léo, đều tay.” <span class="moc">00:36</span></p>
+          <p class="loi">“Người thợ nối các đoạn sợi ngắn thành sợi dài liên tục.” <span class="moc">00:44</span></p>
+        </li>
+        <li class="chang"><span class="stt">04 / 09</span><h3 class="hien">Luộc, giặt và làm trắng sợi</h3>
+          <p class="mo-ta">Sợi được cuộn lại, luộc với tro bếp, ngâm và giặt nhiều lần cho tới khi đạt độ trắng phù hợp, rồi đem phơi khô.</p>
+          <p class="loi">“Sợi được quay, bó lại trước khi ngâm và luộc.” <span class="moc">00:52</span></p>
+          <p class="loi">“Trong quy trình truyền thống, sợi được luộc, giặt rồi phơi khô.” <span class="moc">01:00</span></p>
+        </li>
+        <li class="chang"><span class="stt">05 / 09</span><h3 class="hien">Mắc khung và dệt vải</h3>
+          <p class="mo-ta">Tuỳ khổ vải, số lượng sợi dọc được tính toán và sắp xếp chính xác. Vải dệt thủ công trên khung cửi; người thợ vừa đưa sợi ngang, vừa xử lý những đoạn sợi đứt.</p>
+          <p class="loi">“Sau khi xử lý, sợi được chuẩn bị để mắc lên khung.” <span class="moc">01:04</span></p>
+          <p class="loi">“Các sợi dọc được sắp song song, tạo nền cho quá trình dệt.” <span class="moc">01:08</span></p>
+          <p class="loi">“Người thợ dệt vải trên khung cửi gỗ truyền thống.” <span class="moc">01:16</span></p>
+          <p class="loi">“Sợi ngang luồn qua các sợi dọc, từng lượt tạo thành tấm vải.” <span class="moc">01:24</span></p>
+        </li>
+        <li class="chang"><span class="stt">06 / 09</span><h3 class="hien">Cán, làm mềm và hoàn thiện mặt vải</h3>
+          <p class="mo-ta">Vải được đặt giữa phiến đá và trụ gỗ, lăn nhiều lần để cán phẳng và làm mềm. Có nơi còn ngâm vải với nước tro bếp rồi phơi khô để làm trắng.</p>
+          <p class="loi">“Ở công đoạn lăn vải, đá và trụ gỗ giúp ép phẳng bề mặt.” <span class="moc">01:48</span></p>
+        </li>
+        <li class="chang"><span class="stt">07 / 09</span><h3 class="hien">Nhuộm chàm và tạo màu</h3>
+          <p class="mo-ta">Vải được ngâm trong dung dịch chàm rồi đem phơi, lặp lại nhiều lần để đạt sắc độ mong muốn. Màu của vải là kết quả của nhiều lượt xử lý, không phải một lần nhuộm.</p>
+          <p class="loi">“Vải lanh được nhuộm màu và trang trí theo nhiều cách.” <span class="moc">01:40</span></p>
+        </li>
+        <li class="chang"><span class="stt">08 / 09</span><h3 class="hien">Thêu và trang trí hoa văn</h3>
+          <p class="mo-ta">Nghệ nhân thêu tay và ghép các mảng vải màu. Họa tiết hình học, đường nét đối xứng và các hình thức trang trí truyền thống tạo nên diện mạo riêng cho vải lanh Lùng Tám.</p>
+          <p class="loi">“Vải còn được trang trí bằng thêu và ghép những mảnh vải màu.” <span class="moc">02:04</span></p>
+        </li>
+        <li class="chang"><span class="stt">09 / 09</span><h3 class="hien">May và phát triển thành phẩm</h3>
+          <p class="mo-ta">Vải lanh được may thành trang phục, hoặc phát triển thành túi, ví, khăn, vỏ gối, khăn trải bàn và đồ trang trí — tuỳ mục đích mà chọn cách cắt, may, phối màu.</p>
+          <p class="loi">“Vải lanh được dùng làm túi xách, ví, khăn và nhiều sản phẩm khác.” <span class="moc">02:00</span></p>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3 · PHIM CHÍNH ============ -->
+<section id="phim-chinh" style="padding-block:clamp(40px,7vh,90px);padding-right:var(--rail)">
+  <div class="boc">
+    <p class="nhan">03 — Phim của nhóm</p>
+    <h2 class="hien tieu-de-khoi">Xem cả quá trình<br>trong một lần.</h2>
+    <div class="phim khung khung--khoi" style="padding:0">
+      <span class="nhan-nguon tu-quay">Nhóm tự quay · Lùng Tám</span>
+      <img class="anh-cho" src="assets/img/poster-khung-cui.jpg" alt="Khung hình từ phim: người thợ dệt trên khung cửi" width="1280" height="566" loading="lazy" decoding="async">
+      <video id="v-story" controls playsinline preload="none" poster="assets/img/poster-khung-cui.jpg" hidden></video>
+      <button type="button" class="nut-phat" data-phim="v-story" data-src="assets/video/story.mp4">
+        <span class="hop"><span class="tam"></span><span class="chu">Xem phim · 2:22</span></span>
+      </button>
+    </div>
+    <p style="margin-top:14px;font-size:14px;color:var(--mo)">Nhóm tự quay tại Lùng Tám. Phụ đề cháy sẵn trong hình. Phim chỉ tải khi bạn bấm xem.</p>
+    <p class="phim-noi" style="font-size:clamp(1.3rem,3.6vw,2.4rem);line-height:1.22;margin-top:clamp(30px,5vh,60px);max-width:24ch">“Mỗi đường kim, mỗi sợi chỉ, đều mang theo một câu chuyện văn hóa.”</p>
+  </div>
+</section>
+
+<!-- ============ 2.9 · GIÁ TRỊ ============ -->
+<section id="gia-tri" aria-labelledby="h-gia-tri" style="padding-block:clamp(56px,9vh,120px);padding-right:var(--rail)">
+  <div class="boc">
+    <p class="nhan">Giá trị của nghề</p>
+    <h2 class="hien tieu-de-khoi" id="h-gia-tri">Một tấm vải<br>nuôi được một nghề.</h2>
+    <div class="ch-y"><span class="o"></span><p>Nghề dệt gìn giữ bản sắc qua việc bảo tồn tri thức về cây lanh, kỹ thuật xử lý sợi, dệt vải và trang trí hoa văn. Những kỹ năng này được truyền lại qua thực hành giữa các thế hệ.</p></div>
+    <div class="ch-y"><span class="o"></span><p>Hợp tác xã tạo sinh kế cho người làm nghề: tập hợp các hộ sản xuất, mở rộng đầu ra, phát triển đa dạng sản phẩm từ lanh.</p></div>
+    <div class="ch-y"><span class="o"></span><p>Nghề dệt mở ra khả năng kết nối với du lịch trải nghiệm — du khách trực tiếp xem các công đoạn, hiểu rõ hơn thời gian và công sức cần để hoàn thiện một sản phẩm.</p></div>
+    <div class="ch-y"><span class="o"></span><p>Từ chất liệu truyền thống, người làm nghề phát triển nhiều sản phẩm ứng dụng như túi, ví, khăn và đồ trang trí. Đổi mới mẫu mã giúp tiếp cận nhóm khách hàng mới, duy trì nghề theo hướng bền vững.</p></div>
+  </div>
+</section>
+
+</div><!-- /phan-2 -->
+
+<div class="phan" id="phan-3" role="tabpanel" aria-labelledby="the-3" hidden>
+
+<!-- ============ 3.0 · MỞ ============ -->
+<section id="hoa-van-mo" aria-labelledby="h-hoa-van" style="padding-right:var(--rail)">
+  <div class="boc mo-phan">
+    <p class="nhan">Phần 03 — Hoa văn</p>
+    <h2 class="hien hoi" id="h-hoa-van">Bạn có thực sự hiểu<br>những hoa văn thổ cẩm?</h2>
+    <p class="dan">Bạn đã bao giờ tự hỏi vì sao trên những bộ trang phục truyền thống lại xuất hiện các hình xoắn ốc, tam giác, hoa lá hay những hình khối rực rỡ sắc màu?</p>
+    <p class="dan">Đằng sau vẻ đẹp ấy không chỉ là nghệ thuật trang trí, mà còn là những câu chuyện về thiên nhiên, cuộc sống, tình cảm và bản sắc văn hoá của đồng bào các dân tộc Hà Giang.</p>
+  </div>
+</section>
+
+<!-- ============ 3.1 · HỌA TIẾT LÀ NGÔN NGỮ ============ -->
+<section id="hoa-van-ngon-ngu" style="padding-block:clamp(30px,5vh,60px);padding-right:var(--rail)">
+  <div class="boc">
+    <div class="ch-y"><span class="o"></span><p>Mỗi đường nét, hình khối và cách phối màu đều thể hiện óc sáng tạo, quan niệm thẩm mỹ và những giá trị văn hoá được lưu truyền qua nhiều thế hệ.</p></div>
+    <div class="ch-y"><span class="o"></span><p>Với người Mông, hoa văn có thể gắn với những hình ảnh quen thuộc trong thiên nhiên, đời sống và ước vọng về sự sung túc, hạnh phúc.</p></div>
+    <div class="ch-y"><span class="o"></span><p>Nghệ thuật trang trí của người Lô Lô nổi bật với sự kết hợp những hình tam giác, hình vuông và các mảng màu rực rỡ, tạo nên bố cục độc đáo. Chính sự khác biệt ấy làm nên bức tranh văn hoá phong phú của Hà Giang.</p></div>
+  </div>
+</section>
+
+<!-- ============ 3.2 · BỐN HỌ HOA VĂN ============ -->
+<section id="bon-ho" aria-labelledby="h-bon-ho">
+  <div class="boc" style="padding-right:0">
+    <p class="nhan">Bốn họ họa tiết</p>
+    <h2 class="hien tieu-de-khoi" id="h-bon-ho">Khám phá những họa tiết<br>mang dấu ấn vùng cao.</h2>
+  </div>
+  <div class="boc hv-luoi">
+    <article class="hv-the">
+      <p class="phu">Hoa văn xoắn ốc</p>
+      <h3>Những đường nét<br>đầy câu chuyện</h3>
+      <canvas data-mau="xoan-oc" data-o="5" aria-hidden="true"></canvas>
+      <p>Những đường cong mềm mại, cuộn tròn tạo nên vẻ đẹp đặc trưng trên trang phục của người Mông.</p>
+      <p>Trong một số mô-típ truyền thống, hình tượng ốc sên còn được dùng để kể những câu chuyện về tình cảm, sự gắn bó và những khát vọng trong cuộc sống.</p>
+    </article>
+    <article class="hv-the">
+      <p class="phu">Hoa văn hình học</p>
+      <h3>Vẻ đẹp<br>của sự cân đối</h3>
+      <canvas data-mau="hinh-hoc" data-o="5" aria-hidden="true"></canvas>
+      <p>Hình vuông, tam giác, hình thoi và những đường zích zắc mang đến nhịp điệu sinh động cho trang phục. Các họa tiết được sắp xếp lặp lại hoặc đối xứng, tạo nên vẻ đẹp hài hoà.</p>
+      <p>Trên trang phục người Lô Lô, những hình tam giác nhỏ có thể kết hợp thành hình vuông, hình hoa hoặc những mảng trang trí lớn.</p>
+    </article>
+    <article class="hv-the">
+      <p class="phu">Hoa văn hoa lá</p>
+      <h3>Dấu ấn<br>của thiên nhiên</h3>
+      <canvas data-mau="hoa-la" data-o="5" aria-hidden="true"></canvas>
+      <p>Thiên nhiên vùng cao trở thành nguồn cảm hứng cho nhiều họa tiết trang trí.</p>
+      <p>Hình ảnh hoa đào, hoa lê, hoa tam giác mạch và những loài thực vật được cách điệu, gợi lên sự gần gũi giữa con người với môi trường sống.</p>
+    </article>
+    <article class="hv-the">
+      <p class="phu">Hoa văn động vật</p>
+      <h3>Hình tượng<br>mang ý nghĩa văn hoá</h3>
+      <canvas data-mau="dong-vat" data-o="5" aria-hidden="true"></canvas>
+      <p>Bên cạnh hình học và hoa lá, hình tượng động vật cũng xuất hiện trong nghệ thuật trang trí — tiêu biểu là hoa văn con chim.</p>
+      <p>Trên trang phục người Lô Lô, hình chim được ghi nhận là biểu tượng gắn với sức mạnh, tự do và hoà bình.</p>
+    </article>
+  </div>
+</section>
+
+<!-- ============ 3.3 · SẮC MÀU ============ -->
+<section id="sac-mau" aria-labelledby="h-sac-mau">
+  <div class="boc sac-mau">
+    <p class="nhan">Sắc màu thổ cẩm</p>
+    <h2 class="hien tieu-de-khoi" id="h-sac-mau">Bức tranh sống động<br>của văn hoá Hà Giang.</h2>
+    <p style="max-width:64ch;color:var(--soi)">Không chỉ thu hút bởi họa tiết, thổ cẩm còn gây ấn tượng với cách kết hợp màu sắc. Đỏ, vàng, xanh, tím và những gam màu tương phản được dùng để làm nổi bật hoa văn, tạo nên vẻ đẹp rực rỡ.</p>
+    <div class="dai-mau" aria-hidden="true">
+      <i style="background:#D8321C"><span>Đỏ</span></i>
+      <i style="background:#E8B13A"><span>Vàng</span></i>
+      <i style="background:#2F7A5A"><span>Xanh</span></i>
+      <i style="background:#6B3E8F"><span>Tím</span></i>
+      <i style="background:#2F5FA8"><span>Chàm</span></i>
+    </div>
+    <div class="ch-y"><span class="o"></span><p>Trên trang phục người Mông, màu sắc còn gắn với những ước vọng tốt đẹp về cuộc sống ấm no, may mắn và hạnh phúc.</p></div>
+    <div class="ch-y"><span class="o"></span><p>Với người Lô Lô, các mảng màu được sắp xếp khéo léo cùng hệ thống hoa văn hình học, tạo nên phong cách trang trí rất dễ nhận diện.</p></div>
+    <div class="ch-y"><span class="o"></span><p>Mỗi cộng đồng có cách sử dụng màu sắc riêng, góp phần thể hiện bản sắc văn hoá của mình.</p></div>
+  </div>
+</section>
+
+<!-- ============ 3.4 · VÌ SAO GÌN GIỮ ============ -->
+<section id="gin-giu" aria-labelledby="h-gin-giu" style="padding-block:clamp(40px,7vh,96px);padding-right:var(--rail)">
+  <div class="boc">
+    <p class="nhan">Vì sao cần gìn giữ</p>
+    <h2 class="hien tieu-de-khoi" id="h-gin-giu">Gìn giữ hoa văn<br>là gìn giữ con người<br>đứng sau nó.</h2>
+    <div class="ch-y"><span class="o"></span><p>Hoa văn thổ cẩm không chỉ có giá trị thẩm mỹ mà còn chứa đựng tri thức, ký ức và những dấu ấn văn hoá được tích luỹ qua nhiều thế hệ.</p></div>
+    <div class="ch-y"><span class="o"></span><p>Mỗi họa tiết có thể phản ánh một phần đời sống cộng đồng, từ cảm hứng thiên nhiên, tín ngưỡng cho đến quan niệm về cái đẹp.</p></div>
+    <div class="ch-y"><span class="o"></span><p>Khi những hoa văn truyền thống được tìm hiểu, giới thiệu và ứng dụng phù hợp trong đời sống hiện đại, các giá trị văn hoá có thêm cơ hội tiếp cận thế hệ trẻ.</p></div>
+
+    <div class="luu-y">
+      <h3>Một lưu ý khi giới thiệu hoa văn</h3>
+      <p>Tài liệu của nhóm ghi rõ: cần tránh gán ý nghĩa biểu tượng cụ thể cho từng họa tiết nếu chưa có tư liệu xác thực hoặc lời giải thích từ chính nghệ nhân. Những mô tả trên trang này giữ đúng mức độ chắc chắn của tư liệu gốc — chỗ nào là ghi nhận thì nói là ghi nhận, chỗ nào là khả năng thì nói là có thể.</p>
+    </div>
+
+    <p class="ket" style="margin-top:clamp(40px,7vh,86px)">Mỗi hoa văn là một dấu ấn.<br><em>Mỗi đường nét là một câu chuyện văn hoá.</em></p>
+  </div>
+</section>
+
+</div><!-- /phan-3 -->
 
 <!-- ============ 7 · GHI NGUỒN ============ -->
 <section id="nguon" aria-labelledby="h-nguon">
@@ -879,17 +1126,26 @@ function sach(){
   clearTimeout(hen);
 }
 
-function det(ma, coThoi){
-  if (ma === dangBat && coThoi !== true) return;
-  if (nhe || !coThoi || !window.gsap){ datMau(ma); return; }
+/* Một lượt thoi đưa. `giua` chạy đúng lúc màn hình bị các hàng che gần kín,
+   nên người xem không thấy cú nhảy — họ thấy cái mới lộ ra từ phía sau con thoi. */
+function chayThoi(mauVao, giua){
+  /* Đổi nội dung CHỈ được chạy một lần, và KHÔNG được phụ thuộc vào GSAP.
+     GSAP chạy theo nhịp vẽ của trình duyệt; nhịp đó bị bóp khi tab chạy nền,
+     khi máy tiết kiệm pin hoặc khi cửa sổ bị che. Nếu buộc nội dung vào mốc
+     giữa của hiệu ứng thì người dùng bấm mà trang đứng im.
+     Hiệu ứng là trang trí; việc đổi nội dung là bắt buộc. */
+  var daChay = false;
+  function doiNoiDung(){ if (daChay) return; daChay = true; if (giua) giua(); }
+
+  if (nhe || !window.gsap){ doiNoiDung(); return; }
   sach();
-  var b = HE[ma];
-  oThoi.style.setProperty('--vao', b.khoi);
+  oThoi.style.setProperty('--vao', mauVao);
   oThoi.classList.add('chay');
   var lech = 14, nua = 300 + (N/2) * lech;
+  setTimeout(doiNoiDung, nua);          /* đồng hồ thật, không qua nhịp vẽ */
   tl = gsap.timeline({onComplete:sach});
   tl.to(hang, {scaleX:1, duration:.3, ease:'power3.inOut', stagger:lech/1000}, 0);
-  tl.add(function(){ datMau(ma); }, nua/1000);
+  tl.add(doiNoiDung, nua/1000);         /* chạy sớm hơn nếu nhịp vẽ bình thường */
   tl.to(hang, {
     scaleX:0, duration:.3, ease:'power3.inOut', stagger:lech/1000,
     onStart:function(){
@@ -898,6 +1154,12 @@ function det(ma, coThoi){
   }, (300 + N*lech)/1000);
   /* van an toàn: tab bị ẩn giữa chừng thì rAF ngừng, timeline treo */
   hen = setTimeout(sach, 1700);
+}
+
+function det(ma, coThoi){
+  if (ma === dangBat && coThoi !== true) return;
+  if (nhe || !coThoi || !window.gsap){ datMau(ma); return; }
+  chayThoi(HE[ma].khoi, function(){ datMau(ma); });
 }
 
 document.querySelectorAll('#bien button').forEach(function(n){
@@ -940,16 +1202,52 @@ function maTran(ma){
       var s = dx + dy;
       m[y][x] = (s < 1.6) ? 1 : (s < 3.1 ? 2 : 0);
     }}
-  } else {                                  /* nung: viền chỉ ngang, khoảng cách không đều */
+  } else if (ma === 'nung'){                /* viền chỉ ngang, khoảng cách không đều */
     n = 16;
     var hangCo = {1:1, 2:2, 5:1, 9:2, 10:1, 14:1};
     for (y=0;y<n;y++){ m[y]=[]; for (x=0;x<n;x++){ m[y][x] = hangCo[y] || 0; }}
+
+  /* ---- bốn họ hoa văn của phần 3 ---- */
+  } else if (ma === 'xoan-oc'){             /* đường cuộn tròn, mô-típ ốc sên */
+    n = 14;
+    for (y=0;y<n;y++){ m[y]=[]; for (x=0;x<n;x++){
+      var cx = x - 6.5, cy = y - 6.5;
+      var r = Math.sqrt(cx*cx + cy*cy);
+      var goc = Math.atan2(cy, cx);
+      var xoan = (r * 1.5 - goc * 1.6 / Math.PI * 1.5);
+      var pha = xoan - Math.floor(xoan);
+      m[y][x] = r > 6.6 ? 0 : (pha < .34 ? 1 : (pha < .5 ? 2 : 0));
+    }}
+  } else if (ma === 'hinh-hoc'){            /* vuông, tam giác, thoi, zích zắc */
+    n = 12;
+    for (y=0;y<n;y++){ m[y]=[]; for (x=0;x<n;x++){
+      var thoi = Math.abs((x%6)-2.5) + Math.abs((y%6)-2.5);
+      var zic = ((x + y) % 6 === 0) ? 2 : 0;
+      m[y][x] = thoi < 1.6 ? 1 : (thoi < 2.6 ? 0 : zic);
+    }}
+  } else if (ma === 'hoa-la'){              /* hoa bốn cánh, nhuỵ hình thoi */
+    n = 10;
+    for (y=0;y<n;y++){ m[y]=[]; for (x=0;x<n;x++){
+      var ad = Math.abs(x - 4.5), ab = Math.abs(y - 4.5);
+      var nhuy = (ad + ab) <= 1.6;
+      var canh = (ad < 1.1 && ab > 1.6 && ab < 4.2)
+              || (ab < 1.1 && ad > 1.6 && ad < 4.2);
+      m[y][x] = nhuy ? 2 : (canh ? 1 : 0);
+    }}
+  } else {                                  /* dong-vat: hình chim cách điệu */
+    n = 12;
+    var chim = [
+      "000000000000","000011000000","000111100000","001111110000",
+      "011122111000","111222211100","011122111000","001111110000",
+      "000110011000","000100001000","000000000000","000000000000"];
+    for (y=0;y<n;y++){ m[y]=[]; for (x=0;x<n;x++){ m[y][x] = +chim[y][x]; }}
   }
   return m;
 }
-var MT = {}; MA.forEach(function(k){ MT[k] = maTran(k); });
+var MT = {};
+MA.concat(['xoan-oc','hinh-hoc','hoa-la','dong-vat']).forEach(function(k){ MT[k] = maTran(k); });
 
-var bangCanvas = [].slice.call(document.querySelectorAll('canvas.det'));
+var bangCanvas = [].slice.call(document.querySelectorAll('canvas[data-mau]'));
 var dangVe = {};
 
 function veCanvas(cv, ma, dan){
@@ -959,8 +1257,15 @@ function veCanvas(cv, ma, dan){
   if (!w || !h) return;
   cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
   var g = cv.getContext('2d'); g.scale(dpr, dpr);
-  var o = Math.max(5, Math.round(h / n));
-  var cot = Math.ceil(w / o), b = HE[ma];
+  /* cỡ ô: mặc định để hoa văn vừa đúng chiều cao dải; canvas nào muốn hoạ tiết
+     lặp lại nhiều lần thì khai báo data-o để ép ô nhỏ hơn */
+  var o = cv.dataset.o ? parseInt(cv.dataset.o, 10) : Math.max(5, Math.round(h / n));
+  var cot = Math.ceil(w / o);
+  /* hoa văn của phần 3 không thuộc cộng đồng nào — lấy màu đang bật của trang */
+  var b = HE[ma] || {
+    khoi: getComputedStyle(R).getPropertyValue('--khoi').trim() || '#D8321C',
+    chu:  getComputedStyle(R).getPropertyValue('--chu').trim()  || '#C3D23E'
+  };
   /* ô trống không để hở nền — tô một sắc rất nhạt để dải đọc ra mặt vải */
   var mau = ['rgba(230,223,206,.055)', b.khoi, b.chu];
 
@@ -1163,7 +1468,57 @@ addEventListener('resize', function(){
   });
 }, {passive:true});
 
+/* ============================================================
+   12. BA THẺ — mỗi lần chỉ hiện một phần
+   Tài liệu của nhóm chia làm ba thẻ; trang giữ đúng cách chia đó,
+   để người xem chọn phần muốn đọc chứ không phải lướt hết từ đầu.
+   ============================================================ */
+var cacPhan = [].slice.call(document.querySelectorAll('.phan'));
+var cacThe  = [].slice.call(document.querySelectorAll('#thanh-phan button'));
+
+function veLaiCanvasDangHien(){
+  bangCanvas.forEach(function(cv){
+    if (cv.offsetParent !== null && cv.clientWidth > 0) veCanvas(cv, cv.dataset.mau, false);
+  });
+  if (window.ScrollTrigger && ScrollTrigger.refresh) ScrollTrigger.refresh();
+}
+
+function moPhan(so, cuonLen){
+  cacPhan.forEach(function(p){ p.hidden = (p.id !== 'phan-' + so); });
+  cacThe.forEach(function(t){
+    t.setAttribute('aria-selected', String(t.dataset.phan === String(so)));
+  });
+  try { history.replaceState(null, '', '#phan-' + so); } catch(e){}
+  /* canvas trong phần đang ẩn có bề ngang bằng 0 nên không vẽ được — vẽ lại khi hiện ra */
+  requestAnimationFrame(veLaiCanvasDangHien);
+  if (cuonLen){
+    var nav = document.getElementById('thanh-phan');
+    if (nav){
+      var y = nav.getBoundingClientRect().top + window.scrollY;
+      try { window.scrollTo({top:y, behavior: nhe ? 'auto' : 'smooth'}); }
+      catch(e){ window.scrollTo(0, y); }
+    }
+  }
+}
+
+cacThe.forEach(function(t){
+  t.addEventListener('click', function(){
+    if (t.getAttribute('aria-selected') === 'true') return;
+    var mau = getComputedStyle(R).getPropertyValue('--khoi').trim() || '#D8321C';
+    /* chuyển thẻ cũng là một lượt dệt lại — và đây là do người xem tự bấm.
+       Ở bậc nhẹ, chayThoi tự gọi thẳng hàm bên trong nên không cần gọi lại. */
+    chayThoi(mau, function(){ moPhan(t.dataset.phan, true); });
+  });
+});
+
+/* mở đúng phần khi đường dẫn có #phan-2 hoặc #phan-3 */
+(function(){
+  var m = /^#phan-([123])$/.exec(location.hash || '');
+  if (m) moPhan(m[1], false);
+})();
+
 datMau('mong');
+addEventListener('load', veLaiCanvasDangHien);
 })();
 </script>
 </body>
