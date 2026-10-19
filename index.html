@@ -1,0 +1,1169 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Chạm Bản Cẩm</title>
+<meta name="description" content="Hộp quà trải nghiệm từ thổ cẩm và vải lanh Lùng Tám. Một tấm thổ cẩm. Ngàn câu chuyện.">
+<meta name="theme-color" content="#0D141B">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Chạm Bản Cẩm — Một tấm thổ cẩm. Ngàn câu chuyện.">
+<meta property="og:description" content="Hộp quà trải nghiệm từ thổ cẩm và vải lanh Lùng Tám, Hà Giang.">
+<meta property="og:image" content="assets/img/poster-khung-cui.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wdth,wght@75..100,300..800&family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,700;1,400&family=Literata:ital,wght@0,400;1,400&display=swap">
+<style>
+/* ===========================================================
+   CHẠM BẢN CẨM — landing page
+   Bố cục: khung cửi. Nền chàm cố định, năm sợi màu ở biên vải,
+   một khối duy nhất lật sang nền sợi lanh (chợ phiên).
+   Trang cam kết MỘT thế giới thị giác (chàm), không đảo theo
+   thiết lập máy — vì chàm là chất liệu của chính câu chuyện.
+   =========================================================== */
+
+@property --khoi { syntax: '<color>'; inherits: true; initial-value: #D8321C }
+@property --chu  { syntax: '<color>'; inherits: true; initial-value: #C3D23E }
+
+:root{
+  /* --- nền và mực --- */
+  --cham:#0D141B;          /* nền chàm cháy, H206 — không phải near-black trung tính */
+  --cham-2:#141D26;        /* mặt nổi nhẹ */
+  --soi:#E6DFCE;           /* sợi lanh mộc: chữ chính + mọi đường chỉ 1px */
+  --mo:#9AA3A8;            /* chữ phụ, 6,7:1 trên chàm */
+  --dong:#D9A94A;          /* ghi danh + ghi công, 8,6:1 */
+  --chanh:#C3D23E;         /* màu phá thế, 11,2:1 */
+
+  /* --- hệ màu đang bật (mặc định: Mông) --- */
+  --khoi:#D8321C;          /* mảng, đường kẻ, chữ từ 28px trở lên */
+  --chu:#C3D23E;           /* chữ nhỏ — LUÔN phải đạt từ 4,5:1 */
+
+  --sv-t:env(safe-area-inset-top,0px);
+  --sv-d:env(safe-area-inset-bottom,0px);
+  --rail:72px;             /* biên vải bên phải */
+  --bo:0;                  /* vải có biên, không có góc tròn */
+  --soc:34px;              /* bước sợi dọc */
+
+  --f-hien:'Bricolage Grotesque','Arial Narrow',system-ui,sans-serif;
+  --f-than:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --f-phim:'Literata',Georgia,'Times New Roman',serif;
+
+  color-scheme:dark;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html,body{overflow-x:clip} /* clip, KHÔNG hidden — hidden giết position:sticky */
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--cham);color:var(--soi);
+  font:400 clamp(15px,1.05vw,17px)/1.65 var(--f-than);
+  -webkit-font-smoothing:antialiased;
+  padding-block:var(--sv-t) var(--sv-d);
+}
+img,video{max-width:100%;display:block}
+p{margin:0}
+ul,ol{margin:0;padding:0;list-style:none}
+a{color:var(--chu);text-underline-offset:.22em;text-decoration-thickness:1px}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--chanh);outline-offset:3px}
+::selection{background:var(--khoi);color:#fff}
+
+/* ---------- lớp sợi dọc: chữ ký thị giác, 0 byte ---------- */
+.soc-doc{position:absolute;inset:0;pointer-events:none;z-index:2;
+  background:repeating-linear-gradient(90deg,rgba(230,223,206,.085) 0 1px,transparent 1px var(--soc))}
+
+/* ---------- khung mắc sợi: hở hai góc bằng hai chữ L ---------- */
+.khung{position:relative;padding:clamp(18px,2.6vw,30px)}
+.khung::before,.khung::after{content:'';position:absolute;width:38%;height:38%;pointer-events:none}
+.khung::before{top:0;left:0;border-top:1px solid var(--soi);border-left:1px solid var(--soi)}
+.khung::after{bottom:0;right:0;border-bottom:1px solid var(--soi);border-right:1px solid var(--soi)}
+.khung--khoi::before,.khung--khoi::after{border-color:var(--khoi)}
+
+/* ---------- chữ ---------- */
+.hien{font-family:var(--f-hien);font-variation-settings:'wdth' 75,'wght' 800;
+  line-height:.9;letter-spacing:-.015em;text-wrap:balance;margin:0}
+.nhan{font-family:var(--f-hien);font-variation-settings:'wdth' 100,'wght' 500;
+  font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--mo);margin:0}
+.phim-noi{font-family:var(--f-phim);font-style:italic;color:var(--soi)}
+.moc{font-family:var(--f-hien);font-variation-settings:'wdth' 100,'wght' 500;
+  font-size:12px;letter-spacing:.08em;color:var(--mo);font-variant-numeric:tabular-nums}
+.dam{font-weight:700}
+
+.boc{width:min(1280px,100%);margin-inline:auto;padding-inline:clamp(16px,4vw,48px)}
+section{position:relative}
+.tieu-de-khoi{font-size:clamp(2.1rem,6vw,4.6rem);color:var(--soi);margin-bottom:.5em}
+
+/* ===================== BIÊN VẢI (5 sợi) ===================== */
+#bien{position:fixed;top:0;right:0;bottom:0;width:var(--rail);z-index:60;
+  display:flex;align-items:stretch;justify-content:center;gap:11px;
+  padding-block:calc(var(--sv-t) + 18px) 18px;pointer-events:none}
+#bien button{pointer-events:auto;position:relative;width:18px;display:block;padding:0}
+#bien .soi{position:absolute;top:0;left:50%;translate:-50% 0;width:3px;height:0;
+  background:var(--c);transition:width .3s,opacity .3s,background .5s}
+#bien button[aria-pressed="true"] .soi{width:7px}
+#bien button[aria-pressed="false"] .soi{opacity:.6}
+#bien .ten{position:absolute;bottom:0;left:50%;translate:-50% 0;height:84px;
+  display:flex;align-items:flex-end;justify-content:center;
+  writing-mode:vertical-rl;rotate:180deg;
+  font-family:var(--f-hien);font-variation-settings:'wdth' 75,'wght' 500;
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--mo);
+  white-space:nowrap;transition:color .3s}
+#bien button[aria-pressed="true"] .ten{color:var(--c)}
+html[data-san="1"] #bien .soi{height:calc(100% - 96px);
+  transition:height 1s cubic-bezier(.2,.7,.3,1),width .3s,opacity .3s,background .5s}
+/* nền kem: năm sợi phải đổi sang bản đậm, nếu không lam Nùng gần như mất */
+html[data-sang="1"] #bien .soi{background:var(--c2)}
+html[data-sang="1"] #bien .ten{color:#5A646E}
+html[data-sang="1"] #bien button[aria-pressed="true"] .ten{color:var(--c2)}
+
+@media (max-width:760px){
+  :root{--rail:0px}
+  #bien{top:auto;left:0;right:0;bottom:0;width:auto;height:48px;
+    flex-direction:row;align-items:center;gap:0;
+    padding:0 8px calc(var(--sv-d) + 4px);
+    background:linear-gradient(to top,var(--cham) 64%,transparent)}
+  html[data-sang="1"] #bien{background:linear-gradient(to top,var(--soi) 64%,transparent)}
+  #bien button{flex:1;width:auto;height:100%}
+  #bien .soi,html[data-san="1"] #bien .soi{position:absolute;top:14px;left:8%;right:8%;
+    translate:none;width:auto;max-width:none;height:3px;
+    transition:height .3s,opacity .3s,background .5s}
+  #bien button[aria-pressed="true"] .soi{height:7px;width:auto}
+  #bien .ten{rotate:none;writing-mode:horizontal-tb;top:auto;bottom:2px;height:auto;
+    align-items:center;font-size:9px;letter-spacing:.1em}
+}
+
+/* ===================== CON THOI ===================== */
+#thoi{position:fixed;inset:0;z-index:90;pointer-events:none;display:none;
+  flex-direction:column}
+#thoi.chay{display:flex}
+#thoi .hang{height:calc(100% / var(--n) + 1px);transform:scaleX(0);transform-origin:left;
+  background:
+    linear-gradient(90deg,rgba(230,223,206,.9) 0 1.5px,transparent 1.5px) left/100% 100% no-repeat,
+    repeating-linear-gradient(90deg,var(--vao) 0 3px,
+      color-mix(in oklab,var(--vao) 74%,var(--cham)) 3px 6px)}
+#thoi .hang:nth-child(even){transform-origin:right}
+
+/* ===================== HERO ===================== */
+#hero{min-height:min(92vh,860px);display:flex;flex-direction:column;justify-content:flex-end;
+  position:relative;overflow:hidden;padding-right:var(--rail)}
+#hero video,#hero .nen-anh{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+#hero .scrim{position:absolute;inset:0;z-index:3;
+  background:linear-gradient(to top,var(--cham) 0%,rgba(13,20,27,.72) 28%,rgba(13,20,27,.12) 56%,rgba(13,20,27,.3) 100%)}
+#hero .trong{position:relative;z-index:4;width:100%}
+#hero .boc{padding-bottom:clamp(28px,6vh,72px)}
+#hero h1{font-size:clamp(2.9rem,12.4vw,10rem);line-height:.86;margin-left:-.055em;color:var(--soi)}
+#hero .d2{display:block;font-family:var(--f-phim);font-style:italic;font-weight:400;
+  font-size:.4em;line-height:1.1;color:var(--chanh);margin-left:2.1em;margin-top:.12em;
+  font-variation-settings:normal;letter-spacing:0}
+#hero .chan{display:flex;flex-wrap:wrap;gap:18px 32px;align-items:flex-end;
+  justify-content:space-between;margin-top:clamp(20px,4vh,40px)}
+
+/* nhãn hiện vật gắn vào chính cái tên */
+.dia-danh{font-family:var(--f-hien);font-variation-settings:'wdth' 100,'wght' 500;
+  font-size:13px;letter-spacing:.17em;text-transform:uppercase;color:var(--soi)}
+.dia-danh .ten-cu{border-bottom:1px dotted var(--dong);cursor:help;position:relative;
+  padding:0;font:inherit;font-family:var(--f-hien);font-variation-settings:'wdth' 100,'wght' 500;
+  font-size:inherit;letter-spacing:.17em;text-transform:uppercase;color:inherit}
+.ghi-chu{display:block;max-width:40ch;margin-top:10px;font-family:var(--f-phim);
+  font-size:14px;line-height:1.55;letter-spacing:0;text-transform:none;color:var(--mo)}
+.ghi-chu[hidden]{display:none}
+
+/* thước 41 vạch */
+.thuoc-boc{display:flex;flex-direction:column;gap:9px;align-items:flex-start}
+@media (min-width:761px){.thuoc-boc{align-items:flex-end}}
+.thuoc{display:flex;gap:3px;width:min(210px,52vw);height:22px;align-items:flex-end}
+.thuoc i{flex:1;height:38%;background:var(--soi);opacity:.3;transition:opacity .25s,height .25s,background .25s}
+.thuoc i.on{opacity:1;height:100%;background:var(--khoi)}
+
+/* ===================== NĂM SỢI (dạy cơ chế) ===================== */
+#nam-soi{padding-block:clamp(72px,11vh,140px);padding-right:var(--rail)}
+.cot-boc{display:flex;gap:4px;margin-top:clamp(26px,4vh,46px)}
+.cot{position:relative;flex:1;min-width:0;aspect-ratio:9/15;max-height:min(62vh,560px);
+  overflow:hidden;border:0;padding:0;filter:saturate(.5) brightness(.62);
+  transition:flex .52s cubic-bezier(.62,.03,.21,1),filter .52s;background:var(--cham-2)}
+.cot[aria-pressed="true"]{flex:2.4;filter:none}
+.cot img{width:100%;height:100%;object-fit:cover}
+.cot .ten-doc{position:absolute;z-index:3;left:10px;bottom:18px;writing-mode:vertical-rl;rotate:180deg;
+  font-family:var(--f-hien);font-variation-settings:'wdth' 75,'wght' 800;
+  font-size:clamp(16px,1.6vw,24px);letter-spacing:.06em;text-transform:uppercase;
+  color:var(--soi);text-shadow:0 1px 14px rgba(13,20,27,.95)}
+.cot .vach{position:absolute;z-index:3;left:0;right:0;bottom:0;height:4px;background:var(--c)}
+.cot::after{content:'';position:absolute;z-index:2;inset:0;
+  background:linear-gradient(to top,rgba(13,20,27,.82) 0%,transparent 46%)}
+
+@media (max-width:760px){
+  .cot-boc{overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;
+    gap:8px;padding-bottom:8px;scrollbar-width:none}
+  .cot-boc::-webkit-scrollbar{display:none}
+  .cot{flex:0 0 68vw;aspect-ratio:3/4;scroll-snap-align:center;filter:none}
+  .cot[aria-pressed="true"]{flex:0 0 68vw}
+}
+
+/* ===================== 41 CÔNG ĐOẠN ===================== */
+#quy-trinh{padding-block:clamp(72px,11vh,140px);padding-right:var(--rail);overflow:hidden}
+#quy-trinh .nen-v{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  opacity:.18;z-index:0}
+#quy-trinh .boc{position:relative;z-index:3}
+.qt-luoi{display:grid;grid-template-columns:minmax(0,210px) minmax(0,1fr);
+  gap:clamp(24px,5vw,72px);margin-top:clamp(26px,4vh,46px)}
+.qt-trai{position:sticky;top:max(12vh,calc(var(--sv-t) + 70px));align-self:start}
+.thuoc-doc{display:flex;flex-direction:column;gap:4px;margin-top:16px}
+.thuoc-doc i{flex:0 0 3px;width:46%;background:var(--soi);opacity:.26;transition:opacity .3s,width .3s,background .3s}
+.thuoc-doc i.on{opacity:1;width:100%;background:var(--khoi)}
+.chang{padding-block:clamp(22px,3.4vh,40px);border-top:1px solid rgba(230,223,206,.16);
+  opacity:0;translate:0 22px;transition:opacity .46s,translate .46s}
+.chang.hien{opacity:1;translate:0 0}
+.chang:first-child{border-top:0}
+.chang h3{font-family:var(--f-hien);font-variation-settings:'wdth' 75,'wght' 700;
+  font-size:clamp(1.3rem,3vw,2.1rem);line-height:1.04;margin:6px 0 10px;color:var(--khoi)}
+.chang .loi{font-family:var(--f-phim);font-size:clamp(1rem,1.5vw,1.2rem);line-height:1.6;color:var(--soi)}
+.chang .loi + .loi{margin-top:.5em}
+.chang .stt{font-family:var(--f-hien);font-variation-settings:'wdth' 75,'wght' 800;
+  font-size:13px;letter-spacing:.1em;color:var(--mo);font-variant-numeric:tabular-nums}
+
+@media (max-width:760px){
+  .qt-luoi{grid-template-columns:1fr}
+  .qt-trai{position:static}
+  .thuoc-doc{flex-direction:row;height:22px;width:100%;gap:2px}
+  .thuoc-doc i{flex:1 1 auto;width:auto;height:46%;align-self:flex-end}
+  .thuoc-doc i.on{height:100%;width:auto}
+}
+
+/* ===================== KHUNG PHIM ===================== */
+.phim{position:relative;background:#000;aspect-ratio:16/9;overflow:hidden}
+.phim video{width:100%;height:100%;object-fit:cover}
+.phim .anh-cho{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.nut-phat{position:absolute;inset:0;z-index:5;display:flex;align-items:center;justify-content:center;
+  background:rgba(13,20,27,.3);transition:background .3s}
+.nut-phat:hover{background:rgba(13,20,27,.14)}
+.nut-phat .hop{position:relative;display:flex;align-items:center;gap:14px;
+  padding:14px 26px;border:1px solid var(--soi);background:rgba(13,20,27,.6)}
+.nut-phat .hop::after{content:'';position:absolute;left:0;bottom:0;height:3px;width:0;
+  background:var(--nut,var(--khoi));transition:width .24s cubic-bezier(.62,.03,.21,1)}
+.nut-phat:hover .hop::after,.nut-phat:focus-visible .hop::after{width:100%}
+.nut-phat .tam{width:0;height:0;border-left:15px solid var(--nut,var(--khoi));
+  border-top:9px solid transparent;border-bottom:9px solid transparent}
+/* phim có tư liệu bên thứ ba dùng màu đồng — cùng màu với toàn bộ hệ ghi nguồn */
+#nguon .nut-phat{--nut:var(--dong)}
+.nut-phat .chu{font-family:var(--f-hien);font-variation-settings:'wdth' 100,'wght' 500;
+  font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--soi)}
+/* hai nhãn nguồn khác màu — phân biệt không cần đọc chữ nhỏ */
+.nhan-nguon{position:absolute;top:12px;left:12px;z-index:6;
+  font-family:var(--f-hien);font-variation-settings:'wdth' 100,'wght' 500;
+  font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  padding:6px 11px;background:var(--cham);border:1px solid currentColor}
+.nhan-nguon.tu-quay{color:var(--chanh)}
+.nhan-nguon.ben-thu-ba{color:var(--dong)}
+
+/* ===================== NĂM CHƯƠNG ===================== */
+.chuong{padding-block:clamp(72px,12vh,150px);padding-right:var(--rail);
+  border-top:1px solid rgba(230,223,206,.12)}
+.ch-luoi{display:grid;gap:clamp(24px,4vw,56px);align-items:center;
+  grid-template-columns:minmax(0,58fr) minmax(0,42fr)}
+.chuong:nth-of-type(even) .ch-luoi{grid-template-columns:minmax(0,42fr) minmax(0,58fr)}
+.chuong:nth-of-type(even) .ch-anh{order:-1}
+.ch-ten{font-size:clamp(2.6rem,8vw,6.4rem);color:var(--khoi);line-height:.86}
+.ch-phu{font-family:var(--f-hien);font-variation-settings:'wdth' 100,'wght' 500;
+  font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--chu);margin-bottom:.9em}
+.ch-y{display:flex;gap:12px;margin-top:1.1em;align-items:flex-start}
+.ch-y .o{flex:0 0 8px;height:8px;margin-top:.52em;background:var(--khoi)}
+.ch-y p{flex:1;min-width:0;color:var(--soi)}
+.ch-anh{display:grid;gap:10px}
+.ch-anh .khung-anh{position:relative;overflow:hidden;background:var(--cham-2);background-size:cover;background-position:center}
+.ch-anh img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .5s}
+.ch-anh img.xong{opacity:1}
+.ch-anh figcaption{font-size:13px;line-height:1.45;color:var(--mo);margin-top:6px}
+canvas.det{width:100%;height:52px;display:block;margin-top:22px;image-rendering:pixelated;opacity:.92}
+
+@media (max-width:760px){
+  .ch-luoi,.chuong:nth-of-type(even) .ch-luoi{grid-template-columns:1fr}
+  .chuong:nth-of-type(even) .ch-anh{order:0}
+}
+
+/* ===================== 2019 ===================== */
+#unesco{padding-block:clamp(70px,12vh,150px);position:relative;overflow:hidden;
+  padding-right:var(--rail)}
+#unesco .nen{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+#unesco .scrim{position:absolute;inset:0;z-index:1;background:rgba(13,20,27,.62)}
+#unesco .boc{position:relative;z-index:3;text-align:center}
+.so-2019{font-family:var(--f-hien);font-variation-settings:'wdth' 75,'wght' 800;
+  font-size:clamp(5rem,21vw,17rem);line-height:.8;color:var(--dong);margin:0;
+  font-variant-numeric:tabular-nums;max-width:100%}
+.day-dan{position:relative;height:2px;background:var(--dong);margin:26px 0;opacity:.85;overflow:hidden}
+.day-dan::before{content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(90deg,transparent 0 26px,rgba(13,20,27,.75) 26px 34px);
+  animation:song 9s linear infinite}
+.day-dan:nth-of-type(2)::before{animation-duration:12s;animation-direction:reverse}
+@keyframes song{to{background-position:120px 0}}
+#unesco p{max-width:62ch;margin-inline:auto;color:var(--soi)}
+
+/* ===================== CHỢ PHIÊN (khối sáng duy nhất) ===================== */
+#cho{padding-block:clamp(72px,12vh,150px);padding-right:var(--rail);
+  background:var(--cham);color:var(--soi);transition:background .5s,color .5s}
+#cho.sang{background:var(--soi);color:var(--cham)}
+#cho.sang .nhan,#cho.sang figcaption{color:#4A5560}
+#cho.sang .tieu-de-khoi{color:var(--cham)}
+#cho.sang .phim-noi{color:#2A3540}
+#cho .boc{text-align:center}
+.cham-hang{display:flex;gap:9px;justify-content:center;margin-bottom:18px}
+.cham-hang i{width:10px;height:10px;background:var(--c)}
+#cho.sang .cham-hang i{background:var(--c2)}
+.cho-luoi{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-top:clamp(26px,4vh,46px);
+  background:var(--soi);transition:background .5s}
+#cho.sang .cho-luoi{background:var(--cham)}
+/* bảy ô, bảy đường kẻ mang năm màu cộng đồng xen kẽ —
+   chợ là chỗ năm hệ màu cùng tồn tại trong một khung hình */
+.cho-o{position:relative;overflow:hidden;background:var(--cham-2);background-size:cover;
+  background-position:center;box-shadow:0 0 0 3px var(--cx);transition:box-shadow .42s}
+#cho.sang .cho-o{box-shadow:0 0 0 3px var(--cx2)}
+.cho-o:nth-child(1){--cx:#D8321C;--cx2:#A8231F}
+.cho-o:nth-child(2){--cx:#C22A22;--cx2:#8E1E18}
+.cho-o:nth-child(3){--cx:#C23F63;--cx2:#8E2746}
+.cho-o:nth-child(4){--cx:#C9566B;--cx2:#8E3B4C}
+.cho-o:nth-child(5){--cx:#2F5FA8;--cx2:#1E3F78}
+.cho-o:nth-child(6){--cx:#D8321C;--cx2:#A8231F}
+.cho-o:nth-child(7){--cx:#C23F63;--cx2:#8E2746}
+.cho-o img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .5s,scale .42s}
+.cho-o img.xong{opacity:1}
+.cho-o:hover img{scale:1.03}
+.cho-o:nth-child(1){grid-column:span 3;aspect-ratio:3/2}
+.cho-o:nth-child(2){grid-column:span 3;aspect-ratio:3/2}
+.cho-o:nth-child(3){grid-column:span 2;aspect-ratio:1/1}
+.cho-o:nth-child(4){grid-column:span 2;aspect-ratio:1/1}
+.cho-o:nth-child(5){grid-column:span 2;aspect-ratio:1/1}
+.cho-o:nth-child(6){grid-column:span 4;aspect-ratio:2/1}
+.cho-o:nth-child(7){grid-column:span 2;aspect-ratio:1/1}
+@media (max-width:760px){
+  .cho-luoi{grid-template-columns:repeat(2,1fr)}
+  .cho-o:nth-child(n){grid-column:span 2;aspect-ratio:3/2}
+  .cho-o:nth-child(3),.cho-o:nth-child(4),.cho-o:nth-child(5),.cho-o:nth-child(7){grid-column:span 1;aspect-ratio:1/1}
+}
+
+/* ===================== GHI NGUỒN ===================== */
+#nguon{padding-block:clamp(72px,12vh,150px);padding-right:var(--rail)}
+#nguon .tieu-de-khoi{color:var(--dong)}
+.phim-hop{display:flex;margin-top:clamp(26px,4vh,46px)}
+.le-ghi-cong{flex:0 0 96px;display:flex;align-items:center;justify-content:center;
+  background:var(--cham-2);border-left:3px solid var(--dong)}
+.le-ghi-cong span{writing-mode:vertical-rl;rotate:180deg;
+  font-family:var(--f-hien);font-variation-settings:'wdth' 75,'wght' 500;
+  font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:var(--dong);
+  white-space:nowrap;padding-block:14px}
+.phim-hop .phim{flex:1;min-width:0;aspect-ratio:16/9}
+.the-nguon{margin-top:22px;background:var(--cham-2);border-left:3px solid var(--dong);
+  padding:clamp(20px,3vw,32px)}
+.the-nguon h3{font-family:var(--f-hien);font-variation-settings:'wdth' 100,'wght' 700;
+  font-size:1.1rem;letter-spacing:.04em;margin:0 0 14px;color:var(--dong)}
+.the-nguon p{font-size:16px;line-height:1.65;color:var(--soi);max-width:74ch}
+.the-nguon p + p{margin-top:.8em}
+details.phu-de{margin-top:18px;border-top:1px solid rgba(230,223,206,.16);padding-top:14px}
+details.phu-de summary{font-family:var(--f-hien);font-variation-settings:'wdth' 100,'wght' 500;
+  font-size:13px;letter-spacing:.13em;text-transform:uppercase;color:var(--dong);
+  cursor:pointer;list-style:none}
+details.phu-de summary::-webkit-details-marker{display:none}
+details.phu-de summary::before{content:'+ ';font-variant-numeric:tabular-nums}
+details.phu-de[open] summary::before{content:'– '}
+details.phu-de ol{margin-top:14px;display:grid;gap:7px}
+details.phu-de li{display:grid;grid-template-columns:62px 1fr;gap:12px;align-items:baseline;
+  font-family:var(--f-phim);font-size:15px;line-height:1.5;color:var(--soi)}
+@media (max-width:760px){
+  /* dải ghi công viết dọc dài hơn chiều cao khung phim 16:9 nên sẽ kéo cao cả khối
+     và làm phim bị cắt thành khung đứng — trên điện thoại cho nó nằm ngang phía trên phim,
+     vẫn trong cùng một khối, vẫn đọc nguồn trước khi xem phim */
+  .phim-hop{flex-direction:column}
+  .le-ghi-cong{flex:0 0 auto;border-left:0;border-bottom:3px solid var(--dong);
+    justify-content:flex-start;padding:11px 13px}
+  .le-ghi-cong span{writing-mode:horizontal-tb;rotate:none;white-space:normal;
+    font-size:11.5px;letter-spacing:.1em;padding-block:0;line-height:1.5}
+  .phim-hop .phim{width:100%;flex:0 0 auto}
+}
+
+/* ===================== HỘP QUÀ ===================== */
+#hop{padding-block:clamp(72px,12vh,150px);padding-right:var(--rail);position:relative;overflow:hidden}
+#hop .nen{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+#hop .scrim{position:absolute;inset:0;z-index:1;background:rgba(13,20,27,.78)}
+#hop .boc{position:relative;z-index:3}
+.the-hop{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:clamp(26px,4vh,46px)}
+.the-hop article{background:var(--cham-2);border:1px solid rgba(230,223,206,.3);
+  padding:clamp(18px,2.4vw,26px);transition:translate .42s,border-color .42s;position:relative}
+.the-hop article:nth-child(2){translate:0 14px}
+.the-hop article:nth-child(3){translate:0 28px}
+.the-hop article:nth-child(4){translate:0 42px}
+.the-hop article:hover{translate:0 -4px;border-color:var(--khoi)}
+.the-hop article:nth-child(2):hover{translate:0 10px}
+.the-hop article:nth-child(3):hover{translate:0 24px}
+.the-hop article:nth-child(4):hover{translate:0 38px}
+.the-hop .so{font-family:var(--f-hien);font-variation-settings:'wdth' 75,'wght' 800;
+  font-size:2rem;line-height:1;color:var(--khoi);font-variant-numeric:tabular-nums}
+.the-hop h3{font-family:var(--f-hien);font-variation-settings:'wdth' 100,'wght' 700;
+  font-size:1.05rem;margin:12px 0 8px;color:var(--soi)}
+.the-hop p{font-size:14px;line-height:1.55;color:var(--mo)}
+.ton-chi{margin-top:clamp(40px,7vh,86px);display:grid;gap:.12em}
+.ton-chi p{font-family:var(--f-hien);font-variation-settings:'wdth' 75,'wght' 800;
+  font-size:clamp(1.6rem,5.4vw,3.8rem);line-height:1.02;color:var(--soi)}
+.ton-chi p:nth-child(2){color:var(--chu)}
+.o-trong{margin-top:clamp(30px,5vh,56px);display:grid;gap:12px}
+.o-trong div{border:1px dashed rgba(230,223,206,.45);padding:16px 18px;
+  font-family:var(--f-hien);font-variation-settings:'wdth' 100,'wght' 500;
+  font-size:13px;letter-spacing:.08em;color:var(--mo)}
+@media (max-width:860px){
+  .the-hop{grid-template-columns:1fr}
+  .the-hop article,.the-hop article:hover{translate:0 0 !important}
+}
+
+/* ===================== CHÂN TRANG ===================== */
+#chan{padding-block:clamp(70px,12vh,140px) clamp(40px,7vh,80px);
+  padding-right:var(--rail);position:relative;overflow:hidden;
+  border-top:1px solid rgba(230,223,206,.16)}
+#chan .nen{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.22;z-index:0}
+#chan .boc{position:relative;z-index:3}
+#chan .ve-ten{max-width:64ch}
+#chan .ve-ten p{color:var(--soi);margin-top:.85em}
+#chan .ve-ten p:first-of-type{margin-top:0}
+.ket{font-family:var(--f-hien);font-variation-settings:'wdth' 75,'wght' 800;
+  font-size:clamp(1.9rem,6.6vw,4.6rem);line-height:.94;color:var(--soi);
+  margin-top:clamp(40px,7vh,86px)}
+.ket em{font-family:var(--f-phim);font-style:italic;font-weight:400;color:var(--chanh);
+  font-variation-settings:normal;letter-spacing:0}
+.chan-cuoi{margin-top:clamp(34px,6vh,70px);padding-top:22px;
+  border-top:1px solid rgba(230,223,206,.16);
+  display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-between;
+  font-size:13px;color:var(--mo)}
+
+/* ===================== BẬC NHẸ / GIẢM CHUYỂN ĐỘNG ===================== */
+html[data-che="nhe"] #thoi{display:none !important}
+html[data-che="nhe"] :root,html[data-che="nhe"] body{transition:none}
+:root{transition:--khoi .34s ease,--chu .34s ease}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;
+    transition-duration:.01ms !important}
+  .chang{opacity:1;translate:0 0}
+}
+@media (prefers-contrast:more){
+  :root{--soi:#F4F1E8;--mo:#C3CBD0}
+  .khung::before,.khung::after{border-width:2px}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ CON THOI (lớp phủ hiệu ứng) ============ -->
+<div id="thoi" aria-hidden="true"></div>
+
+<!-- ============ BIÊN VẢI: NĂM SỢI ============ -->
+<nav id="bien" aria-label="Chọn cộng đồng">
+  <button type="button" data-ma="mong" aria-pressed="true"  style="--c:#D8321C;--c2:#A8231F"><span class="soi"></span><span class="ten">Mông</span></button>
+  <button type="button" data-ma="dao"  aria-pressed="false" style="--c:#C22A22;--c2:#8E1E18"><span class="soi"></span><span class="ten">Dao</span></button>
+  <button type="button" data-ma="lolo" aria-pressed="false" style="--c:#C23F63;--c2:#8E2746"><span class="soi"></span><span class="ten">Lô Lô</span></button>
+  <button type="button" data-ma="tay"  aria-pressed="false" style="--c:#C9566B;--c2:#8E3B4C"><span class="soi"></span><span class="ten">Tày</span></button>
+  <button type="button" data-ma="nung" aria-pressed="false" style="--c:#2F5FA8;--c2:#1E3F78"><span class="soi"></span><span class="ten">Nùng</span></button>
+</nav>
+
+<!-- ============ 0 · HERO ============ -->
+<header id="hero">
+  <img class="nen-anh" src="assets/img/poster-khung-cui.jpg" alt="Người thợ dệt vải trên khung cửi gỗ truyền thống tại Lùng Tám" width="1280" height="566">
+  <video id="v-hero" muted loop playsinline preload="metadata" poster="assets/img/poster-khung-cui.jpg" aria-hidden="true"></video>
+  <div class="soc-doc"></div>
+  <div class="scrim"></div>
+  <div class="trong">
+    <div class="boc">
+      <h1 class="hien">Một tấm thổ cẩm.<span class="d2">Ngàn câu chuyện.</span></h1>
+      <div class="chan">
+        <div class="dia-danh">
+          Lùng Tám · <button type="button" class="ten-cu" id="nut-ten" aria-expanded="false" aria-controls="ghi-chu-ten">Hà Giang</button>
+          <span class="ghi-chu" id="ghi-chu-ten" hidden>Tên vùng đất gắn với nghề. Theo địa giới trước đợt sắp xếp hành chính năm 2025; nay thuộc tỉnh Tuyên Quang.</span>
+        </div>
+        <div class="thuoc-boc">
+          <p class="nhan">41 công đoạn</p>
+          <div class="thuoc" id="thuoc-hero" aria-hidden="true"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ 1 · NĂM SỢI ============ -->
+<section id="nam-soi" aria-labelledby="h-nam-soi">
+  <div class="boc">
+    <p class="nhan">01 — Năm cộng đồng</p>
+    <h2 class="hien tieu-de-khoi" id="h-nam-soi">Năm cộng đồng.<br>Một tấm vải.</h2>
+    <p style="max-width:56ch;color:var(--mo)">Chạm vào một sợi ở mép phải màn hình — hoặc chọn một người dưới đây — cả trang sẽ được dệt lại theo đúng bộ trang phục của cộng đồng đó.</p>
+    <div class="cot-boc" id="cot-boc" role="group" aria-label="Năm cộng đồng">
+      <button type="button" class="cot" data-ma="mong" aria-pressed="true"  style="--c:#D8321C">
+        <img src="assets/img/phu-nu-mong.webp" alt="Ba người phụ nữ Mông trong trang phục truyền thống bên ruộng hoa cải" width="1500" height="1000" loading="lazy" decoding="async">
+        <span class="ten-doc">Mông</span><span class="vach"></span></button>
+      <button type="button" class="cot" data-ma="dao" aria-pressed="false" style="--c:#C22A22">
+        <img src="assets/img/phu-nu-dao.webp" alt="Phụ nữ Dao trong trang phục truyền thống" width="819" height="514" loading="lazy" decoding="async">
+        <span class="ten-doc">Dao</span><span class="vach"></span></button>
+      <button type="button" class="cot" data-ma="lolo" aria-pressed="false" style="--c:#C23F63">
+        <img src="assets/img/lo-lo-mua.webp" alt="Người Lô Lô múa trong lễ hội trước nhà gỗ" width="1500" height="1000" loading="lazy" decoding="async">
+        <span class="ten-doc">Lô Lô</span><span class="vach"></span></button>
+      <button type="button" class="cot" data-ma="tay" aria-pressed="false" style="--c:#C9566B">
+        <img src="assets/img/hat-then-dan-tinh.webp" alt="Nhóm hát Then với đàn tính bên bờ nước" width="1000" height="664" loading="lazy" decoding="async">
+        <span class="ten-doc">Tày</span><span class="vach"></span></button>
+      <button type="button" class="cot" data-ma="nung" aria-pressed="false" style="--c:#2F5FA8">
+        <img src="assets/img/phu-nu-nung.webp" alt="Phụ nữ Nùng trong trang phục gam chàm bên nhà sàn" width="1280" height="720" loading="lazy" decoding="async">
+        <span class="ten-doc">Nùng</span><span class="vach"></span></button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2 · 41 CÔNG ĐOẠN ============ -->
+<section id="quy-trinh" aria-labelledby="h-quy-trinh">
+  <video class="nen-v" id="v-soi" muted loop playsinline preload="none" poster="assets/img/poster-nhuom.jpg" aria-hidden="true"></video>
+  <div class="soc-doc"></div>
+  <div class="boc">
+    <p class="nhan">02 — Từ vỏ cây lanh đến tấm vải</p>
+    <h2 class="hien tieu-de-khoi" id="h-quy-trinh">Bốn mươi mốt<br>công đoạn.</h2>
+    <p style="max-width:62ch;color:var(--mo)">Tài liệu của nhóm ghi nhận quy trình dệt lanh truyền thống gồm <span class="dam" style="color:var(--chu)">41 công đoạn thủ công</span>. Dưới đây là tám chặng chính. Lời dẫn lấy nguyên văn từ phim nhóm tự quay tại Lùng Tám, kèm mốc giây để đối chiếu.</p>
+    <div class="qt-luoi">
+      <div class="qt-trai">
+        <p class="nhan">Tiến độ</p>
+        <div class="thuoc-doc" id="thuoc-doc" aria-hidden="true"></div>
+      </div>
+      <ol id="chang-boc">
+        <li class="chang"><span class="stt">01 / 08</span><h3 class="hien">Lấy sợi từ vỏ cây lanh</h3>
+          <p class="loi">“Sợi dệt được lấy từ phần vỏ của thân cây lanh.” <span class="moc">00:16</span></p>
+          <p class="loi">“Để thành sợi dệt, lanh qua nhiều công đoạn thủ công.” <span class="moc">00:24</span></p></li>
+        <li class="chang"><span class="stt">02 / 08</span><h3 class="hien">Cuốn thành cuộn</h3>
+          <p class="loi">“Những sợi lanh được cuốn thành cuộn, chuẩn bị cho các bước xử lý.” <span class="moc">00:32</span></p></li>
+        <li class="chang"><span class="stt">03 / 08</span><h3 class="hien">Se và nối sợi</h3>
+          <p class="loi">“Việc se và nối sợi đòi hỏi thao tác khéo léo, đều tay.” <span class="moc">00:36</span></p>
+          <p class="loi">“Người thợ nối các đoạn sợi ngắn thành sợi dài liên tục.” <span class="moc">00:44</span></p></li>
+        <li class="chang"><span class="stt">04 / 08</span><h3 class="hien">Quay sợi, ngâm và luộc</h3>
+          <p class="loi">“Sợi được quay, bó lại trước khi ngâm và luộc.” <span class="moc">00:52</span></p>
+          <p class="loi">“Trong quy trình truyền thống, sợi được luộc, giặt rồi phơi khô.” <span class="moc">01:00</span></p></li>
+        <li class="chang"><span class="stt">05 / 08</span><h3 class="hien">Mắc sợi lên khung</h3>
+          <p class="loi">“Sau khi xử lý, sợi được chuẩn bị để mắc lên khung.” <span class="moc">01:04</span></p>
+          <p class="loi">“Các sợi dọc được sắp song song, tạo nền cho quá trình dệt.” <span class="moc">01:08</span></p></li>
+        <li class="chang"><span class="stt">06 / 08</span><h3 class="hien">Dệt trên khung cửi gỗ</h3>
+          <p class="loi">“Người thợ dệt vải trên khung cửi gỗ truyền thống.” <span class="moc">01:16</span></p>
+          <p class="loi">“Sợi ngang luồn qua các sợi dọc, từng lượt tạo thành tấm vải.” <span class="moc">01:24</span></p></li>
+        <li class="chang"><span class="stt">07 / 08</span><h3 class="hien">Nhuộm và lăn vải</h3>
+          <p class="loi">“Vải lanh được nhuộm màu và trang trí theo nhiều cách.” <span class="moc">01:40</span></p>
+          <p class="loi">“Ở công đoạn lăn vải, đá và trụ gỗ giúp ép phẳng bề mặt.” <span class="moc">01:48</span></p></li>
+        <li class="chang"><span class="stt">08 / 08</span><h3 class="hien">Thêu và ghép vải</h3>
+          <p class="loi">“Vải còn được trang trí bằng thêu và ghép những mảnh vải màu.” <span class="moc">02:04</span></p>
+          <p class="loi">“Từ kỹ thuật dệt đến cách trang trí, người Mông gìn giữ bản sắc riêng.” <span class="moc">02:08</span></p></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3 · PHIM CHÍNH ============ -->
+<section id="phim-chinh" style="padding-block:clamp(40px,7vh,90px);padding-right:var(--rail)">
+  <div class="boc">
+    <p class="nhan">03 — Phim của nhóm</p>
+    <h2 class="hien tieu-de-khoi">Lùng Tám,<br>hai phút hai hai.</h2>
+    <div class="phim khung khung--khoi" style="padding:0">
+      <span class="nhan-nguon tu-quay">Nhóm tự quay · Lùng Tám</span>
+      <img class="anh-cho" src="assets/img/poster-khung-cui.jpg" alt="Khung hình từ phim: người thợ dệt trên khung cửi" width="1280" height="566" loading="lazy" decoding="async">
+      <video id="v-story" controls playsinline preload="none" poster="assets/img/poster-khung-cui.jpg" hidden></video>
+      <button type="button" class="nut-phat" data-phim="v-story" data-src="assets/video/story.mp4">
+        <span class="hop"><span class="tam"></span><span class="chu">Xem phim · 2:22</span></span>
+      </button>
+    </div>
+    <p style="margin-top:14px;font-size:14px;color:var(--mo)">Nhóm tự quay tại Lùng Tám. Phụ đề cháy sẵn trong hình. Phim chỉ tải khi bạn bấm xem.</p>
+    <p class="phim-noi" style="font-size:clamp(1.3rem,3.6vw,2.4rem);line-height:1.22;margin-top:clamp(30px,5vh,60px);max-width:24ch">“Mỗi đường kim, mỗi sợi chỉ, đều mang theo một câu chuyện văn hóa.”</p>
+  </div>
+</section>
+
+<!-- ============ 4 · NĂM CHƯƠNG ============ -->
+<div id="nguoi-lam-nghe">
+
+<section class="chuong" data-ma="mong" aria-labelledby="h-mong">
+  <div class="boc"><div class="ch-luoi">
+    <div>
+      <p class="ch-phu">Chương 01</p>
+      <h2 class="hien ch-ten" id="h-mong">Mông</h2>
+      <div class="ch-y"><span class="o"></span><p>Tiếng khèn, dân ca và lễ hội Gầu Tào — gắn với mong ước về sức khoẻ, bình an, gia đình hạnh phúc và mùa màng thuận lợi.</p></div>
+      <div class="ch-y"><span class="o"></span><p>Váy xếp ly, hoa văn thêu, kỹ thuật in sáp ong và cách phối hợp màu sắc riêng của từng nhóm địa phương.</p></div>
+      <div class="ch-y"><span class="o"></span><p>Nghề dệt lanh Lùng Tám: trồng và thu hoạch cây lanh, xử lý và nối sợi, se sợi, mắc khung, dệt vải. Sau khi dệt là vẽ sáp ong, nhuộm chàm, thêu và ghép vải.</p></div>
+      <div class="ch-y"><span class="o"></span><p>Nhà trình tường, hàng rào đá, mèn mén và thắng cố góp phần tạo nên hình ảnh đặc trưng của nhiều cộng đồng Mông ở vùng cao.</p></div>
+      <canvas class="det" data-mau="mong" aria-hidden="true"></canvas>
+    </div>
+    <div class="ch-anh">
+      <figure style="margin:0"><div class="khung-anh" style="aspect-ratio:3/2"><img data-src="assets/img/nha-trinh-tuong.webp" data-tiny="assets/img/nha-trinh-tuong-tiny.webp" alt="Nhà trình tường và hàng rào đá dưới chân núi đá" width="944" height="540"></div><figcaption>Nhà trình tường và hàng rào đá. Ảnh tư liệu — tài liệu dự án.</figcaption></figure>
+      <figure style="margin:0"><div class="khung-anh" style="aspect-ratio:16/9"><img data-src="assets/img/vai-cham-trung-bay.webp" data-tiny="assets/img/vai-cham-trung-bay-tiny.webp" alt="Vải chàm và thổ cẩm treo trưng bày trong gian hàng" width="925" height="546"></div><figcaption>Vải nhuộm chàm trưng bày. Ảnh tư liệu — tài liệu dự án.</figcaption></figure>
+    </div>
+  </div></div>
+</section>
+
+<section class="chuong" data-ma="dao" aria-labelledby="h-dao">
+  <div class="boc"><div class="ch-luoi">
+    <div>
+      <p class="ch-phu">Chương 02</p>
+      <h2 class="hien ch-ten" id="h-dao">Dao</h2>
+      <div class="ch-y"><span class="o"></span><p>Gồm nhiều nhóm địa phương như Dao Đỏ, Dao Tiền và Dao Quần Chẹt, khác nhau về trang phục, phong tục và nghi lễ.</p></div>
+      <div class="ch-y"><span class="o"></span><p>Lễ cấp sắc đánh dấu sự trưởng thành về mặt tín ngưỡng và trách nhiệm cộng đồng của nam giới theo quan niệm truyền thống. Tín ngưỡng thờ cúng tổ tiên giữ vai trò quan trọng trong đời sống tinh thần.</p></div>
+      <div class="ch-y"><span class="o"></span><p>Trang phục nền vải chàm hoặc màu tối, kết hợp các dải thêu đỏ, trắng, vàng và hoạ tiết hình học. Kỹ thuật thêu đòi hỏi sự tỉ mỉ, khả năng phối màu và ghi nhớ hoa văn truyền qua nhiều thế hệ.</p></div>
+      <div class="ch-y"><span class="o"></span><p>Một số cộng đồng còn lưu giữ tri thức dân gian về cây thuốc, canh tác và sử dụng nguyên liệu tự nhiên. Việc giới thiệu những giá trị này cần tôn trọng quyền chia sẻ của cộng đồng.</p></div>
+      <canvas class="det" data-mau="dao" aria-hidden="true"></canvas>
+    </div>
+    <div class="ch-anh">
+      <figure style="margin:0"><div class="khung-anh" style="aspect-ratio:4/3"><img data-src="assets/img/le-cap-sac.webp" data-tiny="assets/img/le-cap-sac-tiny.webp" alt="Nghi lễ truyền thống của người Dao với trang phục đỏ và trống" width="652" height="473"></div><figcaption>Nghi lễ truyền thống của người Dao. Ảnh tư liệu — tài liệu dự án.</figcaption></figure>
+      <figure style="margin:0"><div class="khung-anh" style="aspect-ratio:3/2"><img data-src="assets/img/hai-cay-thuoc.webp" data-tiny="assets/img/hai-cay-thuoc-tiny.webp" alt="Người phụ nữ thu hái cây trên nương" width="1800" height="1200"></div><figcaption>Thu hái trên nương. Ảnh tư liệu — tài liệu dự án.</figcaption></figure>
+    </div>
+  </div></div>
+</section>
+
+<section class="chuong" data-ma="lolo" aria-labelledby="h-lolo">
+  <div class="boc"><div class="ch-luoi">
+    <div>
+      <p class="ch-phu">Chương 03</p>
+      <h2 class="hien ch-ten" id="h-lolo">Lô Lô</h2>
+      <div class="ch-y"><span class="o"></span><p>Một trong những dân tộc có dân số ít tại Việt Nam, cư trú ở một số địa bàn miền núi phía Bắc.</p></div>
+      <div class="ch-y"><span class="o"></span><p>Tín ngưỡng thờ cúng tổ tiên, nghi lễ gia đình và sinh hoạt cộng đồng duy trì mối liên hệ giữa các thế hệ, dòng họ và ký ức văn hoá.</p></div>
+      <div class="ch-y"><span class="o"></span><p>Trang phục nữ nổi bật với kỹ thuật ghép nhiều mảnh vải nhỏ, phối hợp màu sắc và hoạ tiết hình học. Quá trình cắt, ghép, thêu và phối màu đòi hỏi sự khéo léo.</p></div>
+      <div class="ch-y"><span class="o"></span><p>Âm nhạc, trống, lời hát và các hoạt động lễ hội góp phần duy trì bản sắc. Việc bảo tồn gắn với truyền dạy trong cộng đồng và khuyến khích thế hệ trẻ tiếp nối.</p></div>
+      <canvas class="det" data-mau="lolo" aria-hidden="true"></canvas>
+    </div>
+    <div class="ch-anh">
+      <figure style="margin:0"><div class="khung-anh" style="aspect-ratio:3/2"><img data-src="assets/img/lo-lo-ban-lang.webp" data-tiny="assets/img/lo-lo-ban-lang-tiny.webp" alt="Người Lô Lô với ô che trước những nếp nhà lợp cỏ" width="1200" height="820"></div><figcaption>Bản làng Lô Lô. Ảnh tư liệu — tài liệu dự án.</figcaption></figure>
+      <figure style="margin:0"><div class="khung-anh" style="aspect-ratio:3/2"><img data-src="assets/img/lo-lo-mua.webp" data-tiny="assets/img/lo-lo-mua-tiny.webp" alt="Điệu múa truyền thống trước ngôi nhà gỗ" width="1500" height="1000"></div><figcaption>Sinh hoạt lễ hội. Ảnh tư liệu — tài liệu dự án.</figcaption></figure>
+    </div>
+  </div></div>
+</section>
+
+<section class="chuong" data-ma="tay" aria-labelledby="h-tay">
+  <div class="boc"><div class="ch-luoi">
+    <div>
+      <p class="ch-phu">Chương 04</p>
+      <h2 class="hien ch-ten" id="h-tay">Tày</h2>
+      <div class="ch-y"><span class="o"></span><p>Đời sống truyền thống gắn với thung lũng, sản xuất nông nghiệp và không gian bản làng. Lễ hội Lồng Tồng, còn gọi là lễ hội xuống đồng, thể hiện mong ước về mùa màng thuận lợi và cuộc sống bình an.</p></div>
+      <div class="ch-y"><span class="o"></span><p>Nhà sàn không chỉ là nơi ở mà còn là không gian sinh hoạt gia đình, tiếp khách, tổ chức nghi lễ và truyền dạy phong tục.</p></div>
+      <div class="ch-y"><span class="o"></span><p>Hát Then cùng đàn tính kết hợp lời hát, nhạc cụ và nghi lễ, thể hiện đời sống tinh thần, quan niệm về thế giới và những mong ước của cộng đồng.</p></div>
+      <canvas class="det" data-mau="tay" aria-hidden="true"></canvas>
+    </div>
+    <div class="ch-anh">
+      <figure style="margin:0"><div class="khung-anh" style="aspect-ratio:16/9"><img data-src="assets/img/nha-san-tay.webp" data-tiny="assets/img/nha-san-tay-tiny.webp" alt="Nhà sàn gỗ lợp cỏ trong bản làng" width="1500" height="882"></div><figcaption>Nhà sàn truyền thống. Ảnh tư liệu — tài liệu dự án.</figcaption></figure>
+      <figure style="margin:0"><div class="khung-anh" style="aspect-ratio:3/2"><img data-src="assets/img/tay-dien-xuong.webp" data-tiny="assets/img/tay-dien-xuong-tiny.webp" alt="Đông người trong trang phục truyền thống tại một buổi diễn xướng" width="900" height="600"></div><figcaption>Diễn xướng cộng đồng. Ảnh tư liệu — tài liệu dự án.</figcaption></figure>
+    </div>
+  </div></div>
+</section>
+
+<!-- 2019 — khối duy nhất phá bố cục lệch -->
+<section id="unesco" aria-labelledby="h-2019">
+  <img class="nen" src="assets/img/hat-then-dan-tinh.webp" alt="" width="1000" height="664" loading="lazy" decoding="async">
+  <div class="scrim"></div>
+  <div class="soc-doc"></div>
+  <div class="boc">
+    <p class="nhan" style="color:var(--dong)">Di sản được ghi danh</p>
+    <p class="so-2019" id="h-2019">2019</p>
+    <div class="day-dan"></div>
+    <div class="day-dan"></div>
+    <p>Năm 2019, thực hành Then của người Tày, Nùng và Thái tại Việt Nam được <span class="dam" style="color:var(--dong)">UNESCO ghi danh</span> vào Danh sách Di sản văn hoá phi vật thể đại diện của nhân loại.</p>
+    <p class="phim-noi" style="margin-top:1.1em">“Người Tày gìn giữ nhà sàn và nghệ thuật hát Then.”</p>
+  </div>
+</section>
+
+<section class="chuong" data-ma="nung" aria-labelledby="h-nung">
+  <div class="boc"><div class="ch-luoi">
+    <div>
+      <p class="ch-phu">Chương 05</p>
+      <h2 class="hien ch-ten" id="h-nung">Nùng</h2>
+      <div class="ch-y"><span class="o"></span><p>Văn hoá thể hiện qua tín ngưỡng thờ cúng tổ tiên, các dịp lễ Tết, phong tục gia đình, dân ca và truyện kể dân gian.</p></div>
+      <div class="ch-y"><span class="o"></span><p>Ở một số cộng đồng, lễ mừng cơm mới thể hiện lòng biết ơn đối với thiên nhiên, tổ tiên và thành quả lao động.</p></div>
+      <div class="ch-y"><span class="o"></span><p>Trang phục truyền thống thường dùng các gam màu trầm như chàm hoặc đen, kết hợp khăn đội đầu và những chi tiết trang trí tuỳ nhóm địa phương.</p></div>
+      <div class="ch-y"><span class="o"></span><p>Nghề may, thêu và nhuộm vải gắn với nhu cầu sinh hoạt cũng như việc duy trì kỹ năng thủ công.</p></div>
+      <canvas class="det" data-mau="nung" aria-hidden="true"></canvas>
+    </div>
+    <div class="ch-anh">
+      <figure style="margin:0"><div class="khung-anh" style="aspect-ratio:16/9"><img data-src="assets/img/phu-nu-nung.webp" data-tiny="assets/img/phu-nu-nung-tiny.webp" alt="Phụ nữ Nùng trong trang phục gam chàm bên lối đi trong bản" width="1280" height="720"></div><figcaption>Trang phục gam trầm. Ảnh tư liệu — tài liệu dự án.</figcaption></figure>
+      <figure style="margin:0"><div class="khung-anh" style="aspect-ratio:3/2"><img data-src="assets/img/men-men.webp" data-tiny="assets/img/men-men-tiny.webp" alt="Mèn mén trong chiếc mẹt tre" width="800" height="450"></div><figcaption>Ẩm thực gắn với nông sản địa phương. Ảnh tư liệu — tài liệu dự án.</figcaption></figure>
+    </div>
+  </div></div>
+</section>
+</div>
+
+<!-- ============ 6 · CHỢ PHIÊN ============ -->
+<section id="cho" aria-labelledby="h-cho">
+  <div class="boc">
+    <div class="cham-hang" aria-hidden="true">
+      <i style="--c:#D8321C;--c2:#A8231F"></i><i style="--c:#C22A22;--c2:#8E1E18"></i><i style="--c:#C23F63;--c2:#8E2746"></i><i style="--c:#C9566B;--c2:#8E3B4C"></i><i style="--c:#2F5FA8;--c2:#1E3F78"></i>
+    </div>
+    <p class="nhan">06 — Nơi năm sợi gặp nhau</p>
+    <h2 class="hien tieu-de-khoi" id="h-cho">Chợ phiên.</h2>
+    <p style="max-width:64ch;margin-inline:auto">Không gian sinh hoạt kinh tế và văn hoá quan trọng ở nhiều khu vực miền núi. Không chỉ là nơi trao đổi nông sản, thực phẩm, vật dụng và sản phẩm thủ công, mà còn là điểm gặp gỡ của người dân từ các bản làng khác nhau. Những phiên chợ như Đồng Văn và Mèo Vạc thường được nhắc đến trong hành trình khám phá văn hoá vùng cao.</p>
+    <p class="phim-noi" style="margin-top:1.1em;max-width:58ch;margin-inline:auto">“Và đặc biệt chợ phiên — không chỉ là nơi trao đổi hàng hoá, mà còn là nơi gặp gỡ giao lưu.”</p>
+    <div class="cho-luoi">
+      <div class="cho-o"><img data-src="assets/img/cho-phien.webp" data-tiny="assets/img/cho-phien-tiny.webp" alt="Chợ phiên vùng cao đông người trong trang phục nhiều màu" width="913" height="608"></div>
+      <div class="cho-o"><img data-src="assets/img/cho-phien-am-thuc.webp" data-tiny="assets/img/cho-phien-am-thuc-tiny.webp" alt="Khu ẩm thực trong chợ phiên" width="1800" height="1100"></div>
+      <div class="cho-o"><img data-src="assets/img/ruong-bac-thang.webp" data-tiny="assets/img/ruong-bac-thang-tiny.webp" alt="Ruộng bậc thang mùa lúa chín" width="1500" height="1000"></div>
+      <div class="cho-o"><img data-src="assets/img/vai-cham-trung-bay.webp" data-tiny="assets/img/vai-cham-trung-bay-tiny.webp" alt="Vải thủ công bày bán" width="925" height="546"></div>
+      <div class="cho-o"><img data-src="assets/img/men-men.webp" data-tiny="assets/img/men-men-tiny.webp" alt="Mèn mén trong mẹt tre" width="800" height="450"></div>
+      <div class="cho-o"><img data-src="assets/img/thung-lung-ban-lang.webp" data-tiny="assets/img/thung-lung-ban-lang-tiny.webp" alt="Thung lũng và bản làng giữa ruộng bậc thang" width="1800" height="1233"></div>
+      <div class="cho-o"><img data-src="assets/img/phu-nu-mong.webp" data-tiny="assets/img/phu-nu-mong-tiny.webp" alt="Phụ nữ Mông trong trang phục truyền thống" width="1500" height="1000"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7 · GHI NGUỒN ============ -->
+<section id="nguon" aria-labelledby="h-nguon">
+  <div class="boc">
+    <p class="nhan" style="color:var(--dong)">07 — Tư liệu</p>
+    <h2 class="hien tieu-de-khoi" id="h-nguon">Chúng tôi ghi nguồn<br>vì đó là nghề.</h2>
+    <div class="phim-hop">
+      <div class="le-ghi-cong"><span>Tư liệu · The Lover Lo Lo Chai — Jerry Tran · Amazing Hà Giang</span></div>
+      <div class="phim">
+        <span class="nhan-nguon ben-thu-ba">Có tư liệu bên thứ ba</span>
+        <img class="anh-cho" src="assets/img/poster-duong-deo.jpg" alt="Khung hình từ phim văn hoá: đường đèo và thung lũng Hà Giang" width="1600" height="900" loading="lazy" decoding="async">
+        <video id="v-vanhoa" controls playsinline preload="none" poster="assets/img/poster-duong-deo.jpg" hidden></video>
+        <button type="button" class="nut-phat" data-phim="v-vanhoa" data-src="assets/video/van-hoa.mp4">
+          <span class="hop"><span class="tam"></span><span class="chu">Xem phim · 0:53</span></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="the-nguon">
+      <h3>Nguồn tư liệu</h3>
+      <p>Phim <span class="dam">“Văn hoá Hà Giang”</span> (53 giây) do nhóm CHẠM BẢN CẨM dựng, có sử dụng tư liệu hình ảnh của bên thứ ba.</p>
+      <p>Logo <span class="dam">AMAZING HÀ GIANG — KỲ VĨ HÀ GIANG</span> (giây 15–25) và dòng ghi công <span class="dam">The Lover Lo Lo Chai — Jerry Tran</span> (giây 26) được giữ nguyên trong hình: không cắt, không che, không làm mờ.</p>
+      <p>Phim <span class="dam">“Lùng Tám”</span> (2 phút 22) ở phần trên trang là phim nhóm tự quay tại Lùng Tám, không sử dụng tư liệu của bên khác.</p>
+      <p>Ảnh tư liệu trong năm chương lấy từ tài liệu dự án của nhóm.</p>
+      <p>Nếu bạn là tác giả của một đoạn tư liệu trong phim này và muốn bổ sung hoặc điều chỉnh phần ghi công, xin liên hệ với nhóm.</p>
+
+      <details class="phu-de">
+        <summary>Toàn văn phụ đề phim 53 giây</summary>
+        <ol>
+          <li><span class="moc">00:00</span><span>Hà Giang — miền đất…</span></li>
+          <li><span class="moc">00:02</span><span>…sắc màu văn hoá của các dân tộc.</span></li>
+          <li><span class="moc">00:12</span><span>Mỗi dân tộc đều mang những nét văn hoá đặc trưng.</span></li>
+          <li><span class="moc">00:14</span><span>Từ tiếng khèn, lễ hội…</span></li>
+          <li><span class="moc">00:18</span><span>…nghề dệt lanh truyền thống…</span></li>
+          <li><span class="moc">00:20</span><span>…đến trang phục tinh xảo và lễ hội Bàn Vương.</span></li>
+          <li><span class="moc">00:24</span><span>Tất cả tạo nên bức tranh văn hoá…</span></li>
+          <li><span class="moc">00:26</span><span>Bên cạnh đó, người… <span style="color:var(--dong)">(dòng ghi công: The Lover Lo Lo Chai — Jerry Tran)</span></span></li>
+          <li><span class="moc">00:30</span><span>Người Tày gìn giữ nhà sàn và nghệ thuật hát Then.</span></li>
+          <li><span class="moc">00:36</span><span>…dân ca và nghề thủ công truyền thống.</span></li>
+          <li><span class="moc">00:38</span><span>Và đặc biệt chợ phiên…</span></li>
+          <li><span class="moc">00:40</span><span>…không chỉ là nơi trao đổi hàng hoá…</span></li>
+          <li><span class="moc">00:44</span><span>…mà còn là nơi gặp gỡ giao lưu.</span></li>
+          <li><span class="moc">00:46</span><span>Văn hoá Hà Giang chính là sự kết hợp giữa bản sắc, tri thức và sự gìn giữ qua nhiều thế hệ.</span></li>
+        </ol>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8 · HỘP QUÀ ============ -->
+<section id="hop" aria-labelledby="h-hop">
+  <img class="nen" src="assets/img/poster-san-pham.jpg" alt="" width="1280" height="566" loading="lazy" decoding="async">
+  <div class="scrim"></div>
+  <div class="soc-doc"></div>
+  <div class="boc">
+    <p class="nhan">08 — Hộp quà trải nghiệm</p>
+    <h2 class="hien tieu-de-khoi" id="h-hop">Trong mỗi hộp.</h2>
+    <div class="the-hop">
+      <article><span class="so">01</span><h3>Sản phẩm thủ công</h3><p>Làm từ thổ cẩm và vải lanh, có nguồn gốc rõ ràng từ nghệ nhân, hộ sản xuất và hợp tác xã.</p></article>
+      <article><span class="so">02</span><h3>Thẻ câu chuyện</h3><p>Story Card kể lại câu chuyện phía sau món đồ: ai làm, làm ở đâu, làm thế nào.</p></article>
+      <article><span class="so">03</span><h3>Bản đồ trải nghiệm</h3><p>Bản đồ hoặc hộ chiếu trải nghiệm dẫn người nhận đi theo hành trình của tấm vải.</p></article>
+      <article><span class="so">04</span><h3>Mã QR</h3><p>Dẫn tới nội dung số về làng nghề, quy trình làm vải và nghệ nhân.</p></article>
+    </div>
+
+    <div class="ton-chi">
+      <p>Tôn trọng nguồn gốc.</p>
+      <p>Ghi nhận công sức người làm nghề.</p>
+      <p>Hướng tới giá trị bền vững cho cộng đồng.</p>
+    </div>
+
+    <div class="o-trong">
+      <div>[ Chủ dự án điền: giá bộ và các phiên bản hộp ]</div>
+      <div>[ Chủ dự án điền: tên nghệ nhân / hộ sản xuất / hợp tác xã đối tác ]</div>
+      <div>[ Chủ dự án điền: email · điện thoại · fanpage ]</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 9 · CHÂN TRANG ============ -->
+<footer id="chan">
+  <video class="nen" id="v-chan" muted loop playsinline preload="none" poster="assets/img/poster-the-end.jpg" aria-hidden="true"></video>
+  <div class="soc-doc"></div>
+  <div class="boc">
+    <div class="ve-ten">
+      <p class="nhan">Về cái tên</p>
+      <p>Chúng tôi gọi là <span class="dam">Hà Giang</span>.</p>
+      <p>Đó là tên vùng đất gắn với nghề dệt lanh Lùng Tám, với những người thợ trong trang này, và với thương hiệu này.</p>
+      <p>Sau đợt sắp xếp đơn vị hành chính năm 2025, Lùng Tám thuộc tỉnh Tuyên Quang. Trong phim của nhóm, câu đầu tiên đã nói rõ điều đó: <span class="phim-noi">“Lùng Tám, vùng Hà Giang trước đây, nay thuộc tỉnh Tuyên Quang.”</span></p>
+      <p>Giữ cả hai cái tên là cách chúng tôi giữ đúng cả hai sự thật.</p>
+    </div>
+
+    <p class="ket">Một tấm thổ cẩm.<br><em>Ngàn câu chuyện.</em></p>
+
+    <div class="chan-cuoi">
+      <span>CHẠM BẢN CẨM</span>
+      <span>[ Chủ dự án điền: thông tin liên hệ ]</span>
+      <span>Trang này dùng ảnh và phim từ tài liệu dự án CHẠM BẢN CẨM.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script>
+(function(){
+'use strict';
+var R = document.documentElement;
+
+/* ============================================================
+   1. BẬC HIỆU NĂNG — quyết định một lần, CSS lo phần còn lại
+   ============================================================ */
+var itMo = matchMedia('(prefers-reduced-motion: reduce)').matches;
+var mang = navigator.connection || {};
+/* KHÔNG lấy bề ngang màn hình làm điều kiện: điện thoại phổ thông là 390–430px,
+   chặn theo bề ngang là tắt hết video nền trên đúng thiết bị đông người dùng nhất.
+   Chỉ hạ bậc khi máy thật sự yếu, mạng thật sự chậm, hoặc người dùng đã xin giảm chuyển động. */
+var yeu = itMo
+  || (navigator.hardwareConcurrency || 8) <= 4
+  || (navigator.deviceMemory || 8) <= 2
+  || mang.saveData === true
+  || /^(slow-2g|2g|3g)$/.test(mang.effectiveType || '');
+R.dataset.che = yeu ? 'nhe' : 'day';
+var nhe = yeu;
+
+/* ============================================================
+   2. NĂM HỆ MÀU
+   --khoi : mảng, đường kẻ, chữ từ 28px trở lên
+   --chu  : chữ nhỏ — mọi màu dưới đây đều đạt từ 4,5:1 trên nền chàm
+   ============================================================ */
+var HE = {
+  mong:{khoi:'#D8321C',chu:'#C3D23E'},
+  dao :{khoi:'#C22A22',chu:'#E8B13A'},
+  lolo:{khoi:'#C23F63',chu:'#F2789B'},
+  tay :{khoi:'#C9566B',chu:'#D9A94A'},
+  nung:{khoi:'#2F5FA8',chu:'#45C49B'}
+};
+var MA = ['mong','dao','lolo','tay','nung'];
+var dangBat = 'mong';
+
+/* ============================================================
+   3. CON THOI
+   Chỉ chạy khi NGƯỜI XEM tự chọn. Cuộn vào chương thì đổi màu
+   lặng lẽ bằng transition — để cảm giác "mình vừa làm ra điều đó"
+   không bị trang tự bấm hộ làm nhạt đi.
+   ============================================================ */
+var oThoi = document.getElementById('thoi');
+var tl = null, hen = null;
+var N = innerWidth < 760 ? 16 : 28;
+(function dungThoi(){
+  oThoi.style.setProperty('--n', N);
+  var h = '';
+  for (var i = 0; i < N; i++) h += '<div class="hang"></div>';
+  oThoi.innerHTML = h;
+})();
+var hang = oThoi.querySelectorAll('.hang');
+
+function datMau(ma){
+  var b = HE[ma]; if (!b) return;
+  R.style.setProperty('--khoi', b.khoi);
+  R.style.setProperty('--chu', b.chu);
+  R.dataset.he = ma;
+  dangBat = ma;
+  document.querySelectorAll('#bien button').forEach(function(n){
+    n.setAttribute('aria-pressed', String(n.dataset.ma === ma));
+  });
+  document.querySelectorAll('#cot-boc .cot').forEach(function(n){
+    n.setAttribute('aria-pressed', String(n.dataset.ma === ma));
+  });
+  veMotKhung(ma);
+}
+
+function sach(){
+  if (tl) { tl.kill(); tl = null; }
+  if (window.gsap) gsap.set(hang, {scaleX:0});
+  oThoi.classList.remove('chay');
+  clearTimeout(hen);
+}
+
+function det(ma, coThoi){
+  if (ma === dangBat && coThoi !== true) return;
+  if (nhe || !coThoi || !window.gsap){ datMau(ma); return; }
+  sach();
+  var b = HE[ma];
+  oThoi.style.setProperty('--vao', b.khoi);
+  oThoi.classList.add('chay');
+  var lech = 14, nua = 300 + (N/2) * lech;
+  tl = gsap.timeline({onComplete:sach});
+  tl.to(hang, {scaleX:1, duration:.3, ease:'power3.inOut', stagger:lech/1000}, 0);
+  tl.add(function(){ datMau(ma); }, nua/1000);
+  tl.to(hang, {
+    scaleX:0, duration:.3, ease:'power3.inOut', stagger:lech/1000,
+    onStart:function(){
+      hang.forEach(function(h,i){ h.style.transformOrigin = (i%2) ? 'left' : 'right'; });
+    }
+  }, (300 + N*lech)/1000);
+  /* van an toàn: tab bị ẩn giữa chừng thì rAF ngừng, timeline treo */
+  hen = setTimeout(sach, 1700);
+}
+
+document.querySelectorAll('#bien button').forEach(function(n){
+  n.addEventListener('click', function(){ det(n.dataset.ma, true); });
+});
+document.querySelectorAll('#cot-boc .cot').forEach(function(n){
+  n.addEventListener('click', function(){ det(n.dataset.ma, true); });
+});
+
+/* ============================================================
+   4. KHUNG DỆT — Canvas 2D, ma trận hoa văn từng cộng đồng
+   ============================================================ */
+function maTran(ma){
+  var m = [], x, y, n;
+  if (ma === 'mong'){                       /* xoắn ốc vuông lồng nhau */
+    n = 16;
+    for (y=0;y<n;y++){ m[y]=[]; for (x=0;x<n;x++){
+      var d = Math.min(Math.min(x,n-1-x), Math.min(y,n-1-y));
+      m[y][x] = (d % 4 < 2) ? 1 : 0;
+      if (d % 4 === 2 && y > x) m[y][x] = 2;
+    }}
+  } else if (ma === 'dao'){                 /* sọc dọc xen chữ thập */
+    n = 12;
+    for (y=0;y<n;y++){ m[y]=[]; for (x=0;x<n;x++){
+      var soc = (x % 4 === 0) ? 1 : 0;
+      var thap = ((x % 6 === 3 && y % 4 !== 0) || (y % 6 === 3 && x % 4 !== 0)) ? 2 : 0;
+      m[y][x] = thap || soc;
+    }}
+  } else if (ma === 'lolo'){                /* ô chéo ghép đôi, không ô kề trùng màu */
+    n = 8;
+    for (y=0;y<n;y++){ m[y]=[]; for (x=0;x<n;x++){
+      var o = (Math.floor(x/2) + Math.floor(y/2)) % 2;
+      var le = (x + y) % 2;
+      m[y][x] = o ? (le ? 1 : 0) : (le ? 0 : 2);
+    }}
+  } else if (ma === 'tay'){                 /* dãy quả trám nối nhau */
+    n = 10;
+    for (y=0;y<n;y++){ m[y]=[]; for (x=0;x<n;x++){
+      var dx = Math.abs((x % 10) - 4.5), dy = Math.abs((y % 10) - 4.5);
+      var s = dx + dy;
+      m[y][x] = (s < 1.6) ? 1 : (s < 3.1 ? 2 : 0);
+    }}
+  } else {                                  /* nung: viền chỉ ngang, khoảng cách không đều */
+    n = 16;
+    var hangCo = {1:1, 2:2, 5:1, 9:2, 10:1, 14:1};
+    for (y=0;y<n;y++){ m[y]=[]; for (x=0;x<n;x++){ m[y][x] = hangCo[y] || 0; }}
+  }
+  return m;
+}
+var MT = {}; MA.forEach(function(k){ MT[k] = maTran(k); });
+
+var bangCanvas = [].slice.call(document.querySelectorAll('canvas.det'));
+var dangVe = {};
+
+function veCanvas(cv, ma, dan){
+  var m = MT[ma], n = m.length;
+  var dpr = Math.min(devicePixelRatio || 1, 2);
+  var w = cv.clientWidth, h = cv.clientHeight;
+  if (!w || !h) return;
+  cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
+  var g = cv.getContext('2d'); g.scale(dpr, dpr);
+  var o = Math.max(5, Math.round(h / n));
+  var cot = Math.ceil(w / o), b = HE[ma];
+  /* ô trống không để hở nền — tô một sắc rất nhạt để dải đọc ra mặt vải */
+  var mau = ['rgba(230,223,206,.055)', b.khoi, b.chu];
+
+  function hangVe(hy){
+    for (var cx = 0; cx < cot; cx++){
+      var v = m[hy % n][cx % n];
+      g.fillStyle = mau[v];
+      g.fillRect(cx*o, hy*o, o, o);
+    }
+  }
+  var tong = Math.ceil(h / o);
+  if (!dan || nhe){
+    g.clearRect(0,0,w,h);
+    for (var i=0;i<tong;i++) hangVe(i);
+    return;
+  }
+  g.clearRect(0,0,w,h);
+  var cur = 0, id = cv.dataset.id || (cv.dataset.id = String(Math.round(performance.now()*1000)));
+  cancelAnimationFrame(dangVe[id]);
+  var tr = [], moc = performance.now(), cham = 0;
+  (function buoc(t){
+    var dt = t - moc; moc = t;
+    tr.push(dt); if (tr.length > 5) tr.shift();
+    var tb = tr.reduce(function(a,b2){return a+b2;},0) / tr.length;
+    if (tb > 32) cham++; else cham = 0;
+    if (cham >= 3){                            /* van an toàn: vẽ thẳng trạng thái cuối */
+      for (var k=cur;k<tong;k++) hangVe(k);
+      return;
+    }
+    hangVe(cur++); hangVe(cur++);
+    if (cur < tong) dangVe[id] = requestAnimationFrame(buoc);
+  })(performance.now());
+}
+
+function veMotKhung(ma){
+  bangCanvas.forEach(function(cv){
+    if (cv.dataset.mau === ma && cv.dataset.trong === '1') veCanvas(cv, ma, true);
+  });
+}
+
+/* ============================================================
+   5. INTERSECTION OBSERVER
+   ============================================================ */
+function theoDoi(nut, vao, ra, nguong){
+  if (!('IntersectionObserver' in window)) { vao(); return; }
+  var io = new IntersectionObserver(function(e){
+    e.forEach(function(x){ x.isIntersecting ? vao(x) : (ra && ra(x)); });
+  }, {threshold: nguong == null ? .25 : nguong});
+  io.observe(nut);
+}
+
+/* canvas: chỉ vẽ khi trong khung nhìn */
+bangCanvas.forEach(function(cv){
+  theoDoi(cv, function(){
+    cv.dataset.trong = '1';
+    if (cv.dataset.xong !== '1'){ cv.dataset.xong = '1'; veCanvas(cv, cv.dataset.mau, true); }
+  }, function(){ cv.dataset.trong = '0'; }, .2);
+});
+
+/* tám chặng quy trình */
+document.querySelectorAll('.chang').forEach(function(n){
+  theoDoi(n, function(){ n.classList.add('hien'); }, null, .2);
+});
+
+/* video nền: chỉ gán src ở bậc đầy đủ, và chỉ phát khi trong khung nhìn */
+function videoNen(id, src, nhanh){
+  var v = document.getElementById(id);
+  if (!v) return;
+  if (nhe){ v.remove(); return; }
+  theoDoi(v.closest('section, header, footer') || v, function(){
+    if (!v.src){ v.src = src; v.load(); }
+    if (nhanh) v.playbackRate = nhanh;
+    var p = v.play(); if (p && p.catch) p.catch(function(){});
+  }, function(){ if (v.src) v.pause(); }, .1);
+}
+addEventListener('load', function(){
+  videoNen('v-hero', 'assets/video/hero-loop.mp4');
+  videoNen('v-soi', 'assets/video/soi-loop.mp4');
+  videoNen('v-chan', 'assets/video/vung-cao-loop.mp4', .75);
+});
+
+/* chương: đổi hệ màu LẶNG LẼ khi cuộn (không chạy con thoi) */
+document.querySelectorAll('.chuong').forEach(function(n){
+  if (!('IntersectionObserver' in window)) return;
+  var io = new IntersectionObserver(function(e){
+    e.forEach(function(x){ if (x.isIntersecting) det(n.dataset.ma, false); });
+  }, {rootMargin: '-45% 0px -45% 0px'});
+  io.observe(n);
+});
+
+/* ============================================================
+   6. KHỐI CHỢ PHIÊN — lật sang nền sáng, suy từ vị trí cuộn
+   ============================================================ */
+var oCho = document.getElementById('cho');
+if (oCho && 'IntersectionObserver' in window){
+  new IntersectionObserver(function(e){
+    e.forEach(function(x){
+      oCho.classList.toggle('sang', x.isIntersecting);
+      /* biên vải phải đổi sang bản màu đậm, nếu không năm sợi mất hút trên nền kem */
+      if (x.isIntersecting) R.dataset.sang = '1'; else delete R.dataset.sang;
+    });
+  }, {rootMargin: '-30% 0px -30% 0px'}).observe(oCho);
+}
+
+/* ============================================================
+   7. THƯỚC 41 VẠCH
+   ============================================================ */
+function dungThuoc(el, so){
+  if (!el) return [];
+  var h = '';
+  for (var i = 0; i < so; i++) h += '<i></i>';
+  el.innerHTML = h;
+  return [].slice.call(el.children);
+}
+var vachHero = dungThuoc(document.getElementById('thuoc-hero'), 41);
+var vachDoc  = dungThuoc(document.getElementById('thuoc-doc'), 41);
+
+function doDay(bang, ty){
+  var k = Math.round(Math.max(0, Math.min(1, ty)) * bang.length);
+  bang.forEach(function(v, i){ v.classList.toggle('on', i < k); });
+}
+/* hero: đổ đầy một lượt khi trang mở, như lời hứa */
+setTimeout(function(){ doDay(vachHero, 1); }, 900);
+
+/* ============================================================
+   8. ẢNH — nền mờ cực nhỏ rồi hiện ảnh thật
+   ============================================================ */
+document.querySelectorAll('img[data-src]').forEach(function(im){
+  var boc = im.parentElement;
+  if (im.dataset.tiny && boc){
+    boc.style.backgroundImage = 'url(' + im.dataset.tiny + ')';
+    if (!nhe) boc.style.filter = 'none';
+  }
+  theoDoi(im, function(){
+    if (im.src) return;
+    im.loading = 'lazy'; im.decoding = 'async';
+    im.addEventListener('load', function(){ im.classList.add('xong'); }, {once:true});
+    im.src = im.dataset.src;
+  }, null, .01);
+});
+
+/* ============================================================
+   9. PHIM — chỉ tải khi người xem bấm
+   ============================================================ */
+document.querySelectorAll('.nut-phat').forEach(function(nut){
+  nut.addEventListener('click', function(){
+    var v = document.getElementById(nut.dataset.phim);
+    var anh = nut.parentElement.querySelector('.anh-cho');
+    var nhan = nut.parentElement.querySelector('.nhan-nguon');
+    if (!v) return;
+    if (!v.src){ v.src = nut.dataset.src; v.load(); }
+    v.hidden = false;
+    if (anh) anh.hidden = true;
+    nut.hidden = true;
+    if (nhan) nhan.style.opacity = '.75';
+    var p = v.play(); if (p && p.catch) p.catch(function(){});
+  });
+});
+
+/* ============================================================
+   10. NHÃN HIỆN VẬT CHO TÊN VÙNG ĐẤT
+   ============================================================ */
+var nutTen = document.getElementById('nut-ten');
+var ghiChu = document.getElementById('ghi-chu-ten');
+if (nutTen && ghiChu){
+  nutTen.addEventListener('click', function(){
+    var mo = ghiChu.hidden;
+    ghiChu.hidden = !mo;
+    nutTen.setAttribute('aria-expanded', String(mo));
+  });
+}
+
+/* ============================================================
+   11. GSAP — chỉ làm phần tăng cường, thiếu cũng không sao
+   ============================================================ */
+addEventListener('load', function(){
+  R.dataset.san = '1';                               /* năm sợi mọc lên */
+  if (nhe || !window.gsap || !window.ScrollTrigger){
+    /* bậc nhẹ: thước đổ đầy bằng IntersectionObserver */
+    var qt = document.getElementById('quy-trinh');
+    if (qt) theoDoi(qt, function(){ doDay(vachDoc, 1); }, null, .2);
+    return;
+  }
+  gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.create({
+    trigger: '#quy-trinh',
+    start: 'top 62%',
+    end: 'bottom 85%',
+    onUpdate: function(s){ doDay(vachDoc, s.progress); }
+  });
+});
+
+/* N đổi khi xoay máy */
+var lastW = innerWidth;
+addEventListener('resize', function(){
+  if (Math.abs(innerWidth - lastW) < 80) return;
+  lastW = innerWidth;
+  bangCanvas.forEach(function(cv){
+    if (cv.dataset.trong === '1') veCanvas(cv, cv.dataset.mau, false);
+  });
+}, {passive:true});
+
+datMau('mong');
+})();
+</script>
+</body>
+</html>

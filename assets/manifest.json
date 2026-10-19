@@ -1,0 +1,169 @@
+{
+ "manifest": {
+  "images": [
+   {
+    "slug": "ruong-bac-thang",
+    "w": 1500,
+    "h": 1000,
+    "webp": 340,
+    "jpg": 321
+   },
+   {
+    "slug": "thung-lung-ban-lang",
+    "w": 1800,
+    "h": 1233,
+    "webp": 263,
+    "jpg": 391
+   },
+   {
+    "slug": "phu-nu-mong",
+    "w": 1500,
+    "h": 1000,
+    "webp": 230,
+    "jpg": 248
+   },
+   {
+    "slug": "vai-cham-trung-bay",
+    "w": 925,
+    "h": 546,
+    "webp": 109,
+    "jpg": 136
+   },
+   {
+    "slug": "nha-trinh-tuong",
+    "w": 944,
+    "h": 540,
+    "webp": 175,
+    "jpg": 192
+   },
+   {
+    "slug": "men-men",
+    "w": 800,
+    "h": 450,
+    "webp": 37,
+    "jpg": 57
+   },
+   {
+    "slug": "phu-nu-dao",
+    "w": 819,
+    "h": 514,
+    "webp": 74,
+    "jpg": 107
+   },
+   {
+    "slug": "le-cap-sac",
+    "w": 652,
+    "h": 473,
+    "webp": 85,
+    "jpg": 91
+   },
+   {
+    "slug": "hai-cay-thuoc",
+    "w": 1800,
+    "h": 1200,
+    "webp": 346,
+    "jpg": 471
+   },
+   {
+    "slug": "lo-lo-ban-lang",
+    "w": 1200,
+    "h": 820,
+    "webp": 202,
+    "jpg": 221
+   },
+   {
+    "slug": "lo-lo-mua",
+    "w": 1500,
+    "h": 1000,
+    "webp": 280,
+    "jpg": 381
+   },
+   {
+    "slug": "tay-dien-xuong",
+    "w": 900,
+    "h": 600,
+    "webp": 121,
+    "jpg": 154
+   },
+   {
+    "slug": "nha-san-tay",
+    "w": 1500,
+    "h": 882,
+    "webp": 237,
+    "jpg": 282
+   },
+   {
+    "slug": "hat-then-dan-tinh",
+    "w": 1000,
+    "h": 664,
+    "webp": 187,
+    "jpg": 208
+   },
+   {
+    "slug": "phu-nu-nung",
+    "w": 1280,
+    "h": 720,
+    "webp": 146,
+    "jpg": 171
+   },
+   {
+    "slug": "cho-phien",
+    "w": 913,
+    "h": 608,
+    "webp": 171,
+    "jpg": 192
+   },
+   {
+    "slug": "cho-phien-am-thuc",
+    "w": 1800,
+    "h": 1100,
+    "webp": 326,
+    "jpg": 449
+   }
+  ],
+  "videos": [
+   {
+    "file": "story.mp4",
+    "MB": 25.82
+   },
+   {
+    "file": "hero-loop.mp4",
+    "MB": 1.23
+   },
+   {
+    "file": "soi-loop.mp4",
+    "MB": 0.98
+   }
+  ]
+ },
+ "log": [
+  {
+   "step": "story.mp4 (ban day du)",
+   "ok": true
+  },
+  {
+   "step": "hero-loop.mp4 (nen hero)",
+   "ok": true
+  },
+  {
+   "step": "soi-loop.mp4 (khoi quy trinh)",
+   "ok": true
+  },
+  {
+   "step": "poster-khung-cui.jpg",
+   "ok": true
+  },
+  {
+   "step": "poster-thung-lung.jpg",
+   "ok": true
+  },
+  {
+   "step": "poster-san-pham.jpg",
+   "ok": true
+  },
+  {
+   "step": "poster-nhuom.jpg",
+   "ok": true
+  }
+ ]
+}
