@@ -133,6 +133,14 @@ H.265 — nếu sau này thay video mới, nhớ chuyển mã trước.
   "mình vừa bấm ra điều đó" không bị trang tự làm hộ.
 - **Máy yếu, mạng chậm, hoặc người dùng bật chế độ giảm chuyển động** thì trang tự hạ bậc:
   bỏ con thoi, bỏ video nền, chỉ còn ảnh tĩnh. Nội dung vẫn đủ.
+- **Trang dùng nền sáng.** Nền là sắc vải lanh mộc `#F6F2E9`. Màu chàm không mất đi — nó chuyển
+  từ vai nền sang vai mực và vai điểm nhấn, đúng như trên tấm vải thật.
+  Chỉ ba khối dùng nền tối: phần mở đầu, khung phim và khối ghi nguồn. Xem phim thì tắt đèn,
+  đó là lý do của ba khối đó, không phải sở thích. Khối nào cần nền tối thì thêm `class="tam-toi"`,
+  mọi token bên trong sẽ tự đổi vai.
+- **Hoa văn vẽ bằng mũi thêu chữ X**, không phải ô vuông đặc — thổ cẩm được làm từ mũi thêu,
+  vẽ bằng ô vuông sẽ ra hình pixel. Mỗi mũi lệch nhẹ theo vị trí, nhưng lệch có quy luật nên
+  vẽ lại bao nhiêu lần cũng ra đúng một hình.
 - **Màu chữ và màu mảng là hai biến tách riêng.** Ba trong năm màu cộng đồng không đủ tương
   phản để làm chữ nhỏ trên nền chàm, nên mỗi cộng đồng có một màu riêng dành cho chữ. Nếu sửa
   màu, giữ nguyên quy tắc này, không thì có chương sẽ không đọc được.
