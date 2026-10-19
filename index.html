@@ -39,6 +39,12 @@
   --dong:#8A5B0F;          /* ghi danh + ghi công, 5,6:1 */
   --chanh:#4E6310;         /* màu phá thế, 6,4:1 */
   --sang:1;                /* cờ cho JavaScript biết trang đang nền sáng */
+
+  /* --- ĐỎ LÀ MÀU CHỦ ĐẠO ---
+     Lấy từ chính logo của nhóm. Cố định trên toàn trang, không đổi theo cộng đồng.
+     Hệ năm màu chỉ còn sống trong năm chương cộng đồng, nơi nó thật sự có nghĩa. */
+  --do:#A8231F;            /* đỏ thương hiệu — 6,2:1, dùng được cả cho chữ nhỏ */
+  --do-tuoi:#C62A14;       /* đỏ tươi hơn cho chữ lớn và mảng — 5,0:1 */
   --ke:rgba(27,39,51,.15);        /* đường kẻ mảnh */
   --ke-2:rgba(27,39,51,.26);      /* viền khung */
   --ke-3:rgba(27,39,51,.4);       /* viền đứt */
@@ -83,10 +89,10 @@ body{
 img,video{max-width:100%;display:block}
 p{margin:0}
 ul,ol{margin:0;padding:0;list-style:none}
-a{color:var(--chu);text-underline-offset:.22em;text-decoration-thickness:1px}
+a{color:var(--do);text-underline-offset:.22em;text-decoration-thickness:1px}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 :focus-visible{outline:2px solid var(--chanh);outline-offset:3px}
-::selection{background:var(--khoi);color:#fff}
+::selection{background:var(--do);color:#fff}
 
 /* ---------- lớp sợi dọc: chữ ký thị giác, 0 byte ---------- */
 .soc-doc{position:absolute;inset:0;pointer-events:none;z-index:2;
@@ -97,7 +103,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .khung::before,.khung::after{content:'';position:absolute;width:38%;height:38%;pointer-events:none}
 .khung::before{top:0;left:0;border-top:1px solid var(--soi);border-left:1px solid var(--soi)}
 .khung::after{bottom:0;right:0;border-bottom:1px solid var(--soi);border-right:1px solid var(--soi)}
-.khung--khoi::before,.khung--khoi::after{border-color:var(--khoi)}
+.khung--khoi::before,.khung--khoi::after{border-color:var(--do)}
 
 /* ---------- chữ ---------- */
 .hien{font-family:var(--f-hien);font-variation-settings:'wdth' 75,'wght' 800;
@@ -180,11 +186,11 @@ html[data-san="1"] #bien .soi{height:calc(100% - 96px);
   font-size:clamp(.95rem,1.5vw,1.25rem);line-height:1.1;color:var(--mo);
   white-space:nowrap;transition:color .3s}
 #thanh-phan button::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:3px;
-  background:var(--khoi);transform:scaleX(0);transform-origin:left;
+  background:var(--do);transform:scaleX(0);transform-origin:left;
   transition:transform .32s cubic-bezier(.62,.03,.21,1)}
 #thanh-phan button[aria-selected="true"]::after{transform:scaleX(1)}
 #thanh-phan button[aria-selected="true"] .ten-phan{color:var(--soi)}
-#thanh-phan button[aria-selected="true"] .so{color:var(--chu)}
+#thanh-phan button[aria-selected="true"] .so{color:var(--do)}
 @media (max-width:760px){
   #thanh-phan button{flex:0 0 auto;padding:12px 15px 11px}
   #thanh-phan .ten-phan{font-size:.95rem}
@@ -224,7 +230,7 @@ html[data-san="1"] #bien .soi{height:calc(100% - 96px);
 @media (min-width:761px){.thuoc-boc{align-items:flex-end}}
 .thuoc{display:flex;gap:3px;width:min(210px,52vw);height:22px;align-items:flex-end}
 .thuoc i{flex:1;height:38%;background:var(--soi);opacity:.3;transition:opacity .25s,height .25s,background .25s}
-.thuoc i.on{opacity:1;height:100%;background:var(--khoi)}
+.thuoc i.on{opacity:1;height:100%;background:var(--do)}
 
 /* ===================== NĂM SỢI (dạy cơ chế) ===================== */
 #nam-soi{padding-block:clamp(72px,11vh,140px);padding-right:var(--rail)}
@@ -262,13 +268,13 @@ html[data-san="1"] #bien .soi{height:calc(100% - 96px);
 .qt-trai{position:sticky;top:max(12vh,calc(var(--sv-t) + 70px));align-self:start}
 .thuoc-doc{display:flex;flex-direction:column;gap:4px;margin-top:16px}
 .thuoc-doc i{flex:0 0 3px;width:46%;background:var(--soi);opacity:.26;transition:opacity .3s,width .3s,background .3s}
-.thuoc-doc i.on{opacity:1;width:100%;background:var(--khoi)}
+.thuoc-doc i.on{opacity:1;width:100%;background:var(--do)}
 .chang{padding-block:clamp(22px,3.4vh,40px);border-top:1px solid var(--ke);
   opacity:0;translate:0 22px;transition:opacity .46s,translate .46s}
 .chang.hien{opacity:1;translate:0 0}
 .chang:first-child{border-top:0}
 .chang h3{font-family:var(--f-hien);font-variation-settings:'wdth' 75,'wght' 700;
-  font-size:clamp(1.3rem,3vw,2.1rem);line-height:1.04;margin:6px 0 10px;color:var(--khoi)}
+  font-size:clamp(1.3rem,3vw,2.1rem);line-height:1.04;margin:6px 0 10px;color:var(--do)}
 .chang .loi{font-family:var(--f-phim);font-size:clamp(1rem,1.5vw,1.2rem);line-height:1.6;color:var(--soi)}
 .chang .loi + .loi{margin-top:.5em}
 .chang .stt{font-family:var(--f-hien);font-variation-settings:'wdth' 75,'wght' 800;
@@ -302,9 +308,9 @@ html[data-san="1"] #bien .soi{height:calc(100% - 96px);
 .nut-phat .hop{position:relative;display:flex;align-items:center;gap:14px;
   padding:14px 26px;border:1px solid var(--tren-toi);background:rgba(20,29,38,.68)}
 .nut-phat .hop::after{content:'';position:absolute;left:0;bottom:0;height:3px;width:0;
-  background:var(--nut,var(--khoi));transition:width .24s cubic-bezier(.62,.03,.21,1)}
+  background:var(--nut,var(--do));transition:width .24s cubic-bezier(.62,.03,.21,1)}
 .nut-phat:hover .hop::after,.nut-phat:focus-visible .hop::after{width:100%}
-.nut-phat .tam{width:0;height:0;border-left:15px solid var(--nut,var(--khoi));
+.nut-phat .tam{width:0;height:0;border-left:15px solid var(--nut,var(--do));
   border-top:9px solid transparent;border-bottom:9px solid transparent}
 /* phim có tư liệu bên thứ ba dùng màu đồng — cùng màu với toàn bộ hệ ghi nguồn */
 #nguon .nut-phat{--nut:var(--dong)}
@@ -320,6 +326,7 @@ html[data-san="1"] #bien .soi{height:calc(100% - 96px);
   --soi:var(--tren-toi); --mo:#A3AEBA;
   --dong:#D9A94A; --chanh:#C3D23E;
   --khoi:#E8552F; --chu:#E8B13A;
+  --do:#E8552F; --do-tuoi:#F26B41;
   --ke:rgba(230,223,206,.16); --ke-2:rgba(230,223,206,.3); --ke-3:rgba(230,223,206,.45);
   --soc-mau:rgba(230,223,206,.085);
   background:var(--toi); color:var(--tren-toi);
@@ -357,6 +364,59 @@ canvas.det{width:100%;height:58px;display:block;margin-top:22px}
   .ch-luoi,.chuong:nth-of-type(even) .ch-luoi{grid-template-columns:1fr}
   .chuong:nth-of-type(even) .ch-anh{order:0}
 }
+
+/* ===== Ô NGANG: CHỢ PHIÊN =====
+   Năm cộng đồng là năm cột dọc; chợ phiên là chỗ họ gặp nhau, nên nó nằm NGANG
+   bên dưới, ôm hết bề ngang của cả năm cột. Hình thức nói luôn nội dung. */
+.o-cho{position:relative;display:block;width:100%;margin-top:4px;padding:0;
+  overflow:hidden;border:0;aspect-ratio:7/1;min-height:116px;background:var(--cham-2);
+  filter:saturate(.4);opacity:.6;transition:filter .5s,opacity .5s}
+.o-cho[aria-pressed="true"]{filter:none;opacity:1}
+.o-cho img{width:100%;height:100%;object-fit:cover;object-position:center 42%}
+.o-cho::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(to right,rgba(20,29,38,.88) 0%,rgba(20,29,38,.5) 46%,rgba(20,29,38,.2) 100%)}
+.o-cho .trong-o{position:absolute;z-index:2;left:clamp(16px,2.6vw,34px);top:50%;translate:0 -50%;
+  display:flex;flex-direction:column;gap:2px;text-align:left}
+.o-cho .ten-o{font-family:var(--f-hien);font-variation-settings:'wdth' 75,'wght' 800;
+  font-size:clamp(1.5rem,3.4vw,2.6rem);line-height:1;color:var(--tren-toi)}
+.o-cho .phu-o{font-family:var(--f-hien);font-variation-settings:'wdth' 100,'wght' 500;
+  font-size:clamp(11px,1.2vw,13px);letter-spacing:.2em;text-transform:uppercase;color:#C9D2DA}
+.o-cho .nam-cham{position:absolute;z-index:2;right:clamp(16px,2.6vw,34px);top:50%;translate:0 -50%;
+  display:flex;gap:7px}
+.o-cho .nam-cham i{width:9px;height:9px}
+.o-cho .vach-duoi{position:absolute;left:0;right:0;bottom:0;height:4px;background:var(--do)}
+.o-cho[aria-pressed="true"]::before{content:'';position:absolute;z-index:3;left:0;right:0;bottom:0;
+  height:4px;background:var(--do)}
+@media (max-width:760px){
+  .o-cho{aspect-ratio:auto;min-height:96px}
+  .o-cho .nam-cham{display:none}
+}
+
+/* nội dung chợ phiên trong ô thông tin */
+.cho-trong{text-align:center}
+.khoi-phim-vh{margin-top:clamp(40px,6vh,80px);padding:clamp(24px,4vw,44px)}
+
+/* ===== Ô THÔNG TIN ĐỔI THEO NGƯỜI ĐƯỢC CHỌN =====
+   Không còn năm chương xếp dọc. Chạm vào ảnh người nào thì ô dưới hiện
+   thông tin của cộng đồng đó — người xem chọn, không phải lướt qua cả năm. */
+#o-cong-dong{padding-block:clamp(26px,4vh,52px) clamp(56px,9vh,110px);
+  padding-right:var(--rail);border-top:1px solid var(--ke)}
+.the-cong-dong{animation:hien-nhe .42s ease both}
+@keyframes hien-nhe{from{opacity:0;translate:0 10px}to{opacity:1;translate:0 0}}
+
+/* ===== ẢNH HOA VĂN THẬT (phần 3) ===== */
+.hv-anh{margin:0;overflow:hidden;background:var(--cham-2);background-size:cover;
+  background-position:center;aspect-ratio:4/3;border:1px solid var(--ke)}
+.hv-anh img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .5s,scale .5s}
+.hv-anh img.xong{opacity:1}
+.hv-the:hover .hv-anh img{scale:1.035}
+
+/* ===== TÊN THƯƠNG HIỆU TRÊN HERO ===== */
+.ten-hieu{font-family:var(--f-hien);font-variation-settings:'wdth' 100,'wght' 700;
+  font-size:clamp(13px,1.5vw,16px);letter-spacing:.34em;text-transform:uppercase;
+  color:var(--do);margin:0 0 .9em;position:relative;padding-left:46px}
+.ten-hieu::before{content:'';position:absolute;left:0;top:.52em;width:34px;height:2px;
+  background:var(--do)}
 
 /* ===================== 2019 ===================== */
 #unesco{padding-block:clamp(70px,12vh,150px);position:relative;overflow:hidden;
@@ -429,11 +489,11 @@ canvas.det{width:100%;height:58px;display:block;margin-top:22px}
 .hv-the{position:relative;border:1px solid var(--ke-2);
   padding:clamp(18px,2.4vw,26px);display:flex;flex-direction:column;gap:14px;
   transition:border-color .4s}
-.hv-the:hover{border-color:var(--khoi)}
+.hv-the:hover{border-color:var(--do)}
 .hv-the h3{font-family:var(--f-hien);font-variation-settings:'wdth' 75,'wght' 800;
-  font-size:clamp(1.25rem,2.4vw,1.75rem);line-height:1.04;margin:0;color:var(--khoi)}
+  font-size:clamp(1.25rem,2.4vw,1.75rem);line-height:1.04;margin:0;color:var(--do)}
 .hv-the .phu{font-family:var(--f-hien);font-variation-settings:'wdth' 100,'wght' 500;
-  font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--chu);margin:0}
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--do);margin:0}
 .hv-the p{font-size:14.5px;line-height:1.6;color:var(--soi);margin:0}
 .hv-the p + p{margin-top:.6em}
 .hv-the canvas{width:100%;height:104px;display:block;border:1px solid var(--ke)}
@@ -502,19 +562,19 @@ details.phu-de li{display:grid;grid-template-columns:62px 1fr;gap:12px;align-ite
 .the-hop article:nth-child(2){translate:0 14px}
 .the-hop article:nth-child(3){translate:0 28px}
 .the-hop article:nth-child(4){translate:0 42px}
-.the-hop article:hover{translate:0 -4px;border-color:var(--khoi)}
+.the-hop article:hover{translate:0 -4px;border-color:var(--do)}
 .the-hop article:nth-child(2):hover{translate:0 10px}
 .the-hop article:nth-child(3):hover{translate:0 24px}
 .the-hop article:nth-child(4):hover{translate:0 38px}
 .the-hop .so{font-family:var(--f-hien);font-variation-settings:'wdth' 75,'wght' 800;
-  font-size:2rem;line-height:1;color:var(--khoi);font-variant-numeric:tabular-nums}
+  font-size:2rem;line-height:1;color:var(--do);font-variant-numeric:tabular-nums}
 .the-hop h3{font-family:var(--f-hien);font-variation-settings:'wdth' 100,'wght' 700;
   font-size:1.05rem;margin:12px 0 8px;color:var(--soi)}
 .the-hop p{font-size:14px;line-height:1.55;color:var(--mo)}
 .ton-chi{margin-top:clamp(40px,7vh,86px);display:grid;gap:.12em}
 .ton-chi p{font-family:var(--f-hien);font-variation-settings:'wdth' 75,'wght' 800;
   font-size:clamp(1.6rem,5.4vw,3.8rem);line-height:1.02;color:var(--soi)}
-.ton-chi p:nth-child(2){color:var(--chu)}
+.ton-chi p:nth-child(2){color:var(--do)}
 .o-trong{margin-top:clamp(30px,5vh,56px);display:grid;gap:12px}
 .o-trong div{border:1px dashed var(--ke-3);padding:16px 18px;
   font-family:var(--f-hien);font-variation-settings:'wdth' 100,'wght' 500;
@@ -583,7 +643,8 @@ html[data-che="nhe"] :root,html[data-che="nhe"] body{transition:none}
   <div class="scrim"></div>
   <div class="trong">
     <div class="boc">
-      <h1 class="hien">Một tấm thổ cẩm.<span class="d2">Ngàn câu chuyện.</span></h1>
+      <p class="ten-hieu">Chạm Bản Cẩm</p>
+      <h1 class="hien">Chạm nét thổ cẩm.<span class="d2">Cảm hồn Hà Giang.</span></h1>
       <div class="chan">
         <div class="dia-danh">
           Lùng Tám · <button type="button" class="ten-cu" id="nut-ten" aria-expanded="false" aria-controls="ghi-chu-ten">Hà Giang</button>
@@ -634,15 +695,27 @@ html[data-che="nhe"] :root,html[data-che="nhe"] body{transition:none}
         <img src="assets/img/phu-nu-nung.webp" alt="Phụ nữ Nùng trong trang phục gam chàm bên nhà sàn" width="1280" height="720" loading="lazy" decoding="async">
         <span class="ten-doc">Nùng</span><span class="vach"></span></button>
     </div>
+    <button type="button" class="o-cho" data-ma="cho" aria-pressed="false">
+      <img src="assets/img/cho-phien.webp" alt="" width="913" height="608" loading="lazy" decoding="async">
+      <span class="trong-o">
+        <span class="ten-o">Chợ phiên</span>
+        <span class="phu-o">Nơi giao lưu văn hoá</span>
+      </span>
+      <span class="nam-cham" aria-hidden="true">
+        <i style="background:#D13316"></i><i style="background:#B8241B"></i><i style="background:#C0365F"></i><i style="background:#B8475C"></i><i style="background:#2A62B4"></i>
+      </span>
+    </button>
   </div>
 </section>
 <!-- ============ 4 · NĂM CHƯƠNG ============ -->
 <div id="nguoi-lam-nghe">
 
-<section class="chuong" data-ma="mong" aria-labelledby="h-mong">
-  <div class="boc"><div class="ch-luoi">
+<!-- ============ MỘT Ô, ĐỔI THEO NGƯỜI ĐƯỢC CHỌN ============ -->
+<section id="o-cong-dong" aria-live="polite">
+  <div class="boc">
+    <div class="the-cong-dong" data-ma="mong">
+      <div class="ch-luoi">
     <div>
-      <p class="ch-phu">Chương 01</p>
       <h2 class="hien ch-ten" id="h-mong">Mông</h2>
       <div class="ch-y"><span class="o"></span><p>Tiếng khèn, dân ca và lễ hội Gầu Tào — gắn với mong ước về sức khoẻ, bình an, gia đình hạnh phúc và mùa màng thuận lợi.</p></div>
       <div class="ch-y"><span class="o"></span><p>Váy xếp ly, hoa văn thêu, kỹ thuật in sáp ong và cách phối hợp màu sắc riêng của từng nhóm địa phương.</p></div>
@@ -653,14 +726,11 @@ html[data-che="nhe"] :root,html[data-che="nhe"] body{transition:none}
     <div class="ch-anh">
       <figure style="margin:0"><div class="khung-anh" style="aspect-ratio:3/2"><img data-src="assets/img/nha-trinh-tuong.webp" data-tiny="assets/img/nha-trinh-tuong-tiny.webp" alt="Nhà trình tường và hàng rào đá dưới chân núi đá" width="944" height="540"></div><figcaption>Nhà trình tường và hàng rào đá. Ảnh tư liệu — tài liệu dự án.</figcaption></figure>
       <figure style="margin:0"><div class="khung-anh" style="aspect-ratio:16/9"><img data-src="assets/img/vai-cham-trung-bay.webp" data-tiny="assets/img/vai-cham-trung-bay-tiny.webp" alt="Vải chàm và thổ cẩm treo trưng bày trong gian hàng" width="925" height="546"></div><figcaption>Vải nhuộm chàm trưng bày. Ảnh tư liệu — tài liệu dự án.</figcaption></figure>
+    </div></div>
     </div>
-  </div></div>
-</section>
-
-<section class="chuong" data-ma="dao" aria-labelledby="h-dao">
-  <div class="boc"><div class="ch-luoi">
+    <div class="the-cong-dong" data-ma="dao" hidden>
+      <div class="ch-luoi">
     <div>
-      <p class="ch-phu">Chương 02</p>
       <h2 class="hien ch-ten" id="h-dao">Dao</h2>
       <div class="ch-y"><span class="o"></span><p>Gồm nhiều nhóm địa phương như Dao Đỏ, Dao Tiền và Dao Quần Chẹt, khác nhau về trang phục, phong tục và nghi lễ.</p></div>
       <div class="ch-y"><span class="o"></span><p>Lễ cấp sắc đánh dấu sự trưởng thành về mặt tín ngưỡng và trách nhiệm cộng đồng của nam giới theo quan niệm truyền thống. Tín ngưỡng thờ cúng tổ tiên giữ vai trò quan trọng trong đời sống tinh thần.</p></div>
@@ -671,14 +741,11 @@ html[data-che="nhe"] :root,html[data-che="nhe"] body{transition:none}
     <div class="ch-anh">
       <figure style="margin:0"><div class="khung-anh" style="aspect-ratio:4/3"><img data-src="assets/img/le-cap-sac.webp" data-tiny="assets/img/le-cap-sac-tiny.webp" alt="Nghi lễ truyền thống của người Dao với trang phục đỏ và trống" width="652" height="473"></div><figcaption>Nghi lễ truyền thống của người Dao. Ảnh tư liệu — tài liệu dự án.</figcaption></figure>
       <figure style="margin:0"><div class="khung-anh" style="aspect-ratio:3/2"><img data-src="assets/img/hai-cay-thuoc.webp" data-tiny="assets/img/hai-cay-thuoc-tiny.webp" alt="Người phụ nữ thu hái cây trên nương" width="1800" height="1200"></div><figcaption>Thu hái trên nương. Ảnh tư liệu — tài liệu dự án.</figcaption></figure>
+    </div></div>
     </div>
-  </div></div>
-</section>
-
-<section class="chuong" data-ma="lolo" aria-labelledby="h-lolo">
-  <div class="boc"><div class="ch-luoi">
+    <div class="the-cong-dong" data-ma="lolo" hidden>
+      <div class="ch-luoi">
     <div>
-      <p class="ch-phu">Chương 03</p>
       <h2 class="hien ch-ten" id="h-lolo">Lô Lô</h2>
       <div class="ch-y"><span class="o"></span><p>Một trong những dân tộc có dân số ít tại Việt Nam, cư trú ở một số địa bàn miền núi phía Bắc.</p></div>
       <div class="ch-y"><span class="o"></span><p>Tín ngưỡng thờ cúng tổ tiên, nghi lễ gia đình và sinh hoạt cộng đồng duy trì mối liên hệ giữa các thế hệ, dòng họ và ký ức văn hoá.</p></div>
@@ -689,14 +756,11 @@ html[data-che="nhe"] :root,html[data-che="nhe"] body{transition:none}
     <div class="ch-anh">
       <figure style="margin:0"><div class="khung-anh" style="aspect-ratio:3/2"><img data-src="assets/img/lo-lo-ban-lang.webp" data-tiny="assets/img/lo-lo-ban-lang-tiny.webp" alt="Người Lô Lô với ô che trước những nếp nhà lợp cỏ" width="1200" height="820"></div><figcaption>Bản làng Lô Lô. Ảnh tư liệu — tài liệu dự án.</figcaption></figure>
       <figure style="margin:0"><div class="khung-anh" style="aspect-ratio:3/2"><img data-src="assets/img/lo-lo-mua.webp" data-tiny="assets/img/lo-lo-mua-tiny.webp" alt="Điệu múa truyền thống trước ngôi nhà gỗ" width="1500" height="1000"></div><figcaption>Sinh hoạt lễ hội. Ảnh tư liệu — tài liệu dự án.</figcaption></figure>
+    </div></div>
     </div>
-  </div></div>
-</section>
-
-<section class="chuong" data-ma="tay" aria-labelledby="h-tay">
-  <div class="boc"><div class="ch-luoi">
+    <div class="the-cong-dong" data-ma="tay" hidden>
+      <div class="ch-luoi">
     <div>
-      <p class="ch-phu">Chương 04</p>
       <h2 class="hien ch-ten" id="h-tay">Tày</h2>
       <div class="ch-y"><span class="o"></span><p>Đời sống truyền thống gắn với thung lũng, sản xuất nông nghiệp và không gian bản làng. Lễ hội Lồng Tồng, còn gọi là lễ hội xuống đồng, thể hiện mong ước về mùa màng thuận lợi và cuộc sống bình an.</p></div>
       <div class="ch-y"><span class="o"></span><p>Nhà sàn không chỉ là nơi ở mà còn là không gian sinh hoạt gia đình, tiếp khách, tổ chức nghi lễ và truyền dạy phong tục.</p></div>
@@ -706,8 +770,88 @@ html[data-che="nhe"] :root,html[data-che="nhe"] body{transition:none}
     <div class="ch-anh">
       <figure style="margin:0"><div class="khung-anh" style="aspect-ratio:16/9"><img data-src="assets/img/nha-san-tay.webp" data-tiny="assets/img/nha-san-tay-tiny.webp" alt="Nhà sàn gỗ lợp cỏ trong bản làng" width="1500" height="882"></div><figcaption>Nhà sàn truyền thống. Ảnh tư liệu — tài liệu dự án.</figcaption></figure>
       <figure style="margin:0"><div class="khung-anh" style="aspect-ratio:3/2"><img data-src="assets/img/tay-dien-xuong.webp" data-tiny="assets/img/tay-dien-xuong-tiny.webp" alt="Đông người trong trang phục truyền thống tại một buổi diễn xướng" width="900" height="600"></div><figcaption>Diễn xướng cộng đồng. Ảnh tư liệu — tài liệu dự án.</figcaption></figure>
+    </div></div>
     </div>
-  </div></div>
+    <div class="the-cong-dong" data-ma="nung" hidden>
+      <div class="ch-luoi">
+    <div>
+      <h2 class="hien ch-ten" id="h-nung">Nùng</h2>
+      <div class="ch-y"><span class="o"></span><p>Văn hoá thể hiện qua tín ngưỡng thờ cúng tổ tiên, các dịp lễ Tết, phong tục gia đình, dân ca và truyện kể dân gian.</p></div>
+      <div class="ch-y"><span class="o"></span><p>Ở một số cộng đồng, lễ mừng cơm mới thể hiện lòng biết ơn đối với thiên nhiên, tổ tiên và thành quả lao động.</p></div>
+      <div class="ch-y"><span class="o"></span><p>Trang phục truyền thống thường dùng các gam màu trầm như chàm hoặc đen, kết hợp khăn đội đầu và những chi tiết trang trí tuỳ nhóm địa phương.</p></div>
+      <div class="ch-y"><span class="o"></span><p>Nghề may, thêu và nhuộm vải gắn với nhu cầu sinh hoạt cũng như việc duy trì kỹ năng thủ công.</p></div>
+      <canvas class="det" data-mau="nung" aria-hidden="true"></canvas>
+    </div>
+    <div class="ch-anh">
+      <figure style="margin:0"><div class="khung-anh" style="aspect-ratio:16/9"><img data-src="assets/img/phu-nu-nung.webp" data-tiny="assets/img/phu-nu-nung-tiny.webp" alt="Phụ nữ Nùng trong trang phục gam chàm bên lối đi trong bản" width="1280" height="720"></div><figcaption>Trang phục gam trầm. Ảnh tư liệu — tài liệu dự án.</figcaption></figure>
+      <figure style="margin:0"><div class="khung-anh" style="aspect-ratio:3/2"><img data-src="assets/img/men-men.webp" data-tiny="assets/img/men-men-tiny.webp" alt="Mèn mén trong chiếc mẹt tre" width="800" height="450"></div><figcaption>Ẩm thực gắn với nông sản địa phương. Ảnh tư liệu — tài liệu dự án.</figcaption></figure>
+    </div></div>
+    </div>
+    <div class="the-cong-dong" data-ma="cho" hidden>
+      <div class="cho-trong">
+            <div class="cham-hang" aria-hidden="true">
+              <i style="--c:#D13316;--c2:#8A3D08"></i><i style="--c:#B8241B;--c2:#8E1E18"></i><i style="--c:#C0365F;--c2:#8E2746"></i><i style="--c:#B8475C;--c2:#8A3246"></i><i style="--c:#2A62B4;--c2:#1E3F78"></i>
+            </div>
+            <p class="nhan">Nơi năm sợi gặp nhau</p>
+            <h2 class="hien tieu-de-khoi" id="h-cho">Chợ phiên.</h2>
+            <p style="max-width:64ch;margin-inline:auto">Không gian sinh hoạt kinh tế và văn hoá quan trọng ở nhiều khu vực miền núi. Không chỉ là nơi trao đổi nông sản, thực phẩm, vật dụng và sản phẩm thủ công, mà còn là điểm gặp gỡ của người dân từ các bản làng khác nhau. Những phiên chợ như Đồng Văn và Mèo Vạc thường được nhắc đến trong hành trình khám phá văn hoá vùng cao.</p>
+            <p class="phim-noi" style="margin-top:1.1em;max-width:58ch;margin-inline:auto">“Và đặc biệt chợ phiên — không chỉ là nơi trao đổi hàng hoá, mà còn là nơi gặp gỡ giao lưu.”</p>
+            <div class="cho-luoi">
+              <div class="cho-o"><img data-src="assets/img/cho-phien.webp" data-tiny="assets/img/cho-phien-tiny.webp" alt="Chợ phiên vùng cao đông người trong trang phục nhiều màu" width="913" height="608"></div>
+              <div class="cho-o"><img data-src="assets/img/cho-phien-am-thuc.webp" data-tiny="assets/img/cho-phien-am-thuc-tiny.webp" alt="Khu ẩm thực trong chợ phiên" width="1800" height="1100"></div>
+              <div class="cho-o"><img data-src="assets/img/ruong-bac-thang.webp" data-tiny="assets/img/ruong-bac-thang-tiny.webp" alt="Ruộng bậc thang mùa lúa chín" width="1500" height="1000"></div>
+              <div class="cho-o"><img data-src="assets/img/vai-cham-trung-bay.webp" data-tiny="assets/img/vai-cham-trung-bay-tiny.webp" alt="Vải thủ công bày bán" width="925" height="546"></div>
+              <div class="cho-o"><img data-src="assets/img/men-men.webp" data-tiny="assets/img/men-men-tiny.webp" alt="Mèn mén trong mẹt tre" width="800" height="450"></div>
+              <div class="cho-o"><img data-src="assets/img/thung-lung-ban-lang.webp" data-tiny="assets/img/thung-lung-ban-lang-tiny.webp" alt="Thung lũng và bản làng giữa ruộng bậc thang" width="1800" height="1233"></div>
+              <div class="cho-o"><img data-src="assets/img/phu-nu-mong.webp" data-tiny="assets/img/phu-nu-mong-tiny.webp" alt="Phụ nữ Mông trong trang phục truyền thống" width="1500" height="1000"></div>
+            </div>
+      </div>
+      <div class="tam-toi khoi-phim-vh">
+            <p class="nhan" style="color:var(--dong)">Tư liệu</p>
+            <h2 class="hien tieu-de-khoi" id="h-nguon">Chúng tôi ghi nguồn<br>vì đó là nghề.</h2>
+            <div class="phim-hop">
+              <div class="le-ghi-cong"><span>Tư liệu · The Lover Lo Lo Chai — Jerry Tran · Amazing Hà Giang</span></div>
+              <div class="phim">
+                <span class="nhan-nguon ben-thu-ba">Có tư liệu bên thứ ba</span>
+                <img class="anh-cho" src="assets/img/poster-duong-deo.jpg" alt="Khung hình từ phim văn hoá: đường đèo và thung lũng Hà Giang" width="1600" height="900" loading="lazy" decoding="async">
+                <video id="v-vanhoa" controls playsinline preload="none" poster="assets/img/poster-duong-deo.jpg" hidden></video>
+                <button type="button" class="nut-phat" data-phim="v-vanhoa" data-src="assets/video/van-hoa.mp4">
+                  <span class="hop"><span class="tam"></span><span class="chu">Xem phim · 0:53</span></span>
+                </button>
+              </div>
+            </div>
+        
+            <div class="the-nguon">
+              <h3>Nguồn tư liệu</h3>
+              <p>Phim <span class="dam">“Văn hoá Hà Giang”</span> (53 giây) do nhóm CHẠM BẢN CẨM dựng, có sử dụng tư liệu hình ảnh của bên thứ ba.</p>
+              <p>Logo <span class="dam">AMAZING HÀ GIANG — KỲ VĨ HÀ GIANG</span> (giây 15–25) và dòng ghi công <span class="dam">The Lover Lo Lo Chai — Jerry Tran</span> (giây 26) được giữ nguyên trong hình: không cắt, không che, không làm mờ.</p>
+              <p>Phim <span class="dam">“Lùng Tám”</span> (2 phút 22) ở phần trên trang là phim nhóm tự quay tại Lùng Tám, không sử dụng tư liệu của bên khác.</p>
+              <p>Ảnh tư liệu trong năm chương lấy từ tài liệu dự án của nhóm.</p>
+              <p>Nếu bạn là tác giả của một đoạn tư liệu trong phim này và muốn bổ sung hoặc điều chỉnh phần ghi công, xin liên hệ với nhóm.</p>
+        
+              <details class="phu-de">
+                <summary>Toàn văn phụ đề phim 53 giây</summary>
+                <ol>
+                  <li><span class="moc">00:00</span><span>Hà Giang — miền đất…</span></li>
+                  <li><span class="moc">00:02</span><span>…sắc màu văn hoá của các dân tộc.</span></li>
+                  <li><span class="moc">00:12</span><span>Mỗi dân tộc đều mang những nét văn hoá đặc trưng.</span></li>
+                  <li><span class="moc">00:14</span><span>Từ tiếng khèn, lễ hội…</span></li>
+                  <li><span class="moc">00:18</span><span>…nghề dệt lanh truyền thống…</span></li>
+                  <li><span class="moc">00:20</span><span>…đến trang phục tinh xảo và lễ hội Bàn Vương.</span></li>
+                  <li><span class="moc">00:24</span><span>Tất cả tạo nên bức tranh văn hoá…</span></li>
+                  <li><span class="moc">00:26</span><span>Bên cạnh đó, người… <span style="color:var(--dong)">(dòng ghi công: The Lover Lo Lo Chai — Jerry Tran)</span></span></li>
+                  <li><span class="moc">00:30</span><span>Người Tày gìn giữ nhà sàn và nghệ thuật hát Then.</span></li>
+                  <li><span class="moc">00:36</span><span>…dân ca và nghề thủ công truyền thống.</span></li>
+                  <li><span class="moc">00:38</span><span>Và đặc biệt chợ phiên…</span></li>
+                  <li><span class="moc">00:40</span><span>…không chỉ là nơi trao đổi hàng hoá…</span></li>
+                  <li><span class="moc">00:44</span><span>…mà còn là nơi gặp gỡ giao lưu.</span></li>
+                  <li><span class="moc">00:46</span><span>Văn hoá Hà Giang chính là sự kết hợp giữa bản sắc, tri thức và sự gìn giữ qua nhiều thế hệ.</span></li>
+                </ol>
+              </details>
+            </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- 2019 — khối duy nhất phá bố cục lệch -->
@@ -724,94 +868,7 @@ html[data-che="nhe"] :root,html[data-che="nhe"] body{transition:none}
     <p class="phim-noi" style="margin-top:1.1em">“Người Tày gìn giữ nhà sàn và nghệ thuật hát Then.”</p>
   </div>
 </section>
-
-<section class="chuong" data-ma="nung" aria-labelledby="h-nung">
-  <div class="boc"><div class="ch-luoi">
-    <div>
-      <p class="ch-phu">Chương 05</p>
-      <h2 class="hien ch-ten" id="h-nung">Nùng</h2>
-      <div class="ch-y"><span class="o"></span><p>Văn hoá thể hiện qua tín ngưỡng thờ cúng tổ tiên, các dịp lễ Tết, phong tục gia đình, dân ca và truyện kể dân gian.</p></div>
-      <div class="ch-y"><span class="o"></span><p>Ở một số cộng đồng, lễ mừng cơm mới thể hiện lòng biết ơn đối với thiên nhiên, tổ tiên và thành quả lao động.</p></div>
-      <div class="ch-y"><span class="o"></span><p>Trang phục truyền thống thường dùng các gam màu trầm như chàm hoặc đen, kết hợp khăn đội đầu và những chi tiết trang trí tuỳ nhóm địa phương.</p></div>
-      <div class="ch-y"><span class="o"></span><p>Nghề may, thêu và nhuộm vải gắn với nhu cầu sinh hoạt cũng như việc duy trì kỹ năng thủ công.</p></div>
-      <canvas class="det" data-mau="nung" aria-hidden="true"></canvas>
-    </div>
-    <div class="ch-anh">
-      <figure style="margin:0"><div class="khung-anh" style="aspect-ratio:16/9"><img data-src="assets/img/phu-nu-nung.webp" data-tiny="assets/img/phu-nu-nung-tiny.webp" alt="Phụ nữ Nùng trong trang phục gam chàm bên lối đi trong bản" width="1280" height="720"></div><figcaption>Trang phục gam trầm. Ảnh tư liệu — tài liệu dự án.</figcaption></figure>
-      <figure style="margin:0"><div class="khung-anh" style="aspect-ratio:3/2"><img data-src="assets/img/men-men.webp" data-tiny="assets/img/men-men-tiny.webp" alt="Mèn mén trong chiếc mẹt tre" width="800" height="450"></div><figcaption>Ẩm thực gắn với nông sản địa phương. Ảnh tư liệu — tài liệu dự án.</figcaption></figure>
-    </div>
-  </div></div>
-</section>
-</div>
-<!-- ============ 6 · CHỢ PHIÊN ============ -->
-<section id="cho" aria-labelledby="h-cho">
-  <div class="boc">
-    <div class="cham-hang" aria-hidden="true">
-      <i style="--c:#D13316;--c2:#8A3D08"></i><i style="--c:#B8241B;--c2:#8E1E18"></i><i style="--c:#C0365F;--c2:#8E2746"></i><i style="--c:#B8475C;--c2:#8A3246"></i><i style="--c:#2A62B4;--c2:#1E3F78"></i>
-    </div>
-    <p class="nhan">Nơi năm sợi gặp nhau</p>
-    <h2 class="hien tieu-de-khoi" id="h-cho">Chợ phiên.</h2>
-    <p style="max-width:64ch;margin-inline:auto">Không gian sinh hoạt kinh tế và văn hoá quan trọng ở nhiều khu vực miền núi. Không chỉ là nơi trao đổi nông sản, thực phẩm, vật dụng và sản phẩm thủ công, mà còn là điểm gặp gỡ của người dân từ các bản làng khác nhau. Những phiên chợ như Đồng Văn và Mèo Vạc thường được nhắc đến trong hành trình khám phá văn hoá vùng cao.</p>
-    <p class="phim-noi" style="margin-top:1.1em;max-width:58ch;margin-inline:auto">“Và đặc biệt chợ phiên — không chỉ là nơi trao đổi hàng hoá, mà còn là nơi gặp gỡ giao lưu.”</p>
-    <div class="cho-luoi">
-      <div class="cho-o"><img data-src="assets/img/cho-phien.webp" data-tiny="assets/img/cho-phien-tiny.webp" alt="Chợ phiên vùng cao đông người trong trang phục nhiều màu" width="913" height="608"></div>
-      <div class="cho-o"><img data-src="assets/img/cho-phien-am-thuc.webp" data-tiny="assets/img/cho-phien-am-thuc-tiny.webp" alt="Khu ẩm thực trong chợ phiên" width="1800" height="1100"></div>
-      <div class="cho-o"><img data-src="assets/img/ruong-bac-thang.webp" data-tiny="assets/img/ruong-bac-thang-tiny.webp" alt="Ruộng bậc thang mùa lúa chín" width="1500" height="1000"></div>
-      <div class="cho-o"><img data-src="assets/img/vai-cham-trung-bay.webp" data-tiny="assets/img/vai-cham-trung-bay-tiny.webp" alt="Vải thủ công bày bán" width="925" height="546"></div>
-      <div class="cho-o"><img data-src="assets/img/men-men.webp" data-tiny="assets/img/men-men-tiny.webp" alt="Mèn mén trong mẹt tre" width="800" height="450"></div>
-      <div class="cho-o"><img data-src="assets/img/thung-lung-ban-lang.webp" data-tiny="assets/img/thung-lung-ban-lang-tiny.webp" alt="Thung lũng và bản làng giữa ruộng bậc thang" width="1800" height="1233"></div>
-      <div class="cho-o"><img data-src="assets/img/phu-nu-mong.webp" data-tiny="assets/img/phu-nu-mong-tiny.webp" alt="Phụ nữ Mông trong trang phục truyền thống" width="1500" height="1000"></div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 7 · GHI NGUỒN ============ -->
-<section id="nguon" class="tam-toi" aria-labelledby="h-nguon">
-  <div class="boc">
-    <p class="nhan" style="color:var(--dong)">Tư liệu</p>
-    <h2 class="hien tieu-de-khoi" id="h-nguon">Chúng tôi ghi nguồn<br>vì đó là nghề.</h2>
-    <div class="phim-hop">
-      <div class="le-ghi-cong"><span>Tư liệu · The Lover Lo Lo Chai — Jerry Tran · Amazing Hà Giang</span></div>
-      <div class="phim">
-        <span class="nhan-nguon ben-thu-ba">Có tư liệu bên thứ ba</span>
-        <img class="anh-cho" src="assets/img/poster-duong-deo.jpg" alt="Khung hình từ phim văn hoá: đường đèo và thung lũng Hà Giang" width="1600" height="900" loading="lazy" decoding="async">
-        <video id="v-vanhoa" controls playsinline preload="none" poster="assets/img/poster-duong-deo.jpg" hidden></video>
-        <button type="button" class="nut-phat" data-phim="v-vanhoa" data-src="assets/video/van-hoa.mp4">
-          <span class="hop"><span class="tam"></span><span class="chu">Xem phim · 0:53</span></span>
-        </button>
-      </div>
-    </div>
-
-    <div class="the-nguon">
-      <h3>Nguồn tư liệu</h3>
-      <p>Phim <span class="dam">“Văn hoá Hà Giang”</span> (53 giây) do nhóm CHẠM BẢN CẨM dựng, có sử dụng tư liệu hình ảnh của bên thứ ba.</p>
-      <p>Logo <span class="dam">AMAZING HÀ GIANG — KỲ VĨ HÀ GIANG</span> (giây 15–25) và dòng ghi công <span class="dam">The Lover Lo Lo Chai — Jerry Tran</span> (giây 26) được giữ nguyên trong hình: không cắt, không che, không làm mờ.</p>
-      <p>Phim <span class="dam">“Lùng Tám”</span> (2 phút 22) ở phần trên trang là phim nhóm tự quay tại Lùng Tám, không sử dụng tư liệu của bên khác.</p>
-      <p>Ảnh tư liệu trong năm chương lấy từ tài liệu dự án của nhóm.</p>
-      <p>Nếu bạn là tác giả của một đoạn tư liệu trong phim này và muốn bổ sung hoặc điều chỉnh phần ghi công, xin liên hệ với nhóm.</p>
-
-      <details class="phu-de">
-        <summary>Toàn văn phụ đề phim 53 giây</summary>
-        <ol>
-          <li><span class="moc">00:00</span><span>Hà Giang — miền đất…</span></li>
-          <li><span class="moc">00:02</span><span>…sắc màu văn hoá của các dân tộc.</span></li>
-          <li><span class="moc">00:12</span><span>Mỗi dân tộc đều mang những nét văn hoá đặc trưng.</span></li>
-          <li><span class="moc">00:14</span><span>Từ tiếng khèn, lễ hội…</span></li>
-          <li><span class="moc">00:18</span><span>…nghề dệt lanh truyền thống…</span></li>
-          <li><span class="moc">00:20</span><span>…đến trang phục tinh xảo và lễ hội Bàn Vương.</span></li>
-          <li><span class="moc">00:24</span><span>Tất cả tạo nên bức tranh văn hoá…</span></li>
-          <li><span class="moc">00:26</span><span>Bên cạnh đó, người… <span style="color:var(--dong)">(dòng ghi công: The Lover Lo Lo Chai — Jerry Tran)</span></span></li>
-          <li><span class="moc">00:30</span><span>Người Tày gìn giữ nhà sàn và nghệ thuật hát Then.</span></li>
-          <li><span class="moc">00:36</span><span>…dân ca và nghề thủ công truyền thống.</span></li>
-          <li><span class="moc">00:38</span><span>Và đặc biệt chợ phiên…</span></li>
-          <li><span class="moc">00:40</span><span>…không chỉ là nơi trao đổi hàng hoá…</span></li>
-          <li><span class="moc">00:44</span><span>…mà còn là nơi gặp gỡ giao lưu.</span></li>
-          <li><span class="moc">00:46</span><span>Văn hoá Hà Giang chính là sự kết hợp giữa bản sắc, tri thức và sự gìn giữ qua nhiều thế hệ.</span></li>
-        </ol>
-      </details>
-    </div>
-  </div>
-</section>
+</div><!-- /nguoi-lam-nghe -->
 
 </div><!-- /phan-1 -->
 
@@ -837,7 +894,7 @@ html[data-che="nhe"] :root,html[data-che="nhe"] body{transition:none}
   <div class="boc">
     <p class="nhan">Từ vỏ cây lanh đến tấm vải</p>
     <h2 class="hien tieu-de-khoi" id="h-quy-trinh">Bốn mươi mốt<br>công đoạn.</h2>
-    <p style="max-width:62ch;color:var(--mo)">Tài liệu của nhóm ghi nhận quy trình dệt lanh truyền thống gồm <span class="dam" style="color:var(--chu)">41 công đoạn thủ công</span>. Dưới đây là chín bước chính theo cách tài liệu nhóm khái quát. Câu in nghiêng là lời dẫn nguyên văn từ phim nhóm tự quay tại Lùng Tám, kèm mốc giây để đối chiếu.</p>
+    <p style="max-width:62ch;color:var(--mo)">Tài liệu của nhóm ghi nhận quy trình dệt lanh truyền thống gồm <span class="dam" style="color:var(--do)">41 công đoạn thủ công</span>. Dưới đây là chín bước chính theo cách tài liệu nhóm khái quát. Câu in nghiêng là lời dẫn nguyên văn từ phim nhóm tự quay tại Lùng Tám, kèm mốc giây để đối chiếu.</p>
     <div class="qt-luoi">
       <div class="qt-trai">
         <p class="nhan">Tiến độ</p>
@@ -954,28 +1011,28 @@ html[data-che="nhe"] :root,html[data-che="nhe"] body{transition:none}
     <article class="hv-the">
       <p class="phu">Hoa văn xoắn ốc</p>
       <h3>Những đường nét<br>đầy câu chuyện</h3>
-      <canvas data-mau="xoan-oc" data-o="9" aria-hidden="true"></canvas>
+      <figure class="hv-anh"><img data-src="assets/img/hv-xoan-oc.webp" data-tiny="assets/img/hv-xoan-oc-tiny.webp" alt="Cận cảnh hoa văn xoắn ốc thêu trên nền vải chàm" width="752" height="564" loading="lazy" decoding="async"></figure>
       <p>Những đường cong mềm mại, cuộn tròn tạo nên vẻ đẹp đặc trưng trên trang phục của người Mông.</p>
       <p>Trong một số mô-típ truyền thống, hình tượng ốc sên còn được dùng để kể những câu chuyện về tình cảm, sự gắn bó và những khát vọng trong cuộc sống.</p>
     </article>
     <article class="hv-the">
       <p class="phu">Hoa văn hình học</p>
       <h3>Vẻ đẹp<br>của sự cân đối</h3>
-      <canvas data-mau="hinh-hoc" data-o="9" aria-hidden="true"></canvas>
+      <figure class="hv-anh"><img data-src="assets/img/hv-hinh-hoc.webp" data-tiny="assets/img/hv-hinh-hoc-tiny.webp" alt="Những dải thổ cẩm hoa văn hình học xếp chồng" width="629" height="1280" loading="lazy" decoding="async"></figure>
       <p>Hình vuông, tam giác, hình thoi và những đường zích zắc mang đến nhịp điệu sinh động cho trang phục. Các họa tiết được sắp xếp lặp lại hoặc đối xứng, tạo nên vẻ đẹp hài hoà.</p>
       <p>Trên trang phục người Lô Lô, những hình tam giác nhỏ có thể kết hợp thành hình vuông, hình hoa hoặc những mảng trang trí lớn.</p>
     </article>
     <article class="hv-the">
       <p class="phu">Hoa văn hoa lá</p>
       <h3>Dấu ấn<br>của thiên nhiên</h3>
-      <canvas data-mau="hoa-la" data-o="9" aria-hidden="true"></canvas>
+      <figure class="hv-anh"><img data-src="assets/img/hv-hoa-la.webp" data-tiny="assets/img/hv-hoa-la-tiny.webp" alt="Tấm thổ cẩm hoa văn hoa lá treo trưng bày" width="994" height="653" loading="lazy" decoding="async"></figure>
       <p>Thiên nhiên vùng cao trở thành nguồn cảm hứng cho nhiều họa tiết trang trí.</p>
       <p>Hình ảnh hoa đào, hoa lê, hoa tam giác mạch và những loài thực vật được cách điệu, gợi lên sự gần gũi giữa con người với môi trường sống.</p>
     </article>
     <article class="hv-the">
       <p class="phu">Hoa văn động vật</p>
       <h3>Hình tượng<br>mang ý nghĩa văn hoá</h3>
-      <canvas data-mau="dong-vat" data-o="9" aria-hidden="true"></canvas>
+      <figure class="hv-anh"><img data-src="assets/img/hv-dong-vat.webp" data-tiny="assets/img/hv-dong-vat-tiny.webp" alt="Vải thổ cẩm có hoa văn con chim" width="1400" height="775" loading="lazy" decoding="async"></figure>
       <p>Bên cạnh hình học và hoa lá, hình tượng động vật cũng xuất hiện trong nghệ thuật trang trí — tiêu biểu là hoa văn con chim.</p>
       <p>Trên trang phục người Lô Lô, hình chim được ghi nhận là biểu tượng gắn với sức mạnh, tự do và hoà bình.</p>
     </article>
@@ -1057,13 +1114,14 @@ html[data-che="nhe"] :root,html[data-che="nhe"] body{transition:none}
   <div class="boc">
     <div class="ve-ten">
       <p class="nhan">Về cái tên</p>
-      <p>Chúng tôi gọi là <span class="dam">Hà Giang</span>.</p>
-      <p>Đó là tên vùng đất gắn với nghề dệt lanh Lùng Tám, với những người thợ trong trang này, và với thương hiệu này.</p>
+      <p>Chúng tôi gọi là <span class="dam" style="color:var(--do)">CHẠM BẢN CẨM</span>.</p>
+      <p>Cái tên là chính khẩu hiệu rút gọn lại: <span class="dam">Chạm</span> nét thổ <span class="dam">cẩm</span>, <span class="dam">cảm</span> hồn Hà Giang. Chạm vào tấm vải là chạm vào bàn tay đã dệt ra nó.</p>
+      <p>Và chúng tôi gọi vùng đất là <span class="dam">Hà Giang</span>. Đó là tên gắn với nghề dệt lanh Lùng Tám, với những người thợ trong trang này, và với thương hiệu này.</p>
       <p>Sau đợt sắp xếp đơn vị hành chính năm 2025, Lùng Tám thuộc tỉnh Tuyên Quang. Trong phim của nhóm, câu đầu tiên đã nói rõ điều đó: <span class="phim-noi">“Lùng Tám, vùng Hà Giang trước đây, nay thuộc tỉnh Tuyên Quang.”</span></p>
       <p>Giữ cả hai cái tên là cách chúng tôi giữ đúng cả hai sự thật.</p>
     </div>
 
-    <p class="ket">Một tấm thổ cẩm.<br><em>Ngàn câu chuyện.</em></p>
+    <p class="ket">Chạm nét thổ cẩm.<br><em>Cảm hồn Hà Giang.</em></p>
 
     <div class="chan-cuoi">
       <span>CHẠM BẢN CẨM</span>
@@ -1110,7 +1168,9 @@ var HE = {
   dao :{khoi:'#B8241B',chu:'#8E1E18'},
   lolo:{khoi:'#C0365F',chu:'#8E2746'},
   tay :{khoi:'#B8475C',chu:'#8A3246'},
-  nung:{khoi:'#2A62B4',chu:'#1E3F78'}
+  nung:{khoi:'#2A62B4',chu:'#1E3F78'},
+  /* chợ phiên không thuộc cộng đồng nào — dùng đỏ thương hiệu */
+  cho :{khoi:'#C62A14',chu:'#A8231F'}
 };
 var MA = ['mong','dao','lolo','tay','nung'];
 var dangBat = 'mong';
@@ -1143,6 +1203,12 @@ function datMau(ma){
   });
   document.querySelectorAll('#cot-boc .cot').forEach(function(n){
     n.setAttribute('aria-pressed', String(n.dataset.ma === ma));
+  });
+  var oCho2 = document.querySelector('.o-cho');
+  if (oCho2) oCho2.setAttribute('aria-pressed', String(ma === 'cho'));
+  /* ô thông tin bên dưới đổi theo đúng người vừa được chọn */
+  document.querySelectorAll('.the-cong-dong').forEach(function(n){
+    n.hidden = (n.dataset.ma !== ma);
   });
   veMotKhung(ma);
 }
@@ -1193,7 +1259,7 @@ function det(ma, coThoi){
 document.querySelectorAll('#bien button').forEach(function(n){
   n.addEventListener('click', function(){ det(n.dataset.ma, true); });
 });
-document.querySelectorAll('#cot-boc .cot').forEach(function(n){
+document.querySelectorAll('#cot-boc .cot, .o-cho').forEach(function(n){
   n.addEventListener('click', function(){ det(n.dataset.ma, true); });
 });
 
@@ -1402,14 +1468,8 @@ addEventListener('load', function(){
   videoNen('v-chan', 'assets/video/vung-cao-loop.mp4', .75);
 });
 
-/* chương: đổi hệ màu LẶNG LẼ khi cuộn (không chạy con thoi) */
-document.querySelectorAll('.chuong').forEach(function(n){
-  if (!('IntersectionObserver' in window)) return;
-  var io = new IntersectionObserver(function(e){
-    e.forEach(function(x){ if (x.isIntersecting) det(n.dataset.ma, false); });
-  }, {rootMargin: '-45% 0px -45% 0px'});
-  io.observe(n);
-});
+/* Năm chương xếp dọc đã bỏ: giờ là một ô đổi theo người được chọn,
+   nên không còn gì để bắt theo vị trí cuộn nữa. */
 
 /* ============================================================
    6. KHỐI CHỢ PHIÊN — lật sang nền sáng, suy từ vị trí cuộn
