@@ -162,3 +162,17 @@ Gắn thẳng đường dẫn tới từng phần được: thêm `#phan-1`, `#p
 
 Nội dung ba phần lấy từ tài liệu Google Docs của nhóm. Nếu tài liệu đó sửa thì phải sửa lại trang,
 hai bên không tự đồng bộ.
+
+---
+
+## 10. Ảnh xem trước khi gửi link
+
+`assets/img/share.jpg` (1200×630) là ảnh hiện ra khi dán link vào Messenger, Zalo hay Facebook.
+
+**Lưu ý nếu đổi tên miền:** các thẻ `og:url`, `og:image` và `twitter:image` trong `index.html`
+đang ghi **đường dẫn tuyệt đối** tới `pokiwarquanden4.github.io`. Facebook và Zalo không chấp nhận
+đường dẫn tương đối — để tương đối là ảnh xem trước không hiện. Khi gắn tên miền riêng, phải sửa
+cả ba thẻ đó sang tên miền mới.
+
+Facebook và Zalo giữ ảnh xem trước trong bộ nhớ khá lâu. Sau khi đổi, dán link vào
+`developers.facebook.com/tools/debug/` rồi bấm *Scrape Again* để ép lấy bản mới.
