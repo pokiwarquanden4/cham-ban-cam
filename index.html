@@ -345,7 +345,10 @@ body{background:transparent}
   color:var(--cham);background:var(--do);padding:8px 10px;font-family:var(--f-hien);
   font-variation-settings:'wdth' 100,'wght' 700}
 @media (max-width:760px){
-  .anh-nhom{float:none;width:min(220px,60%);margin-left:0}
+  /* ảnh ghép khổ dọc 9:16 — để hẹp thì trông bé và thừa khoảng trống bên cạnh,
+     nên trên điện thoại cho nó chiếm trọn bề ngang cột nội dung */
+  .anh-nhom{float:none;width:100%;margin-left:0;
+    margin-bottom:clamp(22px,4vh,38px)}
 }
 
 /* ===================== KHUNG PHIM ===================== */
