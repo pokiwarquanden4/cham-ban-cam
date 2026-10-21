@@ -171,6 +171,29 @@ html[data-san="1"] #bien .soi{height:calc(100% - 96px);
       color-mix(in oklab,var(--vao) 74%,var(--cham)) 3px 6px)}
 #thoi .hang:nth-child(even){transform-origin:right}
 
+/* ===== ẢNH NỀN CHẠY SUỐT KHI LƯỚT =====
+   Nhóm muốn khoảng trống hai bên là hình ảnh, và ảnh đổi theo từng phần:
+   Phần 01 cảnh Hà Giang, Phần 02 thổ cẩm, Phần 03 hoa văn.
+   Ảnh đứng yên khi cuộn (background-attachment: fixed) nên chữ trôi qua trên nền ảnh.
+   Lớp màn sợi lanh phủ lên giữ chữ đọc được: chỗ tối nhất của ảnh vẫn đạt trên 10:1. */
+html{background:var(--cham)}
+body{background:transparent}
+#nen-chay{position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background-image:var(--anh-nen,none);background-size:cover;background-position:center;
+  background-attachment:fixed;transition:background-image .5s ease}
+#nen-chay::after{content:'';position:absolute;inset:0;
+  background:rgba(246,242,233,var(--man-nen,.82));transition:background .5s}
+
+/* khối nào đã có nền riêng thì giữ nguyên, không để ảnh lọt qua */
+#cho,.tam-toi,#thanh-phan{background:var(--cham)}
+.tam-toi{background:var(--toi)}
+#thanh-phan{background:color-mix(in srgb,var(--cham) 92%,transparent);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+
+@media (prefers-reduced-motion:reduce){ #nen-chay{background-attachment:scroll} }
+/* iOS khong ho tro background-attachment:fixed on dinh */
+@supports (-webkit-touch-callout:none){ #nen-chay{background-attachment:scroll} }
+
 /* ===================== THANH BA THẺ ===================== */
 /* Trang chia làm ba phần đúng theo ba thẻ trong tài liệu của nhóm.
    Mỗi lần chỉ hiện một phần — người xem chọn phần muốn đọc chứ không phải lướt hết. */
@@ -241,13 +264,14 @@ html[data-san="1"] #bien .soi{height:calc(100% - 96px);
 
 /* ===================== NĂM SỢI (dạy cơ chế) ===================== */
 #nam-soi{padding-block:clamp(72px,11vh,140px);padding-right:var(--rail)}
-.cot-boc{display:flex;gap:4px;margin-top:clamp(26px,4vh,46px)}
+.cot-boc{display:flex;gap:4px;margin-top:clamp(26px,4vh,46px);background:var(--cham)}
 .cot{position:relative;flex:1;min-width:0;aspect-ratio:9/15;max-height:min(62vh,560px);
   overflow:hidden;border:0;padding:0;
-  /* trên nền sáng, cột nghỉ phải NHẠT đi chứ không tối đi — làm tối sẽ thành vệt đen giữa trang */
-  filter:saturate(.4);opacity:.52;
-  transition:flex .52s cubic-bezier(.62,.03,.21,1),filter .52s,opacity .52s;background:var(--cham-2)}
-.cot[aria-pressed="true"]{flex:2.4;filter:none;opacity:1}
+  /* Cột nghỉ phải NHẠT đi chứ không tối đi. Dùng filter chứ KHÔNG dùng opacity:
+     opacity làm cả cột trong suốt, để ảnh nền chạy phía sau lọt qua và trông nhoè nhoẹt. */
+  filter:saturate(.3) contrast(.82) brightness(1.16);
+  transition:flex .52s cubic-bezier(.62,.03,.21,1),filter .52s;background:var(--cham-2)}
+.cot[aria-pressed="true"]{flex:2.4;filter:none}
 .cot img{width:100%;height:100%;object-fit:cover}
 .cot .ten-doc{position:absolute;z-index:3;left:10px;bottom:18px;writing-mode:vertical-rl;rotate:180deg;
   font-family:var(--f-hien);font-variation-settings:'wdth' 75,'wght' 800;
@@ -396,8 +420,8 @@ canvas.det{width:100%;height:58px;display:block;margin-top:22px}
    bên dưới, ôm hết bề ngang của cả năm cột. Hình thức nói luôn nội dung. */
 .o-cho{position:relative;display:block;width:100%;margin-top:4px;padding:0;
   overflow:hidden;border:0;aspect-ratio:7/1;min-height:116px;background:var(--cham-2);
-  filter:saturate(.4);opacity:.6;transition:filter .5s,opacity .5s}
-.o-cho[aria-pressed="true"]{filter:none;opacity:1}
+  filter:saturate(.3) contrast(.82) brightness(1.16);transition:filter .5s}
+.o-cho[aria-pressed="true"]{filter:none}
 .o-cho img{width:100%;height:100%;object-fit:cover;object-position:center 42%}
 .o-cho::after{content:'';position:absolute;inset:0;
   background:linear-gradient(to right,rgba(20,29,38,.88) 0%,rgba(20,29,38,.5) 46%,rgba(20,29,38,.2) 100%)}
@@ -508,17 +532,9 @@ canvas.det{width:100%;height:58px;display:block;margin-top:22px}
 .van-doan{max-width:68ch;display:grid;gap:.85em}
 .van-doan p{color:var(--soi);font-size:clamp(15px,1.15vw,16.5px);line-height:1.72}
 
-/* dải ảnh cảnh quan */
-.dai-canh{display:grid;gap:10px;margin-top:clamp(28px,4.5vh,56px);
-  grid-template-columns:repeat(2,minmax(0,1fr))}
-@media (min-width:860px){ .dai-canh{grid-template-columns:repeat(4,minmax(0,1fr))} }
-@media (min-width:860px){ .dai-canh.hai-anh{grid-template-columns:repeat(2,minmax(0,1fr))} }
 /* height:auto là bắt buộc — thuộc tính height trên thẻ ảnh sẽ thắng aspect-ratio,
    vì tỉ lệ khung chỉ có tác dụng khi chiều cao để tự động */
-.dai-canh img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;display:block;
   border:1px solid var(--ke);opacity:0;transition:opacity .5s,scale .5s}
-.dai-canh img.xong{opacity:1}
-.dai-canh img:hover{scale:1.02}
 
 /* khối có ảnh nền cảnh quan */
 .co-nen{position:relative;overflow:hidden;padding-right:var(--rail)}
@@ -675,6 +691,9 @@ html[data-che="nhe"] :root,html[data-che="nhe"] body{transition:none}
 <body>
 
 <!-- ============ CON THOI (lớp phủ hiệu ứng) ============ -->
+<!-- lớp ảnh nền chạy suốt khi lướt, đổi theo từng phần -->
+<div id="nen-chay" aria-hidden="true"></div>
+
 <div id="thoi" aria-hidden="true"></div>
 
 <!-- ============ BIÊN VẢI: NĂM SỢI ============ -->
@@ -724,9 +743,7 @@ html[data-che="nhe"] :root,html[data-che="nhe"] body{transition:none}
 
 <div class="phan" id="phan-1" role="tabpanel" aria-labelledby="the-1">
 <!-- ============ MỞ: VĂN HOÁ HÀ GIANG ============ -->
-<section id="ha-giang" aria-labelledby="h-ha-giang" class="co-nen">
-  <img class="nen" src="assets/img/hg-nui-doi.webp" alt="" width="1800" height="1200" loading="lazy" decoding="async">
-  <div class="scrim"></div>
+<section id="ha-giang" aria-labelledby="h-ha-giang" style="padding-right:var(--rail)">
   <div class="soc-doc"></div>
   <div class="boc mo-phan">
     <p class="nhan">Vùng đất</p>
@@ -735,12 +752,6 @@ html[data-che="nhe"] :root,html[data-che="nhe"] body{transition:none}
       <p>Hà Giang, thuộc vùng cực Bắc Việt Nam theo địa giới trước đợt sắp xếp hành chính năm 2025, nổi tiếng với cảnh quan thiên nhiên hùng vĩ, những dãy núi đá tai mèo trùng điệp, ruộng bậc thang và những cung đường đèo quanh co. Tuy nhiên, sức hấp dẫn của vùng đất này không chỉ đến từ cảnh quan tự nhiên mà còn bắt nguồn từ đời sống văn hoá phong phú của cộng đồng các dân tộc cùng sinh sống qua nhiều thế hệ.</p>
       <p>Mỗi dân tộc có ngôn ngữ, phong tục, tín ngưỡng, trang phục, kiến trúc và tri thức dân gian riêng. Những giá trị đó được thể hiện trong các lễ hội đầu năm, nghi lễ vòng đời, chợ phiên vùng cao, nghệ thuật dân gian, nghề dệt lanh, thêu thùa, làm trang sức và chế biến các món ăn truyền thống. Qua thời gian, các yếu tố văn hoá vừa được gìn giữ trong đời sống cộng đồng, vừa góp phần hình thành bản sắc riêng của vùng đất Hà Giang.</p>
       <p>Trong số các cộng đồng dân tộc tại đây, người Mông, Dao, Lô Lô, Tày và Nùng là những nhóm tiêu biểu có nhiều nét văn hoá đặc sắc. Việc tìm hiểu những giá trị này không chỉ giúp hiểu rõ hơn về đời sống người dân địa phương mà còn cho thấy tiềm năng phát triển du lịch văn hoá gắn với bảo tồn di sản và tạo sinh kế bền vững cho cộng đồng.</p>
-    </div>
-    <div class="dai-canh" aria-hidden="true">
-      <img data-src="assets/img/hg-lung-cu.webp" data-tiny="assets/img/hg-lung-cu-tiny.webp" alt="" width="1181" height="787" loading="lazy" decoding="async">
-      <img data-src="assets/img/hg-duong-deo.webp" data-tiny="assets/img/hg-duong-deo-tiny.webp" alt="" width="1800" height="928" loading="lazy" decoding="async">
-      <img data-src="assets/img/hg-dong-van.webp" data-tiny="assets/img/hg-dong-van-tiny.webp" alt="" width="1350" height="900" loading="lazy" decoding="async">
-      <img data-src="assets/img/hg-tham-ma.webp" data-tiny="assets/img/hg-tham-ma-tiny.webp" alt="" width="1350" height="1013" loading="lazy" decoding="async">
     </div>
   </div>
 </section>
@@ -1061,10 +1072,6 @@ html[data-che="nhe"] :root,html[data-che="nhe"] body{transition:none}
       <p>Bên cạnh giá trị văn hoá, hoạt động của hợp tác xã còn góp phần tạo sinh kế cho người làm nghề thông qua việc tập hợp các hộ sản xuất, mở rộng đầu ra và phát triển đa dạng sản phẩm từ lanh. Việc kết hợp sản xuất thủ công với quảng bá sản phẩm và đón khách tham quan cũng tạo thêm cơ hội để người dân nâng cao thu nhập từ nghề truyền thống.</p>
       <p>Đồng thời, nghề dệt lanh mở ra khả năng kết nối với hoạt động du lịch và trải nghiệm văn hoá tại Lùng Tám, giúp du khách trực tiếp tìm hiểu các công đoạn chế tác, quan sát kỹ thuật thủ công và hiểu rõ hơn về thời gian, công sức cần thiết để hoàn thiện một sản phẩm.</p>
       <p>Từ chất liệu lanh truyền thống, người làm nghề đã phát triển nhiều sản phẩm có tính ứng dụng như túi, ví, khăn và đồ trang trí. Việc đổi mới mẫu mã có thể giúp sản phẩm tiếp cận những nhóm khách hàng mới, qua đó góp phần duy trì giá trị văn hoá và phát triển nghề dệt lanh theo hướng bền vững.</p>
-    </div>
-    <div class="dai-canh hai-anh" aria-hidden="true">
-      <img data-src="assets/img/trai-nghiem.webp" data-tiny="assets/img/trai-nghiem-tiny.webp" alt="" width="1200" height="800" loading="lazy" decoding="async">
-      <img data-src="assets/img/khung-cui.webp" data-tiny="assets/img/khung-cui-tiny.webp" alt="" width="1024" height="768" loading="lazy" decoding="async">
     </div>
   </div>
 </section>
@@ -1706,8 +1713,26 @@ function veLaiCanvasDangHien(){
   if (window.ScrollTrigger && ScrollTrigger.refresh) ScrollTrigger.refresh();
 }
 
+/* ảnh nền cho từng phần — lấy từ kho ảnh nhóm tải lên Drive */
+/* mỗi phần một ảnh và một độ phủ riêng: ảnh phong cảnh thưa nét thì để mỏng,
+   ảnh hoa văn dày nét phải phủ đậm hơn, nếu không chữ đọc rất mệt */
+var ANH_NEN = {
+  '1': ['assets/img/hg-ban-lang.webp', '.78'],   /* Phần 01: bản làng Hà Giang */
+  '2': ['assets/img/hv-xoan-oc.webp',  '.88'],   /* Phần 02: cận cảnh thổ cẩm */
+  '3': ['assets/img/hv-hinh-hoc.webp', '.88']    /* Phần 03: hoa văn hình học */
+};
+var oNen = document.getElementById('nen-chay');
+function datAnhNen(so){
+  if (!oNen) return;
+  var a = ANH_NEN[String(so)];
+  if (!a) return;
+  oNen.style.setProperty('--anh-nen', 'url("' + a[0] + '")');
+  oNen.style.setProperty('--man-nen', a[1]);
+}
+
 function moPhan(so, cuonLen){
   cacPhan.forEach(function(p){ p.hidden = (p.id !== 'phan-' + so); });
+  datAnhNen(so);
   cacThe.forEach(function(t){
     t.setAttribute('aria-selected', String(t.dataset.phan === String(so)));
   });
@@ -1741,6 +1766,7 @@ cacThe.forEach(function(t){
 })();
 
 datMau('mong');
+datAnhNen((/^#phan-([123])$/.exec(location.hash || '') || [,'1'])[1]);
 addEventListener('load', veLaiCanvasDangHien);
 })();
 </script>

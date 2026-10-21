@@ -176,3 +176,24 @@ cả ba thẻ đó sang tên miền mới.
 
 Facebook và Zalo giữ ảnh xem trước trong bộ nhớ khá lâu. Sau khi đổi, dán link vào
 `developers.facebook.com/tools/debug/` rồi bấm *Scrape Again* để ép lấy bản mới.
+
+---
+
+## 11. Ảnh nền chạy suốt khi lướt
+
+Khoảng trống hai bên nội dung là **ảnh nền đứng yên khi cuộn**, và ảnh đổi theo từng phần:
+
+| Phần | Ảnh nền | Độ phủ |
+|---|---|---|
+| 01 — Văn hoá Hà Giang | `hg-ban-lang` (bản làng, ruộng bậc thang) | 78% |
+| 02 — Nguồn gốc và quy trình | `hv-xoan-oc` (cận cảnh thổ cẩm) | 88% |
+| 03 — Ý nghĩa hoa văn | `hv-hinh-hoc` (hoa văn hình học) | 88% |
+
+Đổi ảnh thì sửa bảng `ANH_NEN` trong phần JavaScript cuối `index.html`.
+
+**Vì sao độ phủ khác nhau:** ảnh phong cảnh thưa nét nên để mỏng vẫn đọc được chữ; ảnh hoa văn
+dày nét phải phủ đậm hơn, nếu không mắt rất mệt khi đọc. Đừng hạ độ phủ của phần 02 và 03 xuống
+dưới 0.85.
+
+**Lưu ý khi sửa các khối ảnh:** dùng `filter` để làm nhạt, **đừng dùng `opacity`** — `opacity` làm
+cả khối trong suốt nên ảnh nền phía sau lọt qua, nhìn nhoè nhoẹt.
