@@ -513,7 +513,9 @@ canvas.det{width:100%;height:58px;display:block;margin-top:22px}
   grid-template-columns:repeat(2,minmax(0,1fr))}
 @media (min-width:860px){ .dai-canh{grid-template-columns:repeat(4,minmax(0,1fr))} }
 @media (min-width:860px){ .dai-canh.hai-anh{grid-template-columns:repeat(2,minmax(0,1fr))} }
-.dai-canh img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;
+/* height:auto là bắt buộc — thuộc tính height trên thẻ ảnh sẽ thắng aspect-ratio,
+   vì tỉ lệ khung chỉ có tác dụng khi chiều cao để tự động */
+.dai-canh img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;display:block;
   border:1px solid var(--ke);opacity:0;transition:opacity .5s,scale .5s}
 .dai-canh img.xong{opacity:1}
 .dai-canh img:hover{scale:1.02}
