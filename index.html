@@ -305,6 +305,25 @@ html[data-san="1"] #bien .soi{height:calc(100% - 96px);
   .thuoc-doc i.on{height:100%;width:auto}
 }
 
+/* ảnh minh hoạ cho từng bước làm vải */
+.chang-anh{margin:0 0 1.1em;overflow:hidden;background:var(--cham-2);background-size:cover;
+  background-position:center;aspect-ratio:16/9;max-height:min(42vh,340px);border:1px solid var(--ke)}
+.chang-anh img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .5s}
+.chang-anh img.xong{opacity:1}
+
+/* ảnh nhóm ở khối Về cái tên */
+.anh-nhom{margin:0 0 clamp(24px,4vh,44px);float:right;width:min(260px,38%);
+  margin-left:clamp(20px,3vw,40px);overflow:hidden;background:var(--cham-2);
+  background-size:cover;background-position:center;border:1px solid var(--ke)}
+.anh-nhom img{width:100%;height:auto;display:block;opacity:0;transition:opacity .5s}
+.anh-nhom img.xong{opacity:1}
+.anh-nhom figcaption{font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--cham);background:var(--do);padding:8px 10px;font-family:var(--f-hien);
+  font-variation-settings:'wdth' 100,'wght' 700}
+@media (max-width:760px){
+  .anh-nhom{float:none;width:min(220px,60%);margin-left:0}
+}
+
 /* ===================== KHUNG PHIM ===================== */
 .phim{position:relative;background:#000;aspect-ratio:16/9;overflow:hidden}
 .phim video{width:100%;height:100%;object-fit:cover}
@@ -484,6 +503,26 @@ canvas.det{width:100%;height:58px;display:block;margin-top:22px}
   .cho-o:nth-child(n){grid-column:span 2;aspect-ratio:3/2}
   .cho-o:nth-child(3),.cho-o:nth-child(4),.cho-o:nth-child(5),.cho-o:nth-child(7){grid-column:span 1;aspect-ratio:1/1}
 }
+
+/* đoạn văn dài giữ nguyên văn, không cắt thành gạch đầu dòng */
+.van-doan{max-width:68ch;display:grid;gap:.85em}
+.van-doan p{color:var(--soi);font-size:clamp(15px,1.15vw,16.5px);line-height:1.72}
+
+/* dải ảnh cảnh quan */
+.dai-canh{display:grid;gap:10px;margin-top:clamp(28px,4.5vh,56px);
+  grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (min-width:860px){ .dai-canh{grid-template-columns:repeat(4,minmax(0,1fr))} }
+@media (min-width:860px){ .dai-canh.hai-anh{grid-template-columns:repeat(2,minmax(0,1fr))} }
+.dai-canh img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;
+  border:1px solid var(--ke);opacity:0;transition:opacity .5s,scale .5s}
+.dai-canh img.xong{opacity:1}
+.dai-canh img:hover{scale:1.02}
+
+/* khối có ảnh nền cảnh quan */
+.co-nen{position:relative;overflow:hidden;padding-right:var(--rail)}
+.co-nen .nen{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.co-nen .scrim{position:absolute;inset:0;z-index:1;background:rgba(246,242,233,.9)}
+.co-nen .boc{position:relative;z-index:3}
 
 /* ===================== PHẦN 3 · HOA VĂN ===================== */
 .mo-phan{padding-block:clamp(56px,9vh,110px) clamp(24px,4vh,48px);padding-right:var(--rail)}
@@ -682,27 +721,49 @@ html[data-che="nhe"] :root,html[data-che="nhe"] body{transition:none}
 </nav>
 
 <div class="phan" id="phan-1" role="tabpanel" aria-labelledby="the-1">
+<!-- ============ MỞ: VĂN HOÁ HÀ GIANG ============ -->
+<section id="ha-giang" aria-labelledby="h-ha-giang" class="co-nen">
+  <img class="nen" src="assets/img/hg-nui-doi.webp" alt="" width="1800" height="1200" loading="lazy" decoding="async">
+  <div class="scrim"></div>
+  <div class="soc-doc"></div>
+  <div class="boc mo-phan">
+    <p class="nhan">Vùng đất</p>
+    <h2 class="hien hoi" id="h-ha-giang">Văn hoá đặc sắc ở Hà Giang —<br>nét đẹp từ các dân tộc thiểu số.</h2>
+    <div class="van-doan">
+      <p>Hà Giang, thuộc vùng cực Bắc Việt Nam theo địa giới trước đợt sắp xếp hành chính năm 2025, nổi tiếng với cảnh quan thiên nhiên hùng vĩ, những dãy núi đá tai mèo trùng điệp, ruộng bậc thang và những cung đường đèo quanh co. Tuy nhiên, sức hấp dẫn của vùng đất này không chỉ đến từ cảnh quan tự nhiên mà còn bắt nguồn từ đời sống văn hoá phong phú của cộng đồng các dân tộc cùng sinh sống qua nhiều thế hệ.</p>
+      <p>Mỗi dân tộc có ngôn ngữ, phong tục, tín ngưỡng, trang phục, kiến trúc và tri thức dân gian riêng. Những giá trị đó được thể hiện trong các lễ hội đầu năm, nghi lễ vòng đời, chợ phiên vùng cao, nghệ thuật dân gian, nghề dệt lanh, thêu thùa, làm trang sức và chế biến các món ăn truyền thống. Qua thời gian, các yếu tố văn hoá vừa được gìn giữ trong đời sống cộng đồng, vừa góp phần hình thành bản sắc riêng của vùng đất Hà Giang.</p>
+      <p>Trong số các cộng đồng dân tộc tại đây, người Mông, Dao, Lô Lô, Tày và Nùng là những nhóm tiêu biểu có nhiều nét văn hoá đặc sắc. Việc tìm hiểu những giá trị này không chỉ giúp hiểu rõ hơn về đời sống người dân địa phương mà còn cho thấy tiềm năng phát triển du lịch văn hoá gắn với bảo tồn di sản và tạo sinh kế bền vững cho cộng đồng.</p>
+    </div>
+    <div class="dai-canh" aria-hidden="true">
+      <img data-src="assets/img/hg-lung-cu.webp" data-tiny="assets/img/hg-lung-cu-tiny.webp" alt="" width="1181" height="787" loading="lazy" decoding="async">
+      <img data-src="assets/img/hg-duong-deo.webp" data-tiny="assets/img/hg-duong-deo-tiny.webp" alt="" width="1800" height="928" loading="lazy" decoding="async">
+      <img data-src="assets/img/hg-dong-van.webp" data-tiny="assets/img/hg-dong-van-tiny.webp" alt="" width="1350" height="900" loading="lazy" decoding="async">
+      <img data-src="assets/img/hg-tham-ma.webp" data-tiny="assets/img/hg-tham-ma-tiny.webp" alt="" width="1350" height="1013" loading="lazy" decoding="async">
+    </div>
+  </div>
+</section>
+
 <!-- ============ 1 · NĂM SỢI ============ -->
 <section id="nam-soi" aria-labelledby="h-nam-soi">
   <div class="boc">
     <p class="nhan">Năm cộng đồng</p>
-    <h2 class="hien tieu-de-khoi" id="h-nam-soi">Năm cộng đồng.<br>Một tấm vải.</h2>
-    <p style="max-width:56ch;color:var(--mo)">Chạm vào một sợi màu ở mép màn hình — hoặc chọn một người dưới đây — cả trang sẽ được dệt lại theo đúng bộ trang phục của cộng đồng đó.</p>
+    <h2 class="hien tieu-de-khoi" id="h-nam-soi">Năm cộng đồng.<br>Năm sắc phục.</h2>
+    <p style="max-width:62ch;color:var(--mo)">Mỗi cộng đồng có trang phục, hoa văn và phong tục riêng. Nghề dệt lanh thổ cẩm ở Lùng Tám là nghề của người Mông. Chạm vào một người để xem phần của cộng đồng đó.</p>
     <div class="cot-boc" id="cot-boc" role="group" aria-label="Năm cộng đồng">
       <button type="button" class="cot" data-ma="mong" aria-pressed="true"  style="--c:#D13316">
-        <img src="assets/img/phu-nu-mong.webp" alt="Ba người phụ nữ Mông trong trang phục truyền thống bên ruộng hoa cải" width="1500" height="1000" loading="lazy" decoding="async">
+        <img src="assets/img/cd-mong.webp" alt="Phụ nữ Mông trong trang phục truyền thống bên ruộng hoa cải" width="1500" height="1000" loading="lazy" decoding="async">
         <span class="ten-doc">Mông</span><span class="vach"></span></button>
       <button type="button" class="cot" data-ma="dao" aria-pressed="false" style="--c:#B8241B">
-        <img src="assets/img/phu-nu-dao.webp" alt="Phụ nữ Dao trong trang phục truyền thống" width="819" height="514" loading="lazy" decoding="async">
+        <img src="assets/img/cd-dao.webp" alt="Phụ nữ Dao trong trang phục truyền thống" width="819" height="514" loading="lazy" decoding="async">
         <span class="ten-doc">Dao</span><span class="vach"></span></button>
       <button type="button" class="cot" data-ma="lolo" aria-pressed="false" style="--c:#C0365F">
-        <img src="assets/img/lo-lo-mua.webp" alt="Người Lô Lô múa trong lễ hội trước nhà gỗ" width="1500" height="1000" loading="lazy" decoding="async">
+        <img src="assets/img/cd-lolo.webp" alt="Người Lô Lô trong lễ hội trước những nếp nhà" width="1200" height="820" loading="lazy" decoding="async">
         <span class="ten-doc">Lô Lô</span><span class="vach"></span></button>
       <button type="button" class="cot" data-ma="tay" aria-pressed="false" style="--c:#B8475C">
-        <img src="assets/img/hat-then-dan-tinh.webp" alt="Nhóm hát Then với đàn tính bên bờ nước" width="1000" height="664" loading="lazy" decoding="async">
+        <img src="assets/img/cd-tay.webp" alt="Nhóm hát Then với đàn tính bên bờ nước" width="1000" height="664" loading="lazy" decoding="async">
         <span class="ten-doc">Tày</span><span class="vach"></span></button>
       <button type="button" class="cot" data-ma="nung" aria-pressed="false" style="--c:#2A62B4">
-        <img src="assets/img/phu-nu-nung.webp" alt="Phụ nữ Nùng trong trang phục gam chàm bên nhà sàn" width="1280" height="720" loading="lazy" decoding="async">
+        <img src="assets/img/cd-nung.webp" alt="Phụ nữ Nùng trong trang phục gam chàm" width="1280" height="720" loading="lazy" decoding="async">
         <span class="ten-doc">Nùng</span><span class="vach"></span></button>
     </div>
     <button type="button" class="o-cho" data-ma="cho" aria-pressed="false">
@@ -880,6 +941,20 @@ html[data-che="nhe"] :root,html[data-che="nhe"] body{transition:none}
 </section>
 </div><!-- /nguoi-lam-nghe -->
 
+<!-- ============ KẾT PHẦN 01 ============ -->
+<section id="ket-van-hoa" aria-labelledby="h-ket-vh" style="padding-block:clamp(56px,9vh,120px);padding-right:var(--rail);border-top:1px solid var(--ke)">
+  <div class="boc">
+    <p class="nhan">Khép lại phần văn hoá</p>
+    <h2 class="hien tieu-de-khoi" id="h-ket-vh">Từ cộng cư<br>thành bản sắc.</h2>
+    <div class="van-doan">
+      <p>Văn hoá Hà Giang được hình thành từ quá trình cộng cư, thích nghi với môi trường miền núi và truyền nối tri thức qua nhiều thế hệ. Từ trang phục, lễ hội, kiến trúc, ẩm thực đến nghề dệt lanh, mỗi giá trị đều góp phần phản ánh bản sắc của các cộng đồng dân tộc.</p>
+      <p>Trong đó, nghề dệt lanh của người Mông ở Lùng Tám cho thấy sự kết hợp giữa nguyên liệu tự nhiên, kỹ thuật thủ công và kinh nghiệm được tích luỹ qua thời gian. Khi được giới thiệu đúng cách, các sản phẩm thổ cẩm không chỉ đáp ứng nhu cầu sử dụng mà còn trở thành cầu nối đưa câu chuyện văn hoá đến gần hơn với đời sống hiện đại.</p>
+      <p>Một bộ quà tặng văn hoá có thể kết hợp sản phẩm thủ công, thẻ câu chuyện, bản đồ hoặc hộ chiếu trải nghiệm và mã QR dẫn đến nội dung số về làng nghề, quy trình làm vải hay nghệ nhân. Nhờ đó, người mua không chỉ sở hữu một món đồ mà còn có cơ hội tìm hiểu câu chuyện phía sau sản phẩm.</p>
+      <p>Đối với mô hình như <span class="dam">CHẠM BẢN CẨM</span>, hướng phát triển là hợp tác với nghệ nhân, hộ sản xuất và hợp tác xã; lựa chọn sản phẩm có nguồn gốc rõ ràng; chuẩn hoá chất lượng, bao bì và nội dung giới thiệu. CHẠM BẢN CẨM mong muốn góp phần kết nối sản phẩm thủ công với câu chuyện văn hoá Hà Giang, đồng thời tôn trọng nguồn gốc, ghi nhận công sức của người làm nghề và hướng đến giá trị bền vững cho cộng đồng.</p>
+    </div>
+  </div>
+</section>
+
 </div><!-- /phan-1 -->
 
 <div class="phan" id="phan-2" role="tabpanel" aria-labelledby="the-2" hidden>
@@ -899,7 +974,6 @@ html[data-che="nhe"] :root,html[data-che="nhe"] body{transition:none}
 </section>
 <!-- ============ 2 · 41 CÔNG ĐOẠN ============ -->
 <section id="quy-trinh" aria-labelledby="h-quy-trinh">
-  <video class="nen-v" id="v-soi" muted loop playsinline preload="none" poster="assets/img/poster-nhuom.jpg" aria-hidden="true"></video>
   <div class="soc-doc"></div>
   <div class="boc">
     <p class="nhan">Từ vỏ cây lanh đến tấm vải</p>
@@ -911,45 +985,45 @@ html[data-che="nhe"] :root,html[data-che="nhe"] body{transition:none}
         <div class="thuoc-doc" id="thuoc-doc" aria-hidden="true"></div>
       </div>
       <ol id="chang-boc">
-        <li class="chang"><span class="stt">01 / 09</span><h3 class="hien">Trồng và thu hoạch cây lanh</h3>
+        <li class="chang"><span class="stt">01 / 09</span><figure class="chang-anh"><img data-src="assets/img/b1-thu-hoach.webp" data-tiny="assets/img/b1-thu-hoach-tiny.webp" alt="Những bó thân cây lanh dựng chờ tách vỏ" width="1400" height="620" loading="lazy" decoding="async"></figure><h3 class="hien">Trồng và thu hoạch cây lanh</h3>
           <p class="mo-ta">Cây lanh là nguyên liệu chính để tạo ra sợi vải. Thời gian thu hoạch quyết định chất lượng sợi: thu quá sớm thì sợi dai, để quá muộn thì tách vỏ khó hơn.</p>
           <p class="loi">“Để thành sợi dệt, lanh qua nhiều công đoạn thủ công.” <span class="moc">00:24</span></p>
         </li>
-        <li class="chang"><span class="stt">02 / 09</span><h3 class="hien">Tách vỏ và lấy sợi lanh</h3>
+        <li class="chang"><span class="stt">02 / 09</span><figure class="chang-anh"><img data-src="assets/img/b2-tach-soi.webp" data-tiny="assets/img/b2-tach-soi-tiny.webp" alt="Phụ nữ Mông tách vỏ lanh lấy sợi" width="911" height="540" loading="lazy" decoding="async"></figure><h3 class="hien">Tách vỏ và lấy sợi lanh</h3>
           <p class="mo-ta">Vỏ cây được bóc tách cẩn thận để lấy phần sợi. Việc này thường làm ở nơi tránh nắng và gió trực tiếp, để vỏ lanh không dính chặt vào thân cây.</p>
           <p class="loi">“Sợi dệt được lấy từ phần vỏ của thân cây lanh.” <span class="moc">00:16</span></p>
         </li>
-        <li class="chang"><span class="stt">03 / 09</span><h3 class="hien">Giã, nối và se sợi</h3>
+        <li class="chang"><span class="stt">03 / 09</span><figure class="chang-anh"><img data-src="assets/img/b3-noi-soi.webp" data-tiny="assets/img/b3-noi-soi-tiny.webp" alt="Người thợ nối và se sợi lanh bên hiên nhà" width="1200" height="800" loading="lazy" decoding="async"></figure><h3 class="hien">Giã, nối và se sợi</h3>
           <p class="mo-ta">Sợi được giã cho mềm, rồi nối từng đoạn thành sợi dài đều nhau. Người Mông ở Lùng Tám dùng dụng cụ se sợi phối hợp giữa tay và chân, se được nhiều sợi cùng lúc.</p>
           <p class="loi">“Những sợi lanh được cuốn thành cuộn, chuẩn bị cho các bước xử lý.” <span class="moc">00:32</span></p>
           <p class="loi">“Việc se và nối sợi đòi hỏi thao tác khéo léo, đều tay.” <span class="moc">00:36</span></p>
           <p class="loi">“Người thợ nối các đoạn sợi ngắn thành sợi dài liên tục.” <span class="moc">00:44</span></p>
         </li>
-        <li class="chang"><span class="stt">04 / 09</span><h3 class="hien">Luộc, giặt và làm trắng sợi</h3>
+        <li class="chang"><span class="stt">04 / 09</span><figure class="chang-anh"><img data-src="assets/img/b4-luoc-soi.webp" data-tiny="assets/img/b4-luoc-soi-tiny.webp" alt="Sợi lanh được luộc với tro bếp trong chảo lớn" width="1400" height="1867" loading="lazy" decoding="async"></figure><h3 class="hien">Luộc, giặt và làm trắng sợi</h3>
           <p class="mo-ta">Sợi được cuộn lại, luộc với tro bếp, ngâm và giặt nhiều lần cho tới khi đạt độ trắng phù hợp, rồi đem phơi khô.</p>
           <p class="loi">“Sợi được quay, bó lại trước khi ngâm và luộc.” <span class="moc">00:52</span></p>
           <p class="loi">“Trong quy trình truyền thống, sợi được luộc, giặt rồi phơi khô.” <span class="moc">01:00</span></p>
         </li>
-        <li class="chang"><span class="stt">05 / 09</span><h3 class="hien">Mắc khung và dệt vải</h3>
+        <li class="chang"><span class="stt">05 / 09</span><figure class="chang-anh"><img data-src="assets/img/b5-det-vai.webp" data-tiny="assets/img/b5-det-vai-tiny.webp" alt="Người thợ dệt vải trên khung cửi gỗ" width="1400" height="1867" loading="lazy" decoding="async"></figure><h3 class="hien">Mắc khung và dệt vải</h3>
           <p class="mo-ta">Tuỳ khổ vải, số lượng sợi dọc được tính toán và sắp xếp chính xác. Vải dệt thủ công trên khung cửi; người thợ vừa đưa sợi ngang, vừa xử lý những đoạn sợi đứt.</p>
           <p class="loi">“Sau khi xử lý, sợi được chuẩn bị để mắc lên khung.” <span class="moc">01:04</span></p>
           <p class="loi">“Các sợi dọc được sắp song song, tạo nền cho quá trình dệt.” <span class="moc">01:08</span></p>
           <p class="loi">“Người thợ dệt vải trên khung cửi gỗ truyền thống.” <span class="moc">01:16</span></p>
           <p class="loi">“Sợi ngang luồn qua các sợi dọc, từng lượt tạo thành tấm vải.” <span class="moc">01:24</span></p>
         </li>
-        <li class="chang"><span class="stt">06 / 09</span><h3 class="hien">Cán, làm mềm và hoàn thiện mặt vải</h3>
+        <li class="chang"><span class="stt">06 / 09</span><figure class="chang-anh"><img data-src="assets/img/b6-can-vai.webp" data-tiny="assets/img/b6-can-vai-tiny.webp" alt="Công đoạn lăn vải bằng phiến đá và trụ gỗ" width="1400" height="1050" loading="lazy" decoding="async"></figure><h3 class="hien">Cán, làm mềm và hoàn thiện mặt vải</h3>
           <p class="mo-ta">Vải được đặt giữa phiến đá và trụ gỗ, lăn nhiều lần để cán phẳng và làm mềm. Có nơi còn ngâm vải với nước tro bếp rồi phơi khô để làm trắng.</p>
           <p class="loi">“Ở công đoạn lăn vải, đá và trụ gỗ giúp ép phẳng bề mặt.” <span class="moc">01:48</span></p>
         </li>
-        <li class="chang"><span class="stt">07 / 09</span><h3 class="hien">Nhuộm chàm và tạo màu</h3>
+        <li class="chang"><span class="stt">07 / 09</span><figure class="chang-anh"><img data-src="assets/img/b7-nhuom-cham.webp" data-tiny="assets/img/b7-nhuom-cham-tiny.webp" alt="Những tấm vải vừa nhuộm chàm phơi trên dây" width="1400" height="788" loading="lazy" decoding="async"></figure><h3 class="hien">Nhuộm chàm và tạo màu</h3>
           <p class="mo-ta">Vải được ngâm trong dung dịch chàm rồi đem phơi, lặp lại nhiều lần để đạt sắc độ mong muốn. Màu của vải là kết quả của nhiều lượt xử lý, không phải một lần nhuộm.</p>
           <p class="loi">“Vải lanh được nhuộm màu và trang trí theo nhiều cách.” <span class="moc">01:40</span></p>
         </li>
-        <li class="chang"><span class="stt">08 / 09</span><h3 class="hien">Thêu và trang trí hoa văn</h3>
+        <li class="chang"><span class="stt">08 / 09</span><figure class="chang-anh"><img data-src="assets/img/b8-hoa-van.webp" data-tiny="assets/img/b8-hoa-van-tiny.webp" alt="Các mảng hoa văn thêu và ghép vải" width="635" height="425" loading="lazy" decoding="async"></figure><h3 class="hien">Thêu và trang trí hoa văn</h3>
           <p class="mo-ta">Nghệ nhân thêu tay và ghép các mảng vải màu. Họa tiết hình học, đường nét đối xứng và các hình thức trang trí truyền thống tạo nên diện mạo riêng cho vải lanh Lùng Tám.</p>
           <p class="loi">“Vải còn được trang trí bằng thêu và ghép những mảnh vải màu.” <span class="moc">02:04</span></p>
         </li>
-        <li class="chang"><span class="stt">09 / 09</span><h3 class="hien">May và phát triển thành phẩm</h3>
+        <li class="chang"><span class="stt">09 / 09</span><figure class="chang-anh"><img data-src="assets/img/b9-san-pham.webp" data-tiny="assets/img/b9-san-pham-tiny.webp" alt="Túi, ví và đồ trang trí làm từ vải lanh" width="1400" height="789" loading="lazy" decoding="async"></figure><h3 class="hien">May và phát triển thành phẩm</h3>
           <p class="mo-ta">Vải lanh được may thành trang phục, hoặc phát triển thành túi, ví, khăn, vỏ gối, khăn trải bàn và đồ trang trí — tuỳ mục đích mà chọn cách cắt, may, phối màu.</p>
           <p class="loi">“Vải lanh được dùng làm túi xách, ví, khăn và nhiều sản phẩm khác.” <span class="moc">02:00</span></p>
         </li>
@@ -964,14 +1038,13 @@ html[data-che="nhe"] :root,html[data-che="nhe"] body{transition:none}
     <p class="nhan">Phim của nhóm</p>
     <h2 class="hien tieu-de-khoi">Xem cả quá trình<br>trong một lần.</h2>
     <div class="phim khung khung--khoi" style="padding:0">
-      <span class="nhan-nguon tu-quay">Nhóm tự quay · Lùng Tám</span>
+      <span class="nhan-nguon tu-quay">Phim của nhóm · Lùng Tám</span>
       <img class="anh-cho" src="assets/img/poster-khung-cui.jpg" alt="Khung hình từ phim: người thợ dệt trên khung cửi" width="1280" height="566" loading="lazy" decoding="async">
       <video id="v-story" controls playsinline preload="none" poster="assets/img/poster-khung-cui.jpg" hidden></video>
       <button type="button" class="nut-phat" data-phim="v-story" data-src="assets/video/story.mp4">
         <span class="hop"><span class="tam"></span><span class="chu">Xem phim · 2:22</span></span>
       </button>
     </div>
-    <p style="margin-top:14px;font-size:14px;color:var(--mo)">Nhóm tự quay tại Lùng Tám. Phụ đề cháy sẵn trong hình. Phim chỉ tải khi bạn bấm xem.</p>
     <p class="phim-noi" style="font-size:clamp(1.3rem,3.6vw,2.4rem);line-height:1.22;margin-top:clamp(30px,5vh,60px);max-width:24ch">“Mỗi đường kim, mỗi sợi chỉ, đều mang theo một câu chuyện văn hóa.”</p>
   </div>
 </section>
@@ -980,11 +1053,30 @@ html[data-che="nhe"] :root,html[data-che="nhe"] body{transition:none}
 <section id="gia-tri" aria-labelledby="h-gia-tri" style="padding-block:clamp(56px,9vh,120px);padding-right:var(--rail)">
   <div class="boc">
     <p class="nhan">Giá trị của nghề</p>
-    <h2 class="hien tieu-de-khoi" id="h-gia-tri">Một tấm vải<br>nuôi được một nghề.</h2>
-    <div class="ch-y"><span class="o"></span><p>Nghề dệt gìn giữ bản sắc qua việc bảo tồn tri thức về cây lanh, kỹ thuật xử lý sợi, dệt vải và trang trí hoa văn. Những kỹ năng này được truyền lại qua thực hành giữa các thế hệ.</p></div>
-    <div class="ch-y"><span class="o"></span><p>Hợp tác xã tạo sinh kế cho người làm nghề: tập hợp các hộ sản xuất, mở rộng đầu ra, phát triển đa dạng sản phẩm từ lanh.</p></div>
-    <div class="ch-y"><span class="o"></span><p>Nghề dệt mở ra khả năng kết nối với du lịch trải nghiệm — du khách trực tiếp xem các công đoạn, hiểu rõ hơn thời gian và công sức cần để hoàn thiện một sản phẩm.</p></div>
-    <div class="ch-y"><span class="o"></span><p>Từ chất liệu truyền thống, người làm nghề phát triển nhiều sản phẩm ứng dụng như túi, ví, khăn và đồ trang trí. Đổi mới mẫu mã giúp tiếp cận nhóm khách hàng mới, duy trì nghề theo hướng bền vững.</p></div>
+    <h2 class="hien tieu-de-khoi" id="h-gia-tri">Giá trị văn hoá và kinh tế<br>của nghề dệt lanh Lùng Tám.</h2>
+    <div class="van-doan">
+      <p>Nghề dệt lanh Lùng Tám mang giá trị quan trọng cả về văn hoá và kinh tế đối với cộng đồng người Mông. Trước hết, nghề dệt góp phần gìn giữ bản sắc văn hoá thông qua việc bảo tồn tri thức về cây lanh, kỹ thuật xử lý sợi, dệt vải và trang trí hoa văn. Những kỹ năng này được truyền lại qua quá trình thực hành giữa các thế hệ, khiến mỗi tấm vải không chỉ là vật liệu phục vụ đời sống mà còn thể hiện những tri thức và kinh nghiệm được cộng đồng tích luỹ qua thời gian.</p>
+      <p>Bên cạnh giá trị văn hoá, hoạt động của hợp tác xã còn góp phần tạo sinh kế cho người làm nghề thông qua việc tập hợp các hộ sản xuất, mở rộng đầu ra và phát triển đa dạng sản phẩm từ lanh. Việc kết hợp sản xuất thủ công với quảng bá sản phẩm và đón khách tham quan cũng tạo thêm cơ hội để người dân nâng cao thu nhập từ nghề truyền thống.</p>
+      <p>Đồng thời, nghề dệt lanh mở ra khả năng kết nối với hoạt động du lịch và trải nghiệm văn hoá tại Lùng Tám, giúp du khách trực tiếp tìm hiểu các công đoạn chế tác, quan sát kỹ thuật thủ công và hiểu rõ hơn về thời gian, công sức cần thiết để hoàn thiện một sản phẩm.</p>
+      <p>Từ chất liệu lanh truyền thống, người làm nghề đã phát triển nhiều sản phẩm có tính ứng dụng như túi, ví, khăn và đồ trang trí. Việc đổi mới mẫu mã có thể giúp sản phẩm tiếp cận những nhóm khách hàng mới, qua đó góp phần duy trì giá trị văn hoá và phát triển nghề dệt lanh theo hướng bền vững.</p>
+    </div>
+    <div class="dai-canh hai-anh" aria-hidden="true">
+      <img data-src="assets/img/trai-nghiem.webp" data-tiny="assets/img/trai-nghiem-tiny.webp" alt="" width="1200" height="800" loading="lazy" decoding="async">
+      <img data-src="assets/img/khung-cui.webp" data-tiny="assets/img/khung-cui-tiny.webp" alt="" width="1024" height="768" loading="lazy" decoding="async">
+    </div>
+  </div>
+</section>
+
+<!-- ============ KẾT PHẦN 02 ============ -->
+<section id="ket-noi" aria-labelledby="h-ket-noi" style="padding-block:clamp(56px,9vh,120px);padding-right:var(--rail);border-top:1px solid var(--ke)">
+  <div class="boc">
+    <p class="nhan">Kết nối</p>
+    <h2 class="hien tieu-de-khoi" id="h-ket-noi">Thổ cẩm Lùng Tám<br>và CHẠM BẢN CẨM.</h2>
+    <div class="van-doan">
+      <p>Nghề dệt lanh Lùng Tám là một biểu hiện tiêu biểu của tri thức thủ công và bản sắc văn hoá người Mông tại khu vực Hà Giang trước đây. Từ cây lanh đến những sản phẩm thổ cẩm hoàn chỉnh, quá trình chế tác trải qua nhiều công đoạn đòi hỏi sự kiên trì, khéo léo và kinh nghiệm được truyền nối qua nhiều thế hệ.</p>
+      <p>Trong bối cảnh hiện đại, phát triển sản phẩm từ vải lanh cần song hành với việc gìn giữ kỹ thuật truyền thống, hỗ trợ người làm nghề và giới thiệu chính xác câu chuyện văn hoá. Khi được thực hiện có trách nhiệm, mỗi sản phẩm thủ công có thể vừa đáp ứng nhu cầu sử dụng, vừa góp phần duy trì sinh kế và đưa những giá trị văn hoá của Lùng Tám đến gần hơn với công chúng.</p>
+      <p>Đối với <span class="dam">CHẠM BẢN CẨM</span>, tìm hiểu nghề dệt lanh Lùng Tám là cơ sở để phát triển các sản phẩm quà tặng gắn với câu chuyện văn hoá. Giá trị của sản phẩm không chỉ nằm ở chất liệu hay hoa văn mà còn ở thông tin về nguồn gốc, người làm nghề và quá trình tạo ra thành phẩm.</p>
+    </div>
   </div>
 </section>
 
@@ -1003,11 +1095,16 @@ html[data-che="nhe"] :root,html[data-che="nhe"] body{transition:none}
 </section>
 
 <!-- ============ 3.1 · HỌA TIẾT LÀ NGÔN NGỮ ============ -->
-<section id="hoa-van-ngon-ngu" style="padding-block:clamp(30px,5vh,60px);padding-right:var(--rail)">
+<section id="hoa-van-ngon-ngu" aria-labelledby="h-ngon-ngu" style="padding-block:clamp(34px,6vh,76px);padding-right:var(--rail)">
   <div class="boc">
-    <div class="ch-y"><span class="o"></span><p>Mỗi đường nét, hình khối và cách phối màu đều thể hiện óc sáng tạo, quan niệm thẩm mỹ và những giá trị văn hoá được lưu truyền qua nhiều thế hệ.</p></div>
-    <div class="ch-y"><span class="o"></span><p>Với người Mông, hoa văn có thể gắn với những hình ảnh quen thuộc trong thiên nhiên, đời sống và ước vọng về sự sung túc, hạnh phúc.</p></div>
-    <div class="ch-y"><span class="o"></span><p>Nghệ thuật trang trí của người Lô Lô nổi bật với sự kết hợp những hình tam giác, hình vuông và các mảng màu rực rỡ, tạo nên bố cục độc đáo. Chính sự khác biệt ấy làm nên bức tranh văn hoá phong phú của Hà Giang.</p></div>
+    <h2 class="hien tieu-de-khoi" id="h-ngon-ngu" style="font-size:clamp(1.7rem,4.4vw,3.2rem)">Hoa văn thổ cẩm —<br>khi hoạ tiết trở thành ngôn ngữ văn hoá.</h2>
+    <div class="van-doan">
+      <p>Hoa văn thổ cẩm là một trong những yếu tố tạo nên vẻ đẹp riêng của trang phục truyền thống các dân tộc vùng cao.</p>
+      <p>Mỗi đường nét, hình khối và cách phối màu đều thể hiện óc sáng tạo, quan niệm thẩm mỹ và những giá trị văn hoá được lưu truyền qua nhiều thế hệ.</p>
+      <p>Đối với người Mông, hoa văn có thể gắn với những hình ảnh quen thuộc trong thiên nhiên, đời sống và ước vọng về sự sung túc, hạnh phúc.</p>
+      <p>Trong khi đó, nghệ thuật trang trí của người Lô Lô lại nổi bật với sự kết hợp những hình tam giác, hình vuông và các mảng màu rực rỡ, tạo nên những bố cục độc đáo.</p>
+      <p>Chính sự khác biệt ấy góp phần làm nên bức tranh văn hoá phong phú của Hà Giang.</p>
+    </div>
   </div>
 </section>
 
@@ -1077,10 +1174,6 @@ html[data-che="nhe"] :root,html[data-che="nhe"] body{transition:none}
     <div class="ch-y"><span class="o"></span><p>Mỗi họa tiết có thể phản ánh một phần đời sống cộng đồng, từ cảm hứng thiên nhiên, tín ngưỡng cho đến quan niệm về cái đẹp.</p></div>
     <div class="ch-y"><span class="o"></span><p>Khi những hoa văn truyền thống được tìm hiểu, giới thiệu và ứng dụng phù hợp trong đời sống hiện đại, các giá trị văn hoá có thêm cơ hội tiếp cận thế hệ trẻ.</p></div>
 
-    <div class="luu-y">
-      <h3>Một lưu ý khi giới thiệu hoa văn</h3>
-      <p>Tài liệu của nhóm ghi rõ: cần tránh gán ý nghĩa biểu tượng cụ thể cho từng họa tiết nếu chưa có tư liệu xác thực hoặc lời giải thích từ chính nghệ nhân. Những mô tả trên trang này giữ đúng mức độ chắc chắn của tư liệu gốc — chỗ nào là ghi nhận thì nói là ghi nhận, chỗ nào là khả năng thì nói là có thể.</p>
-    </div>
 
     <p class="ket" style="margin-top:clamp(40px,7vh,86px)">Mỗi hoa văn là một dấu ấn.<br><em>Mỗi đường nét là một câu chuyện văn hoá.</em></p>
   </div>
@@ -1123,9 +1216,15 @@ html[data-che="nhe"] :root,html[data-che="nhe"] body{transition:none}
   <div class="soc-doc"></div>
   <div class="boc">
     <div class="ve-ten">
+      <figure class="anh-nhom">
+        <img data-src="assets/img/anh-nhom.webp" data-tiny="assets/img/anh-nhom-tiny.webp"
+             alt="Nhóm CHẠM BẢN CẨM trong trang phục truyền thống" width="720" height="1280"
+             loading="lazy" decoding="async">
+        <figcaption>Nhóm CHẠM BẢN CẨM</figcaption>
+      </figure>
       <p class="nhan">Về cái tên</p>
       <p>Chúng tôi gọi là <span class="dam" style="color:var(--do)">CHẠM BẢN CẨM</span>.</p>
-      <p>Cái tên là chính khẩu hiệu rút gọn lại: <span class="dam">Chạm</span> nét thổ <span class="dam">cẩm</span>, <span class="dam">cảm</span> hồn Hà Giang. Chạm vào tấm vải là chạm vào bàn tay đã dệt ra nó.</p>
+      <p>Cái tên là chính khẩu hiệu rút gọn lại: Chạm nét thổ cẩm, cảm hồn Hà Giang. Chạm vào tấm vải là chạm vào bàn tay đã dệt ra nó.</p>
       <p>Và chúng tôi gọi vùng đất là <span class="dam">Hà Giang</span>. Đó là tên gắn với nghề dệt lanh Lùng Tám, với những người thợ trong trang này, và với thương hiệu này.</p>
       <p>Sau đợt sắp xếp đơn vị hành chính năm 2025, Lùng Tám thuộc tỉnh Tuyên Quang. Trong phim của nhóm, câu đầu tiên đã nói rõ điều đó: <span class="phim-noi">“Lùng Tám, vùng Hà Giang trước đây, nay thuộc tỉnh Tuyên Quang.”</span></p>
       <p>Giữ cả hai cái tên là cách chúng tôi giữ đúng cả hai sự thật.</p>
@@ -1474,7 +1573,6 @@ function videoNen(id, src, nhanh){
 }
 addEventListener('load', function(){
   videoNen('v-hero', 'assets/video/hero-loop.mp4');
-  videoNen('v-soi', 'assets/video/soi-loop.mp4');
   videoNen('v-chan', 'assets/video/vung-cao-loop.mp4', .75);
 });
 
