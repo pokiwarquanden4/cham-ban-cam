@@ -1,13 +1,14 @@
 # CHẠM BẢN CẨM — trang giới thiệu
 
-Trang tĩnh một file. Không cần máy chủ, không cần cài gì, không có bước dựng.
+Trang tĩnh. Không cần máy chủ, không cần cài gì để xem. Có một công cụ nhỏ bằng Python
+để tạo lại các trang sản phẩm (xem mục 4).
 
 ---
 
 ## 1. Xem thử trên máy
 
 Mở `index.html` bằng trình duyệt là xem được ngay. Nếu video không chạy (một số trình duyệt chặn
-file mở trực tiếp từ ổ đĩa), chạy lệnh này trong thư mục `site` rồi vào `http://127.0.0.1:8000`:
+file mở trực tiếp từ ổ đĩa), chạy lệnh này trong thư mục trang rồi vào `http://127.0.0.1:8000`:
 
 ```
 python -m http.server 8000
@@ -18,182 +19,195 @@ python -m http.server 8000
 ## 2. Đưa lên GitHub Pages
 
 1. Tạo một repo mới trên GitHub, để **Public** (repo private cần tài khoản trả phí mới bật được Pages).
-2. Đẩy **toàn bộ thư mục `site`** lên nhánh `main`. Nhớ giữ cả file `.nojekyll` — thiếu nó GitHub
+2. Đẩy **toàn bộ thư mục trang** lên nhánh `main`. Nhớ giữ cả file `.nojekyll` — thiếu nó GitHub
    có thể bỏ qua một số file.
 3. Vào **Settings → Pages**, phần *Build and deployment*: chọn **Deploy from a branch**,
    nhánh `main`, thư mục `/ (root)`. Bấm Save.
 4. Đợi 1–2 phút. Trang sẽ ở `https://<tên-tài-khoản>.github.io/<tên-repo>/`.
 
-Bằng dòng lệnh:
-
-```
-cd site
-git init
-git add -A
-git commit -m "Trang gioi thieu CHAM BAN CAM"
-git branch -M main
-git remote add origin https://github.com/<tên-tài-khoản>/<tên-repo>.git
-git push -u origin main
-```
-
 ---
 
-## 3. Gắn tên miền riêng
+## 3. Trang có những gì
 
-1. Mua tên miền ở bất kỳ nhà cung cấp nào.
-2. Ở phần quản lý DNS của tên miền, trỏ về GitHub:
-   - 4 bản ghi **A** cho tên miền gốc: `185.199.108.153`, `185.199.109.153`,
-     `185.199.110.153`, `185.199.111.153`
-   - 1 bản ghi **CNAME** cho `www` trỏ tới `<tên-tài-khoản>.github.io`
-3. Về **Settings → Pages → Custom domain**, điền tên miền, bấm Save.
-   GitHub sẽ tự tạo file `CNAME` trong repo.
-4. Đợi chứng chỉ bảo mật cấp xong rồi bật **Enforce HTTPS**.
+Trang chủ `index.html` chia sáu phần theo tài liệu "cấu trúc website" của nhóm. Menu kiểu
+Trúc Lâm: logo ở giữa, ba mục mỗi bên. **Mỗi lần chỉ hiện một phần**; bấm mục nào thì con thoi
+chạy ngang rồi phần đó lộ ra.
 
----
-
-## 4. Những ô cần tự điền
-
-Trong `index.html` có bốn chỗ để trống, đang hiện bằng khung viền đứt. Tìm chữ
-`Chủ dự án điền` là thấy hết:
-
-- giá bộ và các phiên bản hộp
-- tên nghệ nhân / hộ sản xuất / hợp tác xã đối tác
-- email · điện thoại · fanpage
-- thông tin liên hệ ở chân trang
-
-Chưa điền thì trang vẫn chạy bình thường, chỉ là còn khung trống.
-
-**Lưu ý:** trang không có biểu mẫu đăng ký. GitHub Pages chỉ phục vụ file tĩnh, không có
-máy chủ phía sau để hứng dữ liệu người điền. Nếu cần nhận đăng ký, dùng dịch vụ ngoài
-như Google Form hoặc Formspree rồi đặt đường dẫn vào ô liên hệ.
-
----
-
-## 5. Hai điều về bản quyền tư liệu — đọc trước khi chạy quảng cáo
-
-**Phim `story.mp4` ("Lùng Tám", 2 phút 22)** là phim nhóm tự quay. Không dính tư liệu của ai.
-Dùng thoải mái.
-
-**Phim `van-hoa.mp4` ("Văn hoá Hà Giang", 53 giây)** do nhóm dựng nhưng **ghép từ tư liệu
-của bên thứ ba**:
-- giây 15–25 có logo **AMAZING HÀ GIANG — KỲ VĨ HÀ GIANG** đóng chìm trong hình
-- giây 26 có dòng ghi công **The Lover Lo Lo Chai — Jerry Tran**
-
-Trang đang giữ nguyên cả hai, không cắt không che, và có hẳn một khối ghi nguồn đặt tên là
-*"Chúng tôi ghi nguồn vì đó là nghề."* Đừng gỡ khối đó, cũng đừng xoá logo khỏi phim —
-xoá logo là gỡ mất phần ghi công, còn rủi ro hơn giữ lại.
-
-Nếu sau này trang dùng cho mục đích thương mại thật sự, nên xin phép chủ tư liệu bằng văn bản,
-hoặc thay bằng phim tự quay.
-
-Ảnh trong năm chương lấy từ tài liệu dự án của nhóm. Nếu biết tác giả gốc của từng ảnh thì
-nên bổ sung tên vào phần chú thích dưới mỗi ảnh.
-
----
-
-## 6. Dung lượng và băng thông
-
-Tổng thư mục khoảng **48 MB**, trong đó video chiếm 40 MB. GitHub cho mỗi repo tối đa 1 GB
-và khoảng 100 GB băng thông mỗi tháng, nên bình thường thì thoải mái.
-
-Chỗ cần để ý: `story.mp4` nặng 25,8 MB. Trang đã đặt phim ở chế độ **chỉ tải khi người xem
-bấm nút** (`preload="none"`, không tự phát), nên người chỉ lướt qua không tốn gì.
-
-Nhưng nếu trang được chia sẻ rộng — chẳng hạn một buổi thuyết trình đông người, hay một bài
-đăng lan truyền — thì khoảng vài nghìn lượt bấm xem là chạm trần băng thông, GitHub sẽ gửi
-cảnh báo và có thể tạm ngắt trang.
-
-**Cách xử lý khi đó:** đưa `story.mp4` và `van-hoa.mp4` lên YouTube ở chế độ *không công khai*
-rồi thay khối phim bằng đường dẫn YouTube. Chỉ sửa khoảng mười dòng, không phải dựng lại trang.
-
----
-
-## 7. Cấu trúc thư mục
-
-```
-site/
-  index.html              toàn bộ trang: HTML + CSS + JavaScript trong một file
-  .nojekyll               báo GitHub đừng xử lý lại file
-  .gitignore
-  assets/
-    img/    23 ảnh, mỗi ảnh có 3 bản: .webp, .jpg dự phòng, -tiny.webp làm nền chờ
-    video/  5 video H.264
-```
-
-Video dùng mã H.264 chứ không phải H.265 như file gốc. Chrome và Firefox không phát được
-H.265 — nếu sau này thay video mới, nhớ chuyển mã trước.
-
----
-
-## 8. Vài điều về cách trang hoạt động
-
-- **Năm sợi ở mép phải màn hình** (dưới đáy trên điện thoại) là năm cộng đồng. Bấm vào một sợi
-  thì con thoi chạy ngang và cả trang đổi màu theo bộ trang phục của cộng đồng đó. Khi cuộn
-  qua từng chương thì màu cũng đổi, nhưng đổi lặng lẽ không chạy con thoi — để cảm giác
-  "mình vừa bấm ra điều đó" không bị trang tự làm hộ.
-- **Máy yếu, mạng chậm, hoặc người dùng bật chế độ giảm chuyển động** thì trang tự hạ bậc:
-  bỏ con thoi, bỏ video nền, chỉ còn ảnh tĩnh. Nội dung vẫn đủ.
-- **Trang dùng nền sáng.** Nền là sắc vải lanh mộc `#F6F2E9`. Màu chàm không mất đi — nó chuyển
-  từ vai nền sang vai mực và vai điểm nhấn, đúng như trên tấm vải thật.
-  Chỉ ba khối dùng nền tối: phần mở đầu, khung phim và khối ghi nguồn. Xem phim thì tắt đèn,
-  đó là lý do của ba khối đó, không phải sở thích. Khối nào cần nền tối thì thêm `class="tam-toi"`,
-  mọi token bên trong sẽ tự đổi vai.
-- **Hoa văn vẽ bằng mũi thêu chữ X**, không phải ô vuông đặc — thổ cẩm được làm từ mũi thêu,
-  vẽ bằng ô vuông sẽ ra hình pixel. Mỗi mũi lệch nhẹ theo vị trí, nhưng lệch có quy luật nên
-  vẽ lại bao nhiêu lần cũng ra đúng một hình.
-- **Màu chữ và màu mảng là hai biến tách riêng.** Ba trong năm màu cộng đồng không đủ tương
-  phản để làm chữ nhỏ trên nền chàm, nên mỗi cộng đồng có một màu riêng dành cho chữ. Nếu sửa
-  màu, giữ nguyên quy tắc này, không thì có chương sẽ không đọc được.
-- **Mọi đường dẫn đều là đường dẫn tương đối**, không có dấu gạch chéo ở đầu — nhờ vậy trang
-  chạy được cả khi nằm trong thư mục con của GitHub Pages.
-
----
-
-## 9. Trang chia làm ba phần
-
-Trang giữ đúng cách chia ba thẻ trong tài liệu của nhóm:
-
-1. **Văn hoá Hà Giang** — năm cộng đồng, mốc UNESCO 2019, chợ phiên
-2. **Nguồn gốc và quy trình** — Lùng Tám, hợp tác xã 2001, chín bước làm vải, phim của nhóm
-3. **Ý nghĩa hoa văn thổ cẩm** — bốn họ họa tiết, sắc màu, vì sao cần gìn giữ
-
-Mỗi lần chỉ hiện một phần. Bấm thẻ nào thì con thoi chạy ngang rồi phần đó lộ ra.
-Gắn thẳng đường dẫn tới từng phần được: thêm `#phan-1`, `#phan-2` hoặc `#phan-3` vào cuối địa chỉ.
-
-Nội dung ba phần lấy từ tài liệu Google Docs của nhóm. Nếu tài liệu đó sửa thì phải sửa lại trang,
-hai bên không tự đồng bộ.
-
----
-
-## 10. Ảnh xem trước khi gửi link
-
-`assets/img/share.jpg` (1200×630) là ảnh hiện ra khi dán link vào Messenger, Zalo hay Facebook.
-
-**Lưu ý nếu đổi tên miền:** các thẻ `og:url`, `og:image` và `twitter:image` trong `index.html`
-đang ghi **đường dẫn tuyệt đối** tới `pokiwarquanden4.github.io`. Facebook và Zalo không chấp nhận
-đường dẫn tương đối — để tương đối là ảnh xem trước không hiện. Khi gắn tên miền riêng, phải sửa
-cả ba thẻ đó sang tên miền mới.
-
-Facebook và Zalo giữ ảnh xem trước trong bộ nhớ khá lâu. Sau khi đổi, dán link vào
-`developers.facebook.com/tools/debug/` rồi bấm *Scrape Again* để ép lấy bản mới.
-
----
-
-## 11. Ảnh nền chạy suốt khi lướt
-
-Khoảng trống hai bên nội dung là **ảnh nền đứng yên khi cuộn**, và ảnh đổi theo từng phần:
-
-| Phần | Ảnh nền | Độ phủ |
+| Phần | Đường dẫn | Nội dung |
 |---|---|---|
-| 01 — Văn hoá Hà Giang | `hg-ban-lang` (bản làng, ruộng bậc thang) | 78% |
-| 02 — Nguồn gốc và quy trình | `hv-xoan-oc` (cận cảnh thổ cẩm) | 88% |
-| 03 — Ý nghĩa hoa văn | `hv-hinh-hoc` (hoa văn hình học) | 88% |
+| 01 Giới thiệu | `#gioi-thieu` | ảnh lớn đầu trang, thông tin doanh nghiệp, về Chạm Bản Cẩm, tầm nhìn – sứ mệnh – giá trị cốt lõi, liên hệ |
+| 02 Câu chuyện thổ cẩm | `#cau-chuyen` | Lùng Tám và HTX, bà Vàng Thị Mai, 9 bước làm vải, giá trị thổ cẩm Lùng Tám, ý nghĩa hoa văn, video |
+| 03 Sản phẩm | `#san-pham` | 4 box và 23 sản phẩm bán lẻ — bấm vào là sang trang riêng của sản phẩm |
+| 04 Hộp quà trải nghiệm | `#hop-qua` | **chờ nhóm gửi nội dung** |
+| 05 Trải nghiệm văn hóa | `#trai-nghiem` | văn hóa Hà Giang, năm cộng đồng, chợ phiên |
+| 06 Về chúng tôi | `#ve-chung-toi` | giới thiệu dự án, thành viên, đối tác cung ứng, nguồn tư liệu |
 
-Đổi ảnh thì sửa bảng `ANH_NEN` trong phần JavaScript cuối `index.html`.
+- Gắn thẳng đường dẫn tới một mục bên trong cũng được, ví dụ `#hoa-van`, `#quy-trinh`, `#nam-soi`.
+- Đường dẫn cũ `#phan-1`, `#phan-2`, `#phan-3` (đã gửi đi trước đây) vẫn mở đúng nội dung:
+  `#phan-1` → phần 05, `#phan-2` → phần 02, `#phan-3` → mục hoa văn trong phần 02.
+- Không có JavaScript thì cả sáu phần hiện nối tiếp nhau — không ai bị mất nội dung.
 
-**Vì sao độ phủ khác nhau:** ảnh phong cảnh thưa nét nên để mỏng vẫn đọc được chữ; ảnh hoa văn
-dày nét phải phủ đậm hơn, nếu không mắt rất mệt khi đọc. Đừng hạ độ phủ của phần 02 và 03 xuống
-dưới 0.85.
+**Chữ:** tiếng Việt lấy nguyên văn tài liệu; riêng mục *Ý nghĩa hoa văn* giữ như web cũ
+theo ghi chú của nhóm. Nếu tài liệu sửa thì phải sửa lại trang, hai bên không tự đồng bộ.
 
-**Lưu ý khi sửa các khối ảnh:** dùng `filter` để làm nhạt, **đừng dùng `opacity`** — `opacity` làm
-cả khối trong suốt nên ảnh nền phía sau lọt qua, nhìn nhoè nhoẹt.
+---
+
+## 4. Sửa sản phẩm
+
+Danh sách box và sản phẩm bán lẻ nằm trong **`cong-cu/san-pham.json`**. Lưới thẻ ở phần 03 và
+27 trang trong thư mục `san-pham/` đều được tạo từ tệp này. Sửa xong thì chạy:
+
+```
+python cong-cu/tao-trang.py
+```
+
+Công cụ sẽ:
+- tạo lại mọi trang `san-pham/<mã>.html` (và xoá trang của sản phẩm đã bỏ khỏi danh sách),
+- thay lưới thẻ trong `index.html` — chỉ thay đoạn nằm giữa các dấu `<!-- @nhom-box -->`,
+  `<!-- @nhom-ban-le -->`,
+- chép menu (`cong-cu/dau-trang.html`) và chân trang (`cong-cu/chan-trang.html`) vào
+  `index.html` và mọi trang sản phẩm. **Muốn đổi số điện thoại, email, mạng xã hội thì sửa hai tệp
+  này rồi chạy công cụ**, đừng sửa tay từng trang.
+
+Đừng sửa tay các tệp trong `san-pham/` — lần chạy công cụ sau sẽ ghi đè.
+
+Mỗi sản phẩm trong tệp JSON có chữ tiếng Việt và tiếng Anh. Ảnh ghi bằng tên tệp trong
+`assets/img/`, không có đuôi. Thêm mô tả cho sản phẩm bán lẻ thì thêm hai trường
+`"mo_ta"` và `"mo_ta_en"` vào sản phẩm đó — có mô tả rồi thì ô chờ tự biến mất.
+
+Mỗi ảnh sản phẩm có 4 bản: `<tên>.webp` (ảnh lớn), `<tên>-the.webp` (640px, dùng cho thẻ và dãy
+ảnh nhỏ), `<tên>.jpg` (ảnh xem trước khi chia sẻ link), `<tên>-tiny.webp` (nền mờ lúc chờ tải).
+Có ảnh mới thì một lệnh tạo đủ cả bốn bản:
+
+```
+python cong-cu/tao-anh.py "D:/anh/Túi tote đỏ.jpg" tui-tote-do
+```
+
+**Ảnh gốc của nhiều sản phẩm bán lẻ trong tài liệu rất nhỏ** (lót ly, kẹp nơ, balo đỏ, balo trắng kem,
+túi tote, túi đeo chéo mã 1 và 3… chỉ 160–500px), nên lên trang hơi nhoè. Có ảnh chụp gốc thì chạy
+lệnh trên với đúng tên cũ để thay.
+
+Có Pillow (`pip install pillow`) thì công cụ tự đọc kích thước ảnh để ghi vào trang; không có
+cũng chạy được.
+
+---
+
+## 5. Những ô còn chờ điền
+
+Tìm chữ `Chủ dự án điền` là thấy, đang hiện bằng khung viền đứt:
+
+- **Phần 04 Hộp quà trải nghiệm** — prototype, thành phần, giá bán.
+- **Mô tả 23 sản phẩm bán lẻ** — thêm vào `cong-cu/san-pham.json` (mục 4).
+
+Và một chỗ dùng ảnh tạm:
+
+- **Ảnh lớn đầu trang (phần 01)** đang tạm dùng ảnh hộp Chạm Mộc. Có ảnh chính thức thì thay
+  `src`, `alt`, `data-alt-en`, `width`, `height` của thẻ ảnh trong khối `gt-anh-dau` ở `index.html`.
+
+Trang không hiện giá — liên hệ mua qua nút "Liên hệ qua Facebook để mua hàng"
+(`https://www.facebook.com/ChamBanCam`).
+
+---
+
+## 6. Hai ngôn ngữ
+
+Cờ Việt Nam / Anh ở góc trên bên phải. Trang nhớ lựa chọn của người xem cho lần sau
+và cho mọi trang khác.
+
+Mỗi đoạn chữ có hai bản đứng cạnh nhau, `lang="vi"` và `lang="en"`; CSS chỉ cho hiện một bản.
+Chữ nằm trong thuộc tính (chữ thay thế của ảnh, nhãn đọc màn hình) thì để bản tiếng Anh ở
+`data-alt-en` / `data-aria-en`. **Thêm đoạn mới thì nhớ thêm cả bản tiếng Anh.**
+
+Bản tiếng Anh của phần 01, 02, 05 lấy từ tài liệu. **Bản tiếng Anh của phần 03 Sản phẩm,
+06 Về chúng tôi, menu, nút bấm và vài tiêu đề nhỏ do người làm web dịch** — nhóm nên đọc lại.
+
+---
+
+## 7. Hiệu ứng — chỉ ở phần 05
+
+Năm sợi ở mép phải (dưới đáy trên điện thoại), đổi màu theo cộng đồng và ảnh nền đứng yên khi
+cuộn **chỉ bật ở phần 05 Trải nghiệm văn hóa**, nơi có năm cộng đồng. Các phần khác giữ gọn
+kiểu Trúc Lâm / Miên Studio. Con thoi vẫn chạy mỗi khi người xem đổi phần.
+
+- Bấm một sợi hoặc một cột người thì con thoi chạy và cả khu đổi màu theo trang phục cộng đồng đó.
+- **Máy yếu, mạng chậm, hoặc người dùng bật giảm chuyển động** thì trang tự hạ bậc: bỏ con thoi,
+  ảnh nền đứng yên thành ảnh thường. Nội dung vẫn đủ.
+- **Màu chữ và màu mảng là hai biến tách riêng** (`--chu`, `--khoi`). Ba trong năm màu cộng đồng
+  không đủ tương phản để làm chữ nhỏ, nên mỗi cộng đồng có một màu riêng cho chữ. Sửa màu thì giữ
+  quy tắc này.
+- **Hoa văn vẽ bằng mũi thêu chữ X**, không phải ô vuông đặc. Mỗi mũi lệch nhẹ theo vị trí nhưng
+  có quy luật, nên vẽ lại bao nhiêu lần cũng ra đúng một hình.
+- Ảnh nền phần 05 là `hg-ban-lang`, độ phủ 0.78 — sửa ở hàm `datAnhNen` cuối `index.html`.
+  Làm nhạt ảnh thì dùng `filter`, **đừng dùng `opacity`** — `opacity` làm cả khối trong suốt nên
+  ảnh nền phía sau lọt qua, nhìn nhoè nhoẹt.
+
+---
+
+## 8. Phim
+
+**`van-hoa.mp4` ("Văn hoá Hà Giang", 53 giây)** nằm ở mục 06 của phần 02, chỉ tải khi người xem
+bấm nút. Phim do nhóm dựng nhưng ghép từ tư liệu của bên thứ ba: giây 15–25 có logo
+**AMAZING HÀ GIANG — KỲ VĨ HÀ GIANG**, giây 26 có dòng ghi công **The Lover Lo Lo Chai — Jerry Tran**.
+Hai thứ này vẫn nằm nguyên trong hình. Khối ghi nguồn đặt cạnh phim ở web cũ đã bỏ theo quyết định
+của nhóm (11/2026). Nếu trang dùng cho mục đích thương mại thật sự, nên xin phép chủ tư liệu bằng
+văn bản, hoặc thay bằng phim tự quay.
+
+Video dùng mã H.264. Chrome và Firefox không phát được H.265 — thay video mới thì nhớ chuyển mã trước.
+
+---
+
+## 9. Ảnh xem trước khi gửi link
+
+- Trang chủ dùng `assets/img/share.jpg` (1200×630).
+- Mỗi trang sản phẩm dùng ảnh chính của sản phẩm đó. Ảnh nhỏ hơn 200px thì Facebook và Zalo bỏ qua,
+  nên công cụ tự dùng `share.jpg` thay.
+
+**Lưu ý nếu đổi tên miền:** các thẻ `og:url`, `og:image`, `twitter:image` phải là **đường dẫn tuyệt
+đối** — để tương đối là ảnh xem trước không hiện. Ở trang chủ thì sửa trong `index.html`; ở trang
+sản phẩm thì sửa `"dia_chi_web"` trong `cong-cu/san-pham.json` rồi chạy lại công cụ.
+
+Facebook và Zalo giữ ảnh xem trước khá lâu. Sau khi đổi, dán link vào
+`developers.facebook.com/tools/debug/` rồi bấm *Scrape Again*.
+
+---
+
+## 10. Cấu trúc thư mục
+
+```
+index.html                trang chủ: sáu phần, CSS và JavaScript riêng của trang chủ
+san-pham/                 27 trang sản phẩm — DO CÔNG CỤ TẠO, đừng sửa tay
+cong-cu/
+  san-pham.json           danh sách box và sản phẩm bán lẻ
+  dau-trang.html          thanh trên cùng + menu, dùng chung
+  chan-trang.html         chân trang, dùng chung
+  tao-trang.py            công cụ tạo trang (mục 4)
+  tao-anh.py              chuyển một ảnh gốc thành đủ các bản trang cần (mục 4)
+assets/
+  css/chung.css           màu, chữ, menu, chân trang, thẻ và trang sản phẩm — dùng cho mọi trang
+  js/chung.js             chuyển ngôn ngữ, menu điện thoại, ảnh hiện dần, bộ ảnh sản phẩm
+  img/                    ảnh
+  video/                  video H.264
+.nojekyll                 báo GitHub đừng xử lý lại file
+```
+
+Mọi đường dẫn đều là đường dẫn tương đối, không có dấu gạch chéo ở đầu — nhờ vậy trang chạy được
+cả khi nằm trong thư mục con của GitHub Pages.
+
+**Tệp không còn trang nào dùng** (để lại, chưa xoá — khoảng 40 MB, phần lớn là `story.mp4` 26 MB):
+phim `story.mp4` ("Lùng Tám" 2:22), `hero-loop.mp4`, `vung-cao-loop.mp4`, `soi-loop.mp4`, và các ảnh
+`anh-nhom`, `b1-thu-hoach`, `b3-noi-soi`, `cd-nung`, `cho-phien-moi`, `hat-then-dan-tinh`, `hg-dong-van`,
+`hg-duong-deo`, `hg-lung-cu`, `hg-nho-que`, `hg-nui-doi`, `hg-ruong-bac-thang`, `hg-tham-ma`, `khung-cui`,
+`le-cap-sac`, `lo-lo-ban-lang`, `lo-lo-mua`, `nha-san-tay`, `nha-trinh-tuong`, `nhom-cham-ban-cam`,
+`phu-nu-dao`, `phu-nu-mong`, `poster-khung-cui`, `poster-nhuom`, `poster-san-pham`, `poster-the-end`,
+`poster-thung-lung`, `tay-dien-xuong`, `thung-lung-ban-lang`, `trai-nghiem` (mỗi ảnh gồm các bản
+`.webp`, `.jpg`, `-tiny.webp`). Xoá đi thì repo nhẹ hơn; GitHub không tính băng thông cho tệp không ai mở.
+
+---
+
+## 11. Dung lượng và băng thông
+
+GitHub cho mỗi repo tối đa 1 GB và khoảng 100 GB băng thông mỗi tháng, nên bình thường thì thoải mái.
+Phim `van-hoa.mp4` (11 MB) chỉ tải khi người xem bấm nút (`preload="none"`), ảnh chỉ tải khi cuộn tới.
+
+Nếu trang được chia sẻ rộng (vài nghìn lượt bấm xem phim) mà chạm trần băng thông, đưa phim lên
+YouTube ở chế độ *không công khai* rồi thay khối phim bằng đường dẫn YouTube.

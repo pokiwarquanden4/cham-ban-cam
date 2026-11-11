@@ -1,0 +1,132 @@
+{
+  "_ghi_chu": "Sửa tệp này rồi chạy: python cong-cu/tao-trang.py — xem README mục 'Sửa sản phẩm'. Chữ tiếng Việt lấy nguyên văn tài liệu của nhóm; chữ tiếng Anh do người làm web dịch, cần nhóm duyệt. Ảnh: ghi tên tệp trong assets/img, không có đuôi .webp.",
+  "dia_chi_web": "https://pokiwarquanden4.github.io/cham-ban-cam/",
+  "facebook": "https://www.facebook.com/ChamBanCam",
+
+  "box": [
+    {
+      "ma": "cham-moc",
+      "so": "01",
+      "ten": "Chạm Mộc",
+      "khau_hieu": "Nhỏ xinh, mộc mạc, đậm chất Hà Giang",
+      "khau_hieu_en": "Small, rustic and true to Ha Giang",
+      "bieu_tuong": "",
+      "bieu_tuong_co_gi": "",
+      "co_gi": [
+        {"bt": "🧣", "vi": "Khăn thổ cẩm mang sắc màu đặc trưng của vùng cao.", "en": "A brocade scarf in the signature colours of the highlands."},
+        {"bt": "🧵", "vi": "Móc khóa thổ cẩm độc đáo, đậm nét truyền thống.", "en": "A one-of-a-kind brocade keychain with a strong traditional character."},
+        {"bt": "🎀", "vi": "Kẹp tóc thổ cẩm xinh xắn, đầy màu sắc.", "en": "A pretty, colourful brocade hair clip."},
+        {"bt": "⛰️", "vi": "Móc khóa Hà Giang và móc khóa logo Chạm Bản Cẩm lưu giữ những dấu ấn đáng nhớ.", "en": "A Ha Giang keychain and a Chạm Bản Cẩm logo keychain to hold on to the memories."}
+      ],
+      "anh": [
+        {"tep": "box-cham-moc", "vi": "Hộp quà Chạm Mộc mở nắp: khăn thổ cẩm, kẹp tóc và móc khóa", "en": "The Chạm Mộc box, opened: brocade scarf, hair clips and keychains"},
+        {"tep": "hop-nap", "vi": "Nắp hộp quà CHẠM BẢN CẨM vẽ cột cờ và hoa đào", "en": "The CHẠM BẢN CẨM box lid, painted with a flag tower and peach blossoms"},
+        {"tep": "moc-hop-mo", "vi": "Bên trong hộp Chạm Mộc", "en": "Inside the Chạm Mộc box"},
+        {"tep": "lot-ly-ma-2", "vi": "Miếng thổ cẩm hình trái tim", "en": "Heart-shaped brocade piece"},
+        {"tep": "moc-khoa-ha-giang", "vi": "Móc khóa Hà Giang in hình", "en": "Printed Ha Giang keychains"},
+        {"tep": "kep-no", "vi": "Kẹp nơ thổ cẩm", "en": "Brocade bow clips"},
+        {"tep": "khan-cham-moc", "vi": "Khăn thổ cẩm hoa văn zích zắc", "en": "Brocade scarf with zigzag patterns"}
+      ]
+    },
+    {
+      "ma": "cham-hoa",
+      "so": "02",
+      "ten": "Chạm Hoa",
+      "khau_hieu": "Rực rỡ sắc màu, đậm chất thổ cẩm",
+      "khau_hieu_en": "Bursting with colour, true to brocade",
+      "bieu_tuong": "🌸",
+      "bieu_tuong_co_gi": "",
+      "co_gi": [
+        {"bt": "🎒", "vi": "Túi đeo chéo thổ cẩm với họa tiết truyền thống, kết hợp nét mộc mạc và phong cách trẻ trung, hiện đại.", "en": "A brocade crossbody bag with traditional motifs, pairing rustic charm with a fresh, modern style."},
+        {"bt": "👜", "vi": "Ví mini thổ cẩm với họa tiết hoa thêu nổi bật, vừa cá tính vừa tiện dụng.", "en": "A mini brocade wallet with bold embroidered flowers — distinctive and practical."},
+        {"bt": "🧣", "vi": "Khăn thổ cẩm mang sắc màu và hoa văn đặc trưng của vùng cao.", "en": "A brocade scarf in the signature colours and patterns of the highlands."},
+        {"bt": "🧵", "vi": "Móc khóa thổ cẩm nhỏ xinh, đậm nét thủ công truyền thống.", "en": "A small brocade keychain, rich in traditional handcraft."},
+        {"bt": "🏞️", "vi": "Móc khóa Hà Giang với hình ảnh cảnh sắc vùng cao, lưu giữ kỷ niệm về mảnh đất địa đầu Tổ quốc.", "en": "A Ha Giang keychain showing highland scenery — a keepsake from Vietnam's northernmost land."}
+      ],
+      "anh": [
+        {"tep": "box-cham-hoa", "vi": "Hộp quà Chạm Hoa mở nắp: khăn, túi, ví thêu hoa và móc khóa", "en": "The Chạm Hoa box, opened: scarf, bag, embroidered wallet and keychains"},
+        {"tep": "hop-nap", "vi": "Nắp hộp quà CHẠM BẢN CẨM vẽ cột cờ và hoa đào", "en": "The CHẠM BẢN CẨM box lid, painted with a flag tower and peach blossoms"},
+        {"tep": "hoa-hop-mo", "vi": "Bên trong hộp Chạm Hoa", "en": "Inside the Chạm Hoa box"},
+        {"tep": "khan-cham-hoa", "vi": "Khăn thổ cẩm hoa văn hình thoi", "en": "Brocade scarf with diamond patterns"},
+        {"tep": "tui-mini", "vi": "Ví mini thổ cẩm thêu hoa", "en": "Mini brocade wallet with embroidered flowers"},
+        {"tep": "tui-deo-cheo-ma-1", "vi": "Túi đeo chéo thổ cẩm", "en": "Brocade crossbody bag"},
+        {"tep": "moc-khoa-ha-giang", "vi": "Móc khóa Hà Giang in hình", "en": "Printed Ha Giang keychains"}
+      ]
+    },
+    {
+      "ma": "cham-cao-nguyen",
+      "so": "03",
+      "ten": "Chạm Cao Nguyên",
+      "khau_hieu": "Gói trọn sắc màu Hà Giang",
+      "khau_hieu_en": "All the colours of Ha Giang in one box",
+      "bieu_tuong": "🏔️",
+      "bieu_tuong_co_gi": "🏔️",
+      "co_gi": [
+        {"bt": "🎒", "vi": "Túi tote thổ cẩm với họa tiết truyền thống nổi bật, rộng rãi và tiện dụng.", "en": "A roomy, practical brocade tote bag with bold traditional motifs."},
+        {"bt": "🧣", "vi": "Khăn thổ cẩm mang sắc màu và hoa văn đặc trưng của vùng cao.", "en": "A brocade scarf in the signature colours and patterns of the highlands."},
+        {"bt": "🧵", "vi": "Móc khóa thổ cẩm nhỏ xinh, đậm nét thủ công truyền thống.", "en": "A small brocade keychain, rich in traditional handcraft."},
+        {"bt": "🔑", "vi": "Móc khóa logo Chạm Bản Cẩm mang dấu ấn riêng của thương hiệu.", "en": "A Chạm Bản Cẩm logo keychain carrying the brand's own mark."},
+        {"bt": "🏞️", "vi": "Móc khóa Hà Giang lưu giữ hình ảnh và kỷ niệm về vùng đất cao nguyên đá.", "en": "A Ha Giang keychain that keeps the images and memories of the stone plateau."}
+      ],
+      "anh": [
+        {"tep": "box-cham-cao-nguyen", "vi": "Hộp quà Chạm Cao Nguyên mở nắp: túi tote, khăn, móc khóa và thẻ hộ chiếu", "en": "The Chạm Cao Nguyên box, opened: tote bag, scarf, keychains and passport card"},
+        {"tep": "cao-nguyen-hop-mo", "vi": "Bên trong hộp Chạm Cao Nguyên", "en": "Inside the Chạm Cao Nguyên box"},
+        {"tep": "khan-cao-nguyen", "vi": "Khăn thổ cẩm", "en": "Brocade scarf"},
+        {"tep": "ha-giang-passport", "vi": "Hà Giang Passport", "en": "Ha Giang Passport"},
+        {"tep": "moc-khoa-ha-giang", "vi": "Móc khóa Hà Giang in hình", "en": "Printed Ha Giang keychains"},
+        {"tep": "moc-khoa-tho-cam-ma-1", "vi": "Móc khóa thổ cẩm hình ngôi sao", "en": "Star-shaped brocade keychains"}
+      ]
+    },
+    {
+      "ma": "cham-di-san",
+      "so": "04",
+      "ten": "Chạm Di Sản",
+      "khau_hieu": "Gói trọn nét đẹp văn hóa Hà Giang",
+      "khau_hieu_en": "The beauty of Ha Giang culture in one box",
+      "bieu_tuong": "💙",
+      "bieu_tuong_co_gi": "🌸",
+      "co_gi": [
+        {"bt": "🎒", "vi": "Balo với điểm nhấn họa tiết thổ cẩm độc đáo, vừa cá tính vừa tiện dụng.", "en": "A backpack accented with distinctive brocade motifs — stylish and practical."},
+        {"bt": "🧣", "vi": "Khăn thổ cẩm mang sắc màu và hoa văn đặc trưng của vùng cao.", "en": "A brocade scarf in the signature colours and patterns of the highlands."},
+        {"bt": "🧵", "vi": "Móc khóa thổ cẩm nhỏ xinh, đậm nét thủ công truyền thống.", "en": "A small brocade keychain, rich in traditional handcraft."},
+        {"bt": "📕", "vi": "Hà Giang Passport lưu giữ những dấu ấn và câu chuyện về vùng đất Hà Giang.", "en": "A Ha Giang Passport that collects the marks and stories of the land of Ha Giang."},
+        {"bt": "🏞️", "vi": "Móc khóa Hà Giang với hình ảnh cảnh sắc vùng cao, lưu giữ kỷ niệm về mảnh đất địa đầu Tổ quốc.", "en": "A Ha Giang keychain showing highland scenery — a keepsake from Vietnam's northernmost land."}
+      ],
+      "anh": [
+        {"tep": "box-cham-di-san", "vi": "Hộp quà Chạm Di Sản mở nắp: balo, móc khóa và thẻ hộ chiếu", "en": "The Chạm Di Sản box, opened: backpack, keychains and passport card"},
+        {"tep": "di-san-hop-mo", "vi": "Bên trong hộp Chạm Di Sản", "en": "Inside the Chạm Di Sản box"},
+        {"tep": "balo-do", "vi": "Balo thổ cẩm màu đỏ", "en": "Red brocade backpack"},
+        {"tep": "khan-di-san", "vi": "Khăn thổ cẩm", "en": "Brocade scarf"},
+        {"tep": "ha-giang-passport", "vi": "Hà Giang Passport", "en": "Ha Giang Passport"},
+        {"tep": "moc-khoa-tho-cam-ma-1", "vi": "Móc khóa thổ cẩm hình ngôi sao", "en": "Star-shaped brocade keychains"},
+        {"tep": "moc-khoa-ha-giang", "vi": "Móc khóa Hà Giang in hình", "en": "Printed Ha Giang keychains"}
+      ]
+    }
+  ],
+
+  "ban_le": [
+    {"ma": "balo-tho-cam-do",         "loai": "Balo thổ cẩm", "loai_en": "Brocade backpack", "bien_the": "Đỏ",       "bien_the_en": "Red",     "anh": "balo-do"},
+    {"ma": "balo-tho-cam-vang",       "loai": "Balo thổ cẩm", "loai_en": "Brocade backpack", "bien_the": "Vàng",     "bien_the_en": "Yellow",  "anh": "balo-vang"},
+    {"ma": "balo-tho-cam-trang-kem",  "loai": "Balo thổ cẩm", "loai_en": "Brocade backpack", "bien_the": "Trắng kem","bien_the_en": "Cream",   "anh": "balo-trang-kem"},
+    {"ma": "balo-tho-cam-xanh",       "loai": "Balo thổ cẩm", "loai_en": "Brocade backpack", "bien_the": "Xanh",     "bien_the_en": "Blue",    "anh": "balo-xanh"},
+    {"ma": "lot-ly-tho-cam-ma-1",     "loai": "Lót ly thổ cẩm", "loai_en": "Brocade coaster", "bien_the": "Mã 1", "bien_the_en": "Style 1", "anh": "lot-ly-ma-1"},
+    {"ma": "lot-ly-tho-cam-ma-2",     "loai": "Lót ly thổ cẩm", "loai_en": "Brocade coaster", "bien_the": "Mã 2", "bien_the_en": "Style 2", "anh": "lot-ly-ma-2"},
+    {"ma": "lot-ly-tho-cam-ma-3",     "loai": "Lót ly thổ cẩm", "loai_en": "Brocade coaster", "bien_the": "Mã 3", "bien_the_en": "Style 3", "anh": "lot-ly-ma-3"},
+    {"ma": "lot-ly-tho-cam-ma-4",     "loai": "Lót ly thổ cẩm", "loai_en": "Brocade coaster", "bien_the": "Mã 4", "bien_the_en": "Style 4", "anh": "lot-ly-ma-4"},
+    {"ma": "ha-giang-passport",       "loai": "Hà Giang passport", "loai_en": "Ha Giang passport", "bien_the": "", "bien_the_en": "", "anh": "ha-giang-passport"},
+    {"ma": "moc-khoa-tho-cam-ma-1",   "loai": "Móc khóa thổ cẩm", "loai_en": "Brocade keychain", "bien_the": "Mã 1", "bien_the_en": "Style 1", "anh": "moc-khoa-tho-cam-ma-1"},
+    {"ma": "moc-khoa-tho-cam-ma-2",   "loai": "Móc khóa thổ cẩm", "loai_en": "Brocade keychain", "bien_the": "Mã 2", "bien_the_en": "Style 2", "anh": "moc-khoa-tho-cam-ma-2"},
+    {"ma": "moc-khoa-tho-cam-ma-3",   "loai": "Móc khóa thổ cẩm", "loai_en": "Brocade keychain", "bien_the": "Mã 3", "bien_the_en": "Style 3", "anh": "moc-khoa-tho-cam-ma-3"},
+    {"ma": "moc-khoa-tho-cam-ma-4",   "loai": "Móc khóa thổ cẩm", "loai_en": "Brocade keychain", "bien_the": "Mã 4", "bien_the_en": "Style 4", "anh": "moc-khoa-tho-cam-ma-4"},
+    {"ma": "moc-khoa-ha-giang",       "loai": "Móc khóa Hà Giang", "loai_en": "Ha Giang keychain", "bien_the": "", "bien_the_en": "", "anh": "moc-khoa-ha-giang"},
+    {"ma": "vong-tay",                "loai": "Vòng tay", "loai_en": "Bracelet", "bien_the": "", "bien_the_en": "", "anh": "vong-tay"},
+    {"ma": "kep-no",                  "loai": "Kẹp nơ", "loai_en": "Bow hair clip", "bien_the": "", "bien_the_en": "", "anh": "kep-no"},
+    {"ma": "tui-mini",                "loai": "Túi mini", "loai_en": "Mini bag", "bien_the": "", "bien_the_en": "", "anh": "tui-mini"},
+    {"ma": "tui-dung-but",            "loai": "Túi đựng bút", "loai_en": "Pencil pouch", "bien_the": "", "bien_the_en": "", "anh": "tui-dung-but"},
+    {"ma": "tui-tote-do",             "loai": "Túi tote", "loai_en": "Tote bag", "bien_the": "Màu đỏ", "bien_the_en": "Red", "anh": "tui-tote-do"},
+    {"ma": "tui-tote-xanh",           "loai": "Túi tote", "loai_en": "Tote bag", "bien_the": "Màu xanh", "bien_the_en": "Blue", "anh": "tui-tote-xanh"},
+    {"ma": "tui-deo-cheo-ma-1",       "loai": "Túi đeo chéo", "loai_en": "Crossbody bag", "bien_the": "Mã 1", "bien_the_en": "Style 1", "anh": "tui-deo-cheo-ma-1"},
+    {"ma": "tui-deo-cheo-ma-2",       "loai": "Túi đeo chéo", "loai_en": "Crossbody bag", "bien_the": "Mã 2", "bien_the_en": "Style 2", "anh": "tui-deo-cheo-ma-2"},
+    {"ma": "tui-deo-cheo-ma-3",       "loai": "Túi đeo chéo", "loai_en": "Crossbody bag", "bien_the": "Mã 3", "bien_the_en": "Style 3", "anh": "tui-deo-cheo-ma-3"}
+  ]
+}

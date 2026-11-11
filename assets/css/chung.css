@@ -1,0 +1,270 @@
+/* ===========================================================
+   CHẠM BẢN CẨM — phần dùng chung cho MỌI trang
+   (trang chủ index.html và các trang sản phẩm trong san-pham/)
+   Gồm: bảng màu, chữ, thanh trên cùng, menu, chân trang,
+   nút chuyển ngôn ngữ, thẻ sản phẩm và khung trang sản phẩm.
+   Phần riêng của trang chủ nằm trong <style> của index.html.
+   =========================================================== */
+
+:root{
+  /* --- nền và mực ---
+     Nền sáng, lấy sắc vải lanh mộc chưa nhuộm. Màu chàm chuyển sang vai MỰC
+     và vai điểm nhấn — đúng như trên tấm vải thật. */
+  --cham:#F6F2E9;          /* nền chính: vải lanh mộc */
+  --cham-2:#EDE7D9;        /* mặt nổi nhẹ: thẻ, hộp, khung */
+  --soi:#1B2733;           /* MỰC chàm đậm — chữ chính, 13,6:1 trên nền */
+  --mo:#5D6A78;            /* chữ phụ, 5,2:1 */
+  --dong:#8A5B0F;          /* màu đồng, 5,6:1 */
+  --chanh:#4E6310;         /* viền focus, 6,4:1 */
+  --sang:1;                /* cờ cho JavaScript biết trang đang nền sáng */
+
+  /* --- ĐỎ LÀ MÀU CHỦ ĐẠO — lấy từ logo của nhóm --- */
+  --do:#A8231F;            /* 6,2:1, dùng được cả cho chữ nhỏ */
+  --do-tuoi:#C62A14;       /* chữ lớn và mảng — 5,0:1 */
+  --ke:rgba(27,39,51,.15);        /* đường kẻ mảnh */
+  --ke-2:rgba(27,39,51,.26);      /* viền khung */
+  --ke-3:rgba(27,39,51,.4);       /* viền đứt */
+  --soc-mau:rgba(27,39,51,.065);  /* lớp sợi dọc */
+
+  /* --- tấm nền tối: chỉ dùng cho khung phim --- */
+  --toi:#141D26;
+  --toi-2:#1D2935;
+  --tren-toi:#F0EADC;
+
+  /* --- hệ màu cộng đồng (chỉ sống trong phần 05) — mặc định: Mông --- */
+  --khoi:#C62A14;
+  --chu:#8A3D08;
+
+  --sv-t:env(safe-area-inset-top,0px);
+  --sv-d:env(safe-area-inset-bottom,0px);
+  --rail:0px;              /* biên vải 5 sợi — chỉ phần 05 mới bật, xem index.html */
+  --soc:34px;              /* bước sợi dọc */
+  --cao-menu:76px;         /* chiều cao thanh menu khi đã thu gọn */
+
+  --f-hien:'Bricolage Grotesque','Arial Narrow',system-ui,sans-serif;
+  --f-than:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --f-phim:'Literata',Georgia,'Times New Roman',serif;
+
+  color-scheme:light;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+/* BẮT BUỘC: mọi khai báo display của ta đều đè lên [hidden] mặc định của trình duyệt */
+[hidden]{display:none !important}
+html,body{overflow-x:clip} /* clip, KHÔNG hidden — hidden giết position:sticky */
+/* KHÔNG đặt scroll-behavior:smooth ở đây. GSAP ScrollTrigger (trang chủ) tự cuộn đi cuộn lại
+   mỗi lần tính mốc; có "cuộn mượt" thì những lần đó thành cú trượt dài về chỗ cũ — trang tự trôi.
+   Cuộn mượt cho mục lục đã làm bằng JavaScript trong index.html. */
+html{background:var(--cham)}
+body{
+  margin:0;background:transparent;color:var(--soi);
+  font:400 clamp(15px,1.05vw,17px)/1.65 var(--f-than);
+  -webkit-font-smoothing:antialiased;
+  padding-block:var(--sv-t) var(--sv-d);
+}
+img,video{max-width:100%;display:block}
+p{margin:0}
+ul,ol{margin:0;padding:0;list-style:none}
+a{color:var(--do);text-underline-offset:.22em;text-decoration-thickness:1px}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;padding:0}
+:focus-visible{outline:2px solid var(--chanh);outline-offset:3px}
+::selection{background:var(--do);color:#fff}
+
+/* ===================== HAI NGÔN NGỮ =====================
+   Mỗi đoạn chữ có hai bản đứng cạnh nhau: lang="vi" và lang="en".
+   Chỉ một bản hiện, theo html[data-nn]. Không có JavaScript thì hiện tiếng Việt. */
+html:not([data-nn="en"]) [lang="en"]{display:none !important}
+html[data-nn="en"] [lang="vi"]{display:none !important}
+
+/* ---------- chữ ---------- */
+.hien{font-family:var(--f-hien);font-variation-settings:'wdth' 75,'wght' 800;
+  line-height:.9;letter-spacing:-.015em;text-wrap:balance;margin:0}
+.nhan{font-family:var(--f-hien);font-variation-settings:'wdth' 100,'wght' 500;
+  font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--mo);margin:0}
+.dam{font-weight:700}
+.boc{width:min(1280px,100%);margin-inline:auto;padding-inline:clamp(16px,4vw,48px)}
+section{position:relative}
+
+/* ảnh hiện dần khi tải xong — chỉ ẩn khi có JavaScript, để không bao giờ mất ảnh */
+html.js img.mo-dan{opacity:0;transition:opacity .5s}
+html.js img.mo-dan.xong{opacity:1}
+.khung-anh{position:relative;overflow:hidden;background-color:var(--cham-2);
+  background-size:cover;background-position:center}
+.khung-anh img{width:100%;height:100%;object-fit:cover}
+
+/* ô chờ chủ dự án điền — viền đứt, ai nhìn cũng biết là chỗ còn trống */
+.o-cho-dien{border:1px dashed var(--ke-3);padding:16px 18px;
+  font-family:var(--f-hien);font-variation-settings:'wdth' 100,'wght' 500;
+  font-size:13px;letter-spacing:.08em;color:var(--mo)}
+
+/* ===================== THANH TRÊN CÙNG ===================== */
+#thanh-tren{border-bottom:1px solid var(--ke);background:var(--cham);font-size:13px;position:relative;z-index:72}
+#thanh-tren .boc{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:36px}
+.tt-lien-he{display:flex;flex-wrap:wrap;gap:4px 22px;align-items:center}
+.tt-lien-he a{color:var(--soi);text-decoration:none;display:inline-flex;align-items:center;gap:7px}
+.tt-lien-he a:hover{color:var(--do)}
+.tt-lien-he svg{width:14px;height:14px;flex:0 0 auto}
+.tt-ngon-ngu{display:flex;gap:10px;align-items:center}
+.tt-ngon-ngu button{display:block;line-height:0;padding:3px;border:1px solid transparent;opacity:.5;
+  transition:opacity .2s,border-color .2s}
+.tt-ngon-ngu button:hover{opacity:.85}
+.tt-ngon-ngu button[aria-pressed="true"]{opacity:1;border-color:var(--ke-2)}
+.tt-ngon-ngu svg{height:16px;width:auto;display:block}
+@media (max-width:520px){
+  .tt-lien-he .tt-mail{display:none}
+}
+
+/* ===================== MENU (kiểu Trúc Lâm: logo ở giữa) ===================== */
+#dau-trang{position:sticky;top:0;z-index:70;
+  background:color-mix(in srgb,var(--cham) 94%,transparent);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--ke);padding-right:var(--rail)}
+#dau-trang > nav.boc{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+  align-items:center;gap:clamp(18px,2.6vw,40px);padding-block:14px;transition:padding .3s}
+#dau-trang .menu{display:flex;gap:clamp(14px,2.1vw,34px);align-items:center}
+#dau-trang .menu-trai{justify-content:flex-end}
+#dau-trang .menu-phai{justify-content:flex-start}
+#dau-trang .menu a{position:relative;display:block;padding:8px 0;color:var(--soi);text-decoration:none;
+  font-family:var(--f-than);font-weight:500;font-size:clamp(12.5px,1.02vw,14.5px);
+  letter-spacing:.07em;text-transform:uppercase;white-space:nowrap;transition:color .2s}
+#dau-trang .menu a::after{content:'';position:absolute;left:0;right:0;bottom:2px;height:2px;
+  background:var(--do);transform:scaleX(0);transform-origin:left;
+  transition:transform .32s cubic-bezier(.62,.03,.21,1)}
+#dau-trang .menu a:hover{color:var(--do)}
+#dau-trang .menu a[aria-current="true"]{color:var(--do)}
+#dau-trang .menu a[aria-current="true"]::after{transform:scaleX(1)}
+#dau-trang .logo{display:block;line-height:0}
+#dau-trang .logo img{width:92px;height:92px;transition:width .3s,height .3s}
+#dau-trang.gon > nav.boc{padding-block:6px}
+#dau-trang.gon .logo img{width:60px;height:60px}
+#nut-menu{display:none;align-items:center;gap:9px;justify-self:end;padding:10px 4px;
+  font-family:var(--f-hien);font-variation-settings:'wdth' 100,'wght' 600;font-size:13px;
+  letter-spacing:.14em;text-transform:uppercase}
+#nut-menu .vach{display:grid;gap:5px;width:22px}
+#nut-menu .vach i{display:block;height:2px;background:var(--soi);transition:transform .3s,opacity .3s}
+#nut-menu[aria-expanded="true"] .vach i:nth-child(1){transform:translateY(7px) rotate(45deg)}
+#nut-menu[aria-expanded="true"] .vach i:nth-child(2){opacity:0}
+#nut-menu[aria-expanded="true"] .vach i:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+#menu-dong{border-top:1px solid var(--ke);background:var(--cham)}
+#menu-dong ul{display:grid;padding-block:6px 14px}
+#menu-dong a{display:block;padding:13px 0;border-bottom:1px solid var(--ke);color:var(--soi);
+  text-decoration:none;font-weight:500;font-size:15px;letter-spacing:.06em;text-transform:uppercase}
+#menu-dong li:last-child a{border-bottom:0}
+#menu-dong a[aria-current="true"]{color:var(--do)}
+@media (min-width:1101px){ #menu-dong{display:none !important} }
+@media (max-width:1100px){
+  #dau-trang > nav.boc{grid-template-columns:auto 1fr auto;padding-block:8px}
+  #dau-trang .menu{display:none}
+  #dau-trang .logo{grid-column:1}
+  #dau-trang .logo img,#dau-trang.gon .logo img{width:58px;height:58px}
+  #nut-menu{display:inline-flex;grid-column:3}
+}
+
+/* ===================== NÚT ===================== */
+.nut-fb{display:inline-flex;align-items:center;gap:12px;padding:16px 24px;
+  background:var(--soi);color:var(--cham);text-decoration:none;
+  font-weight:600;font-size:15px;line-height:1.3;letter-spacing:.01em;
+  border:1px solid var(--soi);transition:background .25s,border-color .25s}
+.nut-fb:hover,.nut-fb:focus-visible{background:var(--do);border-color:var(--do)}
+.nut-fb svg{width:20px;height:20px;flex:0 0 auto}
+.lien-ket-ve{display:inline-flex;align-items:center;gap:8px;color:var(--soi);text-decoration:none;
+  font-family:var(--f-hien);font-variation-settings:'wdth' 100,'wght' 500;
+  font-size:13px;letter-spacing:.12em;text-transform:uppercase}
+.lien-ket-ve:hover{color:var(--do)}
+
+/* ===================== THẺ SẢN PHẨM (lưới kiểu Miên Studio) ===================== */
+.dau-nhom{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;
+  gap:8px 24px;padding-bottom:16px;border-bottom:1px solid var(--ke);margin-bottom:clamp(22px,3.4vh,36px)}
+.dau-nhom h3{font-family:var(--f-phim);font-weight:400;font-size:clamp(1.7rem,3.4vw,2.5rem);
+  line-height:1.1;margin:0;color:var(--soi)}
+.dau-nhom .dem{font-size:13px;letter-spacing:.06em;color:var(--mo)}
+.luoi-sp{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(14px,2.2vw,30px) clamp(12px,2vw,26px)}
+@media (max-width:1100px){ .luoi-sp{grid-template-columns:repeat(3,minmax(0,1fr))} }
+@media (max-width:760px){ .luoi-sp{grid-template-columns:repeat(2,minmax(0,1fr))} }
+.the-sp{display:flex;flex-direction:column;gap:6px;color:var(--soi);text-decoration:none;min-width:0}
+.the-sp .the-anh{position:relative;display:block;aspect-ratio:1/1;overflow:hidden;
+  background-color:var(--cham-2);background-size:cover;background-position:center;margin-bottom:12px}
+.the-sp .the-anh img{width:100%;height:100%;object-fit:cover;transition:scale .5s,opacity .5s}
+.the-sp.vua .the-anh img{object-fit:contain;padding:6%}
+.the-sp:hover .the-anh img{scale:1.035}
+.the-sp .mui-ten{position:absolute;right:12px;bottom:12px;width:40px;height:40px;border-radius:50%;
+  background:#FFFDF8;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 1px 6px rgba(27,39,51,.16);transition:background .25s,color .25s}
+.the-sp .mui-ten svg{width:16px;height:16px}
+.the-sp:hover .mui-ten{background:var(--do);color:#fff}
+.the-sp .the-nhan{font-family:var(--f-hien);font-variation-settings:'wdth' 100,'wght' 500;
+  font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mo)}
+.the-sp .the-ten{font-family:var(--f-phim);font-size:clamp(1.15rem,1.7vw,1.5rem);line-height:1.2;color:var(--soi)}
+.the-sp .the-mo-ta{font-size:14px;line-height:1.5;color:var(--mo)}
+.the-sp .the-chan{margin-top:auto;padding-top:6px;display:flex;justify-content:flex-end}
+.the-sp .the-kham-pha{font-size:13px;color:var(--soi);border-bottom:1px solid var(--ke-2);transition:color .2s,border-color .2s}
+.the-sp:hover .the-kham-pha{color:var(--do);border-color:var(--do)}
+.ghi-chu-sp{margin-top:clamp(26px,4vh,40px);font-size:14px;line-height:1.6;color:var(--mo);max-width:76ch}
+
+/* ===================== TRANG SẢN PHẨM (kiểu Sương Trà) ===================== */
+.trang-sp{padding-block:clamp(22px,4vh,44px) clamp(56px,10vh,120px)}
+.trang-sp .ve{margin-bottom:clamp(18px,3vh,30px)}
+.sp-luoi{display:grid;grid-template-columns:minmax(0,11fr) minmax(0,9fr);gap:clamp(24px,4.5vw,64px);align-items:start}
+@media (max-width:860px){ .sp-luoi{grid-template-columns:1fr} }
+.sp-anh-chinh{aspect-ratio:1/1;background-color:var(--cham-2);overflow:hidden}
+.sp-anh-chinh img{width:100%;height:100%;object-fit:contain}
+/* ảnh gốc trong tài liệu rất nhỏ (có ảnh chỉ ~160px): phóng tối đa gấp đôi, đặt giữa khung */
+.sp-anh-chinh.nho{display:flex;align-items:center;justify-content:center}
+.sp-anh-chinh.nho img{width:min(100%,calc(var(--w) * 2px));height:auto;max-height:100%;object-fit:contain}
+.sp-mo-ta{line-height:1.7;max-width:60ch}
+.sp-anh-nho{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.sp-anh-nho button{width:76px;height:76px;border:1px solid var(--ke);background:var(--cham-2);overflow:hidden;
+  opacity:.72;transition:opacity .2s,border-color .2s}
+.sp-anh-nho button:hover{opacity:1}
+.sp-anh-nho button[aria-pressed="true"]{opacity:1;border:2px solid var(--soi)}
+.sp-anh-nho img{width:100%;height:100%;object-fit:cover}
+@media (max-width:520px){ .sp-anh-nho button{width:62px;height:62px} }
+.sp-dau{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.sp-so{width:46px;height:46px;border:1px solid var(--ke-2);border-radius:50%;display:flex;
+  align-items:center;justify-content:center;font-family:var(--f-phim);font-size:17px;color:var(--soi)}
+.sp-nhan{position:relative;padding:4px 10px;font-family:var(--f-hien);font-variation-settings:'wdth' 100,'wght' 600;
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--soi)}
+/* hai góc chữ L — cùng kiểu "khung mắc sợi" của trang chủ */
+.sp-nhan::before,.sp-nhan::after{content:'';position:absolute;width:7px;height:7px}
+.sp-nhan::before{top:0;left:0;border-top:1px solid var(--soi);border-left:1px solid var(--soi)}
+.sp-nhan::after{bottom:0;right:0;border-bottom:1px solid var(--soi);border-right:1px solid var(--soi)}
+.sp-bieu-tuong{font-size:20px;line-height:1}
+.sp-ten{font-family:var(--f-phim);font-weight:400;font-size:clamp(2.3rem,4.6vw,3.7rem);line-height:1.06;
+  margin:0;color:var(--soi);text-wrap:balance}
+.sp-khau-hieu{font-family:var(--f-phim);font-style:italic;font-size:clamp(1.1rem,1.7vw,1.35rem);
+  line-height:1.45;color:var(--do);margin-top:12px}
+.sp-ke{height:1px;background:var(--ke-2);margin:clamp(22px,3.4vh,32px) 0}
+.sp-co-gi h2{font-family:var(--f-hien);font-variation-settings:'wdth' 100,'wght' 600;
+  font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--soi);margin:0 0 6px}
+.sp-co-gi li{display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:start;
+  padding:13px 0;border-bottom:1px solid var(--ke)}
+.sp-co-gi li:last-child{border-bottom:0}
+.sp-co-gi .bt{width:36px;height:36px;border-radius:50%;background:var(--cham-2);display:flex;
+  align-items:center;justify-content:center;font-size:17px;line-height:1}
+.sp-co-gi p{padding-top:6px;line-height:1.55}
+.sp-mua{margin-top:clamp(22px,3.4vh,34px);display:flex;flex-direction:column;align-items:flex-start;gap:16px}
+
+/* ===================== CHÂN TRANG ===================== */
+#chan-trang{background:var(--do);color:#FBF5EA;padding-block:clamp(44px,7vh,76px) clamp(26px,4vh,40px);
+  padding-right:var(--rail);position:relative;z-index:1}
+#chan-trang a{color:#FBF5EA;text-decoration:none}
+#chan-trang a:hover{text-decoration:underline}
+.ct-luoi{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(28px,5vw,80px)}
+@media (max-width:760px){ .ct-luoi{grid-template-columns:1fr} }
+.ct-ten{display:flex;gap:20px;align-items:flex-start}
+.ct-ten img{width:96px;height:96px;flex:0 0 auto}
+.ct-khau-hieu{font-family:var(--f-phim);font-style:italic;font-size:clamp(1.25rem,2.2vw,1.7rem);line-height:1.25;text-wrap:balance}
+.ct-ba-tru{margin-top:10px;font-size:14px;opacity:.86}
+.ct-lien-he h2{font-family:var(--f-hien);font-variation-settings:'wdth' 100,'wght' 600;
+  font-size:12px;letter-spacing:.28em;text-transform:uppercase;margin:0 0 16px}
+.ct-lien-he li{display:flex;gap:12px;align-items:center;padding:6px 0;font-size:15px}
+.ct-lien-he svg{width:18px;height:18px;flex:0 0 auto;opacity:.9}
+.ct-lien-he .ten-kenh{opacity:.78;min-width:5.5em}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;
+    transition-duration:.01ms !important}
+}
+@media (prefers-contrast:more){
+  :root{--soi:#0E1821;--mo:#3C4753;--ke:rgba(27,39,51,.4);--ke-2:rgba(27,39,51,.6)}
+}
