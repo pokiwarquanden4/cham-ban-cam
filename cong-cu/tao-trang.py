@@ -115,9 +115,14 @@ def the_ban_le(sp):
 
 
 def nhom(tieu_de_vi, tieu_de_en, dem_vi, dem_en, cac_the):
-    return ('\n<div class="dau-nhom"><h3>%s</h3><span class="dem">%s</span></div>\n'
-            '<div class="luoi-sp">\n%s\n</div>\n' % (
-                hai_ngu(tieu_de_vi, tieu_de_en), hai_ngu(dem_vi, dem_en), '\n'.join(cac_the)))
+    """Dòng đầu nhóm (tiêu đề + số đếm) rồi lưới thẻ. Không có tiêu đề thì chỉ hiện số đếm —
+    dùng khi tiêu đề lớn của phần đã nói đúng chữ đó, để không lặp."""
+    dem = '<span class="dem">%s</span>' % hai_ngu(dem_vi, dem_en)
+    if tieu_de_vi:
+        dau = '<div class="dau-nhom"><h3>%s</h3>%s</div>' % (hai_ngu(tieu_de_vi, tieu_de_en), dem)
+    else:
+        dau = '<div class="dau-nhom chi-dem">%s</div>' % dem
+    return '\n%s\n<div class="luoi-sp">\n%s\n</div>\n' % (dau, '\n'.join(cac_the))
 
 
 # ---------------------------------------------------------------- trang sản phẩm
@@ -151,7 +156,7 @@ MAU_TRANG = '''<!doctype html>
 %(dau)s
 <main class="trang-sp">
   <div class="boc">
-    <a class="lien-ket-ve ve" href="../index.html#san-pham"><span aria-hidden="true">←</span> %(ve)s</a>
+    <a class="lien-ket-ve ve" href="../index.html#%(phan_ve)s"><span aria-hidden="true">←</span> %(ve)s</a>
     <div class="sp-luoi">
       <div class="sp-anh">
 %(anh)s
@@ -224,6 +229,7 @@ def trang_box(b, d, dau, chan):
         'url': e(d['dia_chi_web'] + 'san-pham/' + b['ma'] + '.html'),
         'og_anh': e(anh_og(d, a0['tep'])),
         'dau': dau, 'chan': chan, 've': hai_ngu('Quay lại danh sách sản phẩm', 'Back to all products'),
+        'phan_ve': 'hop-qua',      # box nằm ở phần 04 Hộp quà trải nghiệm
         'anh': anh,
         'so': '<span class="sp-so">%s</span>' % e(b['so']),
         'nhan': hai_ngu('Box', 'Gift box'),
@@ -249,6 +255,7 @@ def trang_ban_le(sp, d, dau, chan):
         'url': e(d['dia_chi_web'] + 'san-pham/' + sp['ma'] + '.html'),
         'og_anh': e(anh_og(d, sp['anh'])),
         'dau': dau, 'chan': chan, 've': hai_ngu('Quay lại danh sách sản phẩm', 'Back to all products'),
+        'phan_ve': 'san-pham',     # sản phẩm lẻ nằm ở phần 03 Sản phẩm bán lẻ
         'anh': khung_anh_lon(sp['anh'], vi, en),
         'so': '', 'nhan': hai_ngu('Sản phẩm bán lẻ', 'Retail product'), 'bt': '',
         'ten': hai_ngu(vi, en), 'than': than,
@@ -285,16 +292,18 @@ def main():
 
     # --- trang sản phẩm
     os.makedirs(THU_MUC_SP, exist_ok=True)
-    dau_sp = dien(dau_mau, '../', '../index.html').replace(
-        'data-phan="san-pham">', 'data-phan="san-pham" aria-current="true">')
+    dau_goc = dien(dau_mau, '../', '../index.html')
+    # menu sáng đúng phần chứa sản phẩm: box ở 04 Hộp quà, sản phẩm lẻ ở 03 Sản phẩm bán lẻ
+    dau_box = dau_goc.replace('data-phan="hop-qua">', 'data-phan="hop-qua" aria-current="true">')
+    dau_le = dau_goc.replace('data-phan="san-pham">', 'data-phan="san-pham" aria-current="true">')
     chan_sp = dien(chan_mau, '../', '../index.html')
     con = set()
     for b in d['box']:
         con.add(b['ma'] + '.html')
-        ghi(os.path.join(THU_MUC_SP, b['ma'] + '.html'), trang_box(b, d, dau_sp, chan_sp))
+        ghi(os.path.join(THU_MUC_SP, b['ma'] + '.html'), trang_box(b, d, dau_box, chan_sp))
     for sp in d['ban_le']:
         con.add(sp['ma'] + '.html')
-        ghi(os.path.join(THU_MUC_SP, sp['ma'] + '.html'), trang_ban_le(sp, d, dau_sp, chan_sp))
+        ghi(os.path.join(THU_MUC_SP, sp['ma'] + '.html'), trang_ban_le(sp, d, dau_le, chan_sp))
     for f in os.listdir(THU_MUC_SP):
         if f.endswith('.html') and f not in con:
             os.remove(os.path.join(THU_MUC_SP, f))
@@ -309,7 +318,8 @@ def main():
     n_box, n_le = len(d['box']), len(d['ban_le'])
     v = thay_doan(v, 'nhom-box', nhom('Box', 'Gift boxes', '%02d box' % n_box, '%02d boxes' % n_box,
                                       [the_box(b) for b in d['box']]))
-    v = thay_doan(v, 'nhom-ban-le', nhom('Sản phẩm bán lẻ', 'Retail products',
+    # tiêu đề lớn của phần 03 đã là "Sản phẩm bán lẻ" — dòng đầu nhóm chỉ còn số đếm
+    v = thay_doan(v, 'nhom-ban-le', nhom(None, None,
                                          '%02d sản phẩm' % n_le, '%02d products' % n_le,
                                          [the_ban_le(sp) for sp in d['ban_le']]))
     ghi(p, v)

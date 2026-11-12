@@ -293,8 +293,7 @@ html.js .chang.da-hien{opacity:1;translate:0 0}
 /* ===================== 03 · SẢN PHẨM ===================== */
 .sp-nhom{padding-block:clamp(36px,6vh,72px);padding-right:var(--rail)}
 
-/* ===================== 04 · HỘP QUÀ TRẢI NGHIỆM ===================== */
-#hop-qua .o-cho-dien{max-width:70ch;margin-top:clamp(16px,3vh,28px)}
+.mo-phan + .sp-nhom{padding-top:0}
 
 /* ===================== 05 · TRẢI NGHIỆM VĂN HÓA ===================== */
 #ha-giang{position:relative}
@@ -402,7 +401,7 @@ canvas.det{width:100%;height:58px;display:block;margin-top:26px}
     <ul class="menu menu-trai">
       <li><a href="#gioi-thieu" data-phan="gioi-thieu"><span lang="vi">Giới thiệu</span><span lang="en">Introduction</span></a></li>
       <li><a href="#cau-chuyen" data-phan="cau-chuyen"><span lang="vi">Câu chuyện thổ cẩm</span><span lang="en">Brocade story</span></a></li>
-      <li><a href="#san-pham" data-phan="san-pham"><span lang="vi">Sản phẩm</span><span lang="en">Products</span></a></li>
+      <li><a href="#san-pham" data-phan="san-pham"><span lang="vi">Sản phẩm bán lẻ</span><span lang="en">Retail products</span></a></li>
     </ul>
     <a class="logo" href="#gioi-thieu" data-phan="gioi-thieu" aria-label="CHẠM BẢN CẨM — về trang đầu" data-aria-en="CHẠM BẢN CẨM — home"><img src="assets/img/logo-nho.webp" alt="" width="240" height="240"></a>
     <ul class="menu menu-phai">
@@ -416,7 +415,7 @@ canvas.det{width:100%;height:58px;display:block;margin-top:26px}
     <ul class="boc">
       <li><a href="#gioi-thieu" data-phan="gioi-thieu"><span lang="vi">Giới thiệu</span><span lang="en">Introduction</span></a></li>
       <li><a href="#cau-chuyen" data-phan="cau-chuyen"><span lang="vi">Câu chuyện thổ cẩm</span><span lang="en">Brocade story</span></a></li>
-      <li><a href="#san-pham" data-phan="san-pham"><span lang="vi">Sản phẩm</span><span lang="en">Products</span></a></li>
+      <li><a href="#san-pham" data-phan="san-pham"><span lang="vi">Sản phẩm bán lẻ</span><span lang="en">Retail products</span></a></li>
       <li><a href="#hop-qua" data-phan="hop-qua"><span lang="vi">Hộp quà trải nghiệm</span><span lang="en">Experience gift box</span></a></li>
       <li><a href="#trai-nghiem" data-phan="trai-nghiem"><span lang="vi">Trải nghiệm văn hóa</span><span lang="en">Cultural experience</span></a></li>
       <li><a href="#ve-chung-toi" data-phan="ve-chung-toi"><span lang="vi">Về chúng tôi</span><span lang="en">About us</span></a></li>
@@ -440,7 +439,6 @@ canvas.det{width:100%;height:58px;display:block;margin-top:26px}
 
   <section class="gt-ten">
     <div class="boc">
-      <p class="nhan"><span lang="vi">Phần 01 · Giới thiệu</span><span lang="en">Part 01 · Introduction</span></p>
       <h1 class="hien">CHẠM BẢN CẨM</h1>
       <p class="gt-khau-hieu">Chạm nét thổ cẩm – Cảm hồn Hà Giang</p>
       <p class="gt-ba-tru"><span lang="vi">Sản phẩm thủ công · Câu chuyện văn hóa · Trải nghiệm bản địa</span><span lang="en">Handcrafted Products · Cultural Stories · Local Experiences</span></p>
@@ -516,7 +514,6 @@ canvas.det{width:100%;height:58px;display:block;margin-top:26px}
 <div class="phan" id="cau-chuyen">
   <section class="mo-phan">
     <div class="boc">
-      <p class="nhan"><span lang="vi">Phần 02</span><span lang="en">Part 02</span></p>
       <h2 class="hien hoi"><span lang="vi">Câu chuyện về Thổ Cẩm</span><span lang="en">The Story of Brocade</span></h2>
       <nav class="muc-luc" aria-label="Các mục trong phần này" data-aria-en="Sections in this part">
         <a href="#cc-lung-tam"><span class="so">01</span><span lang="vi">Lùng Tám và Hợp tác xã dệt lanh</span><span lang="en">Lùng Tám and the Linen Weaving Cooperative</span></a>
@@ -815,37 +812,19 @@ canvas.det{width:100%;height:58px;display:block;margin-top:26px}
 
 
 <!-- =====================================================================
-     PHẦN 03 · SẢN PHẨM — hai mục: Box và sản phẩm bán lẻ
+     PHẦN 03 · SẢN PHẨM BÁN LẺ — đường dẫn vẫn là #san-pham để link đã gửi đi không gãy.
      Lưới thẻ do cong-cu/tao-trang.py tạo từ cong-cu/san-pham.json.
      ===================================================================== -->
 <div class="phan" id="san-pham">
   <section class="mo-phan">
     <div class="boc">
-      <p class="nhan"><span lang="vi">Phần 03</span><span lang="en">Part 03</span></p>
-      <h2 class="hien hoi"><span lang="vi">Sản phẩm</span><span lang="en">Products</span></h2>
-      <nav class="muc-luc" aria-label="Các mục trong phần này" data-aria-en="Sections in this part">
-        <a href="#sp-box"><span class="so">01</span><span lang="vi">Box</span><span lang="en">Gift boxes</span></a>
-        <a href="#sp-le"><span class="so">02</span><span lang="vi">Sản phẩm bán lẻ</span><span lang="en">Retail products</span></a>
-      </nav>
-    </div>
-  </section>
-  <section id="sp-box" class="sp-nhom">
-    <div class="boc">
-<!-- @nhom-box -->
-<div class="dau-nhom"><h3><span lang="vi">Box</span><span lang="en">Gift boxes</span></h3><span class="dem"><span lang="vi">04 box</span><span lang="en">04 boxes</span></span></div>
-<div class="luoi-sp">
-<a class="the-sp" href="san-pham/cham-moc.html"><span class="the-anh" style="background-image:url(assets/img/box-cham-moc-tiny.webp)"><img class="mo-dan" src="assets/img/box-cham-moc-the.webp" alt="" width="640" height="480" loading="lazy" decoding="async"><span class="mui-ten" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></span><span class="the-nhan"><span lang="vi">Chạm Bản Cẩm · Box</span><span lang="en">Chạm Bản Cẩm · Gift box</span></span><span class="the-ten">Chạm Mộc</span><span class="the-mo-ta"><span lang="vi">Nhỏ xinh, mộc mạc, đậm chất Hà Giang</span><span lang="en">Small, rustic and true to Ha Giang</span></span><span class="the-chan"><span class="the-kham-pha"><span lang="vi">Khám phá box</span><span lang="en">Explore box</span></span></span></a>
-<a class="the-sp" href="san-pham/cham-hoa.html"><span class="the-anh" style="background-image:url(assets/img/box-cham-hoa-tiny.webp)"><img class="mo-dan" src="assets/img/box-cham-hoa-the.webp" alt="" width="640" height="477" loading="lazy" decoding="async"><span class="mui-ten" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></span><span class="the-nhan"><span lang="vi">Chạm Bản Cẩm · Box</span><span lang="en">Chạm Bản Cẩm · Gift box</span></span><span class="the-ten">Chạm Hoa</span><span class="the-mo-ta"><span lang="vi">Rực rỡ sắc màu, đậm chất thổ cẩm</span><span lang="en">Bursting with colour, true to brocade</span></span><span class="the-chan"><span class="the-kham-pha"><span lang="vi">Khám phá box</span><span lang="en">Explore box</span></span></span></a>
-<a class="the-sp" href="san-pham/cham-cao-nguyen.html"><span class="the-anh" style="background-image:url(assets/img/box-cham-cao-nguyen-tiny.webp)"><img class="mo-dan" src="assets/img/box-cham-cao-nguyen-the.webp" alt="" width="480" height="640" loading="lazy" decoding="async"><span class="mui-ten" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></span><span class="the-nhan"><span lang="vi">Chạm Bản Cẩm · Box</span><span lang="en">Chạm Bản Cẩm · Gift box</span></span><span class="the-ten">Chạm Cao Nguyên</span><span class="the-mo-ta"><span lang="vi">Gói trọn sắc màu Hà Giang</span><span lang="en">All the colours of Ha Giang in one box</span></span><span class="the-chan"><span class="the-kham-pha"><span lang="vi">Khám phá box</span><span lang="en">Explore box</span></span></span></a>
-<a class="the-sp" href="san-pham/cham-di-san.html"><span class="the-anh" style="background-image:url(assets/img/box-cham-di-san-tiny.webp)"><img class="mo-dan" src="assets/img/box-cham-di-san-the.webp" alt="" width="468" height="640" loading="lazy" decoding="async"><span class="mui-ten" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></span><span class="the-nhan"><span lang="vi">Chạm Bản Cẩm · Box</span><span lang="en">Chạm Bản Cẩm · Gift box</span></span><span class="the-ten">Chạm Di Sản</span><span class="the-mo-ta"><span lang="vi">Gói trọn nét đẹp văn hóa Hà Giang</span><span lang="en">The beauty of Ha Giang culture in one box</span></span><span class="the-chan"><span class="the-kham-pha"><span lang="vi">Khám phá box</span><span lang="en">Explore box</span></span></span></a>
-</div>
-<!-- /@nhom-box -->
+      <h2 class="hien hoi"><span lang="vi">Sản phẩm bán lẻ</span><span lang="en">Retail products</span></h2>
     </div>
   </section>
   <section id="sp-le" class="sp-nhom">
     <div class="boc">
 <!-- @nhom-ban-le -->
-<div class="dau-nhom"><h3><span lang="vi">Sản phẩm bán lẻ</span><span lang="en">Retail products</span></h3><span class="dem"><span lang="vi">23 sản phẩm</span><span lang="en">23 products</span></span></div>
+<div class="dau-nhom chi-dem"><span class="dem"><span lang="vi">23 sản phẩm</span><span lang="en">23 products</span></span></div>
 <div class="luoi-sp">
 <a class="the-sp vua" href="san-pham/balo-tho-cam-do.html"><span class="the-anh"><img class="mo-dan" src="assets/img/balo-do-the.webp" alt="" width="265" height="322" loading="lazy" decoding="async"><span class="mui-ten" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></span><span class="the-nhan"><span lang="vi">Chạm Bản Cẩm · Bán lẻ</span><span lang="en">Chạm Bản Cẩm · Retail</span></span><span class="the-ten"><span lang="vi">Balo thổ cẩm – Đỏ</span><span lang="en">Brocade backpack – Red</span></span><span class="the-chan"><span class="the-kham-pha"><span lang="vi">Xem sản phẩm</span><span lang="en">View product</span></span></span></a>
 <a class="the-sp vua" href="san-pham/balo-tho-cam-vang.html"><span class="the-anh"><img class="mo-dan" src="assets/img/balo-vang-the.webp" alt="" width="360" height="640" loading="lazy" decoding="async"><span class="mui-ten" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></span><span class="the-nhan"><span lang="vi">Chạm Bản Cẩm · Bán lẻ</span><span lang="en">Chạm Bản Cẩm · Retail</span></span><span class="the-ten"><span lang="vi">Balo thổ cẩm – Vàng</span><span lang="en">Brocade backpack – Yellow</span></span><span class="the-chan"><span class="the-kham-pha"><span lang="vi">Xem sản phẩm</span><span lang="en">View product</span></span></span></a>
@@ -879,14 +858,26 @@ canvas.det{width:100%;height:58px;display:block;margin-top:26px}
 
 
 <!-- =====================================================================
-     PHẦN 04 · HỘP QUÀ TRẢI NGHIỆM — nhóm sẽ gửi nội dung sau
+     PHẦN 04 · HỘP QUÀ TRẢI NGHIỆM — bốn box.
+     Lưới thẻ do cong-cu/tao-trang.py tạo từ cong-cu/san-pham.json.
      ===================================================================== -->
 <div class="phan" id="hop-qua">
   <section class="mo-phan">
     <div class="boc">
-      <p class="nhan"><span lang="vi">Phần 04</span><span lang="en">Part 04</span></p>
       <h2 class="hien hoi"><span lang="vi">Hộp quà trải nghiệm</span><span lang="en">Experience gift box</span></h2>
-      <div class="o-cho-dien"><span lang="vi">[ Chủ dự án điền: prototype · thành phần · giá bán ]</span><span lang="en">[ Owner to fill in: prototype · components · price ]</span></div>
+    </div>
+  </section>
+  <section id="sp-box" class="sp-nhom">
+    <div class="boc">
+<!-- @nhom-box -->
+<div class="dau-nhom"><h3><span lang="vi">Box</span><span lang="en">Gift boxes</span></h3><span class="dem"><span lang="vi">04 box</span><span lang="en">04 boxes</span></span></div>
+<div class="luoi-sp">
+<a class="the-sp" href="san-pham/cham-moc.html"><span class="the-anh" style="background-image:url(assets/img/box-cham-moc-tiny.webp)"><img class="mo-dan" src="assets/img/box-cham-moc-the.webp" alt="" width="640" height="480" loading="lazy" decoding="async"><span class="mui-ten" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></span><span class="the-nhan"><span lang="vi">Chạm Bản Cẩm · Box</span><span lang="en">Chạm Bản Cẩm · Gift box</span></span><span class="the-ten">Chạm Mộc</span><span class="the-mo-ta"><span lang="vi">Nhỏ xinh, mộc mạc, đậm chất Hà Giang</span><span lang="en">Small, rustic and true to Ha Giang</span></span><span class="the-chan"><span class="the-kham-pha"><span lang="vi">Khám phá box</span><span lang="en">Explore box</span></span></span></a>
+<a class="the-sp" href="san-pham/cham-hoa.html"><span class="the-anh" style="background-image:url(assets/img/box-cham-hoa-tiny.webp)"><img class="mo-dan" src="assets/img/box-cham-hoa-the.webp" alt="" width="640" height="477" loading="lazy" decoding="async"><span class="mui-ten" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></span><span class="the-nhan"><span lang="vi">Chạm Bản Cẩm · Box</span><span lang="en">Chạm Bản Cẩm · Gift box</span></span><span class="the-ten">Chạm Hoa</span><span class="the-mo-ta"><span lang="vi">Rực rỡ sắc màu, đậm chất thổ cẩm</span><span lang="en">Bursting with colour, true to brocade</span></span><span class="the-chan"><span class="the-kham-pha"><span lang="vi">Khám phá box</span><span lang="en">Explore box</span></span></span></a>
+<a class="the-sp" href="san-pham/cham-cao-nguyen.html"><span class="the-anh" style="background-image:url(assets/img/box-cham-cao-nguyen-tiny.webp)"><img class="mo-dan" src="assets/img/box-cham-cao-nguyen-the.webp" alt="" width="480" height="640" loading="lazy" decoding="async"><span class="mui-ten" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></span><span class="the-nhan"><span lang="vi">Chạm Bản Cẩm · Box</span><span lang="en">Chạm Bản Cẩm · Gift box</span></span><span class="the-ten">Chạm Cao Nguyên</span><span class="the-mo-ta"><span lang="vi">Gói trọn sắc màu Hà Giang</span><span lang="en">All the colours of Ha Giang in one box</span></span><span class="the-chan"><span class="the-kham-pha"><span lang="vi">Khám phá box</span><span lang="en">Explore box</span></span></span></a>
+<a class="the-sp" href="san-pham/cham-di-san.html"><span class="the-anh" style="background-image:url(assets/img/box-cham-di-san-tiny.webp)"><img class="mo-dan" src="assets/img/box-cham-di-san-the.webp" alt="" width="468" height="640" loading="lazy" decoding="async"><span class="mui-ten" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></span><span class="the-nhan"><span lang="vi">Chạm Bản Cẩm · Box</span><span lang="en">Chạm Bản Cẩm · Gift box</span></span><span class="the-ten">Chạm Di Sản</span><span class="the-mo-ta"><span lang="vi">Gói trọn nét đẹp văn hóa Hà Giang</span><span lang="en">The beauty of Ha Giang culture in one box</span></span><span class="the-chan"><span class="the-kham-pha"><span lang="vi">Khám phá box</span><span lang="en">Explore box</span></span></span></a>
+</div>
+<!-- /@nhom-box -->
     </div>
   </section>
 </div><!-- /hop-qua -->
@@ -900,7 +891,6 @@ canvas.det{width:100%;height:58px;display:block;margin-top:26px}
   <section id="ha-giang" class="mo-phan">
     <div class="soc-doc"></div>
     <div class="boc">
-      <p class="nhan"><span lang="vi">Phần 05 · Trải nghiệm văn hóa</span><span lang="en">Part 05 · Cultural experience</span></p>
       <h2 class="hien hoi"><span lang="vi">Văn hóa đặc sắc ở Hà Giang —<br>nét đẹp từ các dân tộc thiểu số.</span><span lang="en">Unique cultural heritage of Ha Giang —<br>the beauty of ethnic minority cultures.</span></h2>
       <nav class="muc-luc" aria-label="Các mục trong phần này" data-aria-en="Sections in this part">
         <a href="#vh-da-dang"><span class="so">01</span><span lang="vi">Hà Giang – Miền đất đa dạng văn hóa</span><span lang="en">A land of cultural diversity</span></a>
@@ -1152,7 +1142,6 @@ canvas.det{width:100%;height:58px;display:block;margin-top:26px}
 <div class="phan" id="ve-chung-toi">
   <section class="mo-phan">
     <div class="boc">
-      <p class="nhan"><span lang="vi">Phần 06</span><span lang="en">Part 06</span></p>
       <h2 class="hien hoi"><span lang="vi">Về chúng tôi</span><span lang="en">About us</span></h2>
       <nav class="muc-luc" aria-label="Các mục trong phần này" data-aria-en="Sections in this part">
         <a href="#vct-du-an"><span class="so">6.1</span><span lang="vi">Giới thiệu dự án</span><span lang="en">The project</span></a>

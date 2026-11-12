@@ -31,14 +31,14 @@ python -m http.server 8000
 
 Trang chủ `index.html` chia sáu phần theo tài liệu "cấu trúc website" của nhóm. Menu kiểu
 Trúc Lâm: logo ở giữa, ba mục mỗi bên. **Mỗi lần chỉ hiện một phần**; bấm mục nào thì con thoi
-chạy ngang rồi phần đó lộ ra.
+chạy ngang rồi phần đó lộ ra. Trang không ghi số "Phần 0X" — số trong bảng dưới chỉ để tiện nói với nhau.
 
 | Phần | Đường dẫn | Nội dung |
 |---|---|---|
 | 01 Giới thiệu | `#gioi-thieu` | ảnh lớn đầu trang, thông tin doanh nghiệp, về Chạm Bản Cẩm, tầm nhìn – sứ mệnh – giá trị cốt lõi, liên hệ |
 | 02 Câu chuyện thổ cẩm | `#cau-chuyen` | Lùng Tám và HTX, bà Vàng Thị Mai, 9 bước làm vải, giá trị thổ cẩm Lùng Tám, ý nghĩa hoa văn, video |
-| 03 Sản phẩm | `#san-pham` | 4 box và 23 sản phẩm bán lẻ — bấm vào là sang trang riêng của sản phẩm |
-| 04 Hộp quà trải nghiệm | `#hop-qua` | **chờ nhóm gửi nội dung** |
+| 03 Sản phẩm bán lẻ | `#san-pham` | 23 sản phẩm bán lẻ — bấm vào là sang trang riêng của sản phẩm |
+| 04 Hộp quà trải nghiệm | `#hop-qua` | 4 box — bấm vào là sang trang riêng của box |
 | 05 Trải nghiệm văn hóa | `#trai-nghiem` | văn hóa Hà Giang, năm cộng đồng, chợ phiên |
 | 06 Về chúng tôi | `#ve-chung-toi` | giới thiệu dự án, thành viên, đối tác cung ứng, nguồn tư liệu |
 
@@ -54,8 +54,8 @@ theo ghi chú của nhóm. Nếu tài liệu sửa thì phải sửa lại trang
 
 ## 4. Sửa sản phẩm
 
-Danh sách box và sản phẩm bán lẻ nằm trong **`cong-cu/san-pham.json`**. Lưới thẻ ở phần 03 và
-27 trang trong thư mục `san-pham/` đều được tạo từ tệp này. Sửa xong thì chạy:
+Danh sách box và sản phẩm bán lẻ nằm trong **`cong-cu/san-pham.json`**. Lưới thẻ ở phần 03 (sản phẩm bán lẻ),
+phần 04 (box) và 27 trang trong thư mục `san-pham/` đều được tạo từ tệp này. Sửa xong thì chạy:
 
 ```
 python cong-cu/tao-trang.py
@@ -63,8 +63,8 @@ python cong-cu/tao-trang.py
 
 Công cụ sẽ:
 - tạo lại mọi trang `san-pham/<mã>.html` (và xoá trang của sản phẩm đã bỏ khỏi danh sách),
-- thay lưới thẻ trong `index.html` — chỉ thay đoạn nằm giữa các dấu `<!-- @nhom-box -->`,
-  `<!-- @nhom-ban-le -->`,
+- thay lưới thẻ trong `index.html` — chỉ thay đoạn nằm giữa các dấu `<!-- @nhom-box -->`
+  (trong phần 04) và `<!-- @nhom-ban-le -->` (trong phần 03),
 - chép menu (`cong-cu/dau-trang.html`) và chân trang (`cong-cu/chan-trang.html`) vào
   `index.html` và mọi trang sản phẩm. **Muốn đổi số điện thoại, email, mạng xã hội thì sửa hai tệp
   này rồi chạy công cụ**, đừng sửa tay từng trang.
@@ -96,7 +96,6 @@ cũng chạy được.
 
 Tìm chữ `Chủ dự án điền` là thấy, đang hiện bằng khung viền đứt:
 
-- **Phần 04 Hộp quà trải nghiệm** — prototype, thành phần, giá bán.
 - **Mô tả 23 sản phẩm bán lẻ** — thêm vào `cong-cu/san-pham.json` (mục 4).
 
 Và một chỗ dùng ảnh tạm:
@@ -118,7 +117,7 @@ Mỗi đoạn chữ có hai bản đứng cạnh nhau, `lang="vi"` và `lang="en
 Chữ nằm trong thuộc tính (chữ thay thế của ảnh, nhãn đọc màn hình) thì để bản tiếng Anh ở
 `data-alt-en` / `data-aria-en`. **Thêm đoạn mới thì nhớ thêm cả bản tiếng Anh.**
 
-Bản tiếng Anh của phần 01, 02, 05 lấy từ tài liệu. **Bản tiếng Anh của phần 03 Sản phẩm,
+Bản tiếng Anh của phần 01, 02, 05 lấy từ tài liệu. **Bản tiếng Anh của phần 03 Sản phẩm bán lẻ, 04 Hộp quà trải nghiệm (4 box),
 06 Về chúng tôi, menu, nút bấm và vài tiêu đề nhỏ do người làm web dịch** — nhóm nên đọc lại.
 
 ---
