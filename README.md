@@ -36,16 +36,20 @@ chạy ngang rồi phần đó lộ ra. Trang không ghi số "Phần 0X" — s�
 | Phần | Đường dẫn | Nội dung |
 |---|---|---|
 | 01 Giới thiệu | `#gioi-thieu` | ảnh lớn đầu trang, thông tin doanh nghiệp, về Chạm Bản Cẩm, tầm nhìn – sứ mệnh – giá trị cốt lõi, liên hệ |
-| 02 Câu chuyện thổ cẩm | `#cau-chuyen` | Lùng Tám và HTX, bà Vàng Thị Mai, 9 bước làm vải, giá trị thổ cẩm Lùng Tám, ý nghĩa hoa văn, video |
-| 03 Sản phẩm bán lẻ | `#san-pham` | 23 sản phẩm bán lẻ — bấm vào là sang trang riêng của sản phẩm |
-| 04 Hộp quà trải nghiệm | `#hop-qua` | 4 box — bấm vào là sang trang riêng của box |
-| 05 Trải nghiệm văn hóa | `#trai-nghiem` | văn hóa Hà Giang, năm cộng đồng, chợ phiên |
+| 02 Câu chuyện thổ cẩm | `#cau-chuyen` | Lùng Tám và HTX, bà Vàng Thị Mai, 9 bước làm vải, giá trị thổ cẩm Lùng Tám, ý nghĩa hoa văn |
+| 03 Sản phẩm bán lẻ | `#san-pham` | 25 sản phẩm bán lẻ, không có tiêu đề — vào thẳng lưới sản phẩm |
+| 04 Hộp quà trải nghiệm | `#hop-qua` | 4 box, không có tiêu đề — vào thẳng lưới box |
+| 05 Trải nghiệm văn hóa | `#trai-nghiem` | văn hóa Hà Giang, năm cộng đồng, chợ phiên, video (2 phim) |
 | 06 Về chúng tôi | `#ve-chung-toi` | giới thiệu dự án, thành viên, đối tác cung ứng, nguồn tư liệu |
 
 - Gắn thẳng đường dẫn tới một mục bên trong cũng được, ví dụ `#hoa-van`, `#quy-trinh`, `#nam-soi`.
 - Đường dẫn cũ `#phan-1`, `#phan-2`, `#phan-3` (đã gửi đi trước đây) vẫn mở đúng nội dung:
   `#phan-1` → phần 05, `#phan-2` → phần 02, `#phan-3` → mục hoa văn trong phần 02.
 - Không có JavaScript thì cả sáu phần hiện nối tiếp nhau — không ai bị mất nội dung.
+
+Phần 02 và 06 không có tiêu đề lớn, mở đầu bằng hàng mục lục chữ to. Phần 06 không đánh số mục.
+Mọi đoạn văn **căn lề hai đầu** (CSS `text-align:justify`, danh sách lớp ở cuối mục chữ trong
+`index.html` và ở `chung.css`) — thêm kiểu đoạn văn mới thì nhớ thêm vào danh sách đó.
 
 **Chữ:** tiếng Việt lấy nguyên văn tài liệu; riêng mục *Ý nghĩa hoa văn* giữ như web cũ
 theo ghi chú của nhóm. Nếu tài liệu sửa thì phải sửa lại trang, hai bên không tự đồng bộ.
@@ -55,7 +59,7 @@ theo ghi chú của nhóm. Nếu tài liệu sửa thì phải sửa lại trang
 ## 4. Sửa sản phẩm
 
 Danh sách box và sản phẩm bán lẻ nằm trong **`cong-cu/san-pham.json`**. Lưới thẻ ở phần 03 (sản phẩm bán lẻ),
-phần 04 (box) và 27 trang trong thư mục `san-pham/` đều được tạo từ tệp này. Sửa xong thì chạy:
+phần 04 (box) và 29 trang trong thư mục `san-pham/` đều được tạo từ tệp này. Sửa xong thì chạy:
 
 ```
 python cong-cu/tao-trang.py
@@ -96,12 +100,13 @@ cũng chạy được.
 
 Tìm chữ `Chủ dự án điền` là thấy, đang hiện bằng khung viền đứt:
 
-- **Mô tả 23 sản phẩm bán lẻ** — thêm vào `cong-cu/san-pham.json` (mục 4).
+- **Mô tả Vòng tay và Túi đựng bút** — tài liệu chưa có; thêm `"mo_ta"`, `"mo_ta_en"` vào
+  `cong-cu/san-pham.json` (mục 4).
+- **Ảnh Móc khóa logo** — chưa có ảnh riêng. Tạo ảnh bằng `python cong-cu/tao-anh.py <ảnh> moc-khoa-logo`
+  rồi sửa `"anh": null` thành `"anh": "moc-khoa-logo"` trong JSON và chạy lại công cụ.
 
-Và một chỗ dùng ảnh tạm:
-
-- **Ảnh lớn đầu trang (phần 01)** đang tạm dùng ảnh hộp Chạm Mộc. Có ảnh chính thức thì thay
-  `src`, `alt`, `data-alt-en`, `width`, `height` của thẻ ảnh trong khối `gt-anh-dau` ở `index.html`.
+Ảnh bìa phần 01 là `assets/img/anh-bia` (ảnh dọc, hiện trọn ảnh, hai bên là nền trang). Thay ảnh thì
+sửa `src`, `alt`, `data-alt-en`, `width`, `height` của thẻ ảnh trong khối `gt-anh-dau` ở `index.html`.
 
 Trang không hiện giá — liên hệ mua qua nút "Liên hệ qua Facebook để mua hàng"
 (`https://www.facebook.com/ChamBanCam`).
@@ -117,7 +122,7 @@ Mỗi đoạn chữ có hai bản đứng cạnh nhau, `lang="vi"` và `lang="en
 Chữ nằm trong thuộc tính (chữ thay thế của ảnh, nhãn đọc màn hình) thì để bản tiếng Anh ở
 `data-alt-en` / `data-aria-en`. **Thêm đoạn mới thì nhớ thêm cả bản tiếng Anh.**
 
-Bản tiếng Anh của phần 01, 02, 05 lấy từ tài liệu. **Bản tiếng Anh của phần 03 Sản phẩm bán lẻ, 04 Hộp quà trải nghiệm (4 box),
+Bản tiếng Anh của phần 01, 02, 05 lấy từ tài liệu. **Bản tiếng Anh của phần 03 Sản phẩm bán lẻ (kể cả mô tả), 04 Hộp quà trải nghiệm (4 box),
 06 Về chúng tôi, menu, nút bấm và vài tiêu đề nhỏ do người làm web dịch** — nhóm nên đọc lại.
 
 ---
@@ -144,8 +149,14 @@ kiểu Trúc Lâm / Miên Studio. Con thoi vẫn chạy mỗi khi người xem �
 
 ## 8. Phim
 
-**`van-hoa.mp4` ("Văn hoá Hà Giang", 53 giây)** nằm ở mục 06 của phần 02, chỉ tải khi người xem
-bấm nút. Phim do nhóm dựng nhưng ghép từ tư liệu của bên thứ ba: giây 15–25 có logo
+Hai phim nằm cạnh nhau ở mục 04 Video của phần 05, chỉ tải khi người xem bấm nút; phim này chạy
+thì phim kia tự dừng.
+
+- **`story.mp4` ("Quy trình tạo ra thổ cẩm", 2 phút 22)** — phim nhóm tự quay tại Lùng Tám. Bản gốc
+  trên Drive là `Story Telling.mp4` (107 MB, mã H.265): quá giới hạn 100 MB mỗi tệp của GitHub và
+  Chrome/Firefox không phát được, nên trang dùng bản đã chuyển sang H.264 (26 MB) — cùng phim,
+  cùng thời lượng.
+- **`van-hoa.mp4` ("Văn hoá Hà Giang", 53 giây)** — phim do nhóm dựng nhưng ghép từ tư liệu của bên thứ ba: giây 15–25 có logo
 **AMAZING HÀ GIANG — KỲ VĨ HÀ GIANG**, giây 26 có dòng ghi công **The Lover Lo Lo Chai — Jerry Tran**.
 Hai thứ này vẫn nằm nguyên trong hình. Khối ghi nguồn đặt cạnh phim ở web cũ đã bỏ theo quyết định
 của nhóm (11/2026). Nếu trang dùng cho mục đích thương mại thật sự, nên xin phép chủ tư liệu bằng
@@ -174,7 +185,7 @@ Facebook và Zalo giữ ảnh xem trước khá lâu. Sau khi đổi, dán link 
 
 ```
 index.html                trang chủ: sáu phần, CSS và JavaScript riêng của trang chủ
-san-pham/                 27 trang sản phẩm — DO CÔNG CỤ TẠO, đừng sửa tay
+san-pham/                 29 trang sản phẩm — DO CÔNG CỤ TẠO, đừng sửa tay
 cong-cu/
   san-pham.json           danh sách box và sản phẩm bán lẻ
   dau-trang.html          thanh trên cùng + menu, dùng chung
@@ -192,12 +203,12 @@ assets/
 Mọi đường dẫn đều là đường dẫn tương đối, không có dấu gạch chéo ở đầu — nhờ vậy trang chạy được
 cả khi nằm trong thư mục con của GitHub Pages.
 
-**Tệp không còn trang nào dùng** (để lại, chưa xoá — khoảng 40 MB, phần lớn là `story.mp4` 26 MB):
-phim `story.mp4` ("Lùng Tám" 2:22), `hero-loop.mp4`, `vung-cao-loop.mp4`, `soi-loop.mp4`, và các ảnh
+**Tệp không còn trang nào dùng** (để lại, chưa xoá — khoảng 14 MB):
+phim `hero-loop.mp4`, `vung-cao-loop.mp4`, `soi-loop.mp4`, và các ảnh
 `anh-nhom`, `b1-thu-hoach`, `b3-noi-soi`, `cd-nung`, `cho-phien-moi`, `hat-then-dan-tinh`, `hg-dong-van`,
 `hg-duong-deo`, `hg-lung-cu`, `hg-nho-que`, `hg-nui-doi`, `hg-ruong-bac-thang`, `hg-tham-ma`, `khung-cui`,
 `le-cap-sac`, `lo-lo-ban-lang`, `lo-lo-mua`, `nha-san-tay`, `nha-trinh-tuong`, `nhom-cham-ban-cam`,
-`phu-nu-dao`, `phu-nu-mong`, `poster-khung-cui`, `poster-nhuom`, `poster-san-pham`, `poster-the-end`,
+`phu-nu-dao`, `phu-nu-mong`, `poster-nhuom`, `poster-san-pham`, `poster-the-end`,
 `poster-thung-lung`, `tay-dien-xuong`, `thung-lung-ban-lang`, `trai-nghiem` (mỗi ảnh gồm các bản
 `.webp`, `.jpg`, `-tiny.webp`). Xoá đi thì repo nhẹ hơn; GitHub không tính băng thông cho tệp không ai mở.
 
@@ -206,7 +217,7 @@ phim `story.mp4` ("Lùng Tám" 2:22), `hero-loop.mp4`, `vung-cao-loop.mp4`, `soi
 ## 11. Dung lượng và băng thông
 
 GitHub cho mỗi repo tối đa 1 GB và khoảng 100 GB băng thông mỗi tháng, nên bình thường thì thoải mái.
-Phim `van-hoa.mp4` (11 MB) chỉ tải khi người xem bấm nút (`preload="none"`), ảnh chỉ tải khi cuộn tới.
+Phim `story.mp4` (26 MB) và `van-hoa.mp4` (11 MB) chỉ tải khi người xem bấm nút (`preload="none"`), ảnh chỉ tải khi cuộn tới.
 
 Nếu trang được chia sẻ rộng (vài nghìn lượt bấm xem phim) mà chạm trần băng thông, đưa phim lên
 YouTube ở chế độ *không công khai* rồi thay khối phim bằng đường dẫn YouTube.

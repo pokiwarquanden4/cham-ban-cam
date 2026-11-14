@@ -97,17 +97,35 @@ def the_box(b):
         })
 
 
+def cac_anh_le(sp):
+    """Ảnh của một sản phẩm lẻ dưới dạng danh sách {tep, vi, en}.
+    Trong JSON, "anh" có thể là một tên ảnh, một danh sách, hoặc null (chưa có ảnh)."""
+    a = sp.get('anh')
+    if not a:
+        return []
+    if isinstance(a, list):
+        return a
+    return [{'tep': a, 'vi': ten_sp(sp), 'en': ten_sp(sp, True)}]
+
+
+CHO_ANH = hai_ngu('[ Chờ ảnh ]', '[ Photo coming soon ]')
+
+
 def the_ban_le(sp):
+    ds = cac_anh_le(sp)
+    if ds:
+        anh = ('<span class="the-anh"><img class="mo-dan" src="assets/img/%s-the.webp" alt=""%s '
+               'loading="lazy" decoding="async">' % (ds[0]['tep'], wh(ds[0]['tep'] + '-the')))
+    else:
+        anh = '<span class="the-anh cho-anh"><span class="chu-cho">%s</span>' % CHO_ANH
     return (
-        '<a class="the-sp vua" href="san-pham/%(ma)s.html">'
-        '<span class="the-anh">'
-        '<img class="mo-dan" src="assets/img/%(anh)s-the.webp" alt=""%(wh)s loading="lazy" decoding="async">'
+        '<a class="the-sp vua" href="san-pham/%(ma)s.html">%(anh)s'
         '<span class="mui-ten" aria-hidden="true">%(mt)s</span></span>'
         '<span class="the-nhan">%(nhan)s</span>'
         '<span class="the-ten">%(ten)s</span>'
         '<span class="the-chan"><span class="the-kham-pha">%(kp)s</span></span>'
         '</a>' % {
-            'ma': sp['ma'], 'anh': sp['anh'], 'wh': wh(sp['anh'] + '-the'), 'mt': MUI_TEN,
+            'ma': sp['ma'], 'anh': anh, 'mt': MUI_TEN,
             'nhan': hai_ngu('Chạm Bản Cẩm · Bán lẻ', 'Chạm Bản Cẩm · Retail'),
             'ten': hai_ngu(ten_sp(sp), ten_sp(sp, True)),
             'kp': hai_ngu('Xem sản phẩm', 'View product'),
@@ -115,14 +133,17 @@ def the_ban_le(sp):
 
 
 def nhom(tieu_de_vi, tieu_de_en, dem_vi, dem_en, cac_the):
-    """Dòng đầu nhóm (tiêu đề + số đếm) rồi lưới thẻ. Không có tiêu đề thì chỉ hiện số đếm —
-    dùng khi tiêu đề lớn của phần đã nói đúng chữ đó, để không lặp."""
-    dem = '<span class="dem">%s</span>' % hai_ngu(dem_vi, dem_en)
-    if tieu_de_vi:
-        dau = '<div class="dau-nhom"><h3>%s</h3>%s</div>' % (hai_ngu(tieu_de_vi, tieu_de_en), dem)
+    """Lưới thẻ, có thể kèm dòng đầu nhóm (tiêu đề + số đếm).
+    Bỏ tiêu đề thì chỉ hiện số đếm; bỏ cả số đếm thì chỉ còn lưới."""
+    if dem_vi:
+        dem = '<span class="dem">%s</span>' % hai_ngu(dem_vi, dem_en)
+        if tieu_de_vi:
+            dau = '<div class="dau-nhom"><h3>%s</h3>%s</div>\n' % (hai_ngu(tieu_de_vi, tieu_de_en), dem)
+        else:
+            dau = '<div class="dau-nhom chi-dem">%s</div>\n' % dem
     else:
-        dau = '<div class="dau-nhom chi-dem">%s</div>' % dem
-    return '\n%s\n<div class="luoi-sp">\n%s\n</div>\n' % (dau, '\n'.join(cac_the))
+        dau = ''
+    return '\n%s<div class="luoi-sp">\n%s\n</div>\n' % (dau, '\n'.join(cac_the))
 
 
 # ---------------------------------------------------------------- trang sản phẩm
@@ -162,8 +183,7 @@ MAU_TRANG = '''<!doctype html>
 %(anh)s
       </div>
       <div class="sp-thong-tin">
-        <div class="sp-dau">%(so)s<span class="sp-nhan">%(nhan)s</span>%(bt)s</div>
-        <h1 class="sp-ten">%(ten)s</h1>
+%(sp_dau)s        <h1 class="sp-ten">%(ten)s</h1>
 %(than)s
         <div class="sp-mua">
           <a class="nut-fb" href="%(fb)s" target="_blank" rel="noopener">%(icon_fb)s<span>%(nut)s</span></a>
@@ -191,10 +211,17 @@ def khung_anh_lon(tep, alt_vi, alt_en):
                 lop, kieu, tep, e(alt_vi), e(alt_en), wh(tep)))
 
 
-def trang_box(b, d, dau, chan):
-    a0 = b['anh'][0]
+def bo_anh(ds):
+    """Ảnh lớn + dãy ảnh nhỏ (nếu có từ 2 ảnh). ds rỗng thì hiện khung chờ ảnh."""
+    if not ds:
+        return ('        <div class="sp-anh-chinh cho-anh"><div class="o-cho-dien">%s</div></div>' % hai_ngu(
+            '[ Chủ dự án điền: ảnh sản phẩm ]', '[ Owner to fill in: product photo ]'))
+    a0 = ds[0]
+    anh = khung_anh_lon(a0['tep'], a0['vi'], a0['en'])
+    if len(ds) < 2:
+        return anh
     nho = []
-    for i, a in enumerate(b['anh']):
+    for i, a in enumerate(ds):
         k = kich_thuoc(a['tep'])
         co = ' data-rong="%d" data-cao="%d"' % k if k else ''
         nho.append(
@@ -202,9 +229,13 @@ def trang_box(b, d, dau, chan):
             'data-alt-vi="%s" data-alt-en="%s" aria-label="Ảnh %d" data-aria-en="Photo %d">'
             '<img src="../assets/img/%s-the.webp" alt="" loading="lazy" decoding="async"></button>' % (
                 'true' if i == 0 else 'false', a['tep'], co, e(a['vi']), e(a['en']), i + 1, i + 1, a['tep']))
-    anh = (khung_anh_lon(a0['tep'], a0['vi'], a0['en']) +
-           '\n        <div class="sp-anh-nho" role="group" aria-label="Ảnh sản phẩm" data-aria-en="Product photos">\n' +
-           '\n'.join(nho) + '\n        </div>')
+    return (anh + '\n        <div class="sp-anh-nho" role="group" aria-label="Ảnh sản phẩm" data-aria-en="Product photos">\n' +
+            '\n'.join(nho) + '\n        </div>')
+
+
+def trang_box(b, d, dau, chan):
+    a0 = b['anh'][0]
+    anh = bo_anh(b['anh'])
 
     dong = '\n'.join(
         '            <li><span class="bt" aria-hidden="true">%s</span><p>%s</p></li>' % (e(c['bt']), hai_ngu(c['vi'], c['en']))
@@ -231,9 +262,9 @@ def trang_box(b, d, dau, chan):
         'dau': dau, 'chan': chan, 've': hai_ngu('Quay lại danh sách sản phẩm', 'Back to all products'),
         'phan_ve': 'hop-qua',      # box nằm ở phần 04 Hộp quà trải nghiệm
         'anh': anh,
-        'so': '<span class="sp-so">%s</span>' % e(b['so']),
-        'nhan': hai_ngu('Box', 'Gift box'),
-        'bt': ('<span class="sp-bieu-tuong" aria-hidden="true">%s</span>' % e(b['bieu_tuong'])) if b['bieu_tuong'] else '',
+        # trang box không ghi số thứ tự và nhãn "Box" (theo góp ý của nhóm); giữ biểu tượng nếu tài liệu có
+        'sp_dau': ('        <div class="sp-dau"><span class="sp-bieu-tuong" aria-hidden="true">%s</span></div>\n'
+                   % e(b['bieu_tuong'])) if b['bieu_tuong'] else '',
         'ten': e(b['ten']), 'than': than,
         'fb': e(d['facebook']), 'icon_fb': ICON_FB,
         'nut': hai_ngu('Liên hệ qua Facebook để mua hàng', 'Contact us on Facebook to order'),
@@ -253,11 +284,12 @@ def trang_ban_le(sp, d, dau, chan):
         'tieu_de': e(vi + ' | CHẠM BẢN CẨM'), 'tieu_de_en': e(en + ' | CHẠM BẢN CẨM'),
         'mo_ta': e('%s — sản phẩm thổ cẩm của CHẠM BẢN CẨM.' % vi),
         'url': e(d['dia_chi_web'] + 'san-pham/' + sp['ma'] + '.html'),
-        'og_anh': e(anh_og(d, sp['anh'])),
+        'og_anh': e(anh_og(d, (cac_anh_le(sp) or [{'tep': None}])[0]['tep'])),
         'dau': dau, 'chan': chan, 've': hai_ngu('Quay lại danh sách sản phẩm', 'Back to all products'),
         'phan_ve': 'san-pham',     # sản phẩm lẻ nằm ở phần 03 Sản phẩm bán lẻ
-        'anh': khung_anh_lon(sp['anh'], vi, en),
-        'so': '', 'nhan': hai_ngu('Sản phẩm bán lẻ', 'Retail product'), 'bt': '',
+        'anh': bo_anh(cac_anh_le(sp)),
+        'sp_dau': '        <div class="sp-dau"><span class="sp-nhan">%s</span></div>\n' % hai_ngu(
+            'Sản phẩm bán lẻ', 'Retail product'),
         'ten': hai_ngu(vi, en), 'than': than,
         'fb': e(d['facebook']), 'icon_fb': ICON_FB,
         'nut': hai_ngu('Liên hệ qua Facebook để mua hàng', 'Contact us on Facebook to order'),
@@ -265,7 +297,10 @@ def trang_ban_le(sp, d, dau, chan):
 
 
 def anh_og(d, tep):
-    """Facebook và Zalo bỏ qua ảnh nhỏ hơn 200px — khi đó dùng ảnh chia sẻ chung của trang."""
+    """Facebook và Zalo bỏ qua ảnh nhỏ hơn 200px — khi đó (hoặc khi chưa có ảnh)
+    dùng ảnh chia sẻ chung của trang."""
+    if not tep:
+        return d['dia_chi_web'] + 'assets/img/share.jpg'
     k = kich_thuoc(tep)
     if k and min(k) < 200:
         return d['dia_chi_web'] + 'assets/img/share.jpg'
@@ -316,12 +351,9 @@ def main():
     v = thay_doan(v, 'dau-trang', dien(dau_mau, '', ''))
     v = thay_doan(v, 'chan-trang', dien(chan_mau, '', ''))
     n_box, n_le = len(d['box']), len(d['ban_le'])
-    v = thay_doan(v, 'nhom-box', nhom('Box', 'Gift boxes', '%02d box' % n_box, '%02d boxes' % n_box,
-                                      [the_box(b) for b in d['box']]))
-    # tiêu đề lớn của phần 03 đã là "Sản phẩm bán lẻ" — dòng đầu nhóm chỉ còn số đếm
-    v = thay_doan(v, 'nhom-ban-le', nhom(None, None,
-                                         '%02d sản phẩm' % n_le, '%02d products' % n_le,
-                                         [the_ban_le(sp) for sp in d['ban_le']]))
+    # theo góp ý của nhóm: hai lưới không có dòng tiêu đề / số đếm — vào thẳng sản phẩm
+    v = thay_doan(v, 'nhom-box', nhom(None, None, None, None, [the_box(b) for b in d['box']]))
+    v = thay_doan(v, 'nhom-ban-le', nhom(None, None, None, None, [the_ban_le(sp) for sp in d['ban_le']]))
     ghi(p, v)
     print('xong: %d box, %d sản phẩm bán lẻ, index.html đã cập nhật' % (n_box, n_le))
 

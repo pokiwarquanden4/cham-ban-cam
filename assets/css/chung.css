@@ -213,6 +213,13 @@ html.js img.mo-dan.xong{opacity:1}
 .sp-anh-chinh.nho{display:flex;align-items:center;justify-content:center}
 .sp-anh-chinh.nho img{width:min(100%,calc(var(--w) * 2px));height:auto;max-height:100%;object-fit:contain}
 .sp-mo-ta{line-height:1.7;max-width:60ch}
+/* căn lề hai đầu cho đoạn văn (theo góp ý của nhóm) */
+.sp-mo-ta,.sp-co-gi p{text-align:justify}
+/* sản phẩm chưa có ảnh: khung chờ */
+.sp-anh-chinh.cho-anh{display:flex;align-items:center;justify-content:center;padding:8%}
+.the-sp .the-anh.cho-anh{display:flex;align-items:center;justify-content:center;border:1px dashed var(--ke-3)}
+.the-sp .chu-cho{font-family:var(--f-hien);font-variation-settings:'wdth' 100,'wght' 500;
+  font-size:12px;letter-spacing:.1em;color:var(--mo)}
 .sp-anh-nho{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
 .sp-anh-nho button{width:76px;height:76px;border:1px solid var(--ke);background:var(--cham-2);overflow:hidden;
   opacity:.72;transition:opacity .2s,border-color .2s}
