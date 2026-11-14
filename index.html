@@ -119,17 +119,13 @@ html[data-che="nhe"] #thoi{display:none !important}
 .mo-phan .hoi{font-size:clamp(2.2rem,6.4vw,5.2rem);line-height:.94;color:var(--do);margin:.3em 0 .45em}
 .muc-luc{display:flex;flex-wrap:wrap;margin-top:clamp(16px,3vh,28px);
   border-top:1px solid var(--ke);border-bottom:1px solid var(--ke)}
-.muc-luc a{display:flex;gap:10px;align-items:baseline;padding:14px 0;margin-right:clamp(20px,3vw,40px);
+/* mục lục chỉ có chữ — đã bỏ số 01–05 theo góp ý của nhóm */
+.muc-luc a{display:block;padding:14px 0;margin-right:clamp(20px,3vw,40px);
   color:var(--soi);text-decoration:none;font-size:clamp(16px,1.5vw,20px);font-weight:500;line-height:1.35}
-.muc-luc a .so{font-family:var(--f-hien);font-variation-settings:'wdth' 100,'wght' 600;
-  font-size:13px;letter-spacing:.08em;color:var(--do);font-variant-numeric:tabular-nums}
 .muc-luc a:hover{color:var(--do)}
 
 /* ===================== MỤC TRONG PHẦN ===================== */
 .cc-muc{padding-block:clamp(48px,8vh,104px);border-top:1px solid var(--ke);padding-right:var(--rail)}
-.cc-so{font-family:var(--f-hien);font-variation-settings:'wdth' 75,'wght' 800;
-  font-size:clamp(2.4rem,5.6vw,4.2rem);line-height:.85;color:var(--do);margin:0 0 .18em;
-  font-variant-numeric:tabular-nums}
 .cc-tieu-de{font-family:var(--f-hien);font-variation-settings:'wdth' 75,'wght' 800;
   font-size:clamp(1.8rem,4.4vw,3.3rem);line-height:.98;letter-spacing:-.01em;color:var(--soi);
   margin:0 0 .75em;text-wrap:balance;max-width:26ch}
@@ -149,15 +145,22 @@ html[data-che="nhe"] #thoi{display:none !important}
 .hv-khoi > p[lang],.vct-diem li,.vct-vai,.loi-moc,.ghi-chu-sp,.goi-y{text-align:justify}
 
 /* ===================== 01 · GIỚI THIỆU (kiểu Trúc Lâm) ===================== */
-/* ảnh lớn đầu trang — TẠM dùng ảnh hộp Chạm Mộc, chờ nhóm gửi ảnh chính thức */
-/* ảnh bìa là ảnh DỌC — hiện trọn ảnh, không cắt; hai bên là nền vải lanh của trang */
-.gt-anh-dau{position:relative;height:min(80vh,780px);min-height:320px;display:flex;justify-content:center;
-  padding-block:clamp(16px,3vh,32px) 0}
-.gt-anh-dau img{height:100%;width:auto;max-width:100%;object-fit:contain}
-@media (max-width:760px){
-  .gt-anh-dau{height:auto;min-height:0;padding:0}
-  .gt-anh-dau img{width:100%;height:auto}
+/* ẢNH BÌA — tràn sát hai mép màn hình, cao vừa một màn hình, đáy mờ dần vào nền (nhóm chọn, 11/2026).
+   Ảnh là ảnh DỌC (1086×1448) nên trên màn ngang bị cắt bớt trên/dưới; màn hẹp (điện thoại) thì
+   khung theo đúng tỉ lệ ảnh (133.34vw = 1448/1086) nên thấy trọn ảnh.
+   158px / 112px = thanh trên cùng + menu lúc chưa thu gọn, trên máy tính / màn ≤1200px.
+   Thay ảnh thì sửa 133.34vw theo tỉ lệ ảnh mới và object-position (điểm giữa chồng hộp). */
+.gt-anh-dau{position:relative;overflow:hidden;background:var(--cham-2);
+  height:min(133.34vw,max(360px,calc(100vh - 158px)));
+  height:min(133.34vw,max(360px,calc(100svh - 158px)))}
+@media (max-width:1200px){
+  .gt-anh-dau{height:min(133.34vw,max(360px,calc(100vh - 112px)));
+    height:min(133.34vw,max(360px,calc(100svh - 112px)))}
 }
+.gt-anh-dau img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 68%}
+.gt-anh-dau::after{content:'';position:absolute;left:0;right:0;bottom:0;height:26%;pointer-events:none;
+  background:linear-gradient(to bottom,rgba(246,242,233,0) 0%,rgba(246,242,233,.42) 40%,
+    rgba(246,242,233,.8) 72%,var(--cham) 100%)}
 .gt-ten{padding-block:clamp(44px,8vh,96px) clamp(24px,4vh,48px);text-align:center}
 .gt-ten h1{font-size:clamp(3rem,10vw,7.4rem);color:var(--do);margin:.18em 0 .16em}
 .gt-khau-hieu{font-family:var(--f-phim);font-style:italic;font-size:clamp(1.25rem,2.6vw,2rem);line-height:1.3;color:var(--soi)}
@@ -275,9 +278,9 @@ html.js .chang.da-hien{opacity:1;translate:0 0}
 .ket em{font-family:var(--f-phim);font-style:italic;font-weight:400;color:var(--do);
   font-variation-settings:normal;letter-spacing:0}
 
-/* ---------- video (mục 04 của phần 05) ---------- */
-.hai-phim{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2.6vw,32px)}
-@media (max-width:860px){ .hai-phim{grid-template-columns:1fr} }
+/* ---------- video (mục cuối của phần 05) ----------
+   Hai phim xếp trên dưới, mỗi phim rộng bằng khung chữ — không chia đôi (nhóm chọn, 11/2026). */
+.hai-phim{display:grid;gap:clamp(36px,6vh,64px)}
 .mot-phim{margin:0}
 .mot-phim figcaption{margin-top:12px;font-family:var(--f-hien);font-variation-settings:'wdth' 100,'wght' 600;
   font-size:clamp(1rem,1.5vw,1.2rem);color:var(--tren-toi)}
@@ -349,6 +352,8 @@ canvas.det{width:100%;height:58px;display:block;margin-top:26px}
 .cham-hang{display:flex;gap:9px;margin:-.2em 0 1.2em}
 .cham-hang i{width:10px;height:10px;background:var(--c2)}
 #ket-van-hoa{padding-block:clamp(48px,8vh,104px);border-top:1px solid var(--ke);padding-right:var(--rail)}
+/* chữ rộng hết khung, không dồn vào một góc (góp ý của nhóm) */
+#ket-van-hoa .van-doan{max-width:none}
 
 /* ===================== 06 · VỀ CHÚNG TÔI ===================== */
 .vct-khau-hieu{font-family:var(--f-phim);font-style:italic;font-size:clamp(1.2rem,2.2vw,1.7rem);
@@ -527,11 +532,11 @@ canvas.det{width:100%;height:58px;display:block;margin-top:26px}
   <section class="mo-phan">
     <div class="boc">
       <nav class="muc-luc" aria-label="Các mục trong phần này" data-aria-en="Sections in this part">
-        <a href="#cc-lung-tam"><span class="so">01</span><span lang="vi">Lùng Tám và Hợp tác xã dệt lanh</span><span lang="en">Lùng Tám and the Linen Weaving Cooperative</span></a>
-        <a href="#cc-nguoi-giu-nghe"><span class="so">02</span><span lang="vi">Người góp phần gìn giữ nghề</span><span lang="en">Keeping the craft alive</span></a>
-        <a href="#quy-trinh"><span class="so">03</span><span lang="vi">Quy trình tạo ra thổ cẩm</span><span lang="en">How brocade is made</span></a>
-        <a href="#cc-gia-tri"><span class="so">04</span><span lang="vi">Giá trị thổ cẩm Lùng Tám</span><span lang="en">The value of Lùng Tám brocade</span></a>
-        <a href="#hoa-van"><span class="so">05</span><span lang="vi">Ý nghĩa hoa văn</span><span lang="en">The meaning of patterns</span></a>
+        <a href="#cc-lung-tam"><span lang="vi">Lùng Tám và Hợp tác xã dệt lanh</span><span lang="en">Lùng Tám and the Linen Weaving Cooperative</span></a>
+        <a href="#cc-nguoi-giu-nghe"><span lang="vi">Người góp phần gìn giữ nghề</span><span lang="en">Keeping the craft alive</span></a>
+        <a href="#quy-trinh"><span lang="vi">Quy trình tạo ra thổ cẩm</span><span lang="en">How brocade is made</span></a>
+        <a href="#cc-gia-tri"><span lang="vi">Giá trị thổ cẩm Lùng Tám</span><span lang="en">The value of Lùng Tám brocade</span></a>
+        <a href="#hoa-van"><span lang="vi">Ý nghĩa hoa văn</span><span lang="en">The meaning of patterns</span></a>
       </nav>
     </div>
   </section>
@@ -539,7 +544,6 @@ canvas.det{width:100%;height:58px;display:block;margin-top:26px}
   <!-- 01 · Lùng Tám và Hợp tác xã dệt lanh -->
   <section id="cc-lung-tam" class="cc-muc">
     <div class="boc">
-      <p class="cc-so" aria-hidden="true">01</p>
       <h3 class="cc-tieu-de"><span lang="vi">Lùng Tám và Hợp tác xã dệt lanh</span><span lang="en">Lùng Tám and the Linen Weaving Cooperative</span></h3>
       <div class="cc-hai-cot">
         <div class="van-doan">
@@ -561,7 +565,6 @@ canvas.det{width:100%;height:58px;display:block;margin-top:26px}
   <!-- 02 · Người góp phần gìn giữ và phát triển nghề dệt lanh -->
   <section id="cc-nguoi-giu-nghe" class="cc-muc">
     <div class="boc">
-      <p class="cc-so" aria-hidden="true">02</p>
       <h3 class="cc-tieu-de"><span lang="vi">Người góp phần gìn giữ và phát triển nghề dệt lanh</span><span lang="en">Key Figure in Preserving and Developing Linen Weaving</span></h3>
       <div class="cc-hai-cot">
         <div class="van-doan">
@@ -580,7 +583,6 @@ canvas.det{width:100%;height:58px;display:block;margin-top:26px}
   <!-- 03 · Quy trình tạo ra thổ cẩm — chín bước, giữ thước 41 vạch của web cũ -->
   <section id="quy-trinh" class="cc-muc">
     <div class="boc">
-      <p class="cc-so" aria-hidden="true">03</p>
       <h3 class="cc-tieu-de"><span lang="vi">Quy trình tạo ra thổ cẩm</span><span lang="en">How Brocade Is Made</span></h3>
       <div class="cc-hai-cot">
         <div class="van-doan">
@@ -686,7 +688,6 @@ canvas.det{width:100%;height:58px;display:block;margin-top:26px}
   <!-- 04 · Giá trị thổ cẩm Lùng Tám với CHẠM BẢN CẨM -->
   <section id="cc-gia-tri" class="cc-muc">
     <div class="boc">
-      <p class="cc-so" aria-hidden="true">04</p>
       <h3 class="cc-tieu-de"><span lang="vi">Giá trị thổ cẩm Lùng Tám với CHẠM BẢN CẨM</span><span lang="en">Connecting the Cultural Value of Lùng Tám Brocade with CHẠM BẢN CẨM</span></h3>
       <div class="van-doan">
         <p lang="vi">Nghề dệt lanh Lùng Tám là một biểu hiện tiêu biểu của tri thức thủ công và bản sắc văn hóa người Mông tại khu vực Hà Giang trước đây. Từ cây lanh đến những sản phẩm thổ cẩm hoàn chỉnh, quá trình chế tác trải qua nhiều công đoạn đòi hỏi sự kiên trì, khéo léo và kinh nghiệm được truyền nối qua nhiều thế hệ.</p>
@@ -705,7 +706,6 @@ canvas.det{width:100%;height:58px;display:block;margin-top:26px}
        chỉ gộp vào phần này. Bản tiếng Anh lấy từ tài liệu. -->
   <section id="hoa-van" class="cc-muc">
     <div class="boc">
-      <p class="cc-so" aria-hidden="true">05</p>
       <h3 class="cc-tieu-de"><span lang="vi">Ý nghĩa hoa văn thổ cẩm</span><span lang="en">The Meaning of Brocade Patterns</span></h3>
 
       <div class="hv-khoi">
@@ -832,7 +832,7 @@ canvas.det{width:100%;height:58px;display:block;margin-top:26px}
 <a class="the-sp vua" href="san-pham/moc-khoa-logo.html"><span class="the-anh cho-anh"><span class="chu-cho"><span lang="vi">[ Chờ ảnh ]</span><span lang="en">[ Photo coming soon ]</span></span><span class="mui-ten" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></span><span class="the-nhan"><span lang="vi">Chạm Bản Cẩm · Bán lẻ</span><span lang="en">Chạm Bản Cẩm · Retail</span></span><span class="the-ten"><span lang="vi">Móc khóa logo</span><span lang="en">Logo keychain</span></span><span class="the-chan"><span class="the-kham-pha"><span lang="vi">Xem sản phẩm</span><span lang="en">View product</span></span></span></a>
 <a class="the-sp vua" href="san-pham/vong-tay.html"><span class="the-anh"><img class="mo-dan" src="assets/img/vong-tay-the.webp" alt="" width="568" height="477" loading="lazy" decoding="async"><span class="mui-ten" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></span><span class="the-nhan"><span lang="vi">Chạm Bản Cẩm · Bán lẻ</span><span lang="en">Chạm Bản Cẩm · Retail</span></span><span class="the-ten"><span lang="vi">Vòng tay</span><span lang="en">Bracelet</span></span><span class="the-chan"><span class="the-kham-pha"><span lang="vi">Xem sản phẩm</span><span lang="en">View product</span></span></span></a>
 <a class="the-sp vua" href="san-pham/kep-no.html"><span class="the-anh"><img class="mo-dan" src="assets/img/kep-no-the.webp" alt="" width="163" height="267" loading="lazy" decoding="async"><span class="mui-ten" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></span><span class="the-nhan"><span lang="vi">Chạm Bản Cẩm · Bán lẻ</span><span lang="en">Chạm Bản Cẩm · Retail</span></span><span class="the-ten"><span lang="vi">Kẹp nơ</span><span lang="en">Bow hair clip</span></span><span class="the-chan"><span class="the-kham-pha"><span lang="vi">Xem sản phẩm</span><span lang="en">View product</span></span></span></a>
-<a class="the-sp vua" href="san-pham/tui-mini.html"><span class="the-anh"><img class="mo-dan" src="assets/img/tui-mini-the.webp" alt="" width="300" height="240" loading="lazy" decoding="async"><span class="mui-ten" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></span><span class="the-nhan"><span lang="vi">Chạm Bản Cẩm · Bán lẻ</span><span lang="en">Chạm Bản Cẩm · Retail</span></span><span class="the-ten"><span lang="vi">Túi mini</span><span lang="en">Mini bag</span></span><span class="the-chan"><span class="the-kham-pha"><span lang="vi">Xem sản phẩm</span><span lang="en">View product</span></span></span></a>
+<a class="the-sp vua" href="san-pham/tui-mini.html"><span class="the-anh"><img class="mo-dan" src="assets/img/tui-mini-the.webp" alt="" width="300" height="240" loading="lazy" decoding="async"><span class="mui-ten" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></span><span class="the-nhan"><span lang="vi">Chạm Bản Cẩm · Bán lẻ</span><span lang="en">Chạm Bản Cẩm · Retail</span></span><span class="the-ten"><span lang="vi">Ví mini</span><span lang="en">Mini wallet</span></span><span class="the-chan"><span class="the-kham-pha"><span lang="vi">Xem sản phẩm</span><span lang="en">View product</span></span></span></a>
 <a class="the-sp vua" href="san-pham/tui-dung-but.html"><span class="the-anh"><img class="mo-dan" src="assets/img/tui-dung-but-the.webp" alt="" width="361" height="197" loading="lazy" decoding="async"><span class="mui-ten" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></span><span class="the-nhan"><span lang="vi">Chạm Bản Cẩm · Bán lẻ</span><span lang="en">Chạm Bản Cẩm · Retail</span></span><span class="the-ten"><span lang="vi">Túi đựng bút</span><span lang="en">Pencil pouch</span></span><span class="the-chan"><span class="the-kham-pha"><span lang="vi">Xem sản phẩm</span><span lang="en">View product</span></span></span></a>
 <a class="the-sp vua" href="san-pham/tui-tote-do.html"><span class="the-anh"><img class="mo-dan" src="assets/img/tui-tote-do-the.webp" alt="" width="381" height="492" loading="lazy" decoding="async"><span class="mui-ten" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></span><span class="the-nhan"><span lang="vi">Chạm Bản Cẩm · Bán lẻ</span><span lang="en">Chạm Bản Cẩm · Retail</span></span><span class="the-ten"><span lang="vi">Túi tote – Màu đỏ</span><span lang="en">Tote bag – Red</span></span><span class="the-chan"><span class="the-kham-pha"><span lang="vi">Xem sản phẩm</span><span lang="en">View product</span></span></span></a>
 <a class="the-sp vua" href="san-pham/tui-tote-xanh.html"><span class="the-anh"><img class="mo-dan" src="assets/img/tui-tote-xanh-the.webp" alt="" width="257" height="457" loading="lazy" decoding="async"><span class="mui-ten" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></span><span class="the-nhan"><span lang="vi">Chạm Bản Cẩm · Bán lẻ</span><span lang="en">Chạm Bản Cẩm · Retail</span></span><span class="the-ten"><span lang="vi">Túi tote – Màu xanh</span><span lang="en">Tote bag – Blue</span></span><span class="the-chan"><span class="the-kham-pha"><span lang="vi">Xem sản phẩm</span><span lang="en">View product</span></span></span></a>
@@ -878,10 +878,10 @@ canvas.det{width:100%;height:58px;display:block;margin-top:26px}
     <div class="boc">
       <h2 class="hien hoi"><span lang="vi">Văn hóa đặc sắc ở Hà Giang —<br>nét đẹp từ các dân tộc thiểu số.</span><span lang="en">Unique cultural heritage of Ha Giang —<br>the beauty of ethnic minority cultures.</span></h2>
       <nav class="muc-luc" aria-label="Các mục trong phần này" data-aria-en="Sections in this part">
-        <a href="#vh-da-dang"><span class="so">01</span><span lang="vi">Hà Giang – Miền đất đa dạng văn hóa</span><span lang="en">A land of cultural diversity</span></a>
-        <a href="#nam-soi"><span class="so">02</span><span lang="vi">Nét văn hóa tiêu biểu của các dân tộc</span><span lang="en">Distinctive cultural features</span></a>
-        <a href="#cho"><span class="so">03</span><span lang="vi">Chợ phiên</span><span lang="en">Highland markets</span></a>
-        <a href="#vh-video"><span class="so">04</span>Video</a>
+        <a href="#vh-da-dang"><span lang="vi">Hà Giang – Miền đất đa dạng văn hóa</span><span lang="en">A land of cultural diversity</span></a>
+        <a href="#nam-soi"><span lang="vi">Nét văn hóa tiêu biểu của các dân tộc</span><span lang="en">Distinctive cultural features</span></a>
+        <a href="#cho"><span lang="vi">Chợ phiên</span><span lang="en">Highland markets</span></a>
+        <a href="#vh-video">Video</a>
       </nav>
       <div class="cc-hai-cot" style="margin-top:clamp(30px,5vh,56px)">
         <div class="van-doan">
@@ -900,7 +900,6 @@ canvas.det{width:100%;height:58px;display:block;margin-top:26px}
   <!-- 1 · Hà Giang – Miền đất đa dạng văn hóa -->
   <section id="vh-da-dang" class="cc-muc">
     <div class="boc">
-      <p class="cc-so" aria-hidden="true">01</p>
       <h3 class="cc-tieu-de"><span lang="vi">Hà Giang – Miền đất đa dạng văn hóa</span><span lang="en">Ha Giang – A Land of Cultural Diversity</span></h3>
       <div class="cc-hai-cot">
         <div class="van-doan">
@@ -917,7 +916,6 @@ canvas.det{width:100%;height:58px;display:block;margin-top:26px}
   <!-- 2 · Nét văn hóa tiêu biểu của các dân tộc — chạm vào một người để mở phần của cộng đồng đó -->
   <section id="nam-soi" class="cc-muc">
     <div class="boc">
-      <p class="cc-so" aria-hidden="true">02</p>
       <h3 class="cc-tieu-de"><span lang="vi">Nét văn hóa tiêu biểu của các dân tộc</span><span lang="en">Distinctive Cultural Features of Ethnic Groups</span></h3>
       <p class="goi-y"><span lang="vi">Chạm vào một người để xem phần của cộng đồng đó.</span><span lang="en">Tap a person to read about that community.</span></p>
       <div class="cot-boc" id="cot-boc" role="group" aria-label="Năm cộng đồng" data-aria-en="Five communities">
@@ -1075,7 +1073,6 @@ canvas.det{width:100%;height:58px;display:block;margin-top:26px}
   <!-- 3 · Chợ phiên – Không gian giao lưu văn hóa -->
   <section id="cho" class="cc-muc">
     <div class="boc">
-      <p class="cc-so" aria-hidden="true">03</p>
       <h3 class="cc-tieu-de"><span lang="vi">Chợ phiên – Không gian giao lưu văn hóa</span><span lang="en">Highland Markets – Spaces for Cultural Exchange</span></h3>
       <div class="cham-hang" aria-hidden="true">
         <i style="--c2:#8A3D08"></i><i style="--c2:#8E1E18"></i><i style="--c2:#8E2746"></i><i style="--c2:#8A3246"></i><i style="--c2:#1E3F78"></i>
@@ -1101,10 +1098,9 @@ canvas.det{width:100%;height:58px;display:block;margin-top:26px}
     </div>
   </section>
 
-  <!-- 4 · Video — hai phim, chỉ tải khi người xem bấm -->
+  <!-- Video — hai phim xếp trên dưới, chỉ tải khi người xem bấm -->
   <section id="vh-video" class="cc-muc tam-toi">
     <div class="boc">
-      <p class="cc-so" aria-hidden="true">04</p>
       <h3 class="cc-tieu-de">Video</h3>
       <div class="hai-phim">
         <figure class="mot-phim">

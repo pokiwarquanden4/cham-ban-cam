@@ -47,7 +47,8 @@ chạy ngang rồi phần đó lộ ra. Trang không ghi số "Phần 0X" — s�
   `#phan-1` → phần 05, `#phan-2` → phần 02, `#phan-3` → mục hoa văn trong phần 02.
 - Không có JavaScript thì cả sáu phần hiện nối tiếp nhau — không ai bị mất nội dung.
 
-Phần 02 và 06 không có tiêu đề lớn, mở đầu bằng hàng mục lục chữ to. Phần 06 không đánh số mục.
+Phần 02 và 06 không có tiêu đề lớn, mở đầu bằng hàng mục lục chữ to. **Không mục nào đánh số** —
+mục lục và đầu mục chỉ có chữ (đã bỏ số 01–05 theo góp ý của nhóm).
 Mọi đoạn văn **căn lề hai đầu** (CSS `text-align:justify`, danh sách lớp ở cuối mục chữ trong
 `index.html` và ở `chung.css`) — thêm kiểu đoạn văn mới thì nhớ thêm vào danh sách đó.
 
@@ -100,13 +101,16 @@ cũng chạy được.
 
 Tìm chữ `Chủ dự án điền` là thấy, đang hiện bằng khung viền đứt:
 
-- **Mô tả Vòng tay và Túi đựng bút** — tài liệu chưa có; thêm `"mo_ta"`, `"mo_ta_en"` vào
+- **Mô tả Vòng tay** — tài liệu chưa có; thêm `"mo_ta"`, `"mo_ta_en"` vào
   `cong-cu/san-pham.json` (mục 4).
 - **Ảnh Móc khóa logo** — chưa có ảnh riêng. Tạo ảnh bằng `python cong-cu/tao-anh.py <ảnh> moc-khoa-logo`
   rồi sửa `"anh": null` thành `"anh": "moc-khoa-logo"` trong JSON và chạy lại công cụ.
 
-Ảnh bìa phần 01 là `assets/img/anh-bia` (ảnh dọc, hiện trọn ảnh, hai bên là nền trang). Thay ảnh thì
-sửa `src`, `alt`, `data-alt-en`, `width`, `height` của thẻ ảnh trong khối `gt-anh-dau` ở `index.html`.
+Ảnh bìa phần 01 là `assets/img/anh-bia` — ảnh dọc, hiện **tràn sát hai mép màn hình**, cao vừa một
+màn hình, đáy mờ dần vào nền; trên màn ngang ảnh bị cắt bớt trên/dưới (nhóm chọn cách này). Ảnh gốc
+trong tài liệu chỉ rộng 1086px nên trên màn lớn hơi mềm — có ảnh chụp gốc to hơn thì thay.
+Thay ảnh thì sửa `src`, `alt`, `data-alt-en`, `width`, `height` của thẻ ảnh trong khối `gt-anh-dau`
+ở `index.html`, và trong CSS của khối đó sửa tỉ lệ `133.34vw` (= cao ÷ rộng × 100) cùng `object-position`.
 
 Trang không hiện giá — liên hệ mua qua nút "Liên hệ qua Facebook để mua hàng"
 (`https://www.facebook.com/ChamBanCam`).
@@ -149,8 +153,8 @@ kiểu Trúc Lâm / Miên Studio. Con thoi vẫn chạy mỗi khi người xem �
 
 ## 8. Phim
 
-Hai phim nằm cạnh nhau ở mục 04 Video của phần 05, chỉ tải khi người xem bấm nút; phim này chạy
-thì phim kia tự dừng.
+Hai phim xếp trên dưới (mỗi phim rộng bằng khung chữ) ở mục Video cuối phần 05, chỉ tải khi người
+xem bấm nút; phim này chạy thì phim kia tự dừng.
 
 - **`story.mp4` ("Quy trình tạo ra thổ cẩm", 2 phút 22)** — phim nhóm tự quay tại Lùng Tám. Bản gốc
   trên Drive là `Story Telling.mp4` (107 MB, mã H.265): quá giới hạn 100 MB mỗi tệp của GitHub và

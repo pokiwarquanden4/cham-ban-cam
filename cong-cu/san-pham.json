@@ -457,8 +457,8 @@
     },
     {
       "ma": "tui-mini",
-      "loai": "Túi mini",
-      "loai_en": "Mini bag",
+      "loai": "Ví mini",
+      "loai_en": "Mini wallet",
       "bien_the": "",
       "bien_the_en": "",
       "anh": "tui-mini",
@@ -471,7 +471,9 @@
       "loai_en": "Pencil pouch",
       "bien_the": "",
       "bien_the_en": "",
-      "anh": "tui-dung-but"
+      "anh": "tui-dung-but",
+      "mo_ta": "Túi đựng bút thổ cẩm với họa tiết dệt truyền thống nổi bật, mang đậm nét văn hóa vùng cao. Thiết kế nhỏ gọn, tiện dụng, phù hợp để đựng bút và các vật dụng học tập hằng ngày.",
+      "mo_ta_en": "A brocade pencil pouch with striking traditional woven patterns that carry the spirit of highland culture. Compact and practical, it is just right for pens and everyday study supplies."
     },
     {
       "ma": "tui-tote-do",
