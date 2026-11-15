@@ -25,6 +25,22 @@ python -m http.server 8000
    nhánh `main`, thư mục `/ (root)`. Bấm Save.
 4. Đợi 1–2 phút. Trang sẽ ở `https://<tên-tài-khoản>.github.io/<tên-repo>/`.
 
+### Tên miền riêng: `cham-ban-cam.io.vn`
+
+Trang đang chạy ở **https://cham-ban-cam.io.vn/**. Link `pokiwarquanden4.github.io/cham-ban-cam/`
+cũ tự chuyển sang tên miền này.
+
+- Mua ở P.A Việt Nam ngày 15/11/2026, hết hạn **15/11/2027**, gia hạn 40.000đ/năm, tự động gia hạn
+  đang **tắt**. Bản ghi DNS sửa ở `access.pavietnam.vn` (đăng nhập bằng tên miền + mật khẩu quản
+  lý tên miền, không phải mật khẩu tài khoản P.A).
+- DNS: 4 bản ghi **A** cho `@` → `185.199.108.153`, `185.199.109.153`, `185.199.110.153`,
+  `185.199.111.153`; 1 bản ghi **CNAME** cho `www` → `pokiwarquanden4.github.io`.
+- Phía GitHub: tệp `CNAME` ở gốc repo (chỉ một dòng `cham-ban-cam.io.vn`) và
+  **Settings → Pages → Custom domain**, bật *Enforce HTTPS*.
+- **Khi không gia hạn nữa:** xoá tệp `CNAME` và ô Custom domain trong Settings → Pages, đổi
+  `"dia_chi_web"` (mục 9) về địa chỉ github.io. Không làm thì link github.io vẫn chuyển sang tên
+  miền đã hết hạn và trang không vào được.
+
 ---
 
 ## 3. Trang có những gì

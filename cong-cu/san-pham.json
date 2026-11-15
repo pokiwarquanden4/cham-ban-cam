@@ -1,6 +1,6 @@
 {
   "_ghi_chu": "Sửa tệp này rồi chạy: python cong-cu/tao-trang.py — xem README mục \"Sửa sản phẩm\". Chữ tiếng Việt lấy nguyên văn tài liệu của nhóm; chữ tiếng Anh do người làm web dịch, cần nhóm duyệt. Ảnh: ghi tên tệp trong assets/img, không có đuôi .webp. Sản phẩm lẻ: \"anh\" là một tên ảnh, hoặc danh sách {tep, vi, en} khi có nhiều ảnh, hoặc null khi chưa có ảnh (trang hiện khung chờ ảnh).",
-  "dia_chi_web": "https://pokiwarquanden4.github.io/cham-ban-cam/",
+  "dia_chi_web": "https://cham-ban-cam.io.vn/",
   "facebook": "https://www.facebook.com/ChamBanCam",
   "box": [
     {
