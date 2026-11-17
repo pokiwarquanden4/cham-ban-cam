@@ -24,7 +24,7 @@
      để trang không nháy sang phần khác rồi mới nhảy về đúng chỗ. -->
 <script>(function(d){d.className+=' js';
 try{if(localStorage.getItem('cbc-ngon-ngu')==='en'){d.setAttribute('data-nn','en');d.lang='en'}}catch(e){}
-var h=(location.hash||'').slice(1),P={'gioi-thieu':1,'cau-chuyen':1,'san-pham':1,'hop-qua':1,'trai-nghiem':1,'ve-chung-toi':1},
+var h=(location.hash||'').slice(1),P={'gioi-thieu':1,'cau-chuyen':1,'san-pham':1,'hop-qua':1,'trai-nghiem':1,'ve-chung-toi':1,'lien-he':1},
 CU={'phan-1':'trai-nghiem','phan-2':'cau-chuyen','phan-3':'cau-chuyen'};
 d.setAttribute('data-phan',P[h]?h:(CU[h]||'gioi-thieu'));})(document.documentElement)</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,20 +33,21 @@ d.setAttribute('data-phan',P[h]?h:(CU[h]||'gioi-thieu'));})(document.documentEle
 <link rel="stylesheet" href="assets/css/chung.css">
 <style>
 /* ===========================================================
-   TRANG CHỦ — sáu phần, mỗi lần hiện một phần.
+   TRANG CHỦ — bảy phần, mỗi lần hiện một phần.
    Phần dùng chung (màu, menu, chân trang, thẻ sản phẩm) ở assets/css/chung.css.
    =========================================================== */
 
 /* ===================== SÁU PHẦN =====================
    Phần đang mở ghi ở html[data-phan]. Không có JavaScript thì không có data-phan,
-   và cả sáu phần hiện nối tiếp nhau — không ai bị mất nội dung. */
+   và cả bảy phần hiện nối tiếp nhau — không ai bị mất nội dung. */
 html[data-phan] .phan{display:none}
 html[data-phan="gioi-thieu"] #gioi-thieu,
 html[data-phan="cau-chuyen"] #cau-chuyen,
 html[data-phan="san-pham"] #san-pham,
 html[data-phan="hop-qua"] #hop-qua,
 html[data-phan="trai-nghiem"] #trai-nghiem,
-html[data-phan="ve-chung-toi"] #ve-chung-toi{display:block}
+html[data-phan="ve-chung-toi"] #ve-chung-toi,
+html[data-phan="lien-he"] #lien-he{display:block}
 .phan{min-height:60vh}
 .phan [id]{scroll-margin-top:104px}
 
@@ -142,7 +143,7 @@ html[data-che="nhe"] #thoi{display:none !important}
 .van-doan p{color:var(--soi);font-size:clamp(15px,1.15vw,16.5px);line-height:1.72}
 /* CĂN LỀ HAI ĐẦU cho mọi đoạn văn (theo góp ý của nhóm). Chỉ đoạn văn — tiêu đề, menu, nhãn giữ nguyên. */
 .van-doan p,.gt-doan,.gt-ba-o p,.gt-gia-tri li,.gt-dl dd,.chang .mo-ta,.hv-dan,.hv-the p,.ch-y p,
-.hv-khoi > p[lang],.vct-diem li,.vct-vai,.loi-moc,.ghi-chu-sp,.goi-y{text-align:justify}
+.hv-khoi > p[lang],.vct-diem li,.vct-vai,.loi-moc,.ghi-chu-sp,.goi-y,.lh-loi-chao{text-align:justify}
 
 /* ===================== 01 · GIỚI THIỆU (kiểu Trúc Lâm) ===================== */
 /* ẢNH BÌA — tràn sát hai mép màn hình, cao vừa một màn hình, đáy mờ dần vào nền (nhóm chọn, 11/2026).
@@ -375,6 +376,45 @@ canvas.det{width:100%;height:58px;display:block;margin-top:26px}
   line-height:1.25;margin:0 0 .8em;color:var(--soi)}
 @media (max-width:860px){ .vct-nhom{grid-template-columns:1fr} }
 
+/* ===================== 07 · LIÊN HỆ (theo mẫu trang liên hệ Hagimex, nhóm gửi 17/11/2026) ===================== */
+.lh-khung{padding-block:clamp(48px,8vh,100px) clamp(56px,9vh,110px)}
+.lh-tieu-de{font-family:var(--f-hien);font-variation-settings:'wdth' 75,'wght' 800;
+  font-size:clamp(2.1rem,5.6vw,4.2rem);line-height:.98;letter-spacing:.01em;text-transform:uppercase;
+  color:var(--soi);text-align:center;margin:0 0 .55em;text-wrap:balance}
+/* căn hai đầu như mọi đoạn văn, dòng cuối ra giữa cho khớp tiêu đề */
+.lh-loi-chao{max-width:80ch;margin-inline:auto;font-size:clamp(15px,1.15vw,17px);line-height:1.75;
+  color:var(--soi);text-align-last:center}
+.lh-thong-tin{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:clamp(20px,4vw,56px);
+  align-items:center;margin-top:clamp(30px,5vh,52px);padding-block:clamp(22px,3.4vh,34px);
+  border-block:1px solid var(--ke)}
+.lh-logo{width:clamp(96px,11vw,150px);height:auto;border:1px solid var(--ke)}
+.lh-ten{font-family:var(--f-hien);font-variation-settings:'wdth' 100,'wght' 700;font-size:1.15rem;
+  letter-spacing:.04em;margin:0 0 .6em;color:var(--soi)}
+.lh-dong{display:grid;gap:10px}
+.lh-dong li{display:flex;gap:12px;align-items:flex-start;line-height:1.55;color:var(--soi)}
+.lh-dong svg{width:20px;height:20px;flex:0 0 auto;margin-top:.12em;color:var(--do)}
+.lh-dong a{color:var(--soi);text-decoration:none;overflow-wrap:anywhere}
+.lh-dong a:hover{color:var(--do)}
+@media (max-width:860px){ .lh-thong-tin{grid-template-columns:auto minmax(0,1fr)} .lh-kenh{grid-column:2} }
+@media (max-width:560px){ .lh-thong-tin{grid-template-columns:1fr} .lh-kenh{grid-column:auto} .lh-logo{width:96px} }
+/* khung gửi lời nhắn — chữ gợi ý nằm trong ô như trang mẫu, gõ vào thì ẩn đi */
+.lh-form{display:grid;gap:16px;margin-top:clamp(28px,5vh,48px)}
+.lh-o{position:relative}
+.lh-o input,.lh-o textarea{display:block;width:100%;padding:14px 20px;border:1px solid var(--ke-3);
+  border-radius:0;background:#FFFDF8;color:var(--soi);font:inherit;line-height:1.5}
+.lh-o textarea{min-height:180px;resize:vertical}
+.lh-o input:focus,.lh-o textarea:focus{border-color:var(--soi)}
+.lh-o label{position:absolute;left:21px;top:15px;color:var(--mo);line-height:1.5;pointer-events:none;
+  transition:opacity .15s}
+.lh-o input:not(:placeholder-shown) + label,.lh-o textarea:not(:placeholder-shown) + label{opacity:0}
+.lh-gui{justify-self:center;min-width:120px;padding:13px 36px;background:var(--do);color:#fff;
+  font-weight:600;font-size:16px;letter-spacing:.12em;text-transform:uppercase;transition:background .2s}
+.lh-gui:hover{background:var(--do-tuoi)}
+.lh-gui[disabled]{opacity:.6;cursor:progress}
+.lh-trang-thai{min-height:1.6em;text-align:center;color:var(--soi)}
+.lh-trang-thai.loi{color:var(--do)}
+.lh-mat{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+
 /* ===================== BẬC NHẸ / GIẢM CHUYỂN ĐỘNG ===================== */
 :root{transition:--khoi .34s ease,--chu .34s ease}
 @property --khoi { syntax: '<color>'; inherits: true; initial-value: #C62A14 }
@@ -426,6 +466,7 @@ canvas.det{width:100%;height:58px;display:block;margin-top:26px}
       <li><a href="#hop-qua" data-phan="hop-qua"><span lang="vi">Hộp quà trải nghiệm</span><span lang="en">Experience gift box</span></a></li>
       <li><a href="#trai-nghiem" data-phan="trai-nghiem"><span lang="vi">Trải nghiệm văn hóa</span><span lang="en">Cultural experience</span></a></li>
       <li><a href="#ve-chung-toi" data-phan="ve-chung-toi"><span lang="vi">Về chúng tôi</span><span lang="en">About us</span></a></li>
+      <li><a href="#lien-he" data-phan="lien-he"><span lang="vi">Liên hệ</span><span lang="en">Contact</span></a></li>
     </ul>
     <button type="button" id="nut-menu" aria-expanded="false" aria-controls="menu-dong"><span>Menu</span><span class="vach" aria-hidden="true"><i></i><i></i><i></i></span></button>
   </nav>
@@ -437,6 +478,7 @@ canvas.det{width:100%;height:58px;display:block;margin-top:26px}
       <li><a href="#hop-qua" data-phan="hop-qua"><span lang="vi">Hộp quà trải nghiệm</span><span lang="en">Experience gift box</span></a></li>
       <li><a href="#trai-nghiem" data-phan="trai-nghiem"><span lang="vi">Trải nghiệm văn hóa</span><span lang="en">Cultural experience</span></a></li>
       <li><a href="#ve-chung-toi" data-phan="ve-chung-toi"><span lang="vi">Về chúng tôi</span><span lang="en">About us</span></a></li>
+      <li><a href="#lien-he" data-phan="lien-he"><span lang="vi">Liên hệ</span><span lang="en">Contact</span></a></li>
     </ul>
   </div>
 </header>
@@ -1265,6 +1307,63 @@ canvas.det{width:100%;height:58px;display:block;margin-top:26px}
   </section>
 </div><!-- /ve-chung-toi -->
 
+<!-- =====================================================================
+     PHẦN 07 · LIÊN HỆ — theo mẫu trang liên hệ của Hagimex mà nhóm gửi (17/11/2026):
+     lời chào, khối thông tin, rồi khung gửi lời nhắn; không có bản đồ.
+     Lời nhắn đi qua dịch vụ FormSubmit về chambancam@gmail.com — lần đầu phải bấm
+     link kích hoạt trong thư FormSubmit gửi tới Gmail đó (xem README).
+     Bản tiếng Anh do người làm web dịch.
+     ===================================================================== -->
+<div class="phan" id="lien-he">
+  <section class="lh-khung" aria-labelledby="h-lh">
+    <div class="boc">
+      <h2 class="lh-tieu-de" id="h-lh"><span lang="vi">Liên hệ với chúng tôi</span><span lang="en">Contact us</span></h2>
+      <p class="lh-loi-chao" lang="vi">Cảm ơn Quý khách đã quan tâm đến CHẠM BẢN CẨM. Quý khách có thể liên hệ với chúng tôi qua email bất cứ lúc nào. Chúng tôi luôn sẵn lòng giải đáp mọi câu hỏi, góp ý và yêu cầu của Quý khách, và sẽ cố gắng phản hồi trong thời gian sớm nhất.</p>
+      <p class="lh-loi-chao" lang="en">Thank you for your interest in CHẠM BẢN CẨM. Please feel free to contact us by email at any time. We are always happy to help with any questions, comments or requests you may have, and we will do our best to reply as soon as possible.</p>
+
+      <div class="lh-thong-tin">
+        <img class="lh-logo" src="assets/img/logo-nho.webp" alt="Logo CHẠM BẢN CẨM" data-alt-en="CHẠM BẢN CẨM logo" width="240" height="240" loading="lazy" decoding="async">
+        <div>
+          <p class="lh-ten">CHẠM BẢN CẨM</p>
+          <ul class="lh-dong">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.4"/></svg><span><span lang="vi">Trụ sở: Hà Nội, Việt Nam</span><span lang="en">Headquarters: Hanoi, Vietnam</span></span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.4"/></svg><span><span lang="vi">Khu vực cung ứng: Hà Giang, Việt Nam</span><span lang="en">Sourcing area: Ha Giang, Vietnam</span></span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></svg><a href="mailto:chambancam@gmail.com">chambancam@gmail.com</a></li>
+          </ul>
+        </div>
+        <ul class="lh-dong lh-kenh">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="M5 3.5h3.2l1.9 4.8-2.4 1.5a11.5 11.5 0 0 0 6.5 6.5l1.5-2.4 4.8 1.9V19a2 2 0 0 1-2 2A17.5 17.5 0 0 1 3 5.5a2 2 0 0 1 2-2z"/></svg><a href="tel:+84396347858">039 634 7858</a></li>
+          <li><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.6 21v-7.9h2.7l.4-3.2h-3.1v-2c0-.9.3-1.5 1.6-1.5h1.6V3.5a22 22 0 0 0-2.4-.1c-2.4 0-4 1.5-4 4.1v2.4H7.7v3.2h2.7V21z"/></svg><a href="https://www.facebook.com/ChamBanCam" target="_blank" rel="noopener">Facebook</a></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4.6"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".9" fill="currentColor" stroke="none"/></svg><a href="https://www.instagram.com/chambancam" target="_blank" rel="noopener">Instagram</a></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M13.5 3.5v11.2a3.6 3.6 0 1 1-3.6-3.6"/><path d="M13.5 3.5c.6 2.7 2.5 4.5 5.2 4.8"/></svg><a href="https://www.tiktok.com/@chambancamg75" target="_blank" rel="noopener">TikTok</a></li>
+        </ul>
+      </div>
+
+      <form class="lh-form" id="lh-form" action="https://formsubmit.co/chambancam@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="Lời nhắn mới từ web CHẠM BẢN CẨM">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="https://cham-ban-cam.io.vn/?da-gui=1#lien-he">
+        <div class="lh-mat" aria-hidden="true"><input type="text" name="_honey" tabindex="-1" autocomplete="off"></div>
+        <div class="lh-o">
+          <input id="lh-ten" name="Họ và tên" type="text" required maxlength="120" autocomplete="name" placeholder=" ">
+          <label for="lh-ten"><span lang="vi">Họ &amp; Tên:</span><span lang="en">Full name:</span></label>
+        </div>
+        <div class="lh-o">
+          <input id="lh-email" name="email" type="email" required maxlength="160" autocomplete="email" placeholder=" ">
+          <label for="lh-email"><span lang="vi">Địa chỉ email:</span><span lang="en">Email address:</span></label>
+        </div>
+        <div class="lh-o">
+          <textarea id="lh-noi-dung" name="Nội dung" rows="7" required maxlength="5000" placeholder=" "></textarea>
+          <label for="lh-noi-dung"><span lang="vi">Nội dung:</span><span lang="en">Message:</span></label>
+        </div>
+        <button type="submit" class="lh-gui"><span lang="vi">Gửi</span><span lang="en">Send</span></button>
+        <p class="lh-trang-thai" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+</div><!-- /lien-he -->
+
 </main>
 
 <!-- ============ CHÂN TRANG ============
@@ -1566,10 +1665,10 @@ document.querySelectorAll('.phim video').forEach(function(v){
 
 /* ============================================================
    8. SÁU PHẦN — mỗi lần chỉ hiện một phần
-   Đường dẫn #gioi-thieu … #ve-chung-toi mở thẳng phần đó.
+   Đường dẫn #gioi-thieu … #lien-he mở thẳng phần đó.
    Đường dẫn cũ #phan-1/2/3 (đã gửi đi trước đây) vẫn mở đúng nội dung.
    ============================================================ */
-var PHAN = ['gioi-thieu','cau-chuyen','san-pham','hop-qua','trai-nghiem','ve-chung-toi'];
+var PHAN = ['gioi-thieu','cau-chuyen','san-pham','hop-qua','trai-nghiem','ve-chung-toi','lien-he'];
 var CU = {'phan-1':['trai-nghiem'], 'phan-2':['cau-chuyen'], 'phan-3':['cau-chuyen','hoa-van']};
 var dangMo = null;
 var oNen = document.getElementById('nen-chay');
@@ -1704,6 +1803,56 @@ addEventListener('resize', function(){
   lastW = innerWidth;
   veLaiCanvasDangHien();
 }, {passive:true});
+
+/* ============================================================
+   10. KHUNG GỬI LỜI NHẮN (phần 07) — qua FormSubmit về chambancam@gmail.com.
+   Có JavaScript: gửi ngầm, báo kết quả ngay dưới nút GỬI. Không có JavaScript: form
+   gửi thẳng tới FormSubmit, xong quay về #lien-he kèm ?da-gui=1.
+   ============================================================ */
+var lhForm = document.getElementById('lh-form');
+if (lhForm){
+  var lhNut = lhForm.querySelector('.lh-gui');
+  var lhTT = lhForm.querySelector('.lh-trang-thai');
+  var LH = {
+    dang: ['Đang gửi…', 'Sending…'],
+    xong: ['Cảm ơn Quý khách! Lời nhắn đã được gửi, chúng tôi sẽ phản hồi sớm nhất có thể.',
+           'Thank you! Your message has been sent and we will reply as soon as possible.'],
+    loi:  ['Chưa gửi được lời nhắn. Quý khách vui lòng thử lại hoặc email trực tiếp tới chambancam@gmail.com.',
+           'Your message could not be sent. Please try again or email us directly at chambancam@gmail.com.']
+  };
+  var baoLH = function(k){
+    lhTT.className = 'lh-trang-thai' + (k === 'loi' ? ' loi' : '');
+    lhTT.innerHTML = '<span lang="vi"></span><span lang="en"></span>';
+    lhTT.children[0].textContent = LH[k][0];
+    lhTT.children[1].textContent = LH[k][1];
+  };
+  if (/[?&]da-gui=1/.test(location.search)){
+    baoLH('xong');
+    try { history.replaceState(null, '', location.pathname + location.hash); } catch(e){}
+  }
+  if (window.fetch && window.FormData){
+    lhForm.addEventListener('submit', function(ev){
+      ev.preventDefault();
+      var du = {};
+      new FormData(lhForm).forEach(function(v, k){ if (k !== '_next') du[k] = v; });
+      if (du._honey) return;                         /* ô bẫy máy gửi rác */
+      delete du._honey;
+      lhNut.disabled = true;
+      baoLH('dang');
+      fetch('https://formsubmit.co/ajax/chambancam@gmail.com', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+        body: JSON.stringify(du)
+      }).then(function(r){ return r.json(); })
+        .then(function(kq){
+          if (kq && String(kq.success) === 'true'){ baoLH('xong'); lhForm.reset(); }
+          else baoLH('loi');
+        })
+        .catch(function(){ baoLH('loi'); })
+        .then(function(){ lhNut.disabled = false; });
+    });
+  }
+}
 })();
 </script>
 </body>

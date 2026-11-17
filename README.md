@@ -45,8 +45,8 @@ cũ tự chuyển sang tên miền này.
 
 ## 3. Trang có những gì
 
-Trang chủ `index.html` chia sáu phần theo tài liệu "cấu trúc website" của nhóm. Menu kiểu
-Trúc Lâm: logo ở giữa, ba mục mỗi bên. **Mỗi lần chỉ hiện một phần**; bấm mục nào thì con thoi
+Trang chủ `index.html` chia bảy phần: sáu phần theo tài liệu "cấu trúc website" của nhóm, thêm
+phần 07 Liên hệ (góp ý 17/11/2026). Menu kiểu Trúc Lâm: logo ở giữa, ba mục bên trái, bốn mục bên phải. **Mỗi lần chỉ hiện một phần**; bấm mục nào thì con thoi
 chạy ngang rồi phần đó lộ ra. Trang không ghi số "Phần 0X" — số trong bảng dưới chỉ để tiện nói với nhau.
 
 | Phần | Đường dẫn | Nội dung |
@@ -57,11 +57,12 @@ chạy ngang rồi phần đó lộ ra. Trang không ghi số "Phần 0X" — s�
 | 04 Hộp quà trải nghiệm | `#hop-qua` | 4 box, không có tiêu đề — vào thẳng lưới box |
 | 05 Trải nghiệm văn hóa | `#trai-nghiem` | văn hóa Hà Giang, năm cộng đồng, chợ phiên, video (2 phim) |
 | 06 Về chúng tôi | `#ve-chung-toi` | giới thiệu dự án, thành viên, đối tác cung ứng, nguồn tư liệu |
+| 07 Liên hệ | `#lien-he` | theo mẫu trang liên hệ Hagimex: lời chào, thông tin, khung gửi lời nhắn (không có bản đồ) |
 
 - Gắn thẳng đường dẫn tới một mục bên trong cũng được, ví dụ `#hoa-van`, `#quy-trinh`, `#nam-soi`.
 - Đường dẫn cũ `#phan-1`, `#phan-2`, `#phan-3` (đã gửi đi trước đây) vẫn mở đúng nội dung:
   `#phan-1` → phần 05, `#phan-2` → phần 02, `#phan-3` → mục hoa văn trong phần 02.
-- Không có JavaScript thì cả sáu phần hiện nối tiếp nhau — không ai bị mất nội dung.
+- Không có JavaScript thì cả bảy phần hiện nối tiếp nhau — không ai bị mất nội dung.
 
 Phần 02 và 06 không có tiêu đề lớn, mở đầu bằng hàng mục lục chữ to. **Không mục nào đánh số** —
 mục lục và đầu mục chỉ có chữ (đã bỏ số 01–05 theo góp ý của nhóm).
@@ -72,6 +73,19 @@ Mọi đoạn văn **căn lề hai đầu** (CSS `text-align:justify`, danh sác
 theo ghi chú của nhóm. Nếu tài liệu sửa thì phải sửa lại trang, hai bên không tự đồng bộ.
 
 ---
+
+### Khung gửi lời nhắn (phần 07 Liên hệ)
+
+Web chạy trên GitHub Pages nên không tự gửi thư được — khung dùng dịch vụ miễn phí
+**FormSubmit** (formsubmit.co): người xem bấm GỬI thì lời nhắn được gửi vào **chambancam@gmail.com**
+(tiêu đề "Lời nhắn mới từ web CHẠM BẢN CẨM"); bấm *Trả lời* trong Gmail là trả lời thẳng người gửi.
+
+- **Lần đầu phải kích hoạt:** FormSubmit gửi một thư "Activate Form" tới chambancam@gmail.com —
+  mở thư (xem cả mục Spam/Quảng cáo) và bấm nút kích hoạt. Chưa kích hoạt thì lời nhắn không tới,
+  người gửi thấy dòng báo lỗi màu đỏ.
+- Đổi Gmail nhận thư: sửa địa chỉ trong `action="https://formsubmit.co/..."` của form và trong
+  `fetch('https://formsubmit.co/ajax/...')` ở mục 10 phần JavaScript của `index.html`, rồi kích hoạt lại.
+- Có ô bẫy ẩn `_honey` để chặn máy gửi rác; không có bản đồ (theo góp ý của nhóm).
 
 ## 4. Sửa sản phẩm
 
@@ -204,7 +218,7 @@ Facebook và Zalo giữ ảnh xem trước khá lâu. Sau khi đổi, dán link 
 ## 10. Cấu trúc thư mục
 
 ```
-index.html                trang chủ: sáu phần, CSS và JavaScript riêng của trang chủ
+index.html                trang chủ: bảy phần, CSS và JavaScript riêng của trang chủ
 san-pham/                 29 trang sản phẩm — DO CÔNG CỤ TẠO, đừng sửa tay
 cong-cu/
   san-pham.json           danh sách box và sản phẩm bán lẻ

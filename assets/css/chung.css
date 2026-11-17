@@ -99,7 +99,7 @@ html.js img.mo-dan.xong{opacity:1}
 
 /* ===================== THANH TRÊN CÙNG ===================== */
 #thanh-tren{border-bottom:1px solid var(--ke);background:var(--cham);font-size:13px;position:relative;z-index:72}
-#thanh-tren .boc{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:36px}
+#thanh-tren .boc{width:min(1480px,100%);display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:36px}
 .tt-lien-he{display:flex;flex-wrap:wrap;gap:4px 22px;align-items:center}
 .tt-lien-he a{color:var(--soi);text-decoration:none;display:inline-flex;align-items:center;gap:7px}
 .tt-lien-he a:hover{color:var(--do)}
@@ -119,14 +119,16 @@ html.js img.mo-dan.xong{opacity:1}
   background:color-mix(in srgb,var(--cham) 94%,transparent);
   backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
   border-bottom:1px solid var(--ke);padding-right:var(--rail)}
-#dau-trang > nav.boc{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
-  align-items:center;gap:clamp(18px,2.6vw,40px);padding-block:14px;transition:padding .3s}
-#dau-trang .menu{display:flex;gap:clamp(14px,2.1vw,34px);align-items:center}
+/* 7 mục (thêm Liên hệ, 11/2026): ba bên trái, bốn bên phải — khung đầu trang rộng hơn phần thân
+   và chữ menu nhỏ hơn một chút để logo vẫn đứng giữa mà không mục nào bị tràn */
+#dau-trang > nav.boc{width:min(1480px,100%);display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+  align-items:center;gap:clamp(14px,2vw,40px);padding-block:14px;transition:padding .3s}
+#dau-trang .menu{display:flex;gap:clamp(12px,1.2vw,22px);align-items:center}
 #dau-trang .menu-trai{justify-content:flex-end}
 #dau-trang .menu-phai{justify-content:flex-start}
 #dau-trang .menu a{position:relative;display:block;padding:8px 0;color:var(--soi);text-decoration:none;
-  font-family:var(--f-than);font-weight:500;font-size:clamp(12.5px,1.02vw,14.5px);
-  letter-spacing:.07em;text-transform:uppercase;white-space:nowrap;transition:color .2s}
+  font-family:var(--f-than);font-weight:500;font-size:clamp(11.5px,.95vw,14.5px);
+  letter-spacing:.045em;text-transform:uppercase;white-space:nowrap;transition:color .2s}
 #dau-trang .menu a::after{content:'';position:absolute;left:0;right:0;bottom:2px;height:2px;
   background:var(--do);transform:scaleX(0);transform-origin:left;
   transition:transform .32s cubic-bezier(.62,.03,.21,1)}
