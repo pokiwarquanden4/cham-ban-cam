@@ -412,7 +412,6 @@ canvas.det{width:100%;height:58px;display:block;margin-top:26px}
 .lh-gui:hover{background:var(--do-tuoi)}
 .lh-gui[disabled]{opacity:.6;cursor:progress}
 .lh-trang-thai{min-height:1.6em;text-align:center;color:var(--soi)}
-.lh-trang-thai.loi{color:var(--do)}
 .lh-mat{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 
 /* ===================== BẬC NHẸ / GIẢM CHUYỂN ĐỘNG ===================== */
@@ -1310,8 +1309,9 @@ canvas.det{width:100%;height:58px;display:block;margin-top:26px}
 <!-- =====================================================================
      PHẦN 07 · LIÊN HỆ — theo mẫu trang liên hệ của Hagimex mà nhóm gửi (17/11/2026):
      lời chào, khối thông tin, rồi khung gửi lời nhắn; không có bản đồ.
-     Lời nhắn đi qua dịch vụ FormSubmit về chambancam@gmail.com — lần đầu phải bấm
-     link kích hoạt trong thư FormSubmit gửi tới Gmail đó (xem README).
+     Lời nhắn đi qua dịch vụ FormSubmit về chambancam@gmail.com (gửi kiểu form thường, không AJAX —
+     cổng AJAX của FormSubmit báo lỗi 500 khi thử 17/11/2026). Lần đầu phải bấm link kích hoạt
+     trong thư FormSubmit gửi tới Gmail đó (xem README).
      Bản tiếng Anh do người làm web dịch.
      ===================================================================== -->
 <div class="phan" id="lien-he">
@@ -1346,7 +1346,7 @@ canvas.det{width:100%;height:58px;display:block;margin-top:26px}
         <input type="hidden" name="_next" value="https://cham-ban-cam.io.vn/?da-gui=1#lien-he">
         <div class="lh-mat" aria-hidden="true"><input type="text" name="_honey" tabindex="-1" autocomplete="off"></div>
         <div class="lh-o">
-          <input id="lh-ten" name="Họ và tên" type="text" required maxlength="120" autocomplete="name" placeholder=" ">
+          <input id="lh-ten" name="name" type="text" required maxlength="120" autocomplete="name" placeholder=" ">
           <label for="lh-ten"><span lang="vi">Họ &amp; Tên:</span><span lang="en">Full name:</span></label>
         </div>
         <div class="lh-o">
@@ -1354,7 +1354,7 @@ canvas.det{width:100%;height:58px;display:block;margin-top:26px}
           <label for="lh-email"><span lang="vi">Địa chỉ email:</span><span lang="en">Email address:</span></label>
         </div>
         <div class="lh-o">
-          <textarea id="lh-noi-dung" name="Nội dung" rows="7" required maxlength="5000" placeholder=" "></textarea>
+          <textarea id="lh-noi-dung" name="message" rows="7" required maxlength="5000" placeholder=" "></textarea>
           <label for="lh-noi-dung"><span lang="vi">Nội dung:</span><span lang="en">Message:</span></label>
         </div>
         <button type="submit" class="lh-gui"><span lang="vi">Gửi</span><span lang="en">Send</span></button>
@@ -1805,9 +1805,9 @@ addEventListener('resize', function(){
 }, {passive:true});
 
 /* ============================================================
-   10. KHUNG GỬI LỜI NHẮN (phần 07) — qua FormSubmit về chambancam@gmail.com.
-   Có JavaScript: gửi ngầm, báo kết quả ngay dưới nút GỬI. Không có JavaScript: form
-   gửi thẳng tới FormSubmit, xong quay về #lien-he kèm ?da-gui=1.
+   10. KHUNG GỬI LỜI NHẮN (phần 07) — form gửi thẳng tới FormSubmit (chambancam@gmail.com);
+   FormSubmit gửi thư xong đưa người xem quay về #lien-he kèm ?da-gui=1 → hiện lời cảm ơn.
+   Không dùng cổng AJAX của FormSubmit: thử ngày 17/11/2026 nó trả lỗi 500.
    ============================================================ */
 var lhForm = document.getElementById('lh-form');
 if (lhForm){
@@ -1816,12 +1816,9 @@ if (lhForm){
   var LH = {
     dang: ['Đang gửi…', 'Sending…'],
     xong: ['Cảm ơn Quý khách! Lời nhắn đã được gửi, chúng tôi sẽ phản hồi sớm nhất có thể.',
-           'Thank you! Your message has been sent and we will reply as soon as possible.'],
-    loi:  ['Chưa gửi được lời nhắn. Quý khách vui lòng thử lại hoặc email trực tiếp tới chambancam@gmail.com.',
-           'Your message could not be sent. Please try again or email us directly at chambancam@gmail.com.']
+           'Thank you! Your message has been sent and we will reply as soon as possible.']
   };
   var baoLH = function(k){
-    lhTT.className = 'lh-trang-thai' + (k === 'loi' ? ' loi' : '');
     lhTT.innerHTML = '<span lang="vi"></span><span lang="en"></span>';
     lhTT.children[0].textContent = LH[k][0];
     lhTT.children[1].textContent = LH[k][1];
@@ -1830,28 +1827,13 @@ if (lhForm){
     baoLH('xong');
     try { history.replaceState(null, '', location.pathname + location.hash); } catch(e){}
   }
-  if (window.fetch && window.FormData){
-    lhForm.addEventListener('submit', function(ev){
-      ev.preventDefault();
-      var du = {};
-      new FormData(lhForm).forEach(function(v, k){ if (k !== '_next') du[k] = v; });
-      if (du._honey) return;                         /* ô bẫy máy gửi rác */
-      delete du._honey;
-      lhNut.disabled = true;
-      baoLH('dang');
-      fetch('https://formsubmit.co/ajax/chambancam@gmail.com', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
-        body: JSON.stringify(du)
-      }).then(function(r){ return r.json(); })
-        .then(function(kq){
-          if (kq && String(kq.success) === 'true'){ baoLH('xong'); lhForm.reset(); }
-          else baoLH('loi');
-        })
-        .catch(function(){ baoLH('loi'); })
-        .then(function(){ lhNut.disabled = false; });
-    });
-  }
+  /* trình duyệt đã kiểm tra các ô bắt buộc trước khi tới đây; khoá nút để khỏi bấm hai lần */
+  lhForm.addEventListener('submit', function(){
+    baoLH('dang');
+    setTimeout(function(){ lhNut.disabled = true; }, 0);
+  });
+  /* quay lại trang bằng nút Back thì mở khoá nút */
+  addEventListener('pageshow', function(){ lhNut.disabled = false; });
 }
 })();
 </script>

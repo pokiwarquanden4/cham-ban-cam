@@ -80,11 +80,12 @@ Web chạy trên GitHub Pages nên không tự gửi thư được — khung dù
 **FormSubmit** (formsubmit.co): người xem bấm GỬI thì lời nhắn được gửi vào **chambancam@gmail.com**
 (tiêu đề "Lời nhắn mới từ web CHẠM BẢN CẨM"); bấm *Trả lời* trong Gmail là trả lời thẳng người gửi.
 
-- **Lần đầu phải kích hoạt:** FormSubmit gửi một thư "Activate Form" tới chambancam@gmail.com —
-  mở thư (xem cả mục Spam/Quảng cáo) và bấm nút kích hoạt. Chưa kích hoạt thì lời nhắn không tới,
-  người gửi thấy dòng báo lỗi màu đỏ.
-- Đổi Gmail nhận thư: sửa địa chỉ trong `action="https://formsubmit.co/..."` của form và trong
-  `fetch('https://formsubmit.co/ajax/...')` ở mục 10 phần JavaScript của `index.html`, rồi kích hoạt lại.
+- Bấm GỬI thì trình duyệt chuyển sang FormSubmit một lát rồi quay về `#lien-he`, hiện lời cảm ơn
+  (`_next` trong form). Không dùng cổng AJAX của FormSubmit — thử ngày 17/11/2026 nó báo lỗi 500.
+- **Lần đầu phải kích hoạt:** FormSubmit đã gửi thư "Activate Form" tới chambancam@gmail.com
+  (17/11/2026) — mở thư (xem cả mục Spam/Quảng cáo) và bấm nút kích hoạt. Chưa kích hoạt thì người
+  bấm GỬI sẽ thấy trang "Check Your Email" của FormSubmit và lời nhắn không tới.
+- Đổi Gmail nhận thư: sửa địa chỉ trong `action="https://formsubmit.co/..."` của form, rồi kích hoạt lại.
 - Có ô bẫy ẩn `_honey` để chặn máy gửi rác; không có bản đồ (theo góp ý của nhóm).
 
 ## 4. Sửa sản phẩm
