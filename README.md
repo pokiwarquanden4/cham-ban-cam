@@ -142,7 +142,8 @@ Thay ảnh thì sửa `src`, `alt`, `data-alt-en`, `width`, `height` của thẻ
 ở `index.html`, và trong CSS của khối đó sửa tỉ lệ `133.34vw` (= cao ÷ rộng × 100) cùng `object-position`.
 
 **Ảnh sản phẩm bán lẻ** (tên bắt đầu bằng `le-`) lấy từ thư mục Drive nhóm gửi 18/11/2026, đã cắt bớt
-nền thừa quanh sản phẩm. Ảnh trong các box vẫn là ảnh chụp cũ. Lót ly Mã 2 và Mã 3 đã gộp thành
+nền thừa quanh sản phẩm. Ảnh sản phẩm lẻ trong 4 box cũng dùng ảnh đó (khăn trong box chỉ ghi chung
+"Khăn thổ cẩm"); ảnh hộp, nắp hộp và bên trong hộp vẫn là ảnh chụp cũ. Lót ly Mã 2 và Mã 3 đã gộp thành
 "Lót ly thổ cẩm – Trái tim" (giữ đường dẫn `lot-ly-tho-cam-ma-2.html`; trang Mã 3 đã bỏ).
 
 Trang không hiện giá. Cuối mỗi trang sản phẩm / box có câu mời liên hệ và chữ **Liên hệ** — bấm vào
@@ -247,7 +248,9 @@ phim `hero-loop.mp4`, `vung-cao-loop.mp4`, `soi-loop.mp4`, và các ảnh
 `le-cap-sac`, `lo-lo-ban-lang`, `lo-lo-mua`, `nha-san-tay`, `nha-trinh-tuong`, `nhom-cham-ban-cam`,
 `phu-nu-dao`, `phu-nu-mong`, `poster-nhuom`, `poster-san-pham`, `poster-the-end`,
 `poster-thung-lung`, `tay-dien-xuong`, `thung-lung-ban-lang`, `trai-nghiem`, và ảnh sản phẩm lẻ cũ đã
-thay ngày 18/11/2026: `balo-vang`, `balo-trang-kem`, `balo-xanh`, `lot-ly-ma-1`, `lot-ly-ma-3`, `lot-ly-ma-4`, `moc-khoa-tho-cam-ma-2`, `moc-khoa-tho-cam-ma-3`, `moc-khoa-tho-cam-ma-4`, `vong-tay`, `tui-dung-but`, `tui-tote-do`, `tui-tote-xanh`, `tui-deo-cheo-ma-2`, `tui-deo-cheo-ma-3` (mỗi ảnh gồm các bản
+thay ngày 18/11/2026: `balo-vang`, `balo-trang-kem`, `balo-xanh`, `lot-ly-ma-1`, `lot-ly-ma-3`, `lot-ly-ma-4`, `moc-khoa-tho-cam-ma-2`, `moc-khoa-tho-cam-ma-3`, `moc-khoa-tho-cam-ma-4`, `vong-tay`, `tui-dung-but`, `tui-tote-do`, `tui-tote-xanh`, `tui-deo-cheo-ma-2`, `tui-deo-cheo-ma-3`, `balo-do`, `kep-no`, `lot-ly-ma-2`,
+`moc-khoa-ha-giang`, `moc-khoa-tho-cam-ma-1`, `tui-deo-cheo-ma-1`, `tui-mini`, `ha-giang-passport`,
+`khan-cham-moc`, `khan-cham-hoa`, `khan-cao-nguyen`, `khan-di-san` (mỗi ảnh gồm các bản
 `.webp`, `.jpg`, `-tiny.webp`). Xoá đi thì repo nhẹ hơn; GitHub không tính băng thông cho tệp không ai mở.
 
 ---
