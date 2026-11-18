@@ -53,7 +53,7 @@ chạy ngang rồi phần đó lộ ra. Trang không ghi số "Phần 0X" — s�
 |---|---|---|
 | 01 Giới thiệu | `#gioi-thieu` | ảnh lớn đầu trang, thông tin doanh nghiệp, về Chạm Bản Cẩm, tầm nhìn – sứ mệnh – giá trị cốt lõi, liên hệ |
 | 02 Câu chuyện thổ cẩm | `#cau-chuyen` | Lùng Tám và HTX, bà Vàng Thị Mai, 9 bước làm vải, giá trị thổ cẩm Lùng Tám, ý nghĩa hoa văn |
-| 03 Sản phẩm bán lẻ | `#san-pham` | 25 sản phẩm bán lẻ, không có tiêu đề — vào thẳng lưới sản phẩm |
+| 03 Sản phẩm bán lẻ | `#san-pham` | 24 sản phẩm bán lẻ, không có tiêu đề — vào thẳng lưới sản phẩm |
 | 04 Hộp quà trải nghiệm | `#hop-qua` | 4 box, không có tiêu đề — vào thẳng lưới box |
 | 05 Trải nghiệm văn hóa | `#trai-nghiem` | văn hóa Hà Giang, năm cộng đồng, chợ phiên, video (2 phim) |
 | 06 Về chúng tôi | `#ve-chung-toi` | giới thiệu dự án, thành viên, đối tác cung ứng, nguồn tư liệu |
@@ -91,7 +91,7 @@ Web chạy trên GitHub Pages nên không tự gửi thư được — khung dù
 ## 4. Sửa sản phẩm
 
 Danh sách box và sản phẩm bán lẻ nằm trong **`cong-cu/san-pham.json`**. Lưới thẻ ở phần 03 (sản phẩm bán lẻ),
-phần 04 (box) và 29 trang trong thư mục `san-pham/` đều được tạo từ tệp này. Sửa xong thì chạy:
+phần 04 (box) và 28 trang trong thư mục `san-pham/` đều được tạo từ tệp này. Sửa xong thì chạy:
 
 ```
 python cong-cu/tao-trang.py
@@ -134,8 +134,6 @@ Tìm chữ `Chủ dự án điền` là thấy, đang hiện bằng khung viền
 
 - **Mô tả Vòng tay** — tài liệu chưa có; thêm `"mo_ta"`, `"mo_ta_en"` vào
   `cong-cu/san-pham.json` (mục 4).
-- **Ảnh Móc khóa logo** — chưa có ảnh riêng. Tạo ảnh bằng `python cong-cu/tao-anh.py <ảnh> moc-khoa-logo`
-  rồi sửa `"anh": null` thành `"anh": "moc-khoa-logo"` trong JSON và chạy lại công cụ.
 
 Ảnh bìa phần 01 là `assets/img/anh-bia` — ảnh dọc, hiện **tràn sát hai mép màn hình**, cao vừa một
 màn hình, đáy mờ dần vào nền; trên màn ngang ảnh bị cắt bớt trên/dưới (nhóm chọn cách này). Ảnh gốc
@@ -143,8 +141,12 @@ trong tài liệu chỉ rộng 1086px nên trên màn lớn hơi mềm — có �
 Thay ảnh thì sửa `src`, `alt`, `data-alt-en`, `width`, `height` của thẻ ảnh trong khối `gt-anh-dau`
 ở `index.html`, và trong CSS của khối đó sửa tỉ lệ `133.34vw` (= cao ÷ rộng × 100) cùng `object-position`.
 
-Trang không hiện giá — liên hệ mua qua nút "Liên hệ qua Facebook để mua hàng"
-(`https://www.facebook.com/ChamBanCam`).
+**Ảnh sản phẩm bán lẻ** (tên bắt đầu bằng `le-`) lấy từ thư mục Drive nhóm gửi 18/11/2026, đã cắt bớt
+nền thừa quanh sản phẩm. Ảnh trong các box vẫn là ảnh chụp cũ. Lót ly Mã 2 và Mã 3 đã gộp thành
+"Lót ly thổ cẩm – Trái tim" (giữ đường dẫn `lot-ly-tho-cam-ma-2.html`; trang Mã 3 đã bỏ).
+
+Trang không hiện giá. Cuối mỗi trang sản phẩm / box có câu mời liên hệ và chữ **Liên hệ** — bấm vào
+mở hai lựa chọn Facebook (`"facebook"`) và Zalo (`"zalo"`, `"zalo_so"`) — sửa ở đầu `cong-cu/san-pham.json`.
 
 ---
 
@@ -220,7 +222,7 @@ Facebook và Zalo giữ ảnh xem trước khá lâu. Sau khi đổi, dán link 
 
 ```
 index.html                trang chủ: bảy phần, CSS và JavaScript riêng của trang chủ
-san-pham/                 29 trang sản phẩm — DO CÔNG CỤ TẠO, đừng sửa tay
+san-pham/                 28 trang sản phẩm — DO CÔNG CỤ TẠO, đừng sửa tay
 cong-cu/
   san-pham.json           danh sách box và sản phẩm bán lẻ
   dau-trang.html          thanh trên cùng + menu, dùng chung
@@ -244,7 +246,8 @@ phim `hero-loop.mp4`, `vung-cao-loop.mp4`, `soi-loop.mp4`, và các ảnh
 `hg-duong-deo`, `hg-lung-cu`, `hg-nho-que`, `hg-nui-doi`, `hg-ruong-bac-thang`, `hg-tham-ma`, `khung-cui`,
 `le-cap-sac`, `lo-lo-ban-lang`, `lo-lo-mua`, `nha-san-tay`, `nha-trinh-tuong`, `nhom-cham-ban-cam`,
 `phu-nu-dao`, `phu-nu-mong`, `poster-nhuom`, `poster-san-pham`, `poster-the-end`,
-`poster-thung-lung`, `tay-dien-xuong`, `thung-lung-ban-lang`, `trai-nghiem` (mỗi ảnh gồm các bản
+`poster-thung-lung`, `tay-dien-xuong`, `thung-lung-ban-lang`, `trai-nghiem`, và ảnh sản phẩm lẻ cũ đã
+thay ngày 18/11/2026: `balo-vang`, `balo-trang-kem`, `balo-xanh`, `lot-ly-ma-1`, `lot-ly-ma-3`, `lot-ly-ma-4`, `moc-khoa-tho-cam-ma-2`, `moc-khoa-tho-cam-ma-3`, `moc-khoa-tho-cam-ma-4`, `vong-tay`, `tui-dung-but`, `tui-tote-do`, `tui-tote-xanh`, `tui-deo-cheo-ma-2`, `tui-deo-cheo-ma-3` (mỗi ảnh gồm các bản
 `.webp`, `.jpg`, `-tiny.webp`). Xoá đi thì repo nhẹ hơn; GitHub không tính băng thông cho tệp không ai mở.
 
 ---

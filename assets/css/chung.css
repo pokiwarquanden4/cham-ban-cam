@@ -163,12 +163,25 @@ html.js img.mo-dan.xong{opacity:1}
 }
 
 /* ===================== NÚT ===================== */
-.nut-fb{display:inline-flex;align-items:center;gap:12px;padding:16px 24px;
-  background:var(--soi);color:var(--cham);text-decoration:none;
-  font-weight:600;font-size:15px;line-height:1.3;letter-spacing:.01em;
-  border:1px solid var(--soi);transition:background .25s,border-color .25s}
-.nut-fb:hover,.nut-fb:focus-visible{background:var(--do);border-color:var(--do)}
-.nut-fb svg{width:20px;height:20px;flex:0 0 auto}
+/* trang sản phẩm: chữ "Liên hệ" — bấm vào mở hai lựa chọn Facebook / Zalo (góp ý 18/11/2026).
+   Dùng <details> nên không có JavaScript vẫn mở được; chung.js chỉ lo đóng khi bấm ra ngoài. */
+.sp-loi-moi{max-width:52ch;line-height:1.65;color:var(--soi)}
+.sp-lien-he{position:relative}
+.sp-lien-he summary{display:inline-flex;align-items:center;gap:12px;padding:15px 26px;list-style:none;
+  cursor:pointer;user-select:none;background:var(--soi);color:var(--cham);border:1px solid var(--soi);
+  font-weight:600;font-size:15px;line-height:1.3;letter-spacing:.08em;text-transform:uppercase;
+  transition:background .25s,border-color .25s}
+.sp-lien-he summary::-webkit-details-marker{display:none}
+.sp-lien-he summary:hover,.sp-lien-he summary:focus-visible,.sp-lien-he[open] summary{background:var(--do);border-color:var(--do)}
+.sp-lien-he .sp-mui{width:16px;height:16px;flex:0 0 auto;transition:rotate .25s}
+.sp-lien-he[open] .sp-mui{rotate:180deg}
+.sp-lien-he ul{position:absolute;left:0;top:calc(100% + 6px);z-index:5;min-width:max(100%,250px);
+  background:var(--cham);border:1px solid var(--ke-2);box-shadow:0 10px 28px rgba(27,39,51,.14)}
+.sp-lien-he li + li{border-top:1px solid var(--ke)}
+.sp-lien-he a{display:flex;align-items:center;gap:12px;padding:14px 18px;color:var(--soi);
+  text-decoration:none;font-weight:500;white-space:nowrap}
+.sp-lien-he a:hover,.sp-lien-he a:focus-visible{background:var(--cham-2);color:var(--do)}
+.sp-lien-he a svg{width:20px;height:20px;flex:0 0 auto;color:var(--do)}
 .lien-ket-ve{display:inline-flex;align-items:center;gap:8px;color:var(--soi);text-decoration:none;
   font-family:var(--f-hien);font-variation-settings:'wdth' 100,'wght' 500;
   font-size:13px;letter-spacing:.12em;text-transform:uppercase}
@@ -216,7 +229,7 @@ html.js img.mo-dan.xong{opacity:1}
 .sp-anh-chinh.nho img{width:min(100%,calc(var(--w) * 2px));height:auto;max-height:100%;object-fit:contain}
 .sp-mo-ta{line-height:1.7;max-width:60ch}
 /* căn lề hai đầu cho đoạn văn (theo góp ý của nhóm) */
-.sp-mo-ta,.sp-co-gi p{text-align:justify}
+.sp-mo-ta,.sp-co-gi p,.sp-loi-moi{text-align:justify}
 /* sản phẩm chưa có ảnh: khung chờ */
 .sp-anh-chinh.cho-anh{display:flex;align-items:center;justify-content:center;padding:8%}
 .the-sp .the-anh.cho-anh{display:flex;align-items:center;justify-content:center;border:1px dashed var(--ke-3)}

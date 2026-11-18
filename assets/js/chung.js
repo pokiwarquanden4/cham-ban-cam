@@ -5,6 +5,7 @@
    3. Thanh menu thu gọn khi cuộn
    4. Ảnh hiện dần khi tải xong
    5. Bộ ảnh của trang sản phẩm
+   6. Nút Liên hệ (Facebook / Zalo) của trang sản phẩm
    Không có tệp này trang vẫn đọc được: tiếng Việt, ảnh hiện thẳng.
    =========================================================== */
 (function(){
@@ -119,6 +120,17 @@ if (anhLon){
     });
   });
 }
+
+/* ---------- 6. NÚT LIÊN HỆ CỦA TRANG SẢN PHẨM ----------
+   <details> tự mở/đóng khi bấm chữ Liên hệ; ở đây chỉ thêm: bấm ra ngoài, bấm Esc
+   hoặc đã chọn Facebook / Zalo thì thu lại. */
+document.querySelectorAll('details.sp-lien-he').forEach(function(dt){
+  document.addEventListener('click', function(e){ if (dt.open && !dt.contains(e.target)) dt.open = false; });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && dt.open){ dt.open = false; dt.querySelector('summary').focus(); }
+  });
+  dt.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ dt.open = false; }); });
+});
 
 window.CBC = { ngonNgu: ngonNgu, datNgonNgu: datNgonNgu, dongMenu: dongMenu };
 })();

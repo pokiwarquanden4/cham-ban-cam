@@ -76,6 +76,25 @@ MUI_TEN = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-wi
 ICON_FB = ('<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.6 21v-7.9h2.7l.4-3.2h-3.1v-2'
            'c0-.9.3-1.5 1.6-1.5h1.6V3.5a22 22 0 0 0-2.4-.1c-2.4 0-4 1.5-4 4.1v2.4H7.7v3.2h2.7V21z"/></svg>')
 
+ICON_ZALO = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" '
+             'stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5h16v10.5H10l-4.5 3.5V16H4z"/>'
+             '<path d="M8.6 8.6h4.4l-4.4 4.6h4.6" stroke-linecap="round"/></svg>')
+ICON_MUI = ('<svg class="sp-mui" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" '
+            'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>')
+
+
+def lien_he(d):
+    """Khối Liên hệ ở cuối mỗi trang sản phẩm / box (góp ý 18/11/2026): câu mời, rồi chữ
+    "Liên hệ" — bấm vào mở hai lựa chọn Facebook và Zalo."""
+    return {
+        'loi_moi': hai_ngu('Quý khách hàng muốn đặt hàng hoặc có bất kỳ thắc mắc nào liên quan đến sản phẩm, '
+                           'vui lòng liên hệ với chúng tôi:',
+                           'If you would like to order or have any questions about our products, please contact us:'),
+        'lien_he': hai_ngu('Liên hệ', 'Contact'),
+        'fb': e(d['facebook']), 'zalo': e(d['zalo']), 'zalo_so': e(d['zalo_so']),
+        'icon_fb': ICON_FB, 'icon_zalo': ICON_ZALO, 'icon_mui': ICON_MUI,
+    }
+
 
 # ---------------------------------------------------------------- lưới thẻ ở trang chủ
 def the_box(b):
@@ -186,7 +205,14 @@ MAU_TRANG = '''<!doctype html>
 %(sp_dau)s        <h1 class="sp-ten">%(ten)s</h1>
 %(than)s
         <div class="sp-mua">
-          <a class="nut-fb" href="%(fb)s" target="_blank" rel="noopener">%(icon_fb)s<span>%(nut)s</span></a>
+          <p class="sp-loi-moi">%(loi_moi)s</p>
+          <details class="sp-lien-he">
+            <summary>%(lien_he)s%(icon_mui)s</summary>
+            <ul>
+              <li><a href="%(fb)s" target="_blank" rel="noopener">%(icon_fb)s<span>Facebook</span></a></li>
+              <li><a href="%(zalo)s" target="_blank" rel="noopener">%(icon_zalo)s<span>Zalo %(zalo_so)s</span></a></li>
+            </ul>
+          </details>
         </div>
       </div>
     </div>
@@ -266,8 +292,7 @@ def trang_box(b, d, dau, chan):
         'sp_dau': ('        <div class="sp-dau"><span class="sp-bieu-tuong" aria-hidden="true">%s</span></div>\n'
                    % e(b['bieu_tuong'])) if b['bieu_tuong'] else '',
         'ten': e(b['ten']), 'than': than,
-        'fb': e(d['facebook']), 'icon_fb': ICON_FB,
-        'nut': hai_ngu('Liên hệ qua Facebook để mua hàng', 'Contact us on Facebook to order'),
+        **lien_he(d),
     }
 
 
@@ -291,8 +316,7 @@ def trang_ban_le(sp, d, dau, chan):
         'sp_dau': '        <div class="sp-dau"><span class="sp-nhan">%s</span></div>\n' % hai_ngu(
             'Sản phẩm bán lẻ', 'Retail product'),
         'ten': hai_ngu(vi, en), 'than': than,
-        'fb': e(d['facebook']), 'icon_fb': ICON_FB,
-        'nut': hai_ngu('Liên hệ qua Facebook để mua hàng', 'Contact us on Facebook to order'),
+        **lien_he(d),
     }
 
 

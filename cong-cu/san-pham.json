@@ -1,7 +1,9 @@
 {
-  "_ghi_chu": "Sửa tệp này rồi chạy: python cong-cu/tao-trang.py — xem README mục \"Sửa sản phẩm\". Chữ tiếng Việt lấy nguyên văn tài liệu của nhóm; chữ tiếng Anh do người làm web dịch, cần nhóm duyệt. Ảnh: ghi tên tệp trong assets/img, không có đuôi .webp. Sản phẩm lẻ: \"anh\" là một tên ảnh, hoặc danh sách {tep, vi, en} khi có nhiều ảnh, hoặc null khi chưa có ảnh (trang hiện khung chờ ảnh).",
+  "_ghi_chu": "Sửa tệp này rồi chạy: python cong-cu/tao-trang.py — xem README mục \"Sửa sản phẩm\". Chữ tiếng Việt lấy nguyên văn tài liệu của nhóm; chữ tiếng Anh do người làm web dịch, cần nhóm duyệt. Ảnh: ghi tên tệp trong assets/img, không có đuôi .webp. Sản phẩm lẻ: \"anh\" là một tên ảnh, hoặc danh sách {tep, vi, en} khi có nhiều ảnh, hoặc null khi chưa có ảnh (trang hiện khung chờ ảnh). Ảnh sản phẩm lẻ (tên bắt đầu bằng le-) lấy từ thư mục Drive nhóm gửi 18/11/2026; ảnh trong box vẫn là ảnh cũ.",
   "dia_chi_web": "https://cham-ban-cam.io.vn/",
   "facebook": "https://www.facebook.com/ChamBanCam",
+  "zalo": "https://zalo.me/0396347858",
+  "zalo_so": "039 634 7858",
   "box": [
     {
       "ma": "cham-moc",
@@ -293,7 +295,7 @@
       "loai_en": "Brocade backpack",
       "bien_the": "Đỏ",
       "bien_the_en": "Red",
-      "anh": "balo-do",
+      "anh": "le-balo-do",
       "mo_ta": "Balo có kích thước nhỏ gọn, thiết kế trẻ trung, kết hợp các chi tiết thổ cẩm trên thân hoặc túi phụ. Sản phẩm phù hợp để đựng điện thoại, ví tiền, sổ tay và những vật dụng cá nhân khi đi chơi hoặc du lịch.",
       "mo_ta_en": "A compact, youthful backpack with brocade details on the body or outer pocket. It is just right for a phone, wallet, notebook and other personal items when going out or travelling."
     },
@@ -303,7 +305,7 @@
       "loai_en": "Brocade backpack",
       "bien_the": "Vàng",
       "bien_the_en": "Yellow",
-      "anh": "balo-vang",
+      "anh": "le-balo-vang",
       "mo_ta": "Balo có kích thước nhỏ gọn, thiết kế trẻ trung, kết hợp các chi tiết thổ cẩm trên thân hoặc túi phụ. Sản phẩm phù hợp để đựng điện thoại, ví tiền, sổ tay và những vật dụng cá nhân khi đi chơi hoặc du lịch.",
       "mo_ta_en": "A compact, youthful backpack with brocade details on the body or outer pocket. It is just right for a phone, wallet, notebook and other personal items when going out or travelling."
     },
@@ -313,7 +315,7 @@
       "loai_en": "Brocade backpack",
       "bien_the": "Trắng kem",
       "bien_the_en": "Cream",
-      "anh": "balo-trang-kem",
+      "anh": "le-balo-trang-kem",
       "mo_ta": "Balo có kích thước nhỏ gọn, thiết kế trẻ trung, kết hợp các chi tiết thổ cẩm trên thân hoặc túi phụ. Sản phẩm phù hợp để đựng điện thoại, ví tiền, sổ tay và những vật dụng cá nhân khi đi chơi hoặc du lịch.",
       "mo_ta_en": "A compact, youthful backpack with brocade details on the body or outer pocket. It is just right for a phone, wallet, notebook and other personal items when going out or travelling."
     },
@@ -323,7 +325,7 @@
       "loai_en": "Brocade backpack",
       "bien_the": "Xanh",
       "bien_the_en": "Blue",
-      "anh": "balo-xanh",
+      "anh": "le-balo-xanh",
       "mo_ta": "Balo có kích thước nhỏ gọn, thiết kế trẻ trung, kết hợp các chi tiết thổ cẩm trên thân hoặc túi phụ. Sản phẩm phù hợp để đựng điện thoại, ví tiền, sổ tay và những vật dụng cá nhân khi đi chơi hoặc du lịch.",
       "mo_ta_en": "A compact, youthful backpack with brocade details on the body or outer pocket. It is just right for a phone, wallet, notebook and other personal items when going out or travelling."
     },
@@ -333,7 +335,7 @@
       "loai_en": "Brocade coaster",
       "bien_the": "Mã 1",
       "bien_the_en": "Style 1",
-      "anh": "lot-ly-ma-1",
+      "anh": "le-lot-ly-ma-1",
       "mo_ta": "Sản phẩm được thiết kế dạng miếng lót nhỏ, sử dụng chất liệu vải thổ cẩm hoặc kết hợp với vật liệu phù hợp để tăng độ bền. Họa tiết truyền thống tạo điểm nhấn cho không gian bàn làm việc, bàn trà và có thể dùng làm quà tặng.",
       "mo_ta_en": "A small coaster made from brocade fabric, or brocade combined with other suitable materials for durability. Its traditional patterns brighten a desk or tea table, and it also makes a nice gift."
     },
@@ -341,19 +343,9 @@
       "ma": "lot-ly-tho-cam-ma-2",
       "loai": "Lót ly thổ cẩm",
       "loai_en": "Brocade coaster",
-      "bien_the": "Mã 2",
-      "bien_the_en": "Style 2",
-      "anh": "lot-ly-ma-2",
-      "mo_ta": "Sản phẩm được thiết kế dạng miếng lót nhỏ, sử dụng chất liệu vải thổ cẩm hoặc kết hợp với vật liệu phù hợp để tăng độ bền. Họa tiết truyền thống tạo điểm nhấn cho không gian bàn làm việc, bàn trà và có thể dùng làm quà tặng.",
-      "mo_ta_en": "A small coaster made from brocade fabric, or brocade combined with other suitable materials for durability. Its traditional patterns brighten a desk or tea table, and it also makes a nice gift."
-    },
-    {
-      "ma": "lot-ly-tho-cam-ma-3",
-      "loai": "Lót ly thổ cẩm",
-      "loai_en": "Brocade coaster",
-      "bien_the": "Mã 3",
-      "bien_the_en": "Style 3",
-      "anh": "lot-ly-ma-3",
+      "bien_the": "Trái tim",
+      "bien_the_en": "Heart",
+      "anh": "le-lot-ly-trai-tim",
       "mo_ta": "Sản phẩm được thiết kế dạng miếng lót nhỏ, sử dụng chất liệu vải thổ cẩm hoặc kết hợp với vật liệu phù hợp để tăng độ bền. Họa tiết truyền thống tạo điểm nhấn cho không gian bàn làm việc, bàn trà và có thể dùng làm quà tặng.",
       "mo_ta_en": "A small coaster made from brocade fabric, or brocade combined with other suitable materials for durability. Its traditional patterns brighten a desk or tea table, and it also makes a nice gift."
     },
@@ -363,7 +355,7 @@
       "loai_en": "Brocade coaster",
       "bien_the": "Mã 4",
       "bien_the_en": "Style 4",
-      "anh": "lot-ly-ma-4",
+      "anh": "le-lot-ly-ma-4",
       "mo_ta": "Sản phẩm được thiết kế dạng miếng lót nhỏ, sử dụng chất liệu vải thổ cẩm hoặc kết hợp với vật liệu phù hợp để tăng độ bền. Họa tiết truyền thống tạo điểm nhấn cho không gian bàn làm việc, bàn trà và có thể dùng làm quà tặng.",
       "mo_ta_en": "A small coaster made from brocade fabric, or brocade combined with other suitable materials for durability. Its traditional patterns brighten a desk or tea table, and it also makes a nice gift."
     },
@@ -373,7 +365,7 @@
       "loai_en": "Ha Giang passport",
       "bien_the": "",
       "bien_the_en": "",
-      "anh": "ha-giang-passport",
+      "anh": "le-ha-giang-passport",
       "mo_ta": "Passport văn hóa được thiết kế như một cuốn sổ lưu giữ hành trình khám phá Hà Giang, lấy cảm hứng từ hình ảnh và họa tiết thổ cẩm địa phương. Sản phẩm có thể dùng để ghi lại địa điểm đã đến, đóng dấu hành trình và lưu giữ kỷ niệm sau chuyến đi.",
       "mo_ta_en": "The cultural passport is designed as a notebook for your journey through Ha Giang, inspired by local images and brocade patterns. Use it to note the places you visit, collect stamps along the way and keep memories of the trip."
     },
@@ -383,7 +375,7 @@
       "loai_en": "Brocade keychain",
       "bien_the": "Mã 1",
       "bien_the_en": "Style 1",
-      "anh": "moc-khoa-tho-cam-ma-1",
+      "anh": "le-moc-khoa-tho-cam-ma-1",
       "mo_ta": "Móc khóa sử dụng vải thổ cẩm dệt thủ công, được tạo hình thành các mẫu phụ kiện nhỏ như hình chữ nhật, hình tròn hoặc hình trang trí. Sản phẩm mang tính ứng dụng và lưu niệm, giúp khách hàng dễ dàng mang theo một phần nét văn hóa Hà Giang.",
       "mo_ta_en": "A keychain made from hand-woven brocade, shaped into small accessories such as rectangles, circles or decorative forms. Both practical and a keepsake, it lets customers carry a piece of Ha Giang culture with them."
     },
@@ -393,7 +385,7 @@
       "loai_en": "Brocade keychain",
       "bien_the": "Mã 2",
       "bien_the_en": "Style 2",
-      "anh": "moc-khoa-tho-cam-ma-2",
+      "anh": "le-moc-khoa-tho-cam-ma-2",
       "mo_ta": "Móc khóa sử dụng vải thổ cẩm dệt thủ công, được tạo hình thành các mẫu phụ kiện nhỏ như hình chữ nhật, hình tròn hoặc hình trang trí. Sản phẩm mang tính ứng dụng và lưu niệm, giúp khách hàng dễ dàng mang theo một phần nét văn hóa Hà Giang.",
       "mo_ta_en": "A keychain made from hand-woven brocade, shaped into small accessories such as rectangles, circles or decorative forms. Both practical and a keepsake, it lets customers carry a piece of Ha Giang culture with them."
     },
@@ -403,7 +395,7 @@
       "loai_en": "Brocade keychain",
       "bien_the": "Mã 3",
       "bien_the_en": "Style 3",
-      "anh": "moc-khoa-tho-cam-ma-3",
+      "anh": "le-moc-khoa-tho-cam-ma-3",
       "mo_ta": "Móc khóa sử dụng vải thổ cẩm dệt thủ công, được tạo hình thành các mẫu phụ kiện nhỏ như hình chữ nhật, hình tròn hoặc hình trang trí. Sản phẩm mang tính ứng dụng và lưu niệm, giúp khách hàng dễ dàng mang theo một phần nét văn hóa Hà Giang.",
       "mo_ta_en": "A keychain made from hand-woven brocade, shaped into small accessories such as rectangles, circles or decorative forms. Both practical and a keepsake, it lets customers carry a piece of Ha Giang culture with them."
     },
@@ -413,7 +405,7 @@
       "loai_en": "Brocade keychain",
       "bien_the": "Mã 4",
       "bien_the_en": "Style 4",
-      "anh": "moc-khoa-tho-cam-ma-4",
+      "anh": "le-moc-khoa-tho-cam-ma-4",
       "mo_ta": "Móc khóa sử dụng vải thổ cẩm dệt thủ công, được tạo hình thành các mẫu phụ kiện nhỏ như hình chữ nhật, hình tròn hoặc hình trang trí. Sản phẩm mang tính ứng dụng và lưu niệm, giúp khách hàng dễ dàng mang theo một phần nét văn hóa Hà Giang.",
       "mo_ta_en": "A keychain made from hand-woven brocade, shaped into small accessories such as rectangles, circles or decorative forms. Both practical and a keepsake, it lets customers carry a piece of Ha Giang culture with them."
     },
@@ -423,7 +415,7 @@
       "loai_en": "Ha Giang keychain",
       "bien_the": "",
       "bien_the_en": "",
-      "anh": "moc-khoa-ha-giang",
+      "anh": "le-moc-khoa-ha-giang",
       "mo_ta": "Móc khóa mang hình ảnh hoặc ký hiệu viết tắt HG (Hà Giang), kết hợp các chi tiết thổ cẩm để tạo dấu ấn địa phương. Sản phẩm có kích thước nhỏ, dễ mang theo và phù hợp làm quà lưu niệm dành cho khách du lịch.",
       "mo_ta_en": "A keychain with images of Ha Giang or the initials HG, combined with brocade details for a local touch. Small and easy to carry, it makes a good souvenir for travellers."
     },
@@ -433,7 +425,7 @@
       "loai_en": "Logo keychain",
       "bien_the": "",
       "bien_the_en": "",
-      "anh": null,
+      "anh": "le-moc-khoa-logo",
       "mo_ta": "Móc khóa có thiết kế nhỏ gọn, sử dụng logo nhận diện thương hiệu CHẠM BẢN CẨM kết hợp với chi tiết vải thổ cẩm. Sản phẩm giúp tăng khả năng nhận diện thương hiệu, đồng thời phù hợp làm quà lưu niệm.",
       "mo_ta_en": "A compact keychain featuring the CHẠM BẢN CẨM logo combined with brocade details. It helps people recognise the brand and makes a good souvenir."
     },
@@ -443,7 +435,7 @@
       "loai_en": "Bracelet",
       "bien_the": "",
       "bien_the_en": "",
-      "anh": "vong-tay"
+      "anh": "le-vong-tay"
     },
     {
       "ma": "kep-no",
@@ -451,7 +443,7 @@
       "loai_en": "Bow hair clip",
       "bien_the": "",
       "bien_the_en": "",
-      "anh": "kep-no",
+      "anh": "le-kep-no",
       "mo_ta": "Kẹp tóc được trang trí bằng vải thổ cẩm với màu sắc và họa tiết đặc trưng, tạo điểm nhấn cho phụ kiện cá nhân. Sản phẩm có thiết kế nhỏ gọn, phù hợp với nhiều kiểu tóc và hướng đến nhóm khách hàng trẻ yêu thích sản phẩm thủ công.",
       "mo_ta_en": "A hair clip decorated with brocade in distinctive colours and patterns, adding character to personal accessories. Small and suited to many hairstyles, it is made for young customers who love handmade products."
     },
@@ -461,7 +453,7 @@
       "loai_en": "Mini wallet",
       "bien_the": "",
       "bien_the_en": "",
-      "anh": "tui-mini",
+      "anh": "le-vi-mini",
       "mo_ta": "Ví được thiết kế với kiểu dáng nhỏ gọn, kết hợp vải thổ cẩm làm chất liệu chính hoặc điểm nhấn trang trí. Sản phẩm dùng để đựng tiền, thẻ và giấy tờ cá nhân, đồng thời thể hiện nét đẹp thủ công truyền thống trong phụ kiện hiện đại.",
       "mo_ta_en": "A compact wallet with brocade as the main material or as a decorative accent. It holds cash, cards and personal papers while showing the beauty of traditional handcraft in a modern accessory."
     },
@@ -471,7 +463,7 @@
       "loai_en": "Pencil pouch",
       "bien_the": "",
       "bien_the_en": "",
-      "anh": "tui-dung-but",
+      "anh": "le-tui-dung-but",
       "mo_ta": "Túi đựng bút thổ cẩm với họa tiết dệt truyền thống nổi bật, mang đậm nét văn hóa vùng cao. Thiết kế nhỏ gọn, tiện dụng, phù hợp để đựng bút và các vật dụng học tập hằng ngày.",
       "mo_ta_en": "A brocade pencil pouch with striking traditional woven patterns that carry the spirit of highland culture. Compact and practical, it is just right for pens and everyday study supplies."
     },
@@ -481,7 +473,7 @@
       "loai_en": "Tote bag",
       "bien_the": "Màu đỏ",
       "bien_the_en": "Red",
-      "anh": "tui-tote-do",
+      "anh": "le-tui-tote-do",
       "mo_ta": "Túi tote có kiểu dáng đơn giản, tiện dụng, kết hợp vải thổ cẩm làm điểm nhấn ở phần thân, quai hoặc túi phụ. Sản phẩm phù hợp để đựng sách vở, đồ dùng cá nhân và sử dụng trong các hoạt động hằng ngày.",
       "mo_ta_en": "A simple, practical tote with brocade accents on the body, straps or outer pocket. It is ideal for carrying books and personal items and for everyday use."
     },
@@ -491,7 +483,7 @@
       "loai_en": "Tote bag",
       "bien_the": "Màu xanh",
       "bien_the_en": "Blue",
-      "anh": "tui-tote-xanh",
+      "anh": "le-tui-tote-xanh",
       "mo_ta": "Túi tote có kiểu dáng đơn giản, tiện dụng, kết hợp vải thổ cẩm làm điểm nhấn ở phần thân, quai hoặc túi phụ. Sản phẩm phù hợp để đựng sách vở, đồ dùng cá nhân và sử dụng trong các hoạt động hằng ngày.",
       "mo_ta_en": "A simple, practical tote with brocade accents on the body, straps or outer pocket. It is ideal for carrying books and personal items and for everyday use."
     },
@@ -501,7 +493,7 @@
       "loai_en": "Crossbody bag",
       "bien_the": "Mã 1",
       "bien_the_en": "Style 1",
-      "anh": "tui-deo-cheo-ma-1",
+      "anh": "le-tui-deo-cheo-ma-1",
       "mo_ta": "Túi có thiết kế dây đeo linh hoạt, kiểu dáng hiện đại, kết hợp chất liệu và họa tiết thổ cẩm Hà Giang. Sản phẩm đáp ứng nhu cầu mang theo các vật dụng thiết yếu, phù hợp với giới trẻ và khách du lịch.",
       "mo_ta_en": "A crossbody bag with a flexible strap and a modern shape, combining Ha Giang brocade materials and patterns. It carries the essentials and suits young people and travellers."
     },
@@ -511,7 +503,7 @@
       "loai_en": "Crossbody bag",
       "bien_the": "Mã 2",
       "bien_the_en": "Style 2",
-      "anh": "tui-deo-cheo-ma-2",
+      "anh": "le-tui-deo-cheo-ma-2",
       "mo_ta": "Túi có thiết kế dây đeo linh hoạt, kiểu dáng hiện đại, kết hợp chất liệu và họa tiết thổ cẩm Hà Giang. Sản phẩm đáp ứng nhu cầu mang theo các vật dụng thiết yếu, phù hợp với giới trẻ và khách du lịch.",
       "mo_ta_en": "A crossbody bag with a flexible strap and a modern shape, combining Ha Giang brocade materials and patterns. It carries the essentials and suits young people and travellers."
     },
@@ -521,7 +513,7 @@
       "loai_en": "Crossbody bag",
       "bien_the": "Mã 3",
       "bien_the_en": "Style 3",
-      "anh": "tui-deo-cheo-ma-3",
+      "anh": "le-tui-deo-cheo-ma-3",
       "mo_ta": "Túi có thiết kế dây đeo linh hoạt, kiểu dáng hiện đại, kết hợp chất liệu và họa tiết thổ cẩm Hà Giang. Sản phẩm đáp ứng nhu cầu mang theo các vật dụng thiết yếu, phù hợp với giới trẻ và khách du lịch.",
       "mo_ta_en": "A crossbody bag with a flexible strap and a modern shape, combining Ha Giang brocade materials and patterns. It carries the essentials and suits young people and travellers."
     },
@@ -533,22 +525,22 @@
       "bien_the_en": "",
       "anh": [
         {
-          "tep": "khan-cham-moc",
-          "vi": "Khăn thổ cẩm hoa văn zích zắc",
-          "en": "Brocade scarf with zigzag patterns"
-        },
-        {
-          "tep": "khan-cham-hoa",
+          "tep": "le-khan-1",
           "vi": "Khăn thổ cẩm hoa văn hình thoi",
           "en": "Brocade scarf with diamond patterns"
         },
         {
-          "tep": "khan-cao-nguyen",
+          "tep": "le-khan-2",
+          "vi": "Khăn thổ cẩm hoa văn zích zắc",
+          "en": "Brocade scarf with zigzag patterns"
+        },
+        {
+          "tep": "le-khan-3",
           "vi": "Khăn thổ cẩm",
           "en": "Brocade scarf"
         },
         {
-          "tep": "khan-di-san",
+          "tep": "le-khan-4",
           "vi": "Khăn thổ cẩm",
           "en": "Brocade scarf"
         }
